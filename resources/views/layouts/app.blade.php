@@ -23,23 +23,24 @@
 <!-- the first header that is transparent -->
 <header>
     <div id="app">
-    <div class="container pt-2 d-flex">
-        <h5 class="font-lato-bold mr-4 col-gold">GOV.PH</h5>
-        <div class="d-none d-md-block">
-            <div class="d-flex">
-                <p class="mr-4 mb-0"><i class="fas fa-phone-alt col-green"></i>&nbsp;&nbsp;(088) 828 4817</p>
-                <p class="mr-4 mb-0"><i class="fas fa-map-marker-alt col-green"></i>&nbsp;&nbsp;Sample St. Don Carlos
-                    City</p>
+        <div class="container pt-2 d-flex">
+            <h5 class="font-lato-bold mr-4 col-gold">GOV.PH</h5>
+            <div class="d-none d-md-block">
+                <div class="d-flex">
+                    <p class="mr-4 mb-0"><i class="fas fa-phone-alt col-green"></i>&nbsp;&nbsp;(088) 828 4817</p>
+                    <p class="mr-4 mb-0"><i class="fas fa-map-marker-alt col-green"></i>&nbsp;&nbsp;Sample St. Don
+                        Carlos
+                        City</p>
+                </div>
+            </div>
+            <div class="ml-auto d-flex">
+                <div>
+                    <a href="http://"><img src="{{ asset('assets/icons/fb.svg') }}" alt=""></a>
+                    <a href="http://"><img src="{{ asset('assets/icons/tw.svg') }}" alt=""></a>
+                    <a href="http://"><img src="{{ asset('assets/icons/insta.svg') }}" alt=""></a>
+                </div>
             </div>
         </div>
-        <div class="ml-auto d-flex">
-            <div>
-                <a href="http://"><img src="{{ asset('assets/icons/fb.svg') }}" alt=""></a>
-                <a href="http://"><img src="{{ asset('assets/icons/tw.svg') }}" alt=""></a>
-                <a href="http://"><img src="{{ asset('assets/icons/insta.svg') }}" alt=""></a>
-            </div>
-        </div>
-    </div>
 </header>
 <!-- nav links -->
 <div class="nav-head bg-navTransparent">
@@ -82,6 +83,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('contacts') }}">Contact Us</a>
                 </li>
+                @auth
+                    <li class="nav-item">
+                        <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                           class="nav-link" href="{{ route('logout') }}">Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                @endauth
             </ul>
         </div>
     </nav>

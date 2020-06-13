@@ -24,3 +24,4 @@ Route::get('/contacts', 'PageController@contacts')->name('contacts');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'UserController@index')->name('admin');

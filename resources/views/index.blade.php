@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <article class="carousel-cont">
+    <article class="carousel-cont" style="margin-top: -24px;">
         <div id="carouselHome" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselHome" data-slide-to="0" class="active"></li>
@@ -8,10 +8,8 @@
                 <li data-target="#carouselHome" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
-                <!-- tanan image kay gi background para dili mo stretch-->
                 <div class="carousel-item carousel-slide-1 active">
                     <div class="carousel-slide-cont">
-                        <!-- inside a div para ma margin center ang content gamit ang flex -->
                         <div>
                             <div class="col-12 col-lg-6 p-0 m-0">
                                 <h4 class="font-oswald-med">WELCOME TO</h4>

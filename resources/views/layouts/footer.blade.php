@@ -2,10 +2,15 @@
 <article class="bg-green cnct-banner">
     <div class="container py-3">
         <div class="row">
-            <div class="col-12 col-md-8 col-dirtyWhite mb-3 font-weight-bold"><span>If you have any concern... We are available</span>
+            <div class="col-12 col-md-8 col-dirtyWhite mb-3 font-weight-bold">
+                <span>If you have any concern... We are available</span>
             </div>
-            <div class="col-12 col-md-4 "><span class="ml-auto"><button
-                        class="btn btn-outline-banner btn-large w-100 font-weight-bold">Contact Us</button></span>
+            <div class="col-12 col-md-4 ">
+                <span class="ml-auto">
+                    <button class="btn btn-outline-banner btn-large w-100 font-weight-bold">
+                        Contact Us
+                    </button>
+                </span>
             </div>
         </div>
     </div>

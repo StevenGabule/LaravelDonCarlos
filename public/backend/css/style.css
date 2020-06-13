@@ -1,0 +1,23 @@
+.bg-gradient-sidebar {
+    background-color: #1e1e2d;
+    background-image: linear-gradient(180deg, #1e1e2d 10%, #1e1e2d 100%);
+    background-size: cover;
+}
+
+.bg-gradient-nav {
+    background-color: #2a2b38;
+    background-image: linear-gradient(180deg, #2a2b38 10%, #2a2b38 100%);
+    background-size: cover;
+}
+
+.pinkish {
+    color: #e71372;
+}
+
+.blueish {
+    color: #2c77f4 !important;
+}
+
+#wrapper #content-wrapper {
+    background-color: #fafafa !important;
+}
