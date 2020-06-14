@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\servicesArticle;
+use App\rc;
 use Illuminate\Http\Request;
 
-class ServicesArticleController extends Controller
+class ArticleCategory extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ServicesArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\servicesArticle  $services_article
+     * @param  \App\rc  $rc
      * @return \Illuminate\Http\Response
      */
-    public function show(servicesArticle $services_article)
+    public function show(rc $rc)
     {
         //
     }
@@ -52,10 +52,10 @@ class ServicesArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\servicesArticle  $services_article
+     * @param  \App\rc  $rc
      * @return \Illuminate\Http\Response
      */
-    public function edit(servicesArticle $services_article)
+    public function edit(rc $rc)
     {
         //
     }
@@ -64,10 +64,10 @@ class ServicesArticleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\servicesArticle  $services_article
+     * @param  \App\rc  $rc
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, servicesArticle $services_article)
+    public function update(Request $request, rc $rc)
     {
         //
     }
@@ -75,10 +75,10 @@ class ServicesArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\servicesArticle  $services_article
+     * @param  \App\rc  $rc
      * @return \Illuminate\Http\Response
      */
-    public function destroy(servicesArticle $services_article)
+    public function destroy(rc $rc)
     {
         //
     }

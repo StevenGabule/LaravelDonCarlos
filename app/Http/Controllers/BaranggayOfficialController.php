@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\baranggay_official;
+use App\baranggayOfficial;
 use Illuminate\Http\Request;
 
 class BaranggayOfficialController extends Controller
@@ -41,10 +41,10 @@ class BaranggayOfficialController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\baranggay_official  $baranggay_official
+     * @param  \App\baranggayOfficial  $baranggay_official
      * @return \Illuminate\Http\Response
      */
-    public function show(baranggay_official $baranggay_official)
+    public function show(baranggayOfficial $baranggay_official)
     {
         //
     }
@@ -52,10 +52,10 @@ class BaranggayOfficialController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\baranggay_official  $baranggay_official
+     * @param  \App\baranggayOfficial  $baranggay_official
      * @return \Illuminate\Http\Response
      */
-    public function edit(baranggay_official $baranggay_official)
+    public function edit(baranggayOfficial $baranggay_official)
     {
         //
     }
@@ -64,10 +64,10 @@ class BaranggayOfficialController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\baranggay_official  $baranggay_official
+     * @param  \App\baranggayOfficial  $baranggay_official
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, baranggay_official $baranggay_official)
+    public function update(Request $request, baranggayOfficial $baranggay_official)
     {
         //
     }
@@ -75,10 +75,10 @@ class BaranggayOfficialController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\baranggay_official  $baranggay_official
+     * @param  \App\baranggayOfficial  $baranggay_official
      * @return \Illuminate\Http\Response
      */
-    public function destroy(baranggay_official $baranggay_official)
+    public function destroy(baranggayOfficial $baranggay_official)
     {
         //
     }

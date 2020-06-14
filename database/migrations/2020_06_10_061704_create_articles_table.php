@@ -12,8 +12,11 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('title');
+            $table->string('slug');
             $table->longText('description');
             $table->tinyInteger('status')->default(0)->comment('0 - for un-p | 1 - for pub.');
+            $table->string('avatar')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
