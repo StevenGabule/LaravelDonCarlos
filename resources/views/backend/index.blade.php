@@ -308,9 +308,6 @@
 
             </div>
         </div>
-
     </div>
     <!-- /.container-fluid -->
-
-
 @stop

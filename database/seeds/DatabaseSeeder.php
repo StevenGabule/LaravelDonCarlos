@@ -1,16 +1,12 @@
 <?php
 
+use App\Article;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
-        // $this->call(UsersTableSeeder::class);
+        factory(Article::class, 100)->create();
     }
 }

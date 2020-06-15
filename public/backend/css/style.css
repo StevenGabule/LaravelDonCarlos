@@ -21,3 +21,22 @@
 #wrapper #content-wrapper {
     background-color: #fafafa !important;
 }
+
+.list-group-item:first-child.list-group-custom {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.text-primary {
+    color: #1e1e2d !important;
+}
+.btn-primary {
+    background-color: #1e1e2d !important
+}
+
+.header-text { color: #646470;}
+
+
+.custom-font-size {
+    font-size: 13px;
+}

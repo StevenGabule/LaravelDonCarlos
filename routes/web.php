@@ -25,3 +25,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'UserController@index')->name('admin');
+
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
+    Route::get('all/{type}', 'ArticleController@all')->name('articles.all');
+    Route::resource('article', 'ArticleController');
+
+    Route::get('massremove', 'ArticleController@massRemove')->name('article.massremove');
+//    Route::get('trash', 'ArticleController@trash')->name('article.trash');
+});

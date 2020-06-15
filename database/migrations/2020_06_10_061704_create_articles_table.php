@@ -14,6 +14,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->longText('description');
+            $table->unsignedBigInteger('category_id');
             $table->tinyInteger('status')->default(0)->comment('0 - for un-p | 1 - for pub.');
             $table->string('avatar')->nullable();
             $table->softDeletes();
