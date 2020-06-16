@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="{{ asset('backend/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/style.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
     @yield('style_extended')
 </head>
 
@@ -44,7 +45,7 @@
 
         <li class="nav-item active">
             <a class="nav-link" href="{{ route('article.index') }}">
-                <i class="fad fa-fw fa-blog blueish"></i>
+                <i class="fad fa-fw fa-newspaper blueish"></i>
                 <span>News</span></a>
         </li>
 
@@ -415,6 +416,20 @@
 <script src="{{ asset('backend/vendor/chart.js/Chart.min.js') }}"></script>
 <script src="{{ asset('backend/js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ asset('backend/js/demo/chart-pie-demo.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{{--<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>--}}
+{{--@include('sweetalert::alert')--}}
+<script>
+    (function($) {
+        // Show the progress bar
+        NProgress.start();
+
+        window.onload = _ => {
+            NProgress.done();
+        };
+    })(jQuery)
+</script>
 
 @yield('_script')
 </body>

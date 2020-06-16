@@ -1,17 +1,55 @@
 @extends('backend.layouts.app')
 @section('style_extended')
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <link href="" rel="stylesheet">
+    <style>
+        input.parsley-success,
+        select.parsley-success,
+        textarea.parsley-success {
+            color: #fff;
+            background-color:#1cc88a;
+        }
+        input.parsley-error,
+        select.parsley-error,
+        textarea.parsley-error {
+            color: #B94A48;
+            background-color: #F2DEDE;
+        }
+
+        .parsley-errors-list {
+            margin: 2px 0 3px;
+            padding: 0;
+            list-style-type: none;
+            font-size: 0.9em;
+            line-height: 0.9em;
+            opacity: 0;
+
+            transition: all .3s ease-in;
+            -o-transition: all .3s ease-in;
+            -moz-transition: all .3s ease-in;
+            -webkit-transition: all .3s ease-in;
+        }
+
+        .parsley-errors-list.filled {
+            opacity: 1;
+        }
+
+        .parsley-type, .parsley-required, .parsley-equalto, .parsley-pattern, .parsley-length{
+            color:#e71372;
+            margin-top: 6px;
+        }
+    </style>
 @stop
 @section('content')
     <div class="container-fluid">
-        <form id="articleForm" method="post" enctype="multipart/form-data">
+        <form id="articleForm" method="post" enctype="multipart/form-data" class="needs-validation">
             @csrf
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Create New Article</h1>
 
                 <div>
                     <button type="submit"
-                       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm submittingAsPublished">
+                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm submittingAsPublished">
                         Published
                     </button>
                     <a href="{{ route('article.create') }}"
@@ -29,13 +67,15 @@
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="inputTitle">Title:</label>
-                                <input type="text" class="form-control form-control-sm rounded-0" name="title" id="inputTitle">
+                                <label for="inputTitle">Title</label>
+                                <input type="text" class="form-control form-control-sm rounded-0" name="title"
+                                       id="inputTitle" required data-parsley-pattern="[a-zA-Z 0987654321]+$" data-parsley-length="[6, 50]" data-parsley-trigger="keyup">
+
                             </div>
                             <div class="form-group">
-                                <label for="inputDescription">Description:</label>
+                                <label for="inputDescription">Description</label>
                                 <textarea name="description" id="inputDescription"
-                                          class="form-control rounded-0"></textarea>
+                                          class="form-control inputDescription rounded-0" required data-parsley-trigger="keyup"></textarea>
                             </div>
 
                         </div>
@@ -64,7 +104,7 @@
 
                             <div class="form-group">
                                 <label for="inputCategory">Select Category:</label>
-                                <select name="category_id" id="inputCategory" class="form-control">
+                                <select name="category_id" id="inputCategory" class="form-control" required>
                                     <option value="">-- Select Category--</option>
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -81,8 +121,13 @@
 
 @section('_script')
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
+
     <script>
+        $('#articleForm').parsley();
+
         $(document).ready(function () {
+
             $('#inputDescription').summernote({
                 placeholder: 'Leave your description here',
                 tabSize: 2,
@@ -103,19 +148,25 @@
             });
 
             /* CREATING AN ARTICLE */
-            $('#articleForm').on('submit', function(e) {
+            $('#articleForm').on('submit', function (e) {
                 e.preventDefault();
-                let formData = $(this).serialize();
-                $.ajax({
-                    url: '{{ route('article.store') }}',
-                    method: 'POST',
-                    data: formData,
-                    dataType: 'json',
-                    success: data => {
-                        console.log(data);
-                    },
-                    error: err => console.error(err),
-                })
+                // let formData = $(this).serialize();
+                if($('#articleForm').parsley().isValid()) {
+                    $.ajax({
+                        url: '{{ route('article.store') }}',
+                        method: 'POST',
+                        data: new FormData(this),
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        dataType: 'json',
+                        success: ({success, id}) => {
+                            if (success) {
+                                window.location.href = `${id}/edit`
+                            }
+                        }
+                    }).fail((err) => console.log(err))
+                }
             })
 
         });

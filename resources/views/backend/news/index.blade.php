@@ -1,5 +1,7 @@
 @extends('backend.layouts.app')
 
+
+
 @section('style_extended')
     <style>
         tbody tr td {
@@ -36,6 +38,7 @@
         tbody tr.odd, tr.even {
             border-bottom: 1px solid #f0f3ff !important;
         }
+
         .dataTables_processing {
             background: #1B1B2A;
             color: white;
@@ -75,6 +78,7 @@
         .dataTables_paginate.paging_simple_numbers ul li {
             margin-left: 6px;
         }
+
         .dataTables_info {
             margin-left: 15px;
             font-size: 13px;
@@ -83,7 +87,80 @@
         /*.btn-group-custom .dropdown-toggle::after {
             border-top: none;
         }*/
+
+        /* The snackbar - position it at the bottom and in the middle of the screen */
+        #snackbar {
+            visibility: hidden; /* Hidden by default. Visible on click */
+            min-width: 250px; /* Set a default minimum width */
+            margin-left: -125px; /* Divide value of min-width by 2 */
+            background-color: #1e1e2d; /* Black background color */
+            color: #fff; /* White text color */
+            text-align: center; /* Centered text */
+            border-radius: 2px; /* Rounded borders */
+            padding: 16px; /* Padding */
+            position: fixed; /* Sit on top of the screen */
+            z-index: 1; /* Add a z-index if needed */
+            left: 50%; /* Center the snackbar */
+            bottom: 30px; /* 30px from the bottom */
+            font-size: 13px;
+        }
+
+        /* Show the snackbar when clicking on a button (class added with JavaScript) */
+        #snackbar.show {
+            visibility: visible; /* Show the snackbar */
+            /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+            However, delay the fade out process for 2.5 seconds */
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        /* Animations to fade the snackbar in and out */
+        @-webkit-keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
     </style>
+    {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">--}}
 @stop
 
 
@@ -180,19 +257,19 @@
             <div class="col-lg-3 mb-4">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold header-text">Options</h6>
+                        <h6 class="m-0 font-weight-bold header-text small">Options</h6>
                     </div>
                     <div class="card-body p-0">
-                        <div class="list-group rounded-0 border-0">
+                        <div class="list-group small rounded-0 border-0">
                             <a href="javascript:void(0)"
-                               class="list-group-item list-group-item-action list-group-custom all">All Articles</a>
-                            <a href="{{ route('article.create') }}" class="list-group-item list-group-item-action">Create</a>
+                               class="list-group-item list-group-item-action list-group-custom all"><i class="fad fa-newspaper mr-2"></i>All Articles</a>
+                            <a href="{{ route('article.create') }}" class="list-group-item list-group-item-action"><i class="fad fa-layer-plus mr-2"></i>Create Article</a>
                             <a href="javascript:void(0)"
-                               class="list-group-item list-group-item-action drafted">Draft</a>
+                               class="list-group-item list-group-item-action drafted"><i class="fad fa-file-edit mr-2"></i>Draft Articles</a>
                             <a href="javascript:void(0)"
-                               class="list-group-item list-group-item-action published">Published</a>
+                               class="list-group-item list-group-item-action published"><i class="fad fa-globe-asia mr-2"></i>Published Articles</a>
                             <a href="javascript:void(0)"
-                               class="list-group-item list-group-item-action viewTrash">Trash</a>
+                               class="list-group-item list-group-item-action viewTrash"><i class="fad fa-dumpster mr-2"></i>Trash Articles</a>
                         </div>
                     </div>
                 </div>
@@ -201,15 +278,15 @@
             <div class="col-lg-9 mb-4">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold header-text captionText">List of Articles</h6>
+                        <h6 class="m-0 font-weight-bold header-text small captionText">List of Articles</h6>
                     </div>
 
                     <div class="card-body p-0">
-                        <div class="text-right">
-                            <div class="btn-group btn-group-sm pt-3 pr-3 pb-4 pull-right" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-secondary trash">Move To Trash</button>
-                                <button type="button" class="btn btn-secondary clone">Clone</button>
-                            </div>
+                        <div class="text-right py-3 pr-3">
+                                <button type="button" class="btn btn-sm btn-info shadow-sm trash"><i class="fad fa-trash-restore mr-2"></i>Move To Trash</button>
+                                <button type="button" class="btn btn-sm btn-info shadow-sm DestroyArticles"><i class="fad fa-trash mr-2"></i>Delete</button>
+                                <button type="button" class="btn btn-sm btn-info shadow-sm RestoredArticles"><i class="fad fa-trash-restore mr-2"></i>Restore</button>
+                                <button type="button" class="btn btn-sm btn-info shadow-sm clone"><i class="fad fa-clone mr-2"></i>Clone</button>
                         </div>
                         <div class="table-responsive overflow-hidden">
                             <table id="articlesTables"
@@ -234,6 +311,7 @@
         </div>
     </div>
     <!-- /.container-fluid -->
+    <div id="snackbar" class="shadow rounded">Some text some message..</div>
 @stop
 
 @section('_script')
@@ -241,11 +319,11 @@
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
     <script>
-        const table = $(document).ready(function () {
+        $(document).ready(function () {
 
             getArticle();
 
-            function getArticle(type='all') {
+            function getArticle(type = 'all') {
                 $('#articlesTables').DataTable({
                     "destroy": true,
                     processing: true,
@@ -323,50 +401,152 @@
             $(document).on('click', '.trash', function (e) {
                 e.preventDefault();
                 let id = [];
-                if (confirm('Are you sure you want to move to trash?')) {
-                    $('.article_checkbox:checked').each(function () {
-                        id.push($(this).val());
-                    });
+                $('.article_checkbox:checked').each(function () {
+                    id.push($(this).val());
+                });
 
-                    if (id.length > 0) {
-                        $.ajax({
-                            url: "{{ route('article.massremove')}}",
-                            method: "get",
-                            data: {id: id},
-                            success: data => {
-                                if (data) {
-                                    $('#articlesTables').DataTable().ajax.reload();
-                                }
+                if (id.length > 0) {
+                    $.ajax({
+                        url: "{{ route('article.massremove')}}",
+                        method: "get",
+                        data: {id: id},
+                        success: data => {
+                            if (data) {
+                                snackbar('You successfully remove the checked articles.');
+                                $('#articlesTables').DataTable().ajax.reload();
                             }
-                        }).fail(err => console.log(err))
-                    } else {
-                        alert('Please select atleast one checkbox')
-                    }
+                        }
+                    }).fail(err => console.log(err))
+                } else {
+                    alert('Please select atleast one checkbox')
                 }
-            })
+            });
 
             // remove single article
             $(document).on('click', '.removeArticle', function () {
                 let id = $(this).attr('id');
-                if (confirm('Are you sure you want to move to trash?')) {
-                    if (id.length > 0) {
-                        $.ajax({
-                            url: `article/${id}`,
-                            method: "DELETE",
-                            data: {
-                                id: id,
-                                _token: '{{ csrf_token()}}'
-                            },
-                            success: _ => {
-                                    $('#articlesTables').DataTable().ajax.reload();
-                            }
-                        }).fail(err => console.log(err))
-                    } else {
-                        alert('Please select atleast one checkbox')
-                    }
+                if (id.length > 0) {
+                    $.ajax({
+                        url: `article/${id}`,
+                        method: "DELETE",
+                        data: {
+                            id: id,
+                            _token: '{{ csrf_token()}}'
+                        },
+                        success: _ => {
+                            snackbar('You successfully remove the article.');
+                            $('#articlesTables').DataTable().ajax.reload();
+                        }
+                    }).fail(err => console.log(err))
+                } else {
+                    alert('Please select atleast one checkbox')
                 }
             })
         });
 
+        $(document).on('click', '.restoreArticle', function (e) {
+            e.preventDefault();
+            let id = $(this).attr('id');
+
+            if (id.length > 0) {
+                $.ajax({
+                    url: `restore/${id}`,
+                    method: "GET",
+                    data: {id: id},
+                    success: data => {
+                        if (data) {
+                            snackbar('You successfully restore it.');
+                            $('#articlesTables').DataTable().ajax.reload();
+                        }
+                    }
+                }).fail(err => console.log(err))
+            }
+        });
+
+        $(document).on('click', '.RestoredArticles', function () {
+
+            let id = [];
+            $('.article_checkbox:checked').each(function () {
+                id.push($(this).val());
+            });
+
+            if (id.length > 0) {
+                $.ajax({
+                    url: 'restore',
+                    method: "GET",
+                    data: {id: id},
+                    success: data => {
+                        if (data) {
+                            snackbar('You successfully restored all the articles.');
+                            $('#articlesTables').DataTable().ajax.reload();
+                        }
+                    }
+                }).fail(err => console.log(err))
+            }
+        });
+
+        $(document).on('click', '.killArticle', function (e) {
+            var id = $(this).attr('id');
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: `kill`,
+                        method: "GET",
+                        data: {id: id},
+                        success: data => {
+                            if (data) {
+                                snackbar('You successfully deleted the article');
+                                $('#articlesTables').DataTable().ajax.reload();
+                            }
+                        }
+                    }).fail(err => console.log(err))
+                }
+            });
+        })
+
+        $(document).on('click', '.DestroyArticles', function (e) {
+            const id = [];
+            $('.article_checkbox:checked').each(function () {
+                id.push($(this).val());
+            });
+            swal({
+                title: "Are you sure?",
+                text: "All articles are check will be delete permanently",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: `kill`,
+                        method: "GET",
+                        data: {id: id},
+                        success: data => {
+                            if (data) {
+                                snackbar('You successfully deleted the articles');
+                                $('#articlesTables').DataTable().ajax.reload();
+                            }
+                        }
+                    }).fail(err => console.log(err))
+                }
+            });
+        })
+
+        function snackbar(text = '') {
+            let x = $("#snackbar");
+            x.addClass("show");
+            x.html(`<i class="fad fa-check mr-2 fa-fw"></i> ${text}`);
+            setTimeout(() => x.removeClass("show"), 3000);
+        }
     </script>
 @stop
