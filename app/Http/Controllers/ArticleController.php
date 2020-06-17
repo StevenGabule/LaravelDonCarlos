@@ -88,6 +88,7 @@ EOT;
     {
         $this->validate($request, [
             'title' => 'required',
+            'status' => 'required',
             'description' => 'required',
             'category_id' => 'required',
         ]);
@@ -99,7 +100,7 @@ EOT;
             'user_id' => Auth::id(),
             'title' => $request->get('title'),
             'slug' => Str::slug($request->get('slug')),
-            'status' => 1,
+            'status' => $request->get('status'),
             'avatar' => "backend/uploads/$new_name",
             'description' => $request->get('description'),
             'category_id' => $request->get('category_id'),
@@ -119,6 +120,7 @@ EOT;
     {
         $validation = Validator::make($request->all(), [
             'title' => 'required',
+            'status' => 'required',
             'description' => 'required',
             'category_id' => 'required',
         ]);
@@ -141,7 +143,7 @@ EOT;
             $article->description = $request->get('description');
             $article->category_id = $request->get('category_id');
             $article->slug = Str::slug($request->get('slug'));
-            $article->status = 1;
+            $article->status = $request->get('status');
             $article->save();
         }
         $output = [
@@ -219,5 +221,28 @@ EOT;
         }
         Article::withTrashed()->where('id', $ids)->first()->restore();
         return response()->json(['success' => true]);
+    }
+
+    public function clone(Request $request)
+    {
+        $ids = $request->input('id');
+        $data = [];
+        if (is_array($ids)) {
+            $articles = Article::whereIn('id', $ids)->get();
+            foreach ($articles as $article) {
+                $temp = ['user_id' => Auth::id(),
+                    'title' => $article->title,
+                    'description' => $article->description,
+                    'slug' => $article->slug,
+                    'status' => $article->status,
+                    'avatar' => $article->avatar,
+                    'category_id' => $article->category_id,
+                    'deleted_at' => $article->deleted_at,
+                    'created_at' => $article->created_at];
+                $data[] = $temp;
+            }
+            Article::insert($data);
+            return response()->json(['articles' => $articles, 'ids' => $ids, 'data' => $data]);
+        }
     }
 }

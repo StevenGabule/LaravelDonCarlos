@@ -84,80 +84,6 @@
             font-size: 13px;
         }
 
-        /*.btn-group-custom .dropdown-toggle::after {
-            border-top: none;
-        }*/
-
-        /* The snackbar - position it at the bottom and in the middle of the screen */
-        #snackbar {
-            visibility: hidden; /* Hidden by default. Visible on click */
-            min-width: 250px; /* Set a default minimum width */
-            margin-left: -125px; /* Divide value of min-width by 2 */
-            background-color: #1e1e2d; /* Black background color */
-            color: #fff; /* White text color */
-            text-align: center; /* Centered text */
-            border-radius: 2px; /* Rounded borders */
-            padding: 16px; /* Padding */
-            position: fixed; /* Sit on top of the screen */
-            z-index: 1; /* Add a z-index if needed */
-            left: 50%; /* Center the snackbar */
-            bottom: 30px; /* 30px from the bottom */
-            font-size: 13px;
-        }
-
-        /* Show the snackbar when clicking on a button (class added with JavaScript) */
-        #snackbar.show {
-            visibility: visible; /* Show the snackbar */
-            /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
-            However, delay the fade out process for 2.5 seconds */
-            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
-
-        /* Animations to fade the snackbar in and out */
-        @-webkit-keyframes fadein {
-            from {
-                bottom: 0;
-                opacity: 0;
-            }
-            to {
-                bottom: 30px;
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadein {
-            from {
-                bottom: 0;
-                opacity: 0;
-            }
-            to {
-                bottom: 30px;
-                opacity: 1;
-            }
-        }
-
-        @-webkit-keyframes fadeout {
-            from {
-                bottom: 30px;
-                opacity: 1;
-            }
-            to {
-                bottom: 0;
-                opacity: 0;
-            }
-        }
-
-        @keyframes fadeout {
-            from {
-                bottom: 30px;
-                opacity: 1;
-            }
-            to {
-                bottom: 0;
-                opacity: 0;
-            }
-        }
 
     </style>
     {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">--}}
@@ -172,10 +98,6 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">News &amp; Blog Management's</h1>
-            <a href="{{ route('article.create') }}"
-               class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                <i class="fas fa-download fa-sm text-white-50"></i> Create
-            </a>
         </div>
 
         <div class="row">
@@ -262,14 +184,19 @@
                     <div class="card-body p-0">
                         <div class="list-group small rounded-0 border-0">
                             <a href="javascript:void(0)"
-                               class="list-group-item list-group-item-action list-group-custom all"><i class="fad fa-newspaper mr-2"></i>All Articles</a>
-                            <a href="{{ route('article.create') }}" class="list-group-item list-group-item-action"><i class="fad fa-layer-plus mr-2"></i>Create Article</a>
+                               class="list-group-item list-group-item-action list-group-custom all"><i
+                                    class="fad fa-newspaper mr-2"></i>All Articles</a>
+                            <a href="{{ route('article.create') }}" class="list-group-item list-group-item-action"><i
+                                    class="fad fa-layer-plus mr-2"></i>Create Article</a>
                             <a href="javascript:void(0)"
-                               class="list-group-item list-group-item-action drafted"><i class="fad fa-file-edit mr-2"></i>Draft Articles</a>
+                               class="list-group-item list-group-item-action drafted"><i
+                                    class="fad fa-file-edit mr-2"></i>Draft Articles</a>
                             <a href="javascript:void(0)"
-                               class="list-group-item list-group-item-action published"><i class="fad fa-globe-asia mr-2"></i>Published Articles</a>
+                               class="list-group-item list-group-item-action published"><i
+                                    class="fad fa-globe-asia mr-2"></i>Published Articles</a>
                             <a href="javascript:void(0)"
-                               class="list-group-item list-group-item-action viewTrash"><i class="fad fa-dumpster mr-2"></i>Trash Articles</a>
+                               class="list-group-item list-group-item-action viewTrash"><i
+                                    class="fad fa-dumpster mr-2"></i>Trash Articles</a>
                         </div>
                     </div>
                 </div>
@@ -283,17 +210,25 @@
 
                     <div class="card-body p-0">
                         <div class="text-right py-3 pr-3">
-                                <button type="button" class="btn btn-sm btn-info shadow-sm trash"><i class="fad fa-trash-restore mr-2"></i>Move To Trash</button>
-                                <button type="button" class="btn btn-sm btn-info shadow-sm DestroyArticles"><i class="fad fa-trash mr-2"></i>Delete</button>
-                                <button type="button" class="btn btn-sm btn-info shadow-sm RestoredArticles"><i class="fad fa-trash-restore mr-2"></i>Restore</button>
-                                <button type="button" class="btn btn-sm btn-info shadow-sm clone"><i class="fad fa-clone mr-2"></i>Clone</button>
+                            <button type="button" class="btn btn-sm btn-info shadow-sm trash"><i
+                                    class="fad fa-trash-restore mr-2"></i>Move To Trash
+                            </button>
+                            <button type="button" class="btn btn-sm btn-info shadow-sm DestroyArticles"><i
+                                    class="fad fa-trash mr-2"></i>Delete
+                            </button>
+                            <button type="button" class="btn btn-sm btn-info shadow-sm RestoredArticles"><i
+                                    class="fad fa-trash-restore mr-2"></i>Restore
+                            </button>
+                            <button type="button" class="btn btn-sm btn-info shadow-sm  clonedArticles"><i
+                                    class="fad fa-clone mr-2"></i>Clone
+                            </button>
                         </div>
                         <div class="table-responsive overflow-hidden">
                             <table id="articlesTables"
                                    class="table table-striped table-hover table-sm custom-font-size">
                                 <thead>
                                 <tr>
-                                    <th>&nbsp;</th>
+                                    <th><input type="checkbox" name="checkAll" id="checkAllIds"></th>
                                     <th style="width: 50px">Image</th>
                                     <th style="width:40%">Title</th>
                                     <th>Category</th>
@@ -311,7 +246,7 @@
         </div>
     </div>
     <!-- /.container-fluid -->
-    <div id="snackbar" class="shadow rounded">Some text some message..</div>
+    <div id="snackbar" class="shadow rounded"></div>
 @stop
 
 @section('_script')
@@ -330,7 +265,7 @@
                     serverSide: true,
                     pageLength: 15,
                     ajax: `all/${type}`,
-
+                    order: [[0, "desc"]],
                     columns: [
                         {
                             data: 'checkbox',
@@ -485,6 +420,25 @@
             }
         });
 
+        $(document).on('click', '.clonedArticles', function () {
+            let id = [];
+            $('.article_checkbox:checked').each(function () {
+                id.push($(this).val());
+            });
+
+            if (id.length > 0) {
+                $.ajax({
+                    url: 'clone',
+                    method: "GET",
+                    data: {id: id},
+                    success: _ => {
+                        snackbar('You successfully clone the articles.');
+                        $('#articlesTables').DataTable().ajax.reload();
+                    }
+                }).fail(err => console.log(err))
+            }
+        });
+
         $(document).on('click', '.killArticle', function (e) {
             var id = $(this).attr('id');
             swal({
@@ -548,5 +502,13 @@
             x.html(`<i class="fad fa-check mr-2 fa-fw"></i> ${text}`);
             setTimeout(() => x.removeClass("show"), 3000);
         }
+        $('#checkAllIds').on('click', function () {
+            if (this.checked === true) {
+                $("#articlesTables").find('input[name="article_checkbox[]"]').prop('checked', true);
+            } else {
+                $("#articlesTables").find('input[name="article_checkbox[]"]').prop('checked', false);
+            }
+        });
+
     </script>
 @stop

@@ -1,14 +1,14 @@
 @extends('backend.layouts.app')
 @section('style_extended')
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-    <link href="" rel="stylesheet">
     <style>
         input.parsley-success,
         select.parsley-success,
         textarea.parsley-success {
             color: #fff;
-            background-color:#1cc88a;
+            background-color: #1cc88a;
         }
+
         input.parsley-error,
         select.parsley-error,
         textarea.parsley-error {
@@ -34,8 +34,8 @@
             opacity: 1;
         }
 
-        .parsley-type, .parsley-required, .parsley-equalto, .parsley-pattern, .parsley-length{
-            color:#e71372;
+        .parsley-type, .parsley-required, .parsley-equalto, .parsley-pattern, .parsley-length {
+            color: #e71372;
             margin-top: 6px;
         }
     </style>
@@ -45,20 +45,20 @@
         <form id="articleForm" method="post" enctype="multipart/form-data" class="needs-validation">
             @csrf
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Create New Article</h1>
+                <h1 class="h3 mb-0 text-gray-800">Write New Article</h1>
 
                 <div>
-                    <button type="submit"
+                    {{--<button type="submit"
                             class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm submittingAsPublished">
-                        Published
+                        <i class="fad fa-globe-africa mr-2"></i>Published
                     </button>
-                    <a href="{{ route('article.create') }}"
-                       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm submittingAsDraft">
-                        Save as Draft
-                    </a>
+                    <button type="button"
+                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm submittingAsDraft">
+                        <i class="fad fa-file-edit mr-2"></i>Save as Draft
+                    </button>--}}
                     <a href="{{ route('article.index') }}"
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                        Cancel
+                        <i class="fad fa-long-arrow-left mr-2"></i>Back
                     </a>
                 </div>
             </div>
@@ -68,14 +68,33 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="inputTitle">Title</label>
-                                <input type="text" class="form-control form-control-sm rounded-0" name="title"
-                                       id="inputTitle" required data-parsley-pattern="[a-zA-Z 0987654321]+$" data-parsley-length="[6, 50]" data-parsley-trigger="keyup">
+                                <input type="text"
+                                       class="form-control form-control-sm rounded-0"
+                                       name="title"
+                                       id="inputTitle"
+                                       required
+                                       data-parsley-pattern="[a-zA-Z 0987654321]+$"
+                                       data-parsley-length="[6, 50]"
+                                       data-parsley-trigger="keyup">
 
                             </div>
                             <div class="form-group">
                                 <label for="inputDescription">Description</label>
                                 <textarea name="description" id="inputDescription"
-                                          class="form-control inputDescription rounded-0" required data-parsley-trigger="keyup"></textarea>
+                                          class="form-control inputDescription rounded-0" required
+                                          data-parsley-trigger="keyup"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select name="status" id="status" class="form-control" required>
+                                    <option value="">-- Select the status --</option>
+                                    <option value="1">Published</option>
+                                    <option value="0">Draft</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </div>
 
                         </div>
@@ -92,7 +111,7 @@
                                 </div>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="inputGroupFile01" name="avatar"
-                                           aria-describedby="inputGroupFileAddon01">
+                                           aria-describedby="inputGroupFileAddon01" accept="image/x-png,image/gif,image/jpeg">
                                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                 </div>
                             </div>
@@ -129,7 +148,6 @@
         $(document).ready(function () {
 
             $('#inputDescription').summernote({
-                placeholder: 'Leave your description here',
                 tabSize: 2,
                 height: 300
             });
@@ -147,28 +165,29 @@
                 readURL(this);
             });
 
-            /* CREATING AN ARTICLE */
-            $('#articleForm').on('submit', function (e) {
-                e.preventDefault();
-                // let formData = $(this).serialize();
-                if($('#articleForm').parsley().isValid()) {
-                    $.ajax({
-                        url: '{{ route('article.store') }}',
-                        method: 'POST',
-                        data: new FormData(this),
-                        contentType: false,
-                        cache: false,
-                        processData: false,
-                        dataType: 'json',
-                        success: ({success, id}) => {
-                            if (success) {
-                                window.location.href = `${id}/edit`
-                            }
+        /* CREATING AN ARTICLE */
+        $('#articleForm').on('submit', function (e) {
+            e.preventDefault();
+            // let formData = $(this).serialize();
+            if ($('#articleForm').parsley().isValid()) {
+                $.ajax({
+                    url: '{{ route('article.store') }}',
+                    method: 'POST',
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType: 'json',
+                    success: ({success, id}) => {
+                        if (success) {
+                            window.location.href = `${id}/edit?created`
                         }
-                    }).fail((err) => console.log(err))
-                }
-            })
+                    }
+                }).fail((err) => console.log(err))
+            }
+        })
 
-        });
+        })
+        ;
     </script>
 @stop

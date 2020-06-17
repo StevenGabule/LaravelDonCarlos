@@ -17,18 +17,18 @@
                 <h1 class="h3 mb-0 text-gray-800">Edit Article</h1>
 
                 <div>
-                    <button type="submit"
-                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm submittingAsPublished">
-                        Published
-                    </button>
-                    <input type="hidden" name="article_id" value="{{ $article->id }}">
                     <a href="{{ route('article.create') }}"
-                       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm submittingAsDraft">
-                        Save as Draft
+                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <i class="fad fa-plus mr-2"></i>New
                     </a>
+                    <input type="hidden" name="article_id" value="{{ $article->id }}">
+                    {{--<a href="{{ route('article.create') }}"
+                       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm submittingAsDraft">
+                        <i class="fad fa-file-edit mr-2"></i>Save as Draft
+                    </a>--}}
                     <a href="{{ route('article.index') }}"
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                        Cancel
+                        <i class="fad fa-long-arrow-left mr-2"></i>Back
                     </a>
                 </div>
             </div>
@@ -44,17 +44,31 @@
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="inputTitle">Title:</label>
+                                <label for="inputTitle">Title</label>
                                 <input type="text"
                                        class="form-control form-control-sm rounded-0"
                                        value="{{ $article->title }}"
                                        name="title"
                                        id="inputTitle">
                             </div>
+
                             <div class="form-group">
-                                <label for="inputDescription">Description:</label>
+                                <label for="inputDescription">Description</label>
                                 <textarea name="description" id="inputDescription"
                                           class="form-control rounded-0">{!! $article->description !!}</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select name="status" id="status" class="form-control" required>
+                                    <option value="">-- Select the status --</option>
+                                    <option value="1" {{ $article->status === 1 ? 'selected' : '' }}>Published</option>
+                                    <option value="0" {{ $article->status === 0 ? 'selected' : '' }}>Draft</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </div>
 
                         </div>
@@ -71,7 +85,7 @@
                                 </div>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="inputGroupFile01" name="avatar"
-                                           aria-describedby="inputGroupFileAddon01">
+                                           aria-describedby="inputGroupFileAddon01" accept="image/x-png,image/gif,image/jpeg">
                                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                 </div>
                             </div>
@@ -125,11 +139,18 @@
                 readURL(this);
             });
 
-            /* UPDATING AN ARTICLE */
 
+            /* UPDATING AN ARTICLE */
             const url_string = window.location.href;
             const url = new URL(url_string);
-            const id = url.href.split('/')[5];
+            const _created = url.href.split('/')[6].split('?')[1];
+
+            if (_created === 'created') {
+                const x = $(".alert.alert-success");
+                setTimeout(() => x.toggleClass('d-none'), 3000);
+                x.toggleClass('d-none');
+            }
+
             $('#articleForm').on('submit', function (e) {
                 e.preventDefault();
                 $.ajax({
@@ -141,9 +162,9 @@
                     processData: false,
                     dataType: 'json',
                     beforeSend: function() {
-                        setTimeout(() => $(".alert.alert-success").toggleClass('d-none'), 3000)
+                        setTimeout(() => $(".alert.alert-success").toggleClass('d-none'), 5000)
                     },
-                    success: ({id, error, success}) => {
+                    success: ({ success}) => {
                         if (success) {
                             $(".alert.alert-success").toggleClass('d-none');
                         }
