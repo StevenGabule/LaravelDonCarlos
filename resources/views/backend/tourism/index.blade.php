@@ -84,9 +84,7 @@
             font-size: 13px;
         }
 
-
     </style>
-    {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">--}}
 @stop
 
 
@@ -97,7 +95,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">News &amp; Blog Management's</h1>
+            <h1 class="h3 mb-0 text-gray-800">Tourism Management</h1>
         </div>
 
         <div class="row">
@@ -185,18 +183,18 @@
                         <div class="list-group small rounded-0 border-0">
                             <a href="javascript:void(0)"
                                class="list-group-item list-group-item-action list-group-custom all"><i
-                                    class="fad fa-newspaper mr-2"></i>All Articles</a>
-                            <a href="{{ route('article.create') }}" class="list-group-item list-group-item-action"><i
-                                    class="fad fa-layer-plus mr-2"></i>Create Article</a>
+                                    class="fad fa-newspaper mr-2"></i>All Places</a>
+                            <a href="{{ route('place.create') }}" class="list-group-item list-group-item-action"><i
+                                    class="fad fa-layer-plus mr-2"></i>Register New Place</a>
                             <a href="javascript:void(0)"
                                class="list-group-item list-group-item-action drafted"><i
-                                    class="fad fa-file-edit mr-2"></i>Draft Articles</a>
+                                    class="fad fa-file-edit mr-2"></i>Un-Published</a>
                             <a href="javascript:void(0)"
                                class="list-group-item list-group-item-action published"><i
-                                    class="fad fa-globe-asia mr-2"></i>Published Articles</a>
+                                    class="fad fa-globe-asia mr-2"></i>Published</a>
                             <a href="javascript:void(0)"
                                class="list-group-item list-group-item-action viewTrash"><i
-                                    class="fad fa-dumpster mr-2"></i>Trash Articles</a>
+                                    class="fad fa-dumpster mr-2"></i>Trash</a>
                         </div>
                     </div>
                 </div>
@@ -205,7 +203,7 @@
             <div class="col-lg-9 mb-4">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold header-text small captionText">List of Articles</h6>
+                        <h6 class="m-0 font-weight-bold header-text small captionText">List of Places</h6>
                     </div>
 
                     <div class="card-body p-0">
@@ -213,10 +211,10 @@
                             <button type="button" class="btn btn-sm btn-info shadow-sm trash"><i
                                     class="fad fa-trash-restore mr-2"></i>Move To Trash
                             </button>
-                            <button type="button" class="btn btn-sm btn-info shadow-sm DestroyArticles"><i
+                            <button type="button" class="btn btn-sm btn-info shadow-sm DestroyPlaces"><i
                                     class="fad fa-trash mr-2"></i>Delete
                             </button>
-                            <button type="button" class="btn btn-sm btn-info shadow-sm RestoredArticles"><i
+                            <button type="button" class="btn btn-sm btn-info shadow-sm RestoredPlaces"><i
                                     class="fad fa-trash-restore mr-2"></i>Restore
                             </button>
                             <button type="button" class="btn btn-sm btn-info shadow-sm  clonedArticles"><i
@@ -224,14 +222,14 @@
                             </button>
                         </div>
                         <div class="table-responsive overflow-hidden">
-                            <table id="articlesTables"
+                            <table id="placesTables"
                                    class="table table-striped table-hover table-sm custom-font-size">
                                 <thead>
                                 <tr>
                                     <th data-orderable="false"><input type="checkbox" name="checkAll" id="checkAllIds"></th>
                                     <th style="width: 50px">Image</th>
-                                    <th style="width:40%">Title</th>
-                                    <th>Category</th>
+                                    <th style="width:40%">Name</th>
+                                    <th>Address</th>
                                     <th>Status</th>
                                     <th>Date</th>
                                     <th>Actions</th>
@@ -256,16 +254,16 @@
     <script>
         $(document).ready(function () {
 
-            getArticle();
+            getPlaces();
 
-            function getArticle(type = 'all') {
-                $('#articlesTables').DataTable({
+            function getPlaces(type = 'all') {
+                $('#placesTables').DataTable({
                     "destroy": true,
                     processing: true,
                     serverSide: true,
                     pageLength: 15,
-                    ajax: `all/${type}`,
-                    order: [[0, "desc"]],
+                    ajax: `p-all/${type}`,
+                    ordering: false,
                     columns: [
                         {
                             data: 'checkbox',
@@ -274,15 +272,18 @@
                         {
                             data: 'avatar',
                             name: 'avatar',
+                            /*render: data => {
+                                return `<div class='text-center'><img src=${data} class='rounded-circle' style='height: 32px;width: 32px'/></div>`
+                            }*/
                         },
                         {
-                            data: 'title',
-                            name: 'title',
+                            data: 'name',
+                            name: 'name',
                             render: _ => _.substr(0, 50) + '...'
                         },
                         {
-                            data: 'category.name',
-                            name: 'category.name',
+                            data: 'address',
+                            name: 'address',
                         },
                         {
                             data: 'status',
@@ -305,47 +306,50 @@
             $(document).on('click', '.all', function (e) {
                 e.preventDefault();
                 $('#articlesTables').DataTable().destroy();
-                $(".captionText").text('List of All Articles');
-                getArticle();
+                $(".captionText").text('List of All Places');
+                getPlaces();
             });
 
             $(document).on('click', '.viewTrash', function (e) {
                 e.preventDefault();
                 $('#articlesTables').DataTable().destroy();
-                $(".captionText").text('Trash Articles');
-                getArticle('trash');
+                $(".captionText").text('Trash Data');
+                getPlaces('trash');
             });
 
             $(document).on('click', '.drafted', function (e) {
                 e.preventDefault();
                 $('#articlesTables').DataTable().destroy();
-                $(".captionText").text('List of Unpublished Article');
-                getArticle('drafted');
+                $(".captionText").text('List of Unpublished Places');
+                getPlaces('drafted');
             });
 
             $(document).on('click', '.published', function (e) {
                 e.preventDefault();
                 $('#articlesTables').DataTable().destroy();
-                $(".captionText").text('List of published Article');
-                getArticle('published');
+                $(".captionText").text('List of published Places');
+                getPlaces('published');
             });
 
             $(document).on('click', '.trash', function (e) {
+
                 e.preventDefault();
+
                 let id = [];
-                $('.article_checkbox:checked').each(function () {
+
+                $('.place_checkbox:checked').each(function () {
                     id.push($(this).val());
                 });
 
                 if (id.length > 0) {
                     $.ajax({
-                        url: "{{ route('article.massremove')}}",
+                        url: "{{ route('place.massremove')}}",
                         method: "get",
                         data: {id: id},
                         success: data => {
                             if (data) {
-                                snackbar('You successfully remove the checked articles.');
-                                $('#articlesTables').DataTable().ajax.reload();
+                                snackbar('You successfully remove the checked places.');
+                                $('#placesTables').DataTable().ajax.reload();
                             }
                         }
                     }).fail(err => console.log(err))
@@ -355,11 +359,11 @@
             });
 
             // remove single article
-            $(document).on('click', '.removeArticle', function () {
+            $(document).on('click', '.removePlace', function () {
                 let id = $(this).attr('id');
                 if (id.length > 0) {
                     $.ajax({
-                        url: `article/${id}`,
+                        url: `place/${id}`,
                         method: "DELETE",
                         data: {
                             id: id,
@@ -367,7 +371,7 @@
                         },
                         success: _ => {
                             snackbar('You successfully remove the article.');
-                            $('#articlesTables').DataTable().ajax.reload();
+                            $('#placesTables').DataTable().ajax.reload();
                         }
                     }).fail(err => console.log(err))
                 } else {
@@ -376,7 +380,7 @@
             })
         });
 
-        $(document).on('click', '.restoreArticle', function (e) {
+        $(document).on('click', '.restorePlace', function (e) {
             e.preventDefault();
             let id = $(this).attr('id');
 
@@ -388,29 +392,29 @@
                     success: data => {
                         if (data) {
                             snackbar('You successfully restore it.');
-                            $('#articlesTables').DataTable().ajax.reload();
+                            $('#placesTables').DataTable().ajax.reload();
                         }
                     }
                 }).fail(err => console.log(err))
             }
         });
 
-        $(document).on('click', '.RestoredArticles', function () {
+        $(document).on('click', '.RestoredPlaces', function () {
 
             let id = [];
-            $('.article_checkbox:checked').each(function () {
+            $('.place_checkbox:checked').each(function () {
                 id.push($(this).val());
             });
 
             if (id.length > 0) {
                 $.ajax({
-                    url: 'restore',
+                    url: 'p-restore',
                     method: "GET",
                     data: {id: id},
                     success: data => {
                         if (data) {
-                            snackbar('You successfully restored all the articles.');
-                            $('#articlesTables').DataTable().ajax.reload();
+                            snackbar('You successfully restored the data.');
+                            $('#placesTables').DataTable().ajax.reload();
                         }
                     }
                 }).fail(err => console.log(err))
@@ -430,7 +434,7 @@
                     data: {id: id},
                     success: _ => {
                         snackbar('You successfully clone the articles.');
-                        $('#articlesTables').DataTable().ajax.reload();
+                        $('#placesTables').DataTable().ajax.reload();
                     }
                 }).fail(err => console.log(err))
             }
@@ -440,7 +444,7 @@
             var id = $(this).attr('id');
             swal({
                 title: "Are you sure?",
-                text: "You will not be able to recover this imaginary file!",
+                text: "This will delete permanently.",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
@@ -449,13 +453,13 @@
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
-                        url: `kill`,
+                        url: 'p-kill',
                         method: "GET",
                         data: {id: id},
                         success: data => {
                             if (data) {
                                 snackbar('You successfully deleted the article');
-                                $('#articlesTables').DataTable().ajax.reload();
+                                $('#placesTables').DataTable().ajax.reload();
                             }
                         }
                     }).fail(err => console.log(err))
@@ -463,14 +467,14 @@
             });
         })
 
-        $(document).on('click', '.DestroyArticles', function (e) {
+        $(document).on('click', '.DestroyPlaces', function (e) {
             const id = [];
-            $('.article_checkbox:checked').each(function () {
+            $('.place_checkbox:checked').each(function () {
                 id.push($(this).val());
             });
             swal({
                 title: "Are you sure?",
-                text: "All articles are check will be delete permanently",
+                text: "All places are checked will be delete permanently",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
@@ -479,14 +483,12 @@
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
-                        url: `kill`,
+                        url: '{{ route("place.kill") }}',
                         method: "GET",
                         data: {id: id},
-                        success: data => {
-                            if (data) {
-                                snackbar('You successfully deleted the articles');
-                                $('#articlesTables').DataTable().ajax.reload();
-                            }
+                        success: _ => {
+                            snackbar('You successfully deleted the data');
+                            $('#placesTables').DataTable().ajax.reload();
                         }
                     }).fail(err => console.log(err))
                 }
@@ -499,11 +501,12 @@
             x.html(`<i class="fad fa-check mr-2 fa-fw"></i> ${text}`);
             setTimeout(() => x.removeClass("show"), 3000);
         }
+
         $('#checkAllIds').on('click', function () {
             if (this.checked === true) {
-                $("#articlesTables").find('input[name="article_checkbox[]"]').prop('checked', true);
+                $("#placesTables").find('input[name="place_checkbox[]"]').prop('checked', true);
             } else {
-                $("#articlesTables").find('input[name="article_checkbox[]"]').prop('checked', false);
+                $("#placesTables").find('input[name="place_checkbox[]"]').prop('checked', false);
             }
         });
 

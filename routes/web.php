@@ -37,4 +37,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::get('massremove', 'ArticleController@massRemove')->name('article.massremove');
     Route::get('clone', 'ArticleController@clone')->name('article.clone');
 //    Route::get('trash', 'ArticleController@trash')->name('article.trash');
+
+    Route::resource('place', 'PlaceController');
+    Route::get('p-all/{type}', 'PlaceController@all')->name('place.all');
+    Route::get('p-massremove', 'PlaceController@massRemove')->name('place.massremove');
+    Route::get('p-kill', 'PlaceController@kill')->name('place.kill');
+    Route::get('p-restore', 'PlaceController@restore')->name('place.restore');
+    Route::post('p-update', 'PlaceController@updateAjax')->name('place.update.ajax');
+
 });

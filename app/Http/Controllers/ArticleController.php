@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -64,7 +65,10 @@ class ArticleController extends Controller
 EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="article_checkbox[]" class="article_checkbox" value="{{$id}}" />')
-            ->rawColumns(['action', 'checkbox'])
+            ->editColumn('avatar', static function($data) {
+                return $data->avatar === "http://localhost:8000/" ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+            })
+            ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
     }
 
@@ -101,7 +105,7 @@ EOT;
             'title' => $request->get('title'),
             'slug' => Str::slug($request->get('slug')),
             'status' => $request->get('status'),
-            'avatar' => "backend/uploads/$new_name",
+            'avatar' => $new_name,
             'description' => $request->get('description'),
             'category_id' => $request->get('category_id'),
         ]);
@@ -112,7 +116,6 @@ EOT;
     public function edit(article $article)
     {
         $categories = \App\ArticleCategory::all();
-
         return view('backend.news.edit', compact('article', 'categories'));
     }
 
@@ -135,14 +138,14 @@ EOT;
         } else {
             if ($request->file('avatar')) {
                 $image = $request->file('avatar');
-                $new_name = 'backend/uploads/' . rand() . '.' . $image->getClientOriginalExtension();
+                $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('backend/uploads'), $new_name);
                 $article->avatar = $new_name;
             }
             $article->title = $request->get('title');
             $article->description = $request->get('description');
             $article->category_id = $request->get('category_id');
-            $article->slug = Str::slug($request->get('slug'));
+            $article->slug = Str::slug($request->get('name'));
             $article->status = $request->get('status');
             $article->save();
         }
@@ -238,7 +241,8 @@ EOT;
                     'avatar' => $article->avatar,
                     'category_id' => $article->category_id,
                     'deleted_at' => $article->deleted_at,
-                    'created_at' => $article->created_at];
+                    'created_at' => Carbon::now()
+                ];
                 $data[] = $temp;
             }
             Article::insert($data);

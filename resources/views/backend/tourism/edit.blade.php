@@ -11,69 +11,78 @@
 @stop
 @section('content')
     <div class="container-fluid">
-        <form id="articleForm" method="post" enctype="multipart/form-data">
+        <form id="placeForm" method="post" enctype="multipart/form-data">
             @csrf
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Edit Article</h1>
+                <h1 class="h3 mb-0 text-gray-800">Edit Place</h1>
 
                 <div>
-                    <a href="{{ route('article.create') }}"
+                    <a href="{{ route('place.create') }}"
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fad fa-plus mr-2"></i>New
                     </a>
-                    <input type="hidden" name="article_id" value="{{ $article->id }}">
-                    {{--<a href="{{ route('article.create') }}"
-                       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm submittingAsDraft">
-                        <i class="fad fa-file-edit mr-2"></i>Save as Draft
-                    </a>--}}
-                    <a href="{{ route('article.index') }}"
+                    <input type="hidden" name="place_id" value="{{ $place->id }}">
+
+                    <a href="{{ route('place.index') }}"
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fad fa-long-arrow-left mr-2"></i>Back
                     </a>
                 </div>
             </div>
+
             <div class="d-none alert alert-success alert-dismissible shadow-lg fade show" role="alert">
-                <strong><i class="fad fa-meteor blueish mr-2"></i> Successfully Updated!</strong> The article has been
+                <strong><i class="fad fa-meteor blueish mr-2"></i> Successfully Updated!</strong> The place has been
                 modified and ready to see.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <div class="row">
                 <div class="col-xl-9 col-lg-8">
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="inputTitle">Title</label>
+                                <label for="inputName">Name</label>
                                 <input type="text"
                                        class="form-control form-control-sm rounded-0"
-                                       value="{{ $article->title }}"
-                                       name="title"
-                                       id="inputTitle">
+                                       value="{{ $place->name }}"
+                                       name="name"
+                                       id="inputName">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputAddress">Address</label>
+                                <textarea name="address"
+                                          id="inputAddress"
+                                          class="form-control" rows="4"
+                                          required data-parsley-trigger="keyup"
+                                          data-parsley-length="[6, 50]">{{ $place->address }}</textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputDescription">Description</label>
                                 <textarea name="description" id="inputDescription"
-                                          class="form-control rounded-0">{!! $article->description !!}</textarea>
+                                          class="form-control rounded-0">{!! $place->description !!}</textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select name="status" id="status" class="form-control" required>
                                     <option value="">-- Select the status --</option>
-                                    <option value="1" {{ $article->status === 1 ? 'selected' : '' }}>Published</option>
-                                    <option value="0" {{ $article->status === 0 ? 'selected' : '' }}>Draft</option>
+                                    <option value="1" {{ $place->status === 1 ? 'selected' : '' }}>Published</option>
+                                    <option value="0" {{ $place->status === 0 ? 'selected' : '' }}>Draft</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </div>
 
                         </div>
                     </div>
                 </div>
+
                 <div class="col-xl-3 col-lg-4">
                     <div class="card shadow mb-4">
                         <!-- Card Body -->
@@ -92,24 +101,12 @@
                             </div>
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
-                                @if($article->avatar !== "http://localhost:8000/")
-                                    <img src="{{ $article->avatar }}" class="img-fluid" id="previewImage" alt="">
+                                @if($place->avatar !== null)
+                                    <img src="{{ asset("backend/uploads/places") }}/{{ $place->avatar }}" class="img-fluid" id="previewImage" alt="">
                                 @else
                                     <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>
                                     <img src="" class="img-fluid" id="previewImage" alt="">
                                 @endif
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputCategory">Select Category:</label>
-                                <select name="category_id" id="inputCategory" class="form-control">
-                                    <option value="">-- Select Category--</option>
-                                    @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" {{ $category->id === $article->category_id ? 'selected' : '' }}>
-                                            {{ $category->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
                             </div>
                         </div>
                     </div>
@@ -154,10 +151,10 @@
                 x.toggleClass('d-none');
             }
 
-            $('#articleForm').on('submit', function (e) {
+            $('#placeForm').on('submit', function (e) {
                 e.preventDefault();
                 $.ajax({
-                    url: '{{ route('article.update.ajax') }}',
+                    url: '{{ route('place.update.ajax') }}',
                     method: 'POST',
                     data: new FormData(this),
                     contentType: false,
