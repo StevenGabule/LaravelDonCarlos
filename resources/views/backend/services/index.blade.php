@@ -1,0 +1,596 @@
+@extends('backend.layouts.app')
+
+@section('style_extended')
+    <style>
+        tbody tr td {
+            vertical-align: middle !important;
+        }
+
+        .dataTables_length label {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            padding-left: 15px;
+        }
+
+        .custom-select.custom-select-sm.form-control.form-control-sm {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        .dataTables_filter label {
+            align-items: center;
+            display: inline-flex;
+            margin-left: 200px;
+        }
+
+        .dataTables_filter label input {
+            margin-left: 5px;
+        }
+
+        table.dataTable {
+            border-collapse: collapse !important;
+        }
+
+        tbody tr.odd, tr.even {
+            border-bottom: 1px solid #f0f3ff !important;
+        }
+
+        .dataTables_processing {
+            background: #1B1B2A;
+            color: white;
+            padding: 20px;
+            width: 150px;
+            margin: auto;
+        }
+
+        .dataTables_paginate.paging_simple_numbers {
+            padding-bottom: 4px;
+            margin-top: 4px;
+        }
+
+        .dataTables_paginate.paging_simple_numbers ul {
+            font-size: 11px;
+        }
+
+        .page-item.active .page-link {
+            background-color: #1e1e2d !important;
+            border-color: #1e1e2d !important;
+            font-weight: 600;
+            border-radius: 3px;
+        }
+
+        .page-link {
+            color: #36b9cc;
+            font-weight: bold;
+            transition: all 100ms linear;
+            border: none;
+        }
+
+        .page-link:hover {
+            background-color: #d52a1a;
+            color: white;
+        }
+
+        .dataTables_paginate.paging_simple_numbers ul li {
+            margin-left: 6px;
+        }
+
+        .dataTables_info {
+            margin-left: 15px;
+            font-size: 13px;
+        }
+
+    </style>
+@stop
+
+@section('content')
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Services Management</h1>
+        </div>
+
+        <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-8 col-lg-7">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold header-text">Earnings Overview</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                 aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Dropdown Header:</div>
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="myAreaChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pie Chart -->
+            <div class="col-xl-4 col-lg-5">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold header-text">Revenue Sources</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                 aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Dropdown Header:</div>
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="chart-pie pt-4 pb-2">
+                            <canvas id="myPieChart"></canvas>
+                        </div>
+                        <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-primary"></i> Direct
+                    </span>
+                            <span class="mr-2">
+                      <i class="fas fa-circle text-success"></i> Social
+                    </span>
+                            <span class="mr-2">
+                      <i class="fas fa-circle text-info"></i> Referral
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Row -->
+        <div class="row">
+            <div class="col-lg-3 mb-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold header-text small">Options</h6>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group small rounded-0 border-0">
+                            <a href="javascript:void(0)"
+                               class="list-group-item list-group-item-action list-group-custom all">
+                                <i
+                                    class="fad fa-newspaper mr-2"></i>All Services</a>
+                            <a href="javascript:void(0)" data-toggle="modal"
+                               class="list-group-item list-group-item-action newService">
+                                <i class="fad fa-layer-plus mr-2"></i>Register New Service
+                            </a>
+                            <a href="javascript:void(0)"
+                               class="list-group-item list-group-item-action drafted"><i
+                                    class="fad fa-file-edit mr-2"></i>Un-Published</a>
+                            <a href="javascript:void(0)"
+                               class="list-group-item list-group-item-action published"><i
+                                    class="fad fa-globe-asia mr-2"></i>Published</a>
+                            <a href="javascript:void(0)"
+                               class="list-group-item list-group-item-action viewTrash"><i
+                                    class="fad fa-dumpster mr-2"></i>Trash</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9 mb-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold header-text small captionText">List of Services</h6>
+                    </div>
+
+                    <div class="card-body p-0">
+                        <div class="text-right py-3 pr-3">
+                            <button type="button" class="btn btn-sm btn-info shadow-sm trash"><i
+                                    class="fad fa-trash-restore mr-2"></i>Move To Trash
+                            </button>
+                            <button type="button" class="btn btn-sm btn-info shadow-sm DestroyServices"><i
+                                    class="fad fa-trash mr-2"></i>Delete
+                            </button>
+                            <button type="button" class="btn btn-sm btn-info shadow-sm RestoreServices"><i
+                                    class="fad fa-trash-restore mr-2"></i>Restore
+                            </button>
+                        </div>
+                        <div class="table-responsive overflow-hidden">
+                            <table id="servicesTable"
+                                   class="table table-striped table-hover table-sm custom-font-size">
+                                <thead>
+                                <tr>
+                                    <th data-orderable="false">
+                                        <input type="checkbox" name="checkAll" id="checkAllIds">
+                                    </th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    <div id="snackbar" class="shadow rounded"></div>
+
+    <!-- CREATE/EDIT SERVICE MODAL -->
+    <div class="modal fade" id="NewEditServicesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="servicesForm" method="post">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="NameModalLabel">Register New Service</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <span id="form_result"></span>
+                        <div class="form-group">
+                            <label for="nameService" class="col-form-label">Name</label>
+                            <input type="text" name="name" class="form-control form-control-sm" id="nameService">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description" class="col-form-label">Description</label>
+                            <textarea class="form-control form-control-sm" name="description" id="description"
+                                      rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select name="status" id="status" class="form-control form-control-sm">
+                                <option value="1">Published</option>
+                                <option value="0">Draft</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                        <input id="serviceID" type="hidden" value="">
+                        <button type="submit" class="btn btn-primary btn-sm" id="btn-service">Save changes</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+@stop
+
+@section('_script')
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '.newService', function () {
+                $("#NameModalLabel").text('Register New Service');
+                $("#servicesForm")[0].reset();
+                $("#serviceID").val('');
+                $("#btn-service").text('Save Changes');
+                $("#NewEditServicesModal").modal('show');
+            });
+
+            /* CREATING AN ARTICLE */
+            $('#servicesForm').on('submit', function (e) {
+                e.preventDefault();
+                let formData = $(this).serialize();
+                const x = $("#btn-service");
+                const id = $("#serviceID").val();
+                $.ajax({
+                    url: id !== '' ? `service/${id}` : '{{ route('service.store') }}',
+                    method: id !== '' ? 'PUT' : 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        x.attr('disabled', true);
+                        x.html(`<div class="spinner-border spinner-border-sm text-white" role="status"><span class="sr-only">Loading...</span></div>`);
+                    },
+                    success: ({errors, success}) => {
+                        if (success) {
+                            $("#NewEditServicesModal").modal('hide');
+                            if (id !== '') {
+                                snackbar('You successfully updated the service');
+                            } else {
+                                snackbar('You successfully added new service');
+                            }
+                            $('#servicesTable').DataTable().ajax.reload();
+                        }
+
+                        let html = '';
+                        if (errors) {
+                            html = '<div class="alert alert-danger">';
+                            for (let count = 0; count < errors.length; count++) {
+                                html += '<p class="mb-0">' + errors[count] + '</p>';
+                            }
+                            html += '</div>';
+                        }
+                        $("#form_result").html(html);
+                        x.attr('disabled', false);
+                        x.html('Save Changes');
+                    },
+                    error: err => console.error(err)
+                }).fail((err) => {
+                    console.error(err);
+                    x.attr('disabled', false);
+                })
+            });
+
+            $(document).on('click', '.editServices', function () {
+                const id = $(this).attr('id');
+                $('#form_result').html('');
+                $.ajax({
+                    url: `service/${id}/edit`,
+                    dataType: "json",
+                    success: ({service}) => {
+                        const {id, name, short_description, status} = service;
+                        $("#nameService").val(name);
+                        $("#description").val(short_description);
+                        $("#status").val(status);
+                        $('#serviceID').val(id);
+                        $('#NameModalLabel').text('Edit Service');
+                        $('#btn-service').text('Update');
+                        $('#NewEditServicesModal').modal('show');
+                    }
+                })
+            });
+
+            getServices();
+
+            function getServices(type = 'all') {
+                $('#servicesTable').DataTable({
+                    "destroy": true,
+                    processing: true,
+                    serverSide: true,
+                    pageLength: 15,
+                    ajax: `s-all/${type}`,
+                    ordering: false,
+                    columns: [
+                        {
+                            data: 'checkbox',
+                            name: 'checkbox',
+                        },
+                        {
+                            data: 'name',
+                            name: 'name',
+                            render: _ => _.substr(0, 50) + '...'
+                        },
+                        {
+                            data: 'short_description',
+                            name: 'short_description',
+                            render: data => data !== null ? data : 'No Description'
+                        },
+                        {
+                            data: 'status',
+                            name: 'status',
+                            render: data => `<span class=${data === 1 ? 'text-success' : 'text-danger'}>${data === 1 ? 'Published' : 'Draft'}</span>`
+                        },
+                        {
+                            data: 'created_at',
+                            name: 'created_at',
+                            render: data => moment(data).format('L')
+                        },
+                        {
+                            data: 'action',
+                            name: 'action',
+                        },
+                    ],
+                });
+            }
+
+            $(document).on('click', '.all', function (e) {
+                e.preventDefault();
+                $(".captionText").text('List of All Services');
+                getServices();
+            });
+
+            $(document).on('click', '.viewTrash', function (e) {
+                e.preventDefault();
+                $(".captionText").text('Trash Data');
+                getServices('trash');
+            });
+
+            $(document).on('click', '.drafted', function (e) {
+                e.preventDefault();
+                $(".captionText").text('List of Unpublished Services');
+                getServices('drafted');
+            });
+
+            $(document).on('click', '.published', function (e) {
+                e.preventDefault();
+                $(".captionText").text('List of published Services');
+                getServices('published');
+            });
+
+            $(document).on('click', '.trash', function (e) {
+                e.preventDefault();
+                let id = [];
+                $('.service_checkbox:checked').each(function () {
+                    id.push($(this).val());
+                });
+
+                if (id.length > 0) {
+                    $.ajax({
+                        url: "{{ route('service.massremove')}}",
+                        method: "get",
+                        data: {id: id},
+                        success: data => {
+                            if (data) {
+                                snackbar('You successfully remove the service data.');
+                                $('#servicesTable').DataTable().ajax.reload();
+                            }
+                        }
+                    }).fail(err => console.log(err))
+                } else {
+                    alert('Please select atleast one checkbox')
+                }
+            });
+
+            // remove single article
+            $(document).on('click', '.removePlace', function () {
+                let id = $(this).attr('id');
+                if (id.length > 0) {
+                    $.ajax({
+                        url: `place/${id}`,
+                        method: "DELETE",
+                        data: {
+                            id: id,
+                            _token: '{{ csrf_token()}}'
+                        },
+                        success: _ => {
+                            snackbar('You successfully remove the article.');
+                            $('#servicesTable').DataTable().ajax.reload();
+                        }
+                    }).fail(err => console.log(err))
+                } else {
+                    alert('Please select atleast one checkbox')
+                }
+            })
+        });
+
+        $(document).on('click', '.restoreService', function (e) {
+            e.preventDefault();
+            const id = $(this).attr('id');
+
+            if (id.length > 0) {
+                $.ajax({
+                    url: '{{ route('service.restore') }}',
+                    method: "GET",
+                    data: {id: id},
+                    success: data => {
+                        if (data) {
+                            snackbar('You successfully restore it.');
+                            $('#servicesTable').DataTable().ajax.reload();
+                        }
+                    }
+                }).fail(err => console.log(err))
+            }
+        });
+
+        // mass restored
+        $(document).on('click', '.RestoreServices', function () {
+            let id = [];
+            $('.service_checkbox:checked').each(function () {
+                id.push($(this).val());
+            });
+
+            if (id.length > 0) {
+                $.ajax({
+                    url: 's-restore',
+                    method: "GET",
+                    data: {id: id},
+                    success: data => {
+                        if (data) {
+                            snackbar('You successfully restored the data.');
+                            $('#servicesTable').DataTable().ajax.reload();
+                        }
+                    }
+                }).fail(err => console.log(err))
+            }
+        });
+
+        $(document).on('click', '.killService', function (e) {
+            const id = $(this).attr('id');
+            swal({
+                title: "Are you sure?",
+                text: "This will delete permanently.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: 's-kill',
+                        method: "GET",
+                        data: {id: id},
+                        success: data => {
+                            if (data) {
+                                snackbar('You successfully deleted the services');
+                                $('#servicesTable').DataTable().ajax.reload();
+                            }
+                        }
+                    }).fail(err => console.log(err))
+                }
+            });
+        });
+
+        $(document).on('click', '.DestroyServices', function (e) {
+            const id = [];
+            $('.service_checkbox:checked').each(function () {
+                id.push($(this).val());
+            });
+            swal({
+                title: "Are you sure?",
+                text: "All data are checked will be deleted permanently",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: '{{ route("service.kill") }}',
+                        method: "GET",
+                        data: {id: id},
+                        success: _ => {
+                            snackbar('You successfully deleted the data');
+                            $('#servicesTable').DataTable().ajax.reload();
+                        }
+                    }).fail(err => console.log(err))
+                }
+            });
+        });
+
+        function snackbar(text = '') {
+            let x = $("#snackbar");
+            x.addClass("show");
+            x.html(`<i class="fad fa-check mr-2 fa-fw"></i> ${text}`);
+            setTimeout(() => x.removeClass("show"), 3000);
+        }
+
+        $('#checkAllIds').on('click', function () {
+            if (this.checked === true) {
+                $("#servicesTable").find('input[name="service_checkbox[]"]').prop('checked', true);
+            } else {
+                $("#servicesTable").find('input[name="service_checkbox[]"]').prop('checked', false);
+            }
+        });
+
+    </script>
+@stop

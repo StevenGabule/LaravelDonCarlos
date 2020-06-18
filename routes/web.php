@@ -45,4 +45,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::get('p-restore', 'PlaceController@restore')->name('place.restore');
     Route::post('p-update', 'PlaceController@updateAjax')->name('place.update.ajax');
 
+    Route::resource('service', 'ServicesController');
+    Route::get('s-all/{type}', 'ServicesController@all')->name('service.all');
+    Route::get('s-massremove', 'ServicesController@massRemove')->name('service.massremove');
+    Route::get('s-restore', 'ServicesController@restore')->name('service.restore');
+    Route::get('s-kill', 'ServicesController@kill')->name('service.kill');
+
 });

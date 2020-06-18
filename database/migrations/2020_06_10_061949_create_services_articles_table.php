@@ -9,8 +9,17 @@ class CreateServicesArticlesTable extends Migration
     public function up(): void
     {
         Schema::create('services_articles', static function (Blueprint $table) {
-            $table->bigInteger('service_id');
-            $table->text('description');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('services_id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('name');
+            $table->string('slug');
+            $table->string('short_description');
+            $table->longText('description');
+            $table->string('avatar')->nullable();
+            $table->unsignedBigInteger('views')->default(0);
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

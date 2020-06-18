@@ -11,8 +11,9 @@ class CreateServicesTable extends Migration
         Schema::create('services', static function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('short_description');
-            $table->enum('service_type', ['1', '2'])->comment('1 - category, 2 - article');
+            $table->text('short_description')->nullable();
+            $table->tinyInteger('status')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
