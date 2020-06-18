@@ -77,7 +77,7 @@
                 <div class="bg-gradient-nav py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Options:</h6>
                     <a class="collapse-item text-white" href="{{ route('service.index') }}">Services</a>
-                    <a class="collapse-item text-white" href="">Service Articles</a>
+                    <a class="collapse-item text-white" href="{{ route('service-article.index') }}">Service Articles</a>
                 </div>
             </div>
         </li>

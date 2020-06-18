@@ -30,7 +30,6 @@ Route::get('/admin', 'UserController@index')->name('admin');
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::get('all/{type}', 'ArticleController@all')->name('articles.all');
     Route::resource('article', 'ArticleController');
-
     Route::post('update', 'ArticleController@updateAjax')->name('article.update.ajax');
     Route::get('restore', 'ArticleController@restore')->name('article.restore');
     Route::get('kill', 'ArticleController@kill')->name('article.kill');
@@ -50,5 +49,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::get('s-massremove', 'ServicesController@massRemove')->name('service.massremove');
     Route::get('s-restore', 'ServicesController@restore')->name('service.restore');
     Route::get('s-kill', 'ServicesController@kill')->name('service.kill');
+
+
+    Route::resource('service-article', 'ServicesArticleController');
+    Route::get('sa-all/{type}', 'ServicesArticleController@all')->name('sa.all');
+    Route::get('sa-kill', 'ServicesArticleController@kill')->name('sa.kill');
+    Route::get('sa-massremove', 'ServicesArticleController@massRemove')->name('sa.massremove');
+    Route::get('sa-restore', 'ServicesArticleController@restore')->name('sa.restore');
+    Route::post('sa-update', 'ServicesArticleController@updateAjax')->name('sa.update.ajax');
 
 });

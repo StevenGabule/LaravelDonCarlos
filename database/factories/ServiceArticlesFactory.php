@@ -16,6 +16,7 @@ $factory->define(ServicesArticle::class, static function (Faker $faker) {
         'user_id' => 1,
         'name' => $name,
         'slug' => $slug,
+        'status' => random_int(0,1),
         'short_description' => $faker->text,
         'description' => $faker->paragraphs(10, true),
         'views' => random_int(1000, 2000),

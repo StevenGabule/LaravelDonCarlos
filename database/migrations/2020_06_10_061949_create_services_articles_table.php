@@ -17,6 +17,7 @@ class CreateServicesArticlesTable extends Migration
             $table->string('short_description');
             $table->longText('description');
             $table->string('avatar')->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->unsignedBigInteger('views')->default(0);
             $table->softDeletes();
             $table->timestamps();
