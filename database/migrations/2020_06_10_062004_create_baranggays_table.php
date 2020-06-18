@@ -8,12 +8,19 @@ class CreateBaranggaysTable extends Migration
 {
     public function up(): void
     {
+        /*id, name, short_description, description, population, address, avatar*/
         Schema::create('baranggays', static function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->string('name');
+            $table->string('slug');
+            $table->string('short_description');
+            $table->longText('description');
             $table->string('population');
             $table->string('address');
-            $table->text('avatar');
+            $table->text('avatar')->nullable();
+            $table->text('status')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

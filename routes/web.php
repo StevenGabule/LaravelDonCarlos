@@ -58,4 +58,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::get('sa-restore', 'ServicesArticleController@restore')->name('sa.restore');
     Route::post('sa-update', 'ServicesArticleController@updateAjax')->name('sa.update.ajax');
 
+    Route::resource('baranggays','BaranggayController');
+    Route::get('ba/{type}', 'BaranggayController@all')->name('ba.all');
+    Route::get('ba-massremove', 'BaranggayController@massRemove')->name('ba.massremove');
+    Route::get('ba-restore', 'BaranggayController@restore')->name('ba.restore');
+    Route::get('ba-kill', 'BaranggayController@kill')->name('ba.kill');
+    Route::get('ba-clone', 'BaranggayController@clone')->name('ba.clone');
+    Route::post('ba-update', 'BaranggayController@updateAjax')->name('ba.update.ajax');
+
 });

@@ -22,10 +22,6 @@
                         <i class="fad fa-plus mr-2"></i>New
                     </a>
                     <input type="hidden" name="article_id" value="{{ $article->id }}">
-                    {{--<a href="{{ route('article.create') }}"
-                       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm submittingAsDraft">
-                        <i class="fad fa-file-edit mr-2"></i>Save as Draft
-                    </a>--}}
                     <a href="{{ route('article.index') }}"
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fad fa-long-arrow-left mr-2"></i>Back
@@ -92,7 +88,7 @@
                             </div>
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
-                                @if($article->avatar !== "http://localhost:8000/")
+                                @if($article->avatar !== null)
                                     <img src="{{ $article->avatar }}" class="img-fluid" id="previewImage" alt="">
                                 @else
                                     <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>

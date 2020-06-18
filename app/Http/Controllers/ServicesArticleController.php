@@ -96,7 +96,7 @@ EOT;
             'user_id' => Auth::id(),
             'services_id' => $request->get('service_id'),
             'name' => $request->get('name'),
-            'slug' => Str::slug($request->get('slug')),
+            'slug' => Str::slug($request->get('name')),
             'status' => $request->get('status'),
             'avatar' => $new_name,
             'short_description' => $request->get('short_description'),

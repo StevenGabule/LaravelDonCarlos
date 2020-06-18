@@ -84,7 +84,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin') }}">
+            <a class="nav-link" href="{{ route('baranggays.index') }}">
                 <i class="fad fa-fw fa-kaaba blueish"></i>
                 <span>Baranggays</span></a>
         </li>
