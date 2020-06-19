@@ -22,7 +22,7 @@ class BaranggayController extends Controller
     {
         $baranggay = null;
         if ($type === 'all') {
-            $baranggay = Baranggay::latest()->get();
+            $baranggay = Baranggay::latest();
         }
 
         if ($type === 'trash') {
@@ -63,7 +63,7 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="baranggay_checkbox[]" class="baranggay_checkbox" value="{{$id}}" />')
             ->editColumn('avatar', static function ($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/baranggays/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -90,6 +90,7 @@ EOT;
         if ($image = $request->file('avatar')) {
             $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('backend/uploads/baranggays'), $new_name);
+            $new_name = "backend/uploads/baranggays/$new_name";
         }
 
         $sa = Baranggay::create([
@@ -135,7 +136,7 @@ EOT;
             if ($image = $request->file('avatar')) {
                 $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('backend/uploads/baranggays'), $new_name);
-                $baranggay->avatar = $new_name;
+                $baranggay->avatar = "backend/uploads/baranggays/$new_name";
             }
 
             $baranggay->update([

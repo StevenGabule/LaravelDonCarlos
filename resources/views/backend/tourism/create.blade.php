@@ -46,16 +46,14 @@
             @csrf
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Register New Place</h1>
-
                 <div>
-                        <button type="submit" class="btn btn-primary btn-sm"><i class="fad fa-save mr-2"></i> Save</button>
-
-                    <a href="{{ route('article.index') }}"
+                    <a href="{{ route('place.index') }}"
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fad fa-long-arrow-left mr-2"></i>Back
                     </a>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-xl-9 col-lg-8">
                     <div class="card shadow mb-4">
@@ -74,30 +72,33 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="inputShortDescription">Short Description</label>
+                                <textarea name="short_description"
+                                          id="inputShortDescription" class="form-control form-control-sm"
+                                          rows="2"
+                                          required data-parsley-trigger="keyup"
+                                          data-parsley-length="[6, 50]"></textarea>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="inputAddress">Address</label>
                                 <textarea name="address"
-                                          id="inputAddress" class="form-control" rows="4" required data-parsley-trigger="keyup" data-parsley-length="[6, 50]"></textarea>
+                                          id="inputAddress" class="form-control form-control-sm" rows="2" required
+                                          data-parsley-trigger="keyup" data-parsley-length="[6, 50]"></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputDescription">Description</label>
                                 <textarea name="description" id="inputDescription"
-                                          class="form-control inputDescription rounded-0" required
+                                          class="form-control form-control-sm inputDescription rounded-0" required
                                           data-parsley-trigger="keyup"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control" required>
-                                    <option value="">-- Select the status --</option>
-                                    <option value="1">Published</option>
-                                    <option value="0">Draft</option>
-                                </select>
                             </div>
 
 
                         </div>
                     </div>
                 </div>
+
                 <div class="col-xl-3 col-lg-4">
                     <div class="card shadow mb-4">
                         <!-- Card Body -->
@@ -109,7 +110,8 @@
                                 </div>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="inputGroupFile01" name="avatar"
-                                           aria-describedby="inputGroupFileAddon01" accept="image/x-png,image/gif,image/jpeg">
+                                           aria-describedby="inputGroupFileAddon01"
+                                           accept="image/x-png,image/gif,image/jpeg">
                                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                 </div>
                             </div>
@@ -119,15 +121,19 @@
                                 <img src="" class="img-fluid" id="previewImage" alt="">
                             </div>
 
-                           {{-- <div class="form-group">
-                                <label for="inputCategory">Select Category:</label>
-                                <select name="category_id" id="inputCategory" class="form-control" required>
-                                    <option value="">-- Select Category--</option>
-                                    @foreach($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select name="status" id="status" class="form-control" required>
+                                    <option value="">-- Select the status --</option>
+                                    <option value="1">Published</option>
+                                    <option value="0">Draft</option>
                                 </select>
-                            </div>--}}
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="fad fa-save mr-2"></i> Save
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -163,27 +169,27 @@
                 readURL(this);
             });
 
-        /* CREATING AN ARTICLE */
-        $('#placeForm').on('submit', function (e) {
-            e.preventDefault();
-            // let formData = $(this).serialize();
-            if ($('#placeForm').parsley().isValid()) {
-                $.ajax({
-                    url: '{{ route('place.store') }}',
-                    method: 'POST',
-                    data: new FormData(this),
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    dataType: 'json',
-                    success: ({success, id}) => {
-                        if (success) {
-                            window.location.href = `${id}/edit?created`
+            /* CREATING AN ARTICLE */
+            $('#placeForm').on('submit', function (e) {
+                e.preventDefault();
+                // let formData = $(this).serialize();
+                if ($('#placeForm').parsley().isValid()) {
+                    $.ajax({
+                        url: '{{ route('place.store') }}',
+                        method: 'POST',
+                        data: new FormData(this),
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        dataType: 'json',
+                        success: ({success, id}) => {
+                            if (success) {
+                                window.location.href = `${id}/edit?created`
+                            }
                         }
-                    }
-                }).fail((err) => console.log(err))
-            }
-        })
+                    }).fail((err) => console.log(err))
+                }
+            })
 
         })
         ;

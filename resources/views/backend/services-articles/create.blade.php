@@ -9,17 +9,23 @@
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">New Service Article</h1>
                 <div>
+
                     <a href="{{ route('service-article.index') }}"
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fad fa-long-arrow-left mr-2"></i>Back
                     </a>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-xl-9 col-lg-8">
+
                     <div class="card shadow mb-4">
+
                         <div class="card-body">
+
                             <div class="form-group">
+
                                 <label for="inputName">Name</label>
                                 <input type="text"
                                        class="form-control form-control-sm rounded-0"
@@ -33,7 +39,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="shortDescription">Label Description</label>
+                                <label for="shortDescription">Short Description</label>
                                 <textarea name="short_description"
                                           id="shortDescription"
                                           class="form-control form-control-sm"
@@ -92,9 +98,12 @@
                                     <option value="0">Draft</option>
                                 </select>
                             </div>
+
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-sm"><i class="fad fa-save mr-2"></i> Save</button>
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="fad fa-save mr-2"></i> Save</button>
                             </div>
+
                         </div>
                     </div>
                 </div>

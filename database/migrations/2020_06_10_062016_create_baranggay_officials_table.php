@@ -18,9 +18,9 @@ class CreateBaranggayOfficialsTable extends Migration
             $table->date('from');
             $table->date('to');
             $table->text('avatar');
+            $table->softDeletes();
             $table->timestamps();
             $table->foreign('baranggay_id')->references('id')->on('baranggays')->onDelete('cascade');
-
         });
     }
 

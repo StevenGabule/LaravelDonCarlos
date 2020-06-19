@@ -113,7 +113,8 @@
                                 <i class="fad fa-newspaper mr-2"></i>All Service Blog
                             </a>
 
-                            <a href="{{ route('service-article.create') }}" class="list-group-item list-group-item-action">
+                            <a href="{{ route('service-article.create') }}"
+                               class="list-group-item list-group-item-action">
                                 <i class="fad fa-layer-plus mr-2"></i>New Service Blog
                             </a>
 
@@ -136,7 +137,7 @@
             <div class="col-lg-9 mb-4">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold header-text small captionText">List of Services</h6>
+                        <h6 class="m-0 font-weight-bold header-text small captionText">List of Services Blog</h6>
                     </div>
 
                     <div class="card-body p-0">
@@ -309,7 +310,8 @@
                     "destroy": true,
                     processing: true,
                     serverSide: true,
-                    pageLength: 15,
+                    scrollY: '70vh',
+                    scrollCollapse: true,
                     ajax: `sa-all/${type}`,
                     ordering: false,
                     columns: [

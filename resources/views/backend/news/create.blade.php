@@ -48,14 +48,6 @@
                 <h1 class="h3 mb-0 text-gray-800">Write New Article</h1>
 
                 <div>
-                    {{--<button type="submit"
-                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm submittingAsPublished">
-                        <i class="fad fa-globe-africa mr-2"></i>Published
-                    </button>
-                    <button type="button"
-                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm submittingAsDraft">
-                        <i class="fad fa-file-edit mr-2"></i>Save as Draft
-                    </button>--}}
                     <a href="{{ route('article.index') }}"
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fad fa-long-arrow-left mr-2"></i>Back
@@ -78,24 +70,20 @@
                                        data-parsley-trigger="keyup">
 
                             </div>
+
+                            <div class="form-group">
+                                <label for="inputShortDescription">Short Description</label>
+                                <textarea name="short_description" id="inputShortDescription" rows="3"
+                                          class="form-control form-control-sm"></textarea>
+                            </div>
+
                             <div class="form-group">
                                 <label for="inputDescription">Description</label>
                                 <textarea name="description" id="inputDescription"
                                           class="form-control inputDescription rounded-0" required
                                           data-parsley-trigger="keyup"></textarea>
                             </div>
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control" required>
-                                    <option value="">-- Select the status --</option>
-                                    <option value="1">Published</option>
-                                    <option value="0">Draft</option>
-                                </select>
-                            </div>
 
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Update</button>
-                            </div>
 
                         </div>
                     </div>
@@ -129,6 +117,21 @@
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select name="status" id="status" class="form-control" required>
+                                    <option value="">-- Select the status --</option>
+                                    <option value="1">Published</option>
+                                    <option value="0">Draft</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="fad fa-save fa-fw mr-1"></i> Save
+                                </button>
                             </div>
                         </div>
                     </div>

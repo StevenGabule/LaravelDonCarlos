@@ -54,18 +54,7 @@
                                           class="form-control rounded-0">{!! $article->description !!}</textarea>
                             </div>
 
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control" required>
-                                    <option value="">-- Select the status --</option>
-                                    <option value="1" {{ $article->status === 1 ? 'selected' : '' }}>Published</option>
-                                    <option value="0" {{ $article->status === 0 ? 'selected' : '' }}>Draft</option>
-                                </select>
-                            </div>
 
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Save</button>
-                            </div>
 
                         </div>
                     </div>
@@ -88,10 +77,11 @@
                             </div>
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
-                                @if($article->avatar !== null)
-                                    <img src="{{ $article->avatar }}" class="img-fluid" id="previewImage" alt="">
+                                @if($article->avatar !== "http://127.0.0.1:8000/")
+                                    <img src="{{ asset($article->avatar) }}" class="img-fluid" id="previewImage" alt="">
                                 @else
-                                    <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>
+                                    <i class="fad fa-images fa-goner"
+                                       style="font-size: 100px;"></i>
                                     <img src="" class="img-fluid" id="previewImage" alt="">
                                 @endif
                             </div>
@@ -106,6 +96,20 @@
                                         </option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select name="status" id="status" class="form-control" required>
+                                    <option value="">-- Select the status --</option>
+                                    <option value="1" {{ $article->status === 1 ? 'selected' : '' }}>Published</option>
+                                    <option value="0" {{ $article->status === 0 ? 'selected' : '' }}>Draft</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="fad fa-save fa-fw mr-1"></i>Update
+                                </button>
                             </div>
                         </div>
                     </div>

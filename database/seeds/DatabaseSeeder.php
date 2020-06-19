@@ -193,6 +193,14 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
+        /*$official = [
+           [
+               'position' => random_int(1,5),
+               'baranggay_id' => Baranggay::pluck('id')->random(),
+               'from' => ''
+           ]
+        ];*/
+
         ArticleCategory::insert($categories);
         Services::insert($services);
         Baranggay::insert($baranggays);

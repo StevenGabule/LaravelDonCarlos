@@ -8,12 +8,12 @@ class CreatePlacesTable extends Migration
 {
     public function up(): void
     {
-
         Schema::create('places', static function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->text('slug');
+            $table->text('short_description');
             $table->longText('description');
             $table->string('categories');
             $table->tinyInteger('status')->default(0)->comment('1-pub|2-unp');

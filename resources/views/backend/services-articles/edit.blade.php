@@ -101,8 +101,8 @@
                             </div>
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
-                                @if($sa->avatar !== null)
-                                    <img src="{{ asset("backend/uploads/service-article") }}/{{ $sa->avatar }}" class="img-fluid" id="previewImage" alt="">
+                                @if($sa->avatar !== "http://127.0.0.1:8000/")
+                                    <img src="{{ asset($sa->avatar) }}" class="img-fluid" id="previewImage" alt="">
                                 @else
                                     <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>
                                     <img src="" class="img-fluid" id="previewImage" alt="">
@@ -131,7 +131,9 @@
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="fad fa-save fa-fw mr-2"></i>Update
+                                </button>
                             </div>
 
                         </div>
@@ -147,7 +149,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#serviceArticleForm').parsley();
+            const elemForm = $('#serviceArticleForm');
+            elemForm.parsley();
 
             $('#inputDescription').summernote({
                 placeholder: 'Leave your description here',
@@ -180,9 +183,9 @@
                 x.toggleClass('d-none');
             }
 
-            $('#serviceArticleForm').on('submit', function (e) {
+            elemForm.on('submit', function (e) {
                 e.preventDefault();
-                if ($('#serviceArticleForm').parsley().isValid()) {
+                if (elemForm.parsley().isValid()) {
                     $.ajax({
                         url: '{{ route('sa.update.ajax') }}',
                         method: 'POST',

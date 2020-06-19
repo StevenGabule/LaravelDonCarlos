@@ -14,6 +14,7 @@ $factory->define(Place::class, static function (Faker $faker) {
         'user_id' => 1,
         'name' => $name,
         'slug' => $slug,
+        'short_description' => $faker->text,
         'description' => $faker->text,
         'categories' => 'uncategories',
         'address' => $faker->streetAddress,

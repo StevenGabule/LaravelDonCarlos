@@ -250,9 +250,9 @@
 @stop
 
 @section('_script')
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="{{ asset('backend/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('backend/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('backend/js/moment.min.js') }}"></script>
     <script>
         $(document).ready(function () {
 

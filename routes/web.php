@@ -28,14 +28,13 @@ Route::get('/admin', 'UserController@index')->name('admin');
 
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
-    Route::get('all/{type}', 'ArticleController@all')->name('articles.all');
     Route::resource('article', 'ArticleController');
+    Route::get('all/{type}', 'ArticleController@all')->name('articles.all');
     Route::post('update', 'ArticleController@updateAjax')->name('article.update.ajax');
     Route::get('restore', 'ArticleController@restore')->name('article.restore');
     Route::get('kill', 'ArticleController@kill')->name('article.kill');
     Route::get('massremove', 'ArticleController@massRemove')->name('article.massremove');
     Route::get('clone', 'ArticleController@clone')->name('article.clone');
-//    Route::get('trash', 'ArticleController@trash')->name('article.trash');
 
     Route::resource('place', 'PlaceController');
     Route::get('p-all/{type}', 'PlaceController@all')->name('place.all');
@@ -49,7 +48,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::get('s-massremove', 'ServicesController@massRemove')->name('service.massremove');
     Route::get('s-restore', 'ServicesController@restore')->name('service.restore');
     Route::get('s-kill', 'ServicesController@kill')->name('service.kill');
-
 
     Route::resource('service-article', 'ServicesArticleController');
     Route::get('sa-all/{type}', 'ServicesArticleController@all')->name('sa.all');
@@ -65,5 +63,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::get('ba-kill', 'BaranggayController@kill')->name('ba.kill');
     Route::get('ba-clone', 'BaranggayController@clone')->name('ba.clone');
     Route::post('ba-update', 'BaranggayController@updateAjax')->name('ba.update.ajax');
+
+    Route::resource('officials','BaranggayOfficialController');
 
 });

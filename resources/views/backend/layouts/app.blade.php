@@ -39,7 +39,7 @@
             <div class="sidebar-brand-icon">
                 <i class="fad fa-landmark-alt  pinkish"></i>
             </div>
-            <div class="sidebar-brand-text mx-3 pinkish">DonCarlos</div>
+            <div class="sidebar-brand-text mx-3 text-white">DonCarlos</div>
         </a>
 
         <!-- Divider -->
@@ -84,9 +84,22 @@
 
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('baranggays.index') }}">
+            <a class="nav-link collapsed"
+               href="javascript:void(0)"
+               data-toggle="collapse"
+               data-target="#collapseThree"
+               aria-expanded="true" aria-controls="collapseThree">
                 <i class="fad fa-fw fa-kaaba blueish"></i>
                 <span>Baranggays</span></a>
+
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                <div class="bg-gradient-nav py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Options:</h6>
+                    <a class="collapse-item text-white" href="{{ route('baranggays.index') }}">Baranggays</a>
+                    <a class="collapse-item text-white" href="{{ route('officials.index') }}">Officers</a>
+                </div>
+            </div>
+
         </li>
 
         <li class="nav-item">
@@ -347,15 +360,11 @@
 <script src="{{ asset('backend/vendor/chart.js/Chart.min.js') }}"></script>
 <script src="{{ asset('backend/js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ asset('backend/js/demo/chart-pie-demo.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-{{--<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>--}}
-{{--@include('sweetalert::alert')--}}
+<script src="{{ asset('backend/js/nprogress.min.js') }}"></script>
+<script src="{{ asset('backend/js/sweetalert.min.js') }}"></script>
 <script>
     (function($) {
-        // Show the progress bar
         NProgress.start();
-
         window.onload = _ => {
             NProgress.done();
         };

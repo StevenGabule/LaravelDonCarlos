@@ -10,6 +10,7 @@
                 <h1 class="h3 mb-0 text-gray-800">Write New Baranggay</h1>
 
                 <div>
+
                     <a href="{{ route('baranggays.index') }}"
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fad fa-long-arrow-left mr-2"></i>Back
@@ -36,8 +37,18 @@
                             <div class="form-group">
                                 <label for="inputShortDescription">Short Description</label>
                                 <textarea
-                                    name="short_description" rows="3" id="inputShortDescription"
+                                    name="short_description" rows="2" id="inputShortDescription"
                                     class="form-control form-control-sm" required data-parsley-pattern="[a-zA-Z 0987654321]+$"
+                                    data-parsley-length="[6, 50]"
+                                    data-parsley-trigger="keyup"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputAddress">Address</label>
+                                <textarea
+                                    name="address"
+                                    rows="2" id="inputAddress" class="form-control form-control-sm"
+                                    required data-parsley-pattern="[a-zA-Z 0987654321]+$"
                                     data-parsley-length="[6, 50]"
                                     data-parsley-trigger="keyup"></textarea>
                             </div>
@@ -49,15 +60,7 @@
                                           data-parsley-trigger="keyup"></textarea>
                             </div>
 
-                            <div class="form-group">
-                                <label for="inputAddress">Address</label>
-                                <textarea
-                                    name="address"
-                                    rows="3" id="inputAddress" class="form-control form-control-sm"
-                                    required data-parsley-pattern="[a-zA-Z 0987654321]+$"
-                                    data-parsley-length="[6, 50]"
-                                    data-parsley-trigger="keyup"></textarea>
-                            </div>
+
 
                         </div>
                     </div>
@@ -95,11 +98,12 @@
 
                             <div class="form-group">
                                 <label for="inputPopulation">Number of Population</label>
-                                <input type="text" class="form-control form-control-sm" name="population" required>
+                                <input type="text" id="inputPopulation" class="form-control form-control-sm" name="population" required>
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary"><i class="fad fa-save fa-fw mr-2"></i>Save
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="fad fa-save fa-fw mr-2"></i>Save
                                 </button>
                             </div>
                         </div>

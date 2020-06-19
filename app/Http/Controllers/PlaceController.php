@@ -53,7 +53,7 @@ class PlaceController extends Controller
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" style="font-size: 13px;">
                         <h6 class="dropdown-header">Actions</h6>
                         <a class="dropdown-item" href="$data->id"><i class="fad fa-eye mr-2"></i> View</a>
-                        <a class="dropdown-item" id="$data->id" href="/admin/article/$data->id/edit"><i class="fad fa-file-edit mr-2"></i> Edit</a>
+                        <a class="dropdown-item" id="$data->id" href="/admin/place/$data->id/edit"><i class="fad fa-file-edit mr-2"></i> Edit</a>
                         $btn
                         $btnRestore
                     </div>
@@ -62,22 +62,16 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="place_checkbox[]" class="place_checkbox" value="{{$id}}" />')
             ->editColumn('avatar', static function($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/places/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('backend.tourism.create');
     }
-
 
     public function store(Request $request)
     {
@@ -85,6 +79,7 @@ EOT;
             'name' => 'required',
             'address' => 'required',
             'status' => 'required',
+            'short_description' => 'required',
             'description' => 'required',
         ]);
 
@@ -92,8 +87,9 @@ EOT;
 
         if ($request->file('avatar')) {
             $image = $request->file('avatar');
-            $new_name = rand() . '.' . $image->getClientOriginalExtension();
+            $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('backend/uploads/places'), $new_name);
+            $new_name = "backend/uploads/places/$new_name";
         }
 
         $place = Place::create([
@@ -104,26 +100,16 @@ EOT;
             'address' => $request->get('address'),
             'avatar' => $new_name,
             'categories' => 'uncategories',
+            'short_description' => $request->get('short_description'),
             'description' => $request->get('description'),
         ]);
+
         return response()->json(['success' => true, 'id' => $place->id]);
     }
 
     public function edit(place $place)
     {
         return view('backend.tourism.edit', compact('place'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\place  $place
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, place $place)
-    {
-        //
     }
 
     public function updateAjax(Request $request)
@@ -133,6 +119,7 @@ EOT;
             'address' => 'required',
             'status' => 'required',
             'description' => 'required',
+            'short_description' => 'required',
         ]);
 
         $place = Place::findOrFail($request->input('place_id'));
@@ -148,13 +135,14 @@ EOT;
                 $image = $request->file('avatar');
                 $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('backend/uploads/places'), $new_name);
-                $place->avatar = $new_name;
+                $place->avatar = "backend/uploads/places/$new_name";
             }
 
             $place->name = $request->get('name');
-            $place->address = $request->get('address');
-            $place->description = $request->get('description');
             $place->slug = Str::slug($request->get('name'));
+            $place->short_description = $request->get('short_description');
+            $place->description = $request->get('description');
+            $place->address = $request->get('address');
             $place->status = $request->get('status');
             $place->save();
         }

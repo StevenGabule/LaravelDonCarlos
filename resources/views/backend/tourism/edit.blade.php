@@ -52,6 +52,14 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="inputShortDescription">Short Description</label>
+                                <textarea name="short_description"
+                                          id="inputShortDescription" class="form-control"
+                                          rows="3"
+                                          required data-parsley-trigger="keyup" data-parsley-length="[6, 50]">{{ $place->short_description }}</textarea>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="inputAddress">Address</label>
                                 <textarea name="address"
                                           id="inputAddress"
@@ -66,18 +74,6 @@
                                           class="form-control rounded-0">{!! $place->description !!}</textarea>
                             </div>
 
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control" required>
-                                    <option value="">-- Select the status --</option>
-                                    <option value="1" {{ $place->status === 1 ? 'selected' : '' }}>Published</option>
-                                    <option value="0" {{ $place->status === 0 ? 'selected' : '' }}>Draft</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Update</button>
-                            </div>
 
                         </div>
                     </div>
@@ -101,13 +97,26 @@
                             </div>
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
-                                @if($place->avatar !== null)
-                                    <img src="{{ asset("backend/uploads/places") }}/{{ $place->avatar }}" class="img-fluid" id="previewImage" alt="">
+                                @if($place->avatar !== "http://127.0.0.1:8000/")
+                                    <img src="{{ asset($place->avatar) }}" class="img-fluid" id="previewImage" alt="">
                                 @else
                                     <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>
                                     <img src="" class="img-fluid" id="previewImage" alt="">
                                 @endif
                             </div>
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select name="status" id="status" class="form-control" required>
+                                    <option value="">-- Select the status --</option>
+                                    <option value="1" {{ $place->status === 1 ? 'selected' : '' }}>Published</option>
+                                    <option value="0" {{ $place->status === 0 ? 'selected' : '' }}>Draft</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-sm"><i class="fad fa-save fa-fw mr-1"></i> Update</button>
+                            </div>
+
                         </div>
                     </div>
                 </div>

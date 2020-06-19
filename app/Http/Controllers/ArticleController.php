@@ -24,6 +24,8 @@ class ArticleController extends Controller
 
     public function all(Request $request, $type)
     {
+        $articles = null;
+
         if ($type === 'all') {
             $articles = Article::with('category')->latest();
         }
@@ -65,8 +67,10 @@ class ArticleController extends Controller
 EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="article_checkbox[]" class="article_checkbox" value="{{$id}}" />')
-            ->editColumn('avatar', static function($data) {
-                return $data->avatar === "http://localhost:8000/" ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+            ->editColumn('avatar', static function ($data) {
+                return $data->avatar === "http://127.0.0.1:8000/"
+                    ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' :
+                    "<img src='$data->avatar'  alt='$data->title' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -93,19 +97,26 @@ EOT;
         $this->validate($request, [
             'title' => 'required',
             'status' => 'required',
+            'short_description' => 'required',
             'description' => 'required',
             'category_id' => 'required',
         ]);
 
-        $image = $request->file('avatar');
-        $new_name = rand() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('backend/uploads'), $new_name);
+        $new_name = null;
+
+        if ($image = $request->file('avatar')) {
+            $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('backend/uploads/articles'), $new_name);
+            $new_name = "backend/uploads/articles/$new_name";
+        }
+
         $article = Article::create([
             'user_id' => Auth::id(),
             'title' => $request->get('title'),
-            'slug' => Str::slug($request->get('slug')),
+            'slug' => Str::slug($request->get('title')),
             'status' => $request->get('status'),
             'avatar' => $new_name,
+            'short_description' => $request->get('short_description'),
             'description' => $request->get('description'),
             'category_id' => $request->get('category_id'),
         ]);
@@ -113,9 +124,10 @@ EOT;
     }
 
 
-    public function edit(article $article)
+    public function edit($id)
     {
         $categories = \App\ArticleCategory::all();
+        $article = Article::findOrFail($id);
         return view('backend.news.edit', compact('article', 'categories'));
     }
 
@@ -139,13 +151,13 @@ EOT;
             if ($request->file('avatar')) {
                 $image = $request->file('avatar');
                 $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path('backend/uploads'), $new_name);
-                $article->avatar = $new_name;
+                $image->move(public_path('backend/uploads/articles'), $new_name);
+                $article->avatar = "backend/uploads/articles/$new_name";
             }
             $article->title = $request->get('title');
+            $article->slug = Str::slug($request->get('title'));
             $article->description = $request->get('description');
             $article->category_id = $request->get('category_id');
-            $article->slug = Str::slug($request->get('name'));
             $article->status = $request->get('status');
             $article->save();
         }
