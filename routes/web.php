@@ -65,5 +65,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::post('ba-update', 'BaranggayController@updateAjax')->name('ba.update.ajax');
 
     Route::resource('officials','BaranggayOfficialController');
-
+    Route::get('bo/{type}', 'BaranggayOfficialController@all')->name('bo.all');
+    Route::get('bo-massremove', 'BaranggayOfficialController@massRemove')->name('bo.massremove');
+    Route::get('bo-restore', 'BaranggayOfficialController@restore')->name('bo.restore');
+    Route::get('bo-kill', 'BaranggayOfficialController@kill')->name('bo.kill');
+    Route::post('bo-update', 'BaranggayOfficialController@ajaxUpdate')->name('bo.ajaxUpdate');
+    Route::post('bo-group','BaranggayOfficialController@storeGroup')->name('bo.group');
 });

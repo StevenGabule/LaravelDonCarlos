@@ -3,6 +3,7 @@
 use App\Article;
 use App\ArticleCategory;
 use App\Baranggay;
+use App\BaranggayOfficial;
 use App\Place;
 use App\Services;
 use App\ServicesArticle;
@@ -193,14 +194,6 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        /*$official = [
-           [
-               'position' => random_int(1,5),
-               'baranggay_id' => Baranggay::pluck('id')->random(),
-               'from' => ''
-           ]
-        ];*/
-
         ArticleCategory::insert($categories);
         Services::insert($services);
         Baranggay::insert($baranggays);
@@ -209,5 +202,6 @@ class DatabaseSeeder extends Seeder
         factory(Article::class, 100)->create();
         factory(Place::class, 100)->create();
         factory(ServicesArticle::class, 50)->create();
+        factory(BaranggayOfficial::class, 100)->create();
     }
 }

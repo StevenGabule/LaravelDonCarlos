@@ -180,7 +180,7 @@
 
             function getBaranggays(type = 'all') {
                 $('#baranggayTable').DataTable({
-                    "destroy": true,
+                    destroy: true,
                     processing: true,
                     serverSide: true,
                     ajax: `ba/${type}`,

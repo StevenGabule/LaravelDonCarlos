@@ -15,9 +15,10 @@ class CreateBaranggayOfficialsTable extends Migration
             $table->enum('position', [1, 2, 3, 4, 5])
                 ->default(1)
                 ->comment('1-kagawad|2-Captain|3-SK|4-Secretary|5-treasurer');
-            $table->date('from');
-            $table->date('to');
-            $table->text('avatar');
+            $table->unsignedBigInteger('from');
+            $table->unsignedBigInteger('to');
+            $table->enum('status', [1,0])->default(0);
+            $table->text('avatar')->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('baranggay_id')->references('id')->on('baranggays')->onDelete('cascade');

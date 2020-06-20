@@ -1,0 +1,517 @@
+    @import "mixins";
+    @import "variables";
+    // font-family: 'Lato', sans-serif;
+    // font-family: 'Oswald',sans-serif;
+    // body standarding
+    body,
+    html {
+        padding: 0;
+        margin: 0 auto;
+        color: $col-darkGrey;
+        max-width: 1920px;
+        font-family: 'Lato', sans-serif;
+        position: relative;
+    }
+    
+    // general css properties
+    .max-height-150 {
+        max-height: 150px;
+    }
+    
+    .max-height-250 {
+        max-height: 250px;
+    }
+    
+    .whitespace-prewrap {
+        white-space: pre-wrap;
+    }
+    
+    // with
+    .w-150px {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .w-50px {
+        width: 50px;
+        height: 50px;
+    }
+    
+    // fonts
+    .font-lato-light {
+        font-family: 'Lato', sans-serif;
+        font-weight: 300;
+    }
+    
+    .font-lato-bold {
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+    }
+    
+    .font-oswald-med {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 500;
+    }
+    
+    .font-oswald-bold {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+    }
+    
+    // colors classes
+    .col-gold {
+        color: $col-gold;
+    }
+    
+    .col-green {
+        color: $col-green;
+    }
+    
+    .col-darkGrey {
+        color: $col-darkGrey;
+    }
+    
+    .col-dirtyWhite {
+        color: $col-dirtyWhite;
+    }
+    
+    // background colors
+    .bg-gold {
+        background-color: $col-gold;
+    }
+    
+    .bg-white {
+        background-color: $col-dirtyWhite;
+    }
+    
+    .bg-green {
+        background-color: $col-green;
+    }
+    
+    .bg-blue {
+        background-color: $col-blue;
+    }
+    
+    .bg-deepRed {
+        background-color: $col-deepRed;
+    }
+    
+    .bg-red {
+        background-color: $col-red;
+    }
+    
+    .bg-navTransparent {
+        background-color: rgba(255, 255, 255, 0.6);
+        -webkit-box-shadow: 0px 2px 3px 2px rgba(24, 24, 24, 0.192);
+        -moz-box-shadow: 0px 2px 3px 2px rgba(24, 24, 24, 0.192);
+        box-shadow: 0px 2px 3px 2px rgba(24, 24, 24, 0.192);
+    }
+    
+    // bottons css properties
+    .btn-outline-banner {
+        background-color: rgba(0, 0, 0, 0);
+        border: 3px solid $col-dirtyWhite;
+        font-family: 'Oswald', sans-serif;
+        font-size: 18px;
+        color: $col-dirtyWhite;
+        border-radius: 0px;
+        box-shadow: none;
+        &:hover,
+        &:active {
+            background-color: $col-dirtyWhite;
+            color: $col-darkGrey;
+        }
+    }
+    
+    .btn-outline-gold {
+        background-color: #fff;
+        border: 3px solid $col-gold;
+        font-family: 'Oswald', sans-serif;
+        font-size: 18px;
+        color: $col-gold;
+        border-radius: 25px;
+        box-shadow: none;
+        &:hover,
+        &:active {
+            border: 3px solid $col-darkGrey;
+            color: $col-darkGrey;
+        }
+    }
+    
+    //Container Css max width
+    .container {
+        @include mediumLargeDesktop {
+            max-width: 1400px;
+        }
+        // @include superLargeDesktop {
+        //     max-width: 1700px;
+        // }
+    }
+    
+    // The line under a title
+    .hr-thick {
+        width: 65px;
+        border: none;
+        // border-radius: 50px;
+        height: 3px;
+        /* Set the hr color */
+        margin-left: 0;
+        margin-right: 0;
+        color: $col-gold;
+        /* old IE */
+        background-color: $col-gold;
+        /* Modern Browsers */
+    }
+    
+    .hr-thin {
+        width: 90px;
+        border: none;
+        // border-radius: 50px;
+        height: 2px;
+        /* Set the hr color */
+        margin-left: 0;
+        margin-right: 0;
+        color: $col-gold;
+        /* old IE */
+        background-color: $col-gold;
+        /* Modern Browsers */
+    }
+    
+    .hr-center-thin {
+        width: 90px;
+        border: none;
+        // border-radius: 50px;
+        height: 2px;
+        /* Set the hr color */
+        margin: 0 auto;
+        color: $col-gold;
+        /* old IE */
+        background-color: $col-gold;
+    }
+    
+    // header strip home Properties
+    header {
+        background-color: $col-lightGrey;
+        color: $col-dirtyWhite;
+        img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+    }
+    
+    // nav header strip hone transparent 
+    .navbar {
+        font-size: 18px;
+        font-weight: 700;
+        color: $col-text;
+        li {
+            margin-left: 5px;
+            &.active,
+            &:hover,
+            &:active {
+                a {
+                    color: $col-gold !important;
+                }
+            }
+        }
+    }
+    
+    .nav-head {
+        position: static !important;
+        width: 100%;
+        z-index: 10;
+        @include desktop {
+            position: absolute !important;
+        }
+    }
+    
+    // above footer css banner properties
+    .cnct-banner {
+        font-size: 18px;
+    }
+    
+    //footer Css properties
+    footer {
+        background-color: $col-darkGrey;
+        color: $col-dirtyWhite;
+        a {
+            color: $col-dirtyWhite;
+        }
+        i {
+            color: $col-gold;
+        }
+    }
+    
+    //main css properties
+    // Home css properties
+    #carouselHome {
+        .carousel-slide-cont {
+            height: 80vh;
+            color: #fff;
+            // text-align: center;
+            display: flex;
+            div {
+                margin: auto 11%;
+            }
+        }
+        .carousel-slide-1 {
+            background-image: url('../assets/images/munhall2.jpg');
+            background-color: rgb(83, 83, 83);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .carousel-indicators li {
+            background-color: $col-dirtyWhite;
+        }
+        .carousel-indicators li.active {
+            background-color: $col-gold;
+        }
+        .carousel-control-next,
+        .carousel-control-prev {
+            margin: auto;
+            max-height: 50px;
+            // background-color: black;
+        }
+    }
+    
+    .btn-home-programs {
+        background-color: rgb(255, 255, 255);
+        // padding-top: 5px;
+        border-top: 5px solid $col-gold;
+        color: $col-darkGrey;
+        border-radius: 10px;
+        i {
+            color: $col-gold;
+        }
+        &:hover,
+        &:active {
+            background-color: $col-gold;
+            i {
+                color: $col-dirtyWhite;
+            }
+        }
+    }
+    
+    .prog-content-container {
+        .prog-cont-image1 {
+            min-width: 50%;
+            min-height: 300px;
+            background-color: rgb(83, 83, 83);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+    
+    .prog-cont-image2 {
+        min-width: 220px;
+        min-height: 300px;
+        background-color: rgb(83, 83, 83);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    //home side nav proprties
+    .important-overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    
+    // event home css properties
+    .event-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+    
+    .event-list {
+        color: $col-darkGrey;
+        border-right: 8px solid $col-gold;
+        h5 {
+            min-width: 120px;
+        }
+        &:hover,
+        &:active {
+            color: $col-text;
+        }
+    }
+    
+    // -webkit-filter: brightness(20%);
+    // filter: brightness(20%);
+    // link setting
+    .home-link-setting {
+        &:hover,
+        &:active {
+            text-decoration: none;
+            color: $col-text;
+        }
+    }
+    
+    main {
+        min-height: 100vh;
+    }
+    
+    //trending css propterties
+    .trending-bg-banner {
+        // min-width: 220px;
+        min-height: 350px;
+        background-color: rgb(83, 83, 83);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    .trending-bg-banner-overlay {
+        position: absolute;
+        width: 100%;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.022846638655462215) 0%, rgba(56, 56, 56, 0.5018382352941176) 50%);
+    }
+    
+    // trending archive list links
+    .trend-arch-list {
+        color: $col-gold;
+        font-weight: bold;
+        &:hover,
+        &:active {
+            text-decoration: none;
+            color: $col-darkGrey;
+        }
+    }
+    
+    // tourism css properties
+    .trending-bg-banner-tourism {
+        // min-width: 220px;
+        height: 430px;
+        width: 100%;
+        // position: absolute;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    .tourism-bg-banner-overlay {
+        position: absolute;
+        width: 100%;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.022846638655462215) 0%, rgba(56, 56, 56, 0.5018382352941176) 50%);
+    }
+    
+    #carouselTourism {
+        .carousel-indicators {
+            bottom: -80px;
+            li {
+                background-color: $col-darkGrey;
+                border-radius: 50%;
+                height: 20px;
+                width: 20px;
+            }
+            .active {
+                background-color: $col-gold;
+            }
+        }
+        img {
+            min-width: 500px;
+        }
+    }
+    
+    .border-radius-1rem {
+        border-radius: 1rem;
+    }
+    
+    // .test {
+    //     z-index: 99 !important;
+    // }
+    // pagination for news also for everyone
+    .general-pagination {
+        .page-item {
+            padding: 5px;
+            border-radius: 25px;
+            &.active,
+            &:hover,
+            &:active {
+                a {
+                    background-color: $col-gold;
+                    color: $col-dirtyWhite;
+                    border-color: $col-gold;
+                }
+            }
+            a {
+                border-radius: 8px;
+                color: $col-gold;
+                border-color: $col-gold;
+            }
+        }
+    }
+    
+    // about us css properties
+    .about-bg-banner {
+        // min-width: 220px;
+        height: 250px;
+        width: 100%;
+        // position: absolute;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    .about-breadcrumb {
+        a {
+            color: $col-darkGrey;
+        }
+    }
+    
+    .about-side-nav {
+        background-color: #fff;
+        color: $col-darkGrey;
+        border: 1px solid $col-darkGrey;
+        i {
+            color: $col-gold;
+        }
+        &.active,
+        &:hover,
+        &:active {
+            background-color: $col-gold;
+            color: #fff;
+            border-color: $col-gold;
+            i {
+                color: #fff;
+            }
+        }
+    }
+    
+    .about-page-link {
+        color: $col-darkGrey;
+        &:hover,
+        &:active {
+            color: $col-text;
+            text-decoration: none;
+        }
+    }
+    
+    // services and transparency
+    .srvc-trans-links {
+        a {
+            color: $col-darkGrey;
+            &:hover {
+                // text-decoration: none;
+                color: $col-darkGrey;
+                i {
+                    color: $col-gold;
+                }
+            }
+        }
+    }
+    
+    // contact us css
+    .border-bottom-gold {
+        border: none;
+        border-bottom: 2px solid $col-gold;
+        border-radius: 0;
+    }
+    
+    textarea {
+        resize: none;
+    }

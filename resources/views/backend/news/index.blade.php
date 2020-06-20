@@ -260,7 +260,7 @@
 
             function getArticle(type = 'all') {
                 $('#articlesTables').DataTable({
-                    "destroy": true,
+                    destroy: true,
                     processing: true,
                     serverSide: true,
                     pageLength: 15,
