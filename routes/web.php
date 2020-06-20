@@ -71,4 +71,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::get('bo-kill', 'BaranggayOfficialController@kill')->name('bo.kill');
     Route::post('bo-update', 'BaranggayOfficialController@ajaxUpdate')->name('bo.ajaxUpdate');
     Route::post('bo-group','BaranggayOfficialController@storeGroup')->name('bo.group');
+
+    Route::resource('activities','ActivityController');
+    Route::get('all/{type}', 'ActivityController@all')->name('act.all');
+    Route::get('act-massremove', 'ActivityController@massRemove')->name('act.massremove');
+    Route::get('act-restore', 'ActivityController@restore')->name('act.restore');
+    Route::get('act-kill', 'ActivityController@kill')->name('act.kill');
+    Route::get('act-clone', 'ActivityController@clone')->name('act.clone');
+    Route::post('act-update', 'ActivityController@ajaxUpdate')->name('activities.update.ajax');
+
+    Route::post('resize-update', 'ActivityController@ajaxUpdateFullCalendar')->name('fc.resize');
 });

@@ -2,84 +2,236 @@
 
 namespace App\Http\Controllers;
 
-use App\activity;
+use App\Activities;
+use App\Baranggay;
+use App\BaranggayOfficial;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Yajra\DataTables\DataTables;
 
 class ActivityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $activities = Activities::latest()->get();
+
+        return view('backend.activities.index', compact('activities'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function all(Request $request, $type)
+    {
+        $activities = null;
+        if ($type === 'all') {
+            $activities = Activities::latest();
+        }
+
+        if ($type === 'trash') {
+            $activities = Activities::onlyTrashed()->get();
+        }
+
+        if ($type === 'drafted') {
+            $activities = Activities::where('status', 0)->get();
+        }
+
+        if ($type === 'published') {
+            $activities = Activities::where('status', 1)->get();
+        }
+
+        return DataTables::of($activities)->addColumn('action', static function ($data) {
+            $btn = ($data->deleted_at === null) ? "<a class=\"dropdown-item removeBaranggay\" id=\"$data->id\" href=\"javascript:void(0)\">
+                            <i class=\"fad fa-trash mr-2\"></i> Move Trash  
+                        </a>" : "<a class=\"dropdown-item removeActivities\" id=\"$data->id\" href=\"javascript:void(0)\">
+                            <i class=\"fad fa-trash mr-2\"></i> Delete 
+                        </a>";
+            $btnRestore = ($data->deleted_at !== null) ? "<a class=\"dropdown-item restoreActivities\" id=\"$data->id\" href=\"javascript:void(0)\">
+                            <i class=\"fad fa-trash mr-2\"></i> Restore 
+                        </a>" : null;
+            $button = <<<EOT
+                <div class="dropdown no-arrow" style="width:50px">
+                  <a href="javascript:void(0)" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fad fa-ellipsis-h"></i> 
+                  </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" style="font-size: 13px;">
+                        <h6 class="dropdown-header">Actions</h6>
+                        <a class="dropdown-item" href="$data->id"><i class="fad fa-eye mr-2"></i> View</a>
+                        <a class="dropdown-item" id="$data->id" href="/admin/activities/$data->id/edit"><i class="fad fa-file-edit mr-2"></i> Edit</a>
+                        $btn
+                        $btnRestore
+                    </div>
+                </div>
+EOT;
+            return $button;
+        })->addColumn('checkbox', '<input type="checkbox" name="activity_checkbox[]" class="activity_checkbox" value="{{$id}}" />')
+            ->editColumn('avatar', static function ($data) {
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+            })
+            ->rawColumns(['action', 'checkbox', 'avatar'])
+            ->make(true);
+    }
+
     public function create()
     {
-        //
+        return view('backend.activities.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:6|max:100',
+            'status' => 'required',
+            'short_description' => 'required|min:6|max:100',
+            'description' => 'required|min:10',
+            'date_start' => 'required',
+            'date_end' => 'required',
+            'address' => 'required|min:10',
+        ]);
+
+        $new_name = null;
+
+        if ($image = $request->file('avatar')) {
+            $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('backend/uploads/activities'), $new_name);
+            $new_name = "backend/uploads/activities/$new_name";
+        }
+
+        $act = Activities::create([
+            'title' => $request->get('title'),
+            'slug' => Str::slug($request->get('title')),
+            'user_id' => Auth::id(),
+            'date_start' => $request->get('date_start'),
+            'date_end' => $request->get('date_end'),
+            'status' => $request->get('status'),
+            'avatar' => $new_name,
+            'short_description' => $request->get('short_description'),
+            'description' => $request->get('description'),
+            'address' => $request->get('address'),
+        ]);
+
+        return response()->json(['success' => true, 'id' => $act->id]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\activity  $activity
-     * @return \Illuminate\Http\Response
-     */
-    public function show(activity $activity)
+    public function ajaxUpdate(Request $request)
     {
-        //
+        $rules = [
+            'title' => 'required|min:6|max:100',
+            'status' => 'required',
+            'short_description' => 'required|min:6|max:100',
+            'description' => 'required|min:10',
+            'date_start' => 'required',
+            'date_end' => 'required',
+            'address' => 'required|min:10'
+        ];
+
+        $error = Validator::make($request->all(), $rules);
+
+        if ($error->fails()) {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $id = $request->input('activity_id');
+        $activities = Activities::findOrFail($id);
+
+        if ($image = $request->file('avatar')) {
+            $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('backend/uploads/activities'), $new_name);
+            $new_name = "backend/uploads/activities/$new_name";
+            $activities->avatar = $new_name;
+        }
+
+        $activities->update([
+            'title' => $request->get('title'),
+            'slug' => Str::slug($request->get('title')),
+            'user_id' => Auth::id(),
+            'date_start' => $request->get('date_start'),
+            'date_end' => $request->get('date_end'),
+            'status' => $request->get('status'),
+            'avatar' => $new_name,
+            'short_description' => $request->get('short_description'),
+            'description' => $request->get('description'),
+            'address' => $request->get('address'),
+        ]);
+
+        return response()->json(['success' => true]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\activity  $activity
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(activity $activity)
+    public function ajaxUpdateFullCalendar(Request $request)
     {
-        //
+        $id = (int)$request->Event[0];
+        $activity = Activities::where('id', '=', $id)->first();
+        $activity->date_start = $request->Event[1];
+        $activity->date_end = $request->Event[2];
+        $activity->save();
+        return response()->json(['data' => $request->Event], 200);
+    }
+    public function edit(Activities $activity)
+    {
+        return view('backend.activities.edit', compact('activity'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\activity  $activity
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, activity $activity)
+    public function kill(Request $request)
     {
-        //
+        $ids = $request->input('id');
+        if (is_array($ids)) {
+            Activities::withTrashed()->whereIn('id', $ids)->forceDelete();
+            return response()->json(['success' => true]);
+        }
+        Activities::withTrashed()->where('id', $ids)->first()->forceDelete();
+        return response()->json(['success' => true]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\activity  $activity
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(activity $activity)
+    public function massRemove(Request $request)
     {
-        //
+        $activities = $request->input('id');
+        if (is_array($activities)) {
+            $actDel = Activities::whereIn('id', $activities);
+            if ($actDel->delete()) {
+                return response()->json(['success' => true]);
+            }
+        }
+        Activities::where('id', $activities)->delete();
+        return response()->json(['failed' => false]);
     }
+
+    public function restore(Request $request)
+    {
+        $ids = $request->input('id');
+        if (is_array($ids)) {
+            Activities::withTrashed()->whereIn('id', $ids)->restore();
+            return response()->json(['success' => true]);
+        }
+        Activities::withTrashed()->where('id', $ids)->first()->restore();
+        return response()->json(['success' => true]);
+    }
+
+    public function clone(Request $request)
+    {
+        $ids = $request->input('id');
+        $data = [];
+        if (is_array($ids)) {
+            $activities = Activities::whereIn('id', $ids)->get();
+            foreach ($activities as $activity) {
+                $temp = [
+                    'user_id' => Auth::id(),
+                    'title' => $activity->title,
+                    'slug' => $activity->slug,
+                    'short_description' => $activity->short_description,
+                    'description' => $activity->description,
+                    'status' => $activity->status,
+                    'date_start' => $activity->date_start,
+                    'date_end' => $activity->date_end,
+                    'address' => $activity->address,
+                    'avatar' => null,
+                    'created_at' => Carbon::now()
+                ];
+                $data[] = $temp;
+            }
+            Activities::insert($data);
+            return response()->json(['success' => true], 200);
+        }
+    }
+
 }

@@ -1,17 +1,5 @@
 @extends('backend.layouts.app')
-<style>
-    tr.highlight {
-        background: #1e1e2d !important;
-        color: white !important;
-        font-weight: bold;
-    }
 
-    .image-pos {
-        max-width: 64px;
-        max-height: 64px;
-        transform: translateY(7px);
-    }
-</style>
 @section('content')
 
     <!-- Begin Page Content -->

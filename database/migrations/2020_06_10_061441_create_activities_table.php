@@ -8,15 +8,20 @@ class CreateActivitiesTable extends Migration
 {
     public function up(): void
     {
+
         Schema::create('activities', static function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('title');
+            $table->string('slug');
+            $table->string('short_description');
             $table->longText('description');
-            $table->string('date_start');
-            $table->string('time_start');
+            $table->dateTime('date_start');
+            $table->dateTime('date_end')->nullable();
             $table->string('address');
-            $table->string('avatar')->default('activities.png');
+            $table->enum('status', [0,1])->default(0)->comment('0-d|1|p');
+            $table->text('avatar')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

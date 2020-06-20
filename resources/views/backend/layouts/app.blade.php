@@ -109,7 +109,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin') }}">
+            <a class="nav-link" href="{{ route('activities.index') }}">
                 <i class="fad fa-fw fa-calendar-alt blueish"></i>
                 <span>Calendar Events</span></a>
         </li>

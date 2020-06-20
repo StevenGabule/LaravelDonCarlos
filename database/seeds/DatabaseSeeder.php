@@ -1,5 +1,6 @@
 <?php
 
+use App\Activities;
 use App\Article;
 use App\ArticleCategory;
 use App\Baranggay;
@@ -203,5 +204,6 @@ class DatabaseSeeder extends Seeder
         factory(Place::class, 100)->create();
         factory(ServicesArticle::class, 50)->create();
         factory(BaranggayOfficial::class, 100)->create();
+        factory(Activities::class, 50)->create();
     }
 }

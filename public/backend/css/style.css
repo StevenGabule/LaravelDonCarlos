@@ -229,3 +229,15 @@ tbody tr.odd, tr.even {
     margin-left: 15px;
     font-size: 13px;
 }
+
+tr.highlight {
+    background: #1e1e2d !important;
+    color: white !important;
+    font-weight: bold;
+}
+
+.image-pos {
+    max-width: 64px;
+    max-height: 64px;
+    transform: translateY(7px);
+}
