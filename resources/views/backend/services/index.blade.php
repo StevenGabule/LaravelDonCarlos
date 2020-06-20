@@ -1,102 +1,14 @@
 @extends('backend.layouts.app')
 
-@section('style_extended')
-    <style>
-        tbody tr td {
-            vertical-align: middle !important;
-        }
-
-        .dataTables_length label {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 10px;
-            padding-left: 15px;
-        }
-
-        .custom-select.custom-select-sm.form-control.form-control-sm {
-            margin-left: 5px;
-            margin-right: 5px;
-        }
-
-        .dataTables_filter label {
-            align-items: center;
-            display: inline-flex;
-            margin-left: 200px;
-        }
-
-        .dataTables_filter label input {
-            margin-left: 5px;
-        }
-
-        table.dataTable {
-            border-collapse: collapse !important;
-        }
-
-        tbody tr.odd, tr.even {
-            border-bottom: 1px solid #f0f3ff !important;
-        }
-
-        .dataTables_processing {
-            background: #1B1B2A;
-            color: white;
-            padding: 20px;
-            width: 150px;
-            margin: auto;
-        }
-
-        .dataTables_paginate.paging_simple_numbers {
-            padding-bottom: 4px;
-            margin-top: 4px;
-        }
-
-        .dataTables_paginate.paging_simple_numbers ul {
-            font-size: 11px;
-        }
-
-        .page-item.active .page-link {
-            background-color: #1e1e2d !important;
-            border-color: #1e1e2d !important;
-            font-weight: 600;
-            border-radius: 3px;
-        }
-
-        .page-link {
-            color: #36b9cc;
-            font-weight: bold;
-            transition: all 100ms linear;
-            border: none;
-        }
-
-        .page-link:hover {
-            background-color: #d52a1a;
-            color: white;
-        }
-
-        .dataTables_paginate.paging_simple_numbers ul li {
-            margin-left: 6px;
-        }
-
-        .dataTables_info {
-            margin-left: 15px;
-            font-size: 13px;
-        }
-
-    </style>
-@stop
-
 @section('content')
 
-    <!-- Begin Page Content -->
     <div class="container-fluid">
 
-        <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Services Management</h1>
         </div>
 
         <div class="row">
-
             <!-- Area Chart -->
             <div class="col-xl-8 col-lg-7">
                 <div class="card shadow mb-4">
@@ -181,14 +93,14 @@
                             <a href="javascript:void(0)"
                                class="list-group-item list-group-item-action list-group-custom all">
                                 <i
-                                    class="fad fa-newspaper mr-2"></i>All Services</a>
+                                    class="fad fa-newspaper mr-2"></i>All List</a>
                             <a href="javascript:void(0)" data-toggle="modal"
                                class="list-group-item list-group-item-action newService">
-                                <i class="fad fa-layer-plus mr-2"></i>Register New Service
+                                <i class="fad fa-layer-plus mr-2"></i> New Service
                             </a>
                             <a href="javascript:void(0)"
                                class="list-group-item list-group-item-action drafted"><i
-                                    class="fad fa-file-edit mr-2"></i>Un-Published</a>
+                                    class="fad fa-file-edit mr-2"></i>Draft</a>
                             <a href="javascript:void(0)"
                                class="list-group-item list-group-item-action published"><i
                                     class="fad fa-globe-asia mr-2"></i>Published</a>
@@ -209,7 +121,7 @@
                     <div class="card-body p-0">
                         <div class="text-right py-3 pr-3">
                             <button type="button" class="btn btn-sm btn-info shadow-sm trash"><i
-                                    class="fad fa-trash-restore mr-2"></i>Move To Trash
+                                    class="fad fa-trash-undo-alt mr-2"></i>Move To Trash
                             </button>
                             <button type="button" class="btn btn-sm btn-info shadow-sm DestroyServices"><i
                                     class="fad fa-trash mr-2"></i>Delete
@@ -220,7 +132,7 @@
                         </div>
                         <div class="table-responsive overflow-hidden">
                             <table id="servicesTable"
-                                   class="table table-striped table-hover table-sm custom-font-size">
+                                   class="table table-striped table-hover mb-0 table-sm custom-font-size">
                                 <thead>
                                 <tr>
                                     <th data-orderable="false">
@@ -296,6 +208,19 @@
     <script src="{{ asset('backend/js/moment.min.js') }}"></script>
     <script>
         $(document).ready(function () {
+
+            $(document).on('change', '.service_checkbox', function () {
+                selectRow(this)
+            });
+
+            function selectRow(elem) {
+                if (elem.checked) {
+                    elem.parentNode.parentNode.className = 'highlight';
+                } else {
+                    elem.parentNode.parentNode.className = 'odd';
+                }
+            }
+
             $(document).on('click', '.newService', function () {
                 $("#NameModalLabel").text('Register New Service');
                 $("#servicesForm")[0].reset();
@@ -372,12 +297,14 @@
 
             function getServices(type = 'all') {
                 $('#servicesTable').DataTable({
-                    "destroy": true,
+                    destroy: true,
                     processing: true,
                     serverSide: true,
                     pageLength: 15,
+                    scrollY: '60vh',
+                    scrollCollapse: true,
                     ajax: `s-all/${type}`,
-                    ordering: false,
+                    order: [[4, "desc"]],
                     columns: [
                         {
                             data: 'checkbox',
@@ -396,7 +323,7 @@
                         {
                             data: 'status',
                             name: 'status',
-                            render: data => `<span class=${data === 1 ? 'text-success' : 'text-danger'}>${data === 1 ? 'Published' : 'Draft'}</span>`
+                            render: data => `<span class=${parseInt(data) === 1 ? 'text-success' : 'text-danger'}>${parseInt(data) === 1 ? 'Published' : 'Draft'}</span>`
                         },
                         {
                             data: 'created_at',
@@ -460,23 +387,20 @@
             });
 
             // remove single article
-            $(document).on('click', '.removePlace', function () {
-                let id = $(this).attr('id');
+            $(document).on('click', '.removeService', function () {
+                const id = $(this).attr('id');
                 if (id.length > 0) {
                     $.ajax({
-                        url: `place/${id}`,
-                        method: "DELETE",
-                        data: {
-                            id: id,
-                            _token: '{{ csrf_token()}}'
-                        },
+                        url: 's-kill',
+                        method: "GET",
+                        data: {id: id},
                         success: _ => {
-                            snackbar('You successfully remove the article.');
+                            snackbar('You successfully removed the data.');
                             $('#servicesTable').DataTable().ajax.reload();
                         }
                     }).fail(err => console.log(err))
                 } else {
-                    alert('Please select atleast one checkbox')
+                    snackbar('Please select atleast one checkbox.');
                 }
             })
         });
@@ -525,13 +449,12 @@
         $(document).on('click', '.killService', function (e) {
             const id = $(this).attr('id');
             swal({
-                title: "Are you sure?",
-                text: "This will delete permanently.",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
-                closeOnConfirm: false
+                title: "Confirmation",
+                text: "Are you sure to continue?",
+                icon: "warning",
+                dangerMode: true,
+                buttons: [true, "Continue"],
+                closeModal: false
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
@@ -555,13 +478,12 @@
                 id.push($(this).val());
             });
             swal({
-                title: "Are you sure?",
-                text: "All data are checked will be deleted permanently",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
-                closeOnConfirm: false
+                title: "Confirmation",
+                text: "Are you sure to continue?",
+                icon: "warning",
+                dangerMode: true,
+                buttons: [true, "Continue"],
+                closeModal: false
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
@@ -587,8 +509,10 @@
         $('#checkAllIds').on('click', function () {
             if (this.checked === true) {
                 $("#servicesTable").find('input[name="service_checkbox[]"]').prop('checked', true);
+                $('tr.odd, tr.even').addClass('highlight');
             } else {
                 $("#servicesTable").find('input[name="service_checkbox[]"]').prop('checked', false);
+                $('tr.odd, tr.even,tr').removeClass('highlight');
             }
         });
 

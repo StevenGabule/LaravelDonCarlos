@@ -37,13 +37,16 @@ class PlaceController extends Controller
         }
 
         return DataTables::of($places)->addColumn('action', static function ($data) {
-            $btn = ($data->deleted_at === null) ? "<a class=\"dropdown-item removePlace\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Move Trash  
-                        </a>" : "<a class=\"dropdown-item killArticle\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Delete 
+            $btn = ($data->deleted_at === null) ? "
+                        <a class='dropdown-item' href='$data->id'><i class='fad fa-eye mr-2'></i> View</a>
+                        <a class='dropdown-item' id='$data->id' href='/admin/place/$data->id/edit'><i class='fad fa-file-edit mr-2'></i> Edit</a>
+                        <a class='dropdown-item removePlace' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash mr-2'></i> Move Trash  
+                        </a>" : "<a class='dropdown-item killArticle' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash mr-2'></i> Delete 
                         </a>";
-            $btnRestore = ($data->deleted_at !== null) ? "<a class=\"dropdown-item restorePlace\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Restore 
+            $btnRestore = ($data->deleted_at !== null) ? "<a class='dropdown-item restorePlace' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash-restore-alt mr-2'></i> Restore 
                         </a>" : null;
             $button = <<<EOT
                 <div class="dropdown no-arrow" style="width:50px">
@@ -52,8 +55,6 @@ class PlaceController extends Controller
                   </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" style="font-size: 13px;">
                         <h6 class="dropdown-header">Actions</h6>
-                        <a class="dropdown-item" href="$data->id"><i class="fad fa-eye mr-2"></i> View</a>
-                        <a class="dropdown-item" id="$data->id" href="/admin/place/$data->id/edit"><i class="fad fa-file-edit mr-2"></i> Edit</a>
                         $btn
                         $btnRestore
                     </div>
@@ -204,23 +205,25 @@ EOT;
         $ids = $request->input('id');
         $data = [];
         if (is_array($ids)) {
-            $articles = Place::whereIn('id', $ids)->get();
-            foreach ($articles as $article) {
+            $places = Place::whereIn('id', $ids)->get();
+            foreach ($places as $palce) {
                 $temp = [
                     'user_id' => Auth::id(),
-                    'title' => $article->title,
-                    'description' => $article->description,
-                    'slug' => $article->slug,
-                    'status' => $article->status,
-                    'avatar' => $article->avatar,
-                    'category_id' => $article->category_id,
-                    'deleted_at' => $article->deleted_at,
+                    'name' => $palce->name,
+                    'short_description' => $palce->short_description,
+                    'description' => $palce->description,
+                    'slug' => $palce->slug,
+                    'status' => $palce->status,
+                    'address' => $palce->address,
+                    'avatar' => null,
+                    'categories' => 'uncategories',
                     'created_at' => Carbon::now()
                 ];
                 $data[] = $temp;
             }
             Place::insert($data);
-            return response()->json(['articles' => $articles, 'ids' => $ids, 'data' => $data]);
+            return response()->json(['places' => $places, 'ids' => $ids, 'data' => $data]);
         }
     }
+
 }

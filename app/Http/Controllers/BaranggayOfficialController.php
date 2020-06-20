@@ -6,6 +6,7 @@ use App\Baranggay;
 use App\BaranggayOfficial;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
 
@@ -37,13 +38,17 @@ class BaranggayOfficialController extends Controller
         }
 
         return DataTables::of($baranggayOfficials)->addColumn('action', static function ($data) {
-            $btn = ($data->deleted_at === null) ? "<a class=\"dropdown-item removeBaranggay\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Move Trash  
-                        </a>" : "<a class=\"dropdown-item killBaranggayOfficial\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Delete 
+            $btn = ($data->deleted_at === null) ? "
+                        <a class='dropdown-item' href='$data->id'><i class='fad fa-eye mr-2'></i> View</a>
+                        <a class='dropdown-item editOfficial' 
+                            id='$data->id' href='javascript:void(0)'><i class='fad fa-file-edit mr-2'></i> Edit
+                        </a><a class='dropdown-item removeBaranggay' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash mr-2'></i> Move Trash  
+                        </a>" : "<a class='dropdown-item killBaranggayOfficial' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash mr-2'></i> Delete 
                         </a>";
-            $btnRestore = ($data->deleted_at !== null) ? "<a class=\"dropdown-item restoreBaranggayOfficial\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Restore 
+            $btnRestore = ($data->deleted_at !== null) ? "<a class='dropdown-item restoreBaranggayOfficial' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash-restore-alt mr-2'></i> Restore 
                         </a>" : null;
             $button = <<<EOT
                 <div class="dropdown no-arrow" style="width:50px">
@@ -52,10 +57,7 @@ class BaranggayOfficialController extends Controller
                   </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" style="font-size: 13px;">
                         <h6 class="dropdown-header">Actions</h6>
-                        <a class="dropdown-item" href="$data->id"><i class="fad fa-eye mr-2"></i> View</a>
-                        <a class="dropdown-item editOfficial" 
-                            id="$data->id" href="javascript:void(0)"><i class="fad fa-file-edit mr-2"></i> Edit
-                        </a>
+                       
                         $btn
                         $btnRestore
                     </div>
@@ -365,5 +367,29 @@ EOT;
         }
         BaranggayOfficial::withTrashed()->where('id', $ids)->first()->restore();
         return response()->json(['success' => true]);
+    }
+
+    public function clone(Request $request)
+    {
+        $ids = $request->input('id');
+        $data = [];
+        if (is_array($ids)) {
+            $BaranggayOfficial = BaranggayOfficial::whereIn('id', $ids)->get();
+            foreach ($BaranggayOfficial as $baranggay) {
+                $temp = [
+                    'baranggay_id' => $baranggay->baranggay_id,
+                    'name' => $baranggay->name,
+                    'position' => $baranggay->position,
+                    'from' => $baranggay->from,
+                    'to' => $baranggay->to,
+                    'status' => $baranggay->status,
+                    'avatar' => $baranggay->avatar,
+                    'created_at' => Carbon::now()
+                ];
+                $data[] = $temp;
+            }
+            BaranggayOfficial::insert($data);
+            return response()->json(['success' => true], 200);
+        }
     }
 }

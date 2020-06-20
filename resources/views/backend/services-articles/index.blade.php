@@ -1,90 +1,5 @@
 @extends('backend.layouts.app')
 
-@section('style_extended')
-    <style>
-        tbody tr td {
-            vertical-align: middle !important;
-        }
-
-        .dataTables_length label {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 10px;
-            padding-left: 15px;
-        }
-
-        .custom-select.custom-select-sm.form-control.form-control-sm {
-            margin-left: 5px;
-            margin-right: 5px;
-        }
-
-        .dataTables_filter label {
-            align-items: center;
-            display: inline-flex;
-            margin-left: 200px;
-        }
-
-        .dataTables_filter label input {
-            margin-left: 5px;
-        }
-
-        table.dataTable {
-            border-collapse: collapse !important;
-        }
-
-        tbody tr.odd, tr.even {
-            border-bottom: 1px solid #f0f3ff !important;
-        }
-
-        .dataTables_processing {
-            background: #1B1B2A;
-            color: white;
-            padding: 20px;
-            width: 150px;
-            margin: auto;
-        }
-
-        .dataTables_paginate.paging_simple_numbers {
-            padding-bottom: 4px;
-            margin-top: 4px;
-        }
-
-        .dataTables_paginate.paging_simple_numbers ul {
-            font-size: 11px;
-        }
-
-        .page-item.active .page-link {
-            background-color: #1e1e2d !important;
-            border-color: #1e1e2d !important;
-            font-weight: 600;
-            border-radius: 3px;
-        }
-
-        .page-link {
-            color: #36b9cc;
-            font-weight: bold;
-            transition: all 100ms linear;
-            border: none;
-        }
-
-        .page-link:hover {
-            background-color: #d52a1a;
-            color: white;
-        }
-
-        .dataTables_paginate.paging_simple_numbers ul li {
-            margin-left: 6px;
-        }
-
-        .dataTables_info {
-            margin-left: 15px;
-            font-size: 13px;
-        }
-
-    </style>
-@stop
-
 @section('content')
 
     <!-- Begin Page Content -->
@@ -120,7 +35,7 @@
 
                             <a href="javascript:void(0)"
                                class="list-group-item list-group-item-action drafted"><i
-                                    class="fad fa-file-edit mr-2"></i>Un-Published</a>
+                                    class="fad fa-file-edit mr-2"></i>Draft</a>
 
                             <a href="javascript:void(0)"
                                class="list-group-item list-group-item-action published"><i
@@ -143,7 +58,7 @@
                     <div class="card-body p-0">
                         <div class="text-right py-3 pr-3">
                             <button type="button" class="btn btn-sm btn-info shadow-sm trash"><i
-                                    class="fad fa-trash-restore mr-2"></i>Move To Trash
+                                    class="fad fa-trash-undo-alt mr-2"></i>Move To Trash
                             </button>
                             <button type="button" class="btn btn-sm btn-info shadow-sm DestroyServicesArticle"><i
                                     class="fad fa-trash mr-2"></i>Delete
@@ -154,7 +69,7 @@
                         </div>
                         <div class="table-responsive overflow-hidden">
                             <table id="servicesArticleTable"
-                                   class="table table-striped table-hover table-sm custom-font-size">
+                                   class="table table-striped table-hover mb-0 table-sm custom-font-size">
                                 <thead>
                                 <tr>
                                     <th data-orderable="false">
@@ -186,12 +101,14 @@
             <div class="modal-content">
                 <form id="servicesForm" method="post">
                     @csrf
+
                     <div class="modal-header">
                         <h5 class="modal-title" id="NameModalLabel">Register New Service</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+
                     <div class="modal-body">
                         <span id="form_result"></span>
                         <div class="form-group">
@@ -231,6 +148,19 @@
     <script src="{{ asset('backend/js/moment.min.js') }}"></script>
     <script>
         $(document).ready(function () {
+
+            $(document).on('change', '.serviceArticle_checkbox', function () {
+                selectRow(this)
+            });
+
+            function selectRow(elem) {
+                if (elem.checked) {
+                    elem.parentNode.parentNode.className = 'highlight';
+                } else {
+                    elem.parentNode.parentNode.className = 'odd';
+                }
+            }
+
             $(document).on('click', '.newService', function () {
                 $("#NameModalLabel").text('Register New Service');
                 $("#servicesForm")[0].reset();
@@ -401,6 +331,23 @@
 
         });
 
+        $(document).on('click', '.removeServiceArticle', function () {
+            const id = $(this).attr('id');
+            if (id.length > 0) {
+                $.ajax({
+                    url: 'sa-massremove',
+                    method: "GET",
+                    data: {id: id},
+                    success: _ => {
+                        snackbar('You successfully removed the data.');
+                        $('#servicesArticleTable').DataTable().ajax.reload();
+                    }
+                }).fail(err => console.log(err))
+            } else {
+                snackbar('Please select atleast one checkbox.');
+            }
+        })
+
         $(document).on('click', '.restoreServiceSA', function (e) {
             e.preventDefault();
             const id = $(this).attr('id');
@@ -445,13 +392,12 @@
         $(document).on('click', '.killServiceSA', function (e) {
             const id = $(this).attr('id');
             swal({
-                title: "Are you sure?",
-                text: "This will delete permanently.",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
-                closeOnConfirm: false
+                title: "Confirmation",
+                text: "Are you sure to continue?",
+                icon: "warning",
+                dangerMode: true,
+                buttons: [true, "Continue"],
+                closeModal: false
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
@@ -476,13 +422,12 @@
                 id.push($(this).val());
             });
             swal({
-                title: "Are you sure?",
-                text: "All data are checked will be deleted permanently",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
-                closeOnConfirm: false
+                title: "Confirmation",
+                text: "Are you sure to continue?",
+                icon: "warning",
+                dangerMode: true,
+                buttons: [true, "Continue"],
+                closeModal: false
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
@@ -508,8 +453,10 @@
         $('#checkAllIds').on('click', function () {
             if (this.checked === true) {
                 $("#servicesArticleTable").find('input[name="serviceArticle_checkbox[]"]').prop('checked', true);
+                $('tr.odd, tr.even').addClass('highlight');
             } else {
                 $("#servicesArticleTable").find('input[name="serviceArticle_checkbox[]"]').prop('checked', false);
+                $('tr.odd, tr.even,tr').removeClass('highlight');
             }
         });
 

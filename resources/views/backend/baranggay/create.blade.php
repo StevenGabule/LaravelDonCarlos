@@ -28,7 +28,7 @@
                                        name="name"
                                        id="inputName"
                                        required
-                                       data-parsley-pattern="[a-zA-Z 0987654321]+$"
+                                       data-parsley-pattern="[a-zA-Z .0987654321]+$"
                                        data-parsley-length="[6, 50]"
                                        data-parsley-trigger="keyup">
 

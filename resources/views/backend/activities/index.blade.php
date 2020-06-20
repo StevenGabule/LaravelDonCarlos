@@ -119,6 +119,7 @@
     <script src="{{ asset('backend/calendar/fullcalendar.min.js') }}"></script>
     <script>
         $(document).ready(function () {
+
             $(document).on('change', '.activity_checkbox', function () {
                 selectRow(this)
             });
@@ -141,7 +142,7 @@
                     scrollY: '60vh',
                     scrollCollapse: true,
                     order: [[6, 'desc']],
-                    ajax: `all/${type}`,
+                    ajax: `act-all/${type}`,
                     columns: [
                         {
                             data: 'checkbox',
@@ -396,7 +397,6 @@
             } else {
                 $("#activitiesTable").find('input[name="activity_checkbox[]"]').prop('checked', false);
                 $('tr.odd, tr.even,tr').removeClass('highlight');
-
             }
         });
 

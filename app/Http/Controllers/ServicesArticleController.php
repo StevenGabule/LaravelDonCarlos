@@ -38,7 +38,7 @@ class ServicesArticleController extends Controller
         }
 
         return DataTables::of($serviceArticles)->addColumn('action', static function ($data) {
-            $btn = ($data->deleted_at === null) ? "<a class=\"dropdown-item removeArticle\" id=\"$data->id\" href=\"javascript:void(0)\">
+            $btn = ($data->deleted_at === null) ? "<a class=\"dropdown-item removeServiceArticle\" id=\"$data->id\" href=\"javascript:void(0)\">
                             <i class=\"fad fa-trash mr-2\"></i> Move Trash  
                         </a>" : "<a class=\"dropdown-item killServiceSA\" id=\"$data->id\" href=\"javascript:void(0)\">
                             <i class=\"fad fa-trash mr-2\"></i> Delete 
@@ -195,10 +195,14 @@ EOT;
     public function massRemove(Request $request)
     {
         $serviceArticleID = $request->input('id');
-        $serviceArticles = ServicesArticle::whereIn('id', $serviceArticleID);
-        if ($serviceArticles->delete()) {
-            return response()->json(['success' => true, 'msg' => 'Service article has been moved to trash']);
+        if (is_array($serviceArticleID)) {
+            $serviceArticles = ServicesArticle::whereIn('id', $serviceArticleID);
+            if ($serviceArticles->delete()) {
+                return response()->json(['success' => true, 'msg' => 'Service article has been moved to trash']);
+            }
         }
-        return response()->json(['failed' => false, 'msg' => 'Error has been composed']);
+        ServicesArticle::where('id', $serviceArticleID)->first()->delete();
+        return response()->json(['success' => true, 'msg' => 'Service article has been moved to trash']);
+
     }
 }

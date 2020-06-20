@@ -53,7 +53,7 @@
                     <div class="card-body p-0">
                         <div class="text-right py-3 pr-3">
                             <button type="button" class="btn btn-sm btn-info shadow-sm trash"><i
-                                    class="fad fa-trash-restore mr-2"></i>Move To Trash
+                                    class="fad fa-trash-undo-alt mr-2"></i>Move To Trash
                             </button>
                             <button type="button" class="btn btn-sm btn-info shadow-sm DestroyBaranggayOfficial"><i
                                     class="fad fa-trash mr-2"></i>Delete
@@ -61,13 +61,13 @@
                             <button type="button" class="btn btn-sm btn-info shadow-sm RestoredBaranggayOfficial"><i
                                     class="fad fa-trash-restore mr-2"></i>Restore
                             </button>
-                            <button type="button" class="btn btn-sm btn-info shadow-sm  clonedBaranggay"><i
+                            <button type="button" class="btn btn-sm btn-info shadow-sm clonedBaranggay"><i
                                     class="fad fa-clone mr-2"></i>Clone
                             </button>
                         </div>
                         <div class="table-responsive overflow-hidden">
                             <table id="officialsTable"
-                                   class="table table-striped table-hover table-sm custom-font-size">
+                                   class="table table-striped table-hover mb-0 table-sm custom-font-size">
                                 <thead>
                                 <tr>
                                     <th data-orderable="false">
@@ -601,7 +601,7 @@
 
             if (id.length > 0) {
                 $.ajax({
-                    url: '{{ route('ba.clone') }}',
+                    url: '{{ route('bo.clone') }}',
                     method: "GET",
                     data: {id: id},
                     success: _ => {
@@ -615,13 +615,12 @@
         $(document).on('click', '.killBaranggayOfficial', function (e) {
             const id = $(this).attr('id');
             swal({
-                title: "Are you sure?",
-                text: "Are you sure to delete this data?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
-                closeOnConfirm: false
+                title: "Confirmation",
+                text: "Are you sure to continue?",
+                icon: "warning",
+                dangerMode: true,
+                buttons: [true, "Continue"],
+                closeModal: false
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
@@ -645,13 +644,12 @@
                 id.push($(this).val());
             });
             swal({
-                title: `Question`,
-                text: "Are you to delete this data?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
-                closeOnConfirm: false
+                title: "Confirmation",
+                text: "Are you sure to continue?",
+                icon: "warning",
+                dangerMode: true,
+                buttons: [true, "Continue"],
+                closeModal: false
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
@@ -922,7 +920,7 @@
             } else {
                 $("#kagawadLimit").removeClass('d-none');
             }
-            console.log(count);
+
         });
 
         $(document).on('click', '.remove', function () {
@@ -930,7 +928,6 @@
             count = count - 1;
             $('#row' + row_no).remove();
             $("#kagawadLimit").addClass('d-none');
-            console.log(count);
         });
 
         console.clear();

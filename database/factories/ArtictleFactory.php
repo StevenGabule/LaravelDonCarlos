@@ -16,7 +16,7 @@ $factory->define(Article::class, static function (Faker $faker) {
         'short_description' => $faker->text,
         'description' => $faker->paragraphs(10, true),
         'status' => random_int(0,1),
-        'category_id' => random_int(1,15),
+        'category_id' => random_int(1,17),
         'avatar' => null
     ];
 });

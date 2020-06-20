@@ -4,7 +4,7 @@
 @stop
 @section('content')
     <div class="container-fluid">
-        <form id="baranggayForm" method="post" enctype="multipart/form-data" class="needs-validation">
+        <form id="baranggayForm" method="post" enctype="multipart/form-data">
             @csrf
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Edit Baranggay</h1>
@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            <div class="d-none alert alert-success alert-dismissible shadow-lg fade show" role="alert">
+            <div class="d-none alert alert-primary alert-dismissible shadow-lg fade show" role="alert">
                 <strong><i class="fad fa-meteor blueish mr-2"></i> Successfully Updated!</strong> The baranggay has been
                 modified and ready to see.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -42,7 +42,7 @@
                                        id="inputName"
                                        value="{{ $baranggay->name }}"
                                        required
-                                       data-parsley-pattern="[a-zA-Z 0987654321]+$"
+                                       data-parsley-pattern="[a-zA-Z0-9., ]+$"
                                        data-parsley-length="[6, 50]"
                                        data-parsley-trigger="keyup">
 
@@ -52,8 +52,8 @@
                                 <label for="inputShortDescription">Short Description</label>
                                 <textarea
                                     name="short_description" rows="2" id="inputShortDescription"
-                                    class="form-control form-control-sm" required data-parsley-pattern="[a-zA-Z 0987654321]+$"
-                                    data-parsley-length="[6, 50]"
+                                    class="form-control form-control-sm" required data-parsley-pattern="[a-zA-Z, .0987654321]+$"
+                                    data-parsley-length="[6, 255]"
                                     data-parsley-trigger="keyup">{{ $baranggay->short_description }}</textarea>
                             </div>
 
@@ -62,8 +62,7 @@
                                 <textarea
                                     name="address"
                                     rows="2" id="inputAddress" class="form-control form-control-sm"
-                                    required data-parsley-pattern="[a-zA-Z 0987654321]+$"
-                                    data-parsley-length="[6, 50]"
+                                    required data-parsley-pattern="[a-zA-Z0123456789 -.,]+$"
                                     data-parsley-trigger="keyup">{{ $baranggay->address }}</textarea>
                             </div>
 
@@ -95,7 +94,7 @@
                             </div>
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
-                                @if($baranggay->avatar !== "http://127.0.0.1:8000/")
+                                @if($baranggay->avatar !== null)
                                     <img src="{{ asset($baranggay->avatar) }}" class="img-fluid" id="previewImage" alt="">
                                 @else
                                     <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>
@@ -158,6 +157,17 @@
                 readURL(this);
             });
 
+            /* UPDATING AN ARTICLE */
+            const url_string = window.location.href;
+            const url = new URL(url_string);
+            const _created = url.href.split('/')[6].split('?')[1];
+
+            if (_created === 'created') {
+                const x = $(".alert.alert-success");
+                setTimeout(() => x.toggleClass('d-none'), 3000);
+                x.toggleClass('d-none');
+            }
+
             /* CREATING AN ARTICLE */
             $('#baranggayForm').on('submit', function (e) {
                 e.preventDefault();
@@ -172,7 +182,7 @@
                         dataType: 'json',
                         success: ({success}) => {
                             if (success) {
-                                $(".alert.alert-success").toggleClass('d-none');
+                                $(".alert.alert-primary").toggleClass('d-none');
                             }
                         }
                     }).fail((err) => console.log(err))

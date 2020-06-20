@@ -97,7 +97,7 @@
                             </div>
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
-                                @if($place->avatar !== "http://127.0.0.1:8000/")
+                                @if($place->avatar !== null)
                                     <img src="{{ asset($place->avatar) }}" class="img-fluid" id="previewImage" alt="">
                                 @else
                                     <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>

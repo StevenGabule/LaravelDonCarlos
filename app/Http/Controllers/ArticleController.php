@@ -43,23 +43,24 @@ class ArticleController extends Controller
         }
 
         return DataTables::of($articles)->addColumn('action', static function ($data) {
-            $btn = ($data->deleted_at === null) ? "<a class=\"dropdown-item removeArticle\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Move Trash  
-                        </a>" : "<a class=\"dropdown-item killArticle\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Delete 
+            $btn = ($data->deleted_at === null) ? "
+                        <a class='dropdown-item' href='$data->id'><i class='fad fa-eye mr-2'></i> View</a>
+                        <a class='dropdown-item' id='$data->id' href='/admin/article/$data->id/edit'><i class='fad fa-file-edit mr-2'></i> Edit</a>
+                        <a class='dropdown-item removeArticle' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash mr-2'></i> Move Trash  
+                        </a>" : "<a class='dropdown-item killArticle' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash mr-2'></i> Delete 
                         </a>";
-            $btnRestore = ($data->deleted_at !== null) ? "<a class=\"dropdown-item restoreArticle\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Restore 
+            $btnRestore = ($data->deleted_at !== null) ? "<a class='dropdown-item restoreArticle' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash-restore mr-2'></i> Restore 
                         </a>" : null;
             $button = <<<EOT
                 <div class="dropdown no-arrow" style="width:50px">
-                  <a href="javascript:void(0)" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a href="javascript:void(0)" class="btn btn-primary  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fad fa-ellipsis-h"></i> 
                   </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" style="font-size: 13px;">
                         <h6 class="dropdown-header">Actions</h6>
-                        <a class="dropdown-item" href="$data->id"><i class="fad fa-eye mr-2"></i> View</a>
-                        <a class="dropdown-item" id="$data->id" href="/admin/article/$data->id/edit"><i class="fad fa-file-edit mr-2"></i> Edit</a>
                         $btn
                         $btnRestore
                     </div>
@@ -68,9 +69,9 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="article_checkbox[]" class="article_checkbox" value="{{$id}}" />')
             ->editColumn('avatar', static function ($data) {
-                return $data->avatar === "http://127.0.0.1:8000/"
+                return $data->avatar === null
                     ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' :
-                    "<img src='$data->avatar'  alt='$data->title' class='rounded-circle' style='height: 32px;width: 32px' />";
+                    "<img src='/$data->avatar'  alt='No image' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -136,6 +137,7 @@ EOT;
         $validation = Validator::make($request->all(), [
             'title' => 'required',
             'status' => 'required',
+            'short_description' => 'required',
             'description' => 'required',
             'category_id' => 'required',
         ]);
@@ -157,6 +159,7 @@ EOT;
             $article->title = $request->get('title');
             $article->slug = Str::slug($request->get('title'));
             $article->description = $request->get('description');
+            $article->short_description = $request->get('short_description');
             $article->category_id = $request->get('category_id');
             $article->status = $request->get('status');
             $article->save();
@@ -247,6 +250,7 @@ EOT;
             foreach ($articles as $article) {
                 $temp = ['user_id' => Auth::id(),
                     'title' => $article->title,
+                    'short_description' => $article->short_description,
                     'description' => $article->description,
                     'slug' => $article->slug,
                     'status' => $article->status,

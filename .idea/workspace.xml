@@ -2,26 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8ea968b-c1f4-4306-90da-bf46493a5853" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/LaravelDonCarlos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LaravelDonCarlos.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_temp_1.zkWuFg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_temp_1.zkWuFg.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_toast.33HYYw.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_toast.33HYYw.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_toast_temp_1.5ixBaA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_toast_temp_1.5ixBaA.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/John_paul.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/John_paul.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Activities.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Activities.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ActivityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ActivityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_06_10_061441_create_activities_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_06_10_061441_create_activities_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Article.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ArticleCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ArticleCategory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BaranggayController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BaranggayController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BaranggayOfficialController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BaranggayOfficialController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PlaceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PlaceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ServicesArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ServicesArticleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ServicesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ServicesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/ArtictleFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ArtictleFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/backend/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/backend/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/activities/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/activities/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/baranggay/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/baranggay/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/baranggay/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/baranggay/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/baranggay/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/baranggay/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/news/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/news/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/news/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/news/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/officials/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/officials/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/services-articles/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/services-articles/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/services/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/services/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/tourism/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/tourism/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/tourism/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/tourism/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -95,63 +97,44 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
         <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="activities: table" type="69fad909:PgImplModel$LocalTable" />
+        <item name="baranggay_officials: table" type="69fad909:PgImplModel$LocalTable" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="doncarlos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="doncarlos: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="places: table" type="69fad909:PgImplModel$LocalTable" />
       </path>
     </expand>
     <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/activities/index.blade.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/backend/officials/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="7" column="9" selection-start-line="7" selection-start-column="7" selection-end-line="12" selection-end-column="11" />
+            <state relative-caret-position="366">
+              <caret line="61" column="64" selection-start-line="61" selection-start-column="64" selection-end-line="61" selection-end-column="64" />
               <folding>
-                <element signature="e#368#4417#0#HTML" />
-                <element signature="e#3819#3838#0#HTML" expanded="true" />
-                <element signature="e#3890#3907#0#HTML" expanded="true" />
-                <element signature="e#4964#5196#0#HTML" />
-                <element signature="e#4903#6685#0#HTML" />
-                <element signature="e#6744#6901#0#HTML" />
-                <element signature="e#6968#7108#0#HTML" />
-                <element signature="e#7173#7351#0#HTML" />
-                <element signature="e#7418#7596#0#HTML" />
-                <element signature="e#7659#8589#0#HTML" />
-                <element signature="e#8699#9930#0#HTML" />
-                <element signature="e#10012#10614#0#HTML" />
-                <element signature="e#10684#11377#0#HTML" />
-                <element signature="e#11446#12048#0#HTML" />
-                <element signature="e#12113#13100#0#HTML" />
-                <element signature="e#13170#14274#0#HTML" />
-                <element signature="e#14314#14523#0#HTML" />
-                <element signature="e#14575#14869#0#HTML" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/backend/calendar/fullcalendar.min.css">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BaranggayOfficialController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="79" column="47" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ActivityController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="220" column="29" selection-start-line="220" selection-start-column="29" selection-end-line="220" selection-end-column="29" />
+            <state relative-caret-position="316">
+              <caret line="50" column="62" selection-start-line="50" selection-start-column="62" selection-end-line="50" selection-end-column="62" />
               <folding>
-                <element signature="e#40#59#0#PHP" expanded="true" />
+                <element signature="e#40#58#0#PHP" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -159,10 +142,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/factories/ActivitiesFactory.php">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="16" column="26" lean-forward="true" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+            <state relative-caret-position="182">
+              <caret line="69" column="60" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/backend/baranggay/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="296" column="19" selection-start-line="296" selection-start-column="19" selection-end-line="301" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -178,36 +170,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>List of Baranggays</find>
-      <find>List of Officials</find>
-      <find>List of Unpublished Baranggay</find>
-      <find>inputGroupFile01</find>
-      <find>Select the baranggay</find>
-      <find>form-group col-2 text-center</find>
-      <find>CApitan</find>
-      <find>inputNameCapitan</find>
-      <find>name=&quot;name_chairman&quot;</find>
-      <find>previewImageCapitan</find>
-      <find>id=&quot;previewImageChairman&quot;</find>
-      <find>pre</find>
-      <find>img</find>
-      <find>baranggayId</find>
-      <find>inputFrom</find>
-      <find>inputStatus</find>
-      <find>inputAvatarCaptain</find>
-      <find>inputAvatarChairman</find>
-      <find>inputAvatarSecretary</find>
-      <find>inputAvatarTreasurer</find>
-      <find>calendar</find>
-      <find>mass</find>
-      <find>List of All Registered Baranggay</find>
+      <find>&lt;table</find>
+      <find>Edit Baranggay</find>
+      <find>alert-success</find>
+      <find>Address</find>
+      <find>all</find>
+      <find>rest</find>
+      <find>move</find>
+      <find>Confirmation</find>
+      <find>kill</find>
+      <find>ba.update.ajax</find>
+      <find>updateAjax</find>
+      <find>baranggay</find>
+      <find>.TRAS</find>
+      <find>snackbar</find>
+      <find>else {</find>
       <find>Baranggays</find>
-      <find>restoreBaranggay</find>
-      <find>removeBaranggay</find>
+      <find>Question</find>
+      <find>conform</find>
+      <find>swa</find>
+      <find>btn btn-sm btn-info shadow-sm  clonedBaranggay</find>
+      <find>clonedBaranggay</find>
+      <find>'ba.clone</find>
+      <find>bo_checkbox</find>
       <find>clone</find>
-      <find>create</find>
-      <find>ajax</find>
-      <find>ajaxUpdate</find>
+      <find>&lt;ta</find>
+      <find>console.</find>
+      <find>removeBaranggay</find>
+      <find>bo.kill</find>
+      <find>masre</find>
+      <find>move to</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -216,8 +208,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/factories/ServicesFactory.php" />
-        <option value="$PROJECT_DIR$/app/Services.php" />
         <option value="$PROJECT_DIR$/app/ServicesArticle.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_06_10_061921_create_services_table.php" />
         <option value="$PROJECT_DIR$/public/backend/css/nprogress.min..css" />
@@ -227,46 +217,48 @@
         <option value="$PROJECT_DIR$/database/factories/BaranggayFactory.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/baranngay/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Baranggay.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ServicesController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_06_10_062004_create_baranggays_table.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/tourism/index.blade.php" />
-        <option value="$PROJECT_DIR$/database/factories/ArtictleFactory.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_06_10_061704_create_articles_table.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/news/create.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_06_10_062059_create_places_table.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/tourism/create.blade.php" />
         <option value="$PROJECT_DIR$/database/factories/PlaceFactory.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/tourism/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/news/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/PlaceController.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/services-articles/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/services-articles/create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/baranggay/create.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/BaranggayController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ServicesArticleController.php" />
         <option value="$PROJECT_DIR$/app/BaranggayOfficial.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/news/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/baranggay/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/services-articles/index.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_06_10_062016_create_baranggay_officials_table.php" />
         <option value="$PROJECT_DIR$/database/factories/OffcialsFactory.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/baranggay/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/services/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/BaranggayOfficialController.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
         <option value="$PROJECT_DIR$/app/Activities.php" />
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/layouts/app.blade.php" />
-        <option value="$PROJECT_DIR$/public/backend/css/style.css" />
-        <option value="$PROJECT_DIR$/resources/views/backend/officials/index.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_06_10_061441_create_activities_table.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/activities/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/activities/edit.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ActivityController.php" />
         <option value="$PROJECT_DIR$/database/factories/ActivitiesFactory.php" />
+        <option value="$PROJECT_DIR$/database/factories/ArtictleFactory.php" />
+        <option value="$PROJECT_DIR$/app/ArticleCategory.php" />
+        <option value="$PROJECT_DIR$/app/Article.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/activities/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/news/edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/news/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/tourism/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/tourism/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ServicesController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/PlaceController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ServicesArticleController.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/services-articles/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/services/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/baranggay/create.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/BaranggayController.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/baranggay/edit.blade.php" />
+        <option value="$PROJECT_DIR$/public/backend/css/style.css" />
+        <option value="$PROJECT_DIR$/resources/views/backend/baranggay/index.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/officials/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/BaranggayOfficialController.php" />
       </list>
     </option>
   </component>
@@ -428,25 +420,44 @@
             <path>
               <item name="LaravelDonCarlos" type="b2602c69:ProjectViewProjectNode" />
               <item name="LaravelDonCarlos" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LaravelDonCarlos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LaravelDonCarlos" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LaravelDonCarlos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LaravelDonCarlos" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="calendar" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LaravelDonCarlos" type="b2602c69:ProjectViewProjectNode" />
               <item name="LaravelDonCarlos" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LaravelDonCarlos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LaravelDonCarlos" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LaravelDonCarlos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LaravelDonCarlos" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="baranggay" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LaravelDonCarlos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LaravelDonCarlos" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="officials" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LaravelDonCarlos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LaravelDonCarlos" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="services-articles" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -524,12 +535,12 @@
       <workItem from="1592458730693" duration="9303000" />
       <workItem from="1592473073548" duration="9576000" />
       <workItem from="1592495015711" duration="12395000" />
-      <workItem from="1592545368904" duration="81152000" />
+      <workItem from="1592545368904" duration="100956000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="265068000" />
+    <option name="totallyTimeSpent" value="284872000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
@@ -538,7 +549,7 @@
       <window_info id="Structure" order="0" sideWeight="0.50073206" side_tool="true" weight="0.1590604" />
       <window_info id="npm" order="1" side_tool="true" />
       <window_info id="Favorites" order="2" sideWeight="0.5021834" side_tool="true" weight="0.1590604" />
-      <window_info content_ui="combo" id="Project" order="3" sideWeight="0.4978166" visible="true" weight="0.16845638" />
+      <window_info content_ui="combo" id="Project" order="3" sideWeight="0.4978166" visible="true" weight="0.14496644" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.42332065" />
@@ -556,188 +567,13 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.1818792" />
+      <window_info anchor="right" id="Database" order="3" weight="0.18255034" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Structure" order="0" sideWeight="0.50073206" side_tool="true" weight="0.1590604" />
-      <window_info id="npm" order="1" side_tool="true" />
-      <window_info id="Favorites" order="2" sideWeight="0.5021834" side_tool="true" weight="0.1590604" />
-      <window_info content_ui="combo" id="Project" order="3" sideWeight="0.4978166" visible="true" weight="0.16845638" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.42332065" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.329429" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="9" weight="0.329429" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.329429" />
-      <window_info anchor="bottom" auto_hide="true" x="0" y="0" width="1536" height="834" id="Terminal" order="11" weight="0.44216692" />
-      <window_info anchor="bottom" id="Database Console" order="12" weight="0.32650074" />
-      <window_info anchor="bottom" id="GraphQL" order="13" weight="0.329429" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.1818792" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/baranggay/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="96" column="34" lean-forward="true" selection-start-line="96" selection-start-column="34" selection-end-line="96" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ServicesArticleController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="60" column="22" lean-forward="true" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
-          <folding>
-            <element signature="e#40#56#0#PHP" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://30984ca2-381e-4206-918a-d0645c6a6aae/database/doncarlos/schema/public/table/baranggay_officials.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/news/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="262" column="27" selection-start-line="262" selection-start-column="27" selection-end-line="262" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/baranggay/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="182" column="27" selection-start-line="182" selection-start-column="27" selection-end-line="182" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/services-articles/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="313" column="41" lean-forward="true" selection-start-line="312" selection-start-column="20" selection-end-line="313" selection-end-column="41" />
-          <folding>
-            <element signature="e#9494#11538#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/news/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="107" column="73" lean-forward="true" selection-start-line="107" selection-start-column="73" selection-end-line="107" selection-end-column="73" />
-          <folding>
-            <element signature="e#4739#4764#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/tourism/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1403">
-          <caret line="99" column="52" selection-start-line="99" selection-start-column="52" selection-end-line="99" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/services-articles/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3265">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_06_10_062016_create_baranggay_officials_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/factories/OffcialsFactory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="18" column="37" lean-forward="true" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-          <folding>
-            <element signature="e#67#85#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/BaranggayOfficial.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" column="29" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="29" />
-          <folding>
-            <element signature="e#23#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/news/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="163" column="29" selection-start-line="163" selection-start-column="29" selection-end-line="163" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/services/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="315" column="34" selection-start-line="315" selection-start-column="26" selection-end-line="315" selection-end-column="34" />
-          <folding>
-            <element signature="e#15554#16345#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ServicesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-46">
-          <caret line="102" column="18" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
-          <folding>
-            <element signature="e#40#57#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/backend/uploads/officials/2082872116.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/backend/uploads/officials/1741316142.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/backend/uploads/officials/1708935957.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/backend/uploads/officials/1635163765.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/backend/uploads/officials/1392904306.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/backend/uploads/officials/1265065067.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/backend/uploads/officials/1237394014.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/backend/uploads/officials/1526339101.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/backend/uploads/officials/1770073855.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -759,23 +595,6 @@
           <filtering>
             <filter text="" />
           </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Article.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/factories/ArtictleFactory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" selection-start-line="16" selection-end-line="17" />
-          <folding>
-            <element signature="e#67#83#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -808,74 +627,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_06_10_061704_create_articles_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="20" selection-start-line="20" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Activities.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
           <folding>
             <element signature="e#23#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/backend/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="242" column="1" selection-start-line="242" selection-start-column="1" selection-end-line="242" selection-end-column="1" />
-          <folding>
-            <element signature="e#855#1470#0" />
-            <element signature="e#1567#1852#0" />
-            <element signature="e#1903#2045#0" />
-            <element signature="e#2047#2181#0" />
-            <element signature="e#2183#2326#0" />
-            <element signature="e#2328#2463#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BaranggayController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="78" column="8" selection-start-line="78" selection-start-column="8" selection-end-line="107" selection-end-column="70" />
-          <folding>
-            <element signature="e#40#58#0#PHP" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/baranggay/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="165" column="42" selection-start-line="165" selection-start-column="40" selection-end-line="165" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BaranggayOfficialController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="285" column="4" selection-start-line="285" selection-start-column="4" selection-end-line="321" selection-end-column="5" />
-          <folding>
-            <element signature="e#40#58#0#PHP" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/officials/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="687" selection-start-line="687" selection-end-line="687" />
-          <folding>
-            <element signature="e#23924#26265#0#HTML" />
           </folding>
         </state>
       </provider>
@@ -908,6 +665,9 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/backend/calendar/all.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="das://30984ca2-381e-4206-918a-d0645c6a6aae/database/doncarlos/schema/public/table/activities">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state projectRestartId="5d48abdb-b9a4-4287-90e5-a500752dc454">
@@ -917,17 +677,96 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/backend/calendar/fullcalendar.min.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/database/factories/ActivitiesFactory.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
-          <caret line="16" column="26" lean-forward="true" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://30984ca2-381e-4206-918a-d0645c6a6aae/database/doncarlos/schema/public/table/article_categories.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="28" lean-forward="true" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://30984ca2-381e-4206-918a-d0645c6a6aae/database/doncarlos/schema/public/table/article_categories">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="5d48abdb-b9a4-4287-90e5-a500752dc454">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_06_14_012921_create_article_categories_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://30984ca2-381e-4206-918a-d0645c6a6aae/database/doncarlos/schema/public/table/articles">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="5d48abdb-b9a4-4287-90e5-a500752dc454">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_06_10_061704_create_articles_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="22" column="11" lean-forward="true" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ArticleCategory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+          <folding>
+            <element signature="e#23#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/factories/ArtictleFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="17" column="15" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="15" />
+          <folding>
+            <element signature="e#67#83#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Article.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#23#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArticleCategory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-345">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ActivityController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="220" column="29" selection-start-line="220" selection-start-column="29" selection-end-line="220" selection-end-column="29" />
+        <state relative-caret-position="4805">
+          <caret line="229" column="32" lean-forward="true" selection-start-line="229" selection-start-column="32" selection-end-line="229" selection-end-column="32" />
           <folding>
             <element signature="e#40#59#0#PHP" expanded="true" />
             <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
@@ -935,42 +774,234 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/app/BaranggayOfficial.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="79" column="47" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="47" />
+        <state relative-caret-position="184">
+          <caret line="8" column="37" lean-forward="true" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+          <folding>
+            <element signature="e#23#62#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/backend/calendar/all.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/backend/calendar/fullcalendar.min.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/activities/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="9" selection-start-line="7" selection-start-column="7" selection-end-line="12" selection-end-column="11" />
+        <state relative-caret-position="116">
+          <caret line="141" column="20" selection-start-line="141" selection-start-column="20" selection-end-line="142" selection-end-column="41" />
           <folding>
-            <element signature="e#368#4417#0#HTML" />
-            <element signature="e#3819#3838#0#HTML" expanded="true" />
-            <element signature="e#3890#3907#0#HTML" expanded="true" />
-            <element signature="e#4964#5196#0#HTML" />
-            <element signature="e#4903#6685#0#HTML" />
-            <element signature="e#6744#6901#0#HTML" />
-            <element signature="e#6968#7108#0#HTML" />
-            <element signature="e#7173#7351#0#HTML" />
-            <element signature="e#7418#7596#0#HTML" />
-            <element signature="e#7659#8589#0#HTML" />
-            <element signature="e#8699#9930#0#HTML" />
-            <element signature="e#10012#10614#0#HTML" />
-            <element signature="e#10684#11377#0#HTML" />
-            <element signature="e#11446#12048#0#HTML" />
-            <element signature="e#12113#13100#0#HTML" />
-            <element signature="e#13170#14274#0#HTML" />
-            <element signature="e#14314#14523#0#HTML" />
-            <element signature="e#14575#14869#0#HTML" />
+            <element signature="e#8316#8473#0#HTML" />
+            <element signature="e#8540#8680#0#HTML" />
+            <element signature="e#8745#8923#0#HTML" />
+            <element signature="e#8990#9168#0#HTML" />
+            <element signature="e#9231#10161#0#HTML" />
+            <element signature="e#10271#11502#0#HTML" />
+            <element signature="e#11585#12187#0#HTML" />
+            <element signature="e#12257#12950#0#HTML" />
+            <element signature="e#13019#13621#0#HTML" />
+            <element signature="e#13686#14673#0#HTML" />
+            <element signature="e#14833#14888#0#HTML" />
+            <element signature="e#14908#15221#0#HTML" />
+            <element signature="e#15278#15821#0#HTML" />
+            <element signature="e#16612#19029#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArticleController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="243" column="3" selection-start-line="243" selection-start-column="3" selection-end-line="266" selection-end-column="5" />
+          <folding>
+            <element signature="e#40#56#0#PHP" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://30984ca2-381e-4206-918a-d0645c6a6aae/database/doncarlos/schema/public/table/places">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="5d48abdb-b9a4-4287-90e5-a500752dc454">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/news/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="52" column="52" selection-start-line="52" selection-start-column="52" selection-end-line="52" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/tourism/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="103" column="58" selection-start-line="103" selection-start-column="58" selection-end-line="103" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/news/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="171" column="11" lean-forward="true" selection-start-line="171" selection-start-column="11" selection-end-line="181" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/tourism/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="371" column="20" selection-start-line="371" selection-start-column="20" selection-end-line="376" selection-end-column="37" />
+          <folding>
+            <element signature="e#17013#17296#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PlaceController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="54" column="22" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/news/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="73" column="27" selection-start-line="73" selection-start-column="27" selection-end-line="77" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ServicesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="162" column="29" selection-start-line="162" selection-start-column="29" selection-end-line="162" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/services-articles/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="174" column="11" selection-start-line="174" selection-start-column="11" selection-end-line="183" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ServicesArticleController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="116" column="48" selection-start-line="115" selection-end-line="116" selection-end-column="48" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/baranggay/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="30" column="70" selection-start-line="30" selection-start-column="70" selection-end-line="30" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Baranggay.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/baranggay/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="56" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/services-articles/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2">
+          <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+          <folding>
+            <element signature="e#12437#14237#0#HTML" />
+            <element signature="e#16179#16772#0#HTML" />
+            <element signature="e#16859#17534#0#HTML" />
+            <element signature="e#17601#18592#0#HTML" />
+            <element signature="e#18692#19745#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/backend/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="68" column="37" selection-start-line="68" selection-start-column="37" selection-end-line="68" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/services/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="451" column="13" selection-start-line="451" selection-start-column="13" selection-end-line="456" selection-end-column="33" />
+          <folding>
+            <element signature="e#11730#13767#0#HTML" />
+            <element signature="e#13836#14627#0#HTML" />
+            <element signature="e#14706#16418#0#HTML" />
+            <element signature="e#17354#18240#0#HTML" />
+            <element signature="e#19054#19660#0#HTML" />
+            <element signature="e#19753#20413#0#HTML" />
+            <element signature="e#21463#22417#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BaranggayController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="196" column="5" lean-forward="true" selection-start-line="196" selection-start-column="5" selection-end-line="196" selection-end-column="5" />
+          <folding>
+            <element signature="e#40#58#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/baranggay/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="296" column="19" selection-start-line="296" selection-start-column="19" selection-end-line="301" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="69" column="60" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/officials/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="61" column="64" selection-start-line="61" selection-start-column="64" selection-end-line="61" selection-end-column="64" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BaranggayOfficialController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="50" column="62" selection-start-line="50" selection-start-column="62" selection-end-line="50" selection-end-column="62" />
+          <folding>
+            <element signature="e#40#58#0#PHP" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -35,13 +35,16 @@ class ServicesController extends Controller
         }
 
         return DataTables::of($services)->addColumn('action', static function ($data) {
-            $btn = ($data->deleted_at === null) ? "<a class=\"dropdown-item removePlace\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Move Trash  
-                        </a>" : "<a class=\"dropdown-item killService\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Delete 
+            $btn = ($data->deleted_at === null) ? "
+                        <a class='dropdown-item' href='$data->id'><i class='fad fa-eye mr-2'></i> View</a>
+                        <a class='dropdown-item editServices' id='$data->id' href='javascript:void(0)'><i class='fad fa-file-edit mr-2'></i> Edit</a>
+                        <a class='dropdown-item removeService' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash mr-2'></i> Move Trash  
+                        </a>" : "<a class='dropdown-item killService' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash mr-2'></i> Delete 
                         </a>";
-            $btnRestore = ($data->deleted_at !== null) ? "<a class=\"dropdown-item restoreService\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Restore 
+            $btnRestore = ($data->deleted_at !== null) ? "<a class='dropdown-item restoreService' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash-restore-alt mr-2'></i> Restore 
                         </a>" : null;
             $button = <<<EOT
                 <div class="dropdown no-arrow" style="width:50px">
@@ -50,8 +53,6 @@ class ServicesController extends Controller
                   </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" style="font-size: 13px;">
                         <h6 class="dropdown-header">Actions</h6>
-                        <a class="dropdown-item" href="$data->id"><i class="fad fa-eye mr-2"></i> View</a>
-                        <a class="dropdown-item editServices" id="$data->id" href="javascript:void(0)"><i class="fad fa-file-edit mr-2"></i> Edit</a>
                         $btn
                         $btnRestore
                     </div>

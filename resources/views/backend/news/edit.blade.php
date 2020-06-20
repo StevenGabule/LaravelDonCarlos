@@ -28,6 +28,7 @@
                     </a>
                 </div>
             </div>
+
             <div class="d-none alert alert-success alert-dismissible shadow-lg fade show" role="alert">
                 <strong><i class="fad fa-meteor blueish mr-2"></i> Successfully Updated!</strong> The article has been
                 modified and ready to see.
@@ -35,6 +36,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <div class="row">
                 <div class="col-xl-9 col-lg-8">
                     <div class="card shadow mb-4">
@@ -49,12 +51,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="inputShortDescription">Short Description</label>
+                                <textarea name="short_description" id="inputShortDescription" rows="3"
+                                          class="form-control form-control-sm">{{ $article->short_description }}</textarea>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="inputDescription">Description</label>
                                 <textarea name="description" id="inputDescription"
                                           class="form-control rounded-0">{!! $article->description !!}</textarea>
                             </div>
-
-
 
                         </div>
                     </div>
@@ -77,7 +83,7 @@
                             </div>
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
-                                @if($article->avatar !== "http://127.0.0.1:8000/")
+                                @if($article->avatar !== null)
                                     <img src="{{ asset($article->avatar) }}" class="img-fluid" id="previewImage" alt="">
                                 @else
                                     <i class="fad fa-images fa-goner"

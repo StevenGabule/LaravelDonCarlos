@@ -42,6 +42,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::get('p-kill', 'PlaceController@kill')->name('place.kill');
     Route::get('p-restore', 'PlaceController@restore')->name('place.restore');
     Route::post('p-update', 'PlaceController@updateAjax')->name('place.update.ajax');
+    Route::get('p-clone', 'PlaceController@clone')->name('place.clone');
 
     Route::resource('service', 'ServicesController');
     Route::get('s-all/{type}', 'ServicesController@all')->name('service.all');
@@ -68,12 +69,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::get('bo/{type}', 'BaranggayOfficialController@all')->name('bo.all');
     Route::get('bo-massremove', 'BaranggayOfficialController@massRemove')->name('bo.massremove');
     Route::get('bo-restore', 'BaranggayOfficialController@restore')->name('bo.restore');
-    Route::get('bo-kill', 'BaranggayOfficialController@kill')->name('bo.kill');
+    Route::get('bo-kill', 'BaranggayOfficialController@massRemove')->name('bo.kill');
     Route::post('bo-update', 'BaranggayOfficialController@ajaxUpdate')->name('bo.ajaxUpdate');
     Route::post('bo-group','BaranggayOfficialController@storeGroup')->name('bo.group');
+    Route::get('bo-clone', 'BaranggayOfficialController@clone')->name('bo.clone');
+
 
     Route::resource('activities','ActivityController');
-    Route::get('all/{type}', 'ActivityController@all')->name('act.all');
+    Route::get('act-all/{type}', 'ActivityController@all')->name('act.all');
     Route::get('act-massremove', 'ActivityController@massRemove')->name('act.massremove');
     Route::get('act-restore', 'ActivityController@restore')->name('act.restore');
     Route::get('act-kill', 'ActivityController@kill')->name('act.kill');

@@ -30,21 +30,24 @@ class BaranggayController extends Controller
         }
 
         if ($type === 'drafted') {
-            $baranggay = Baranggay::where('status', '=', 0)->get();
+            $baranggay = Baranggay::where('status', 0)->get();
         }
 
         if ($type === 'published') {
-            $baranggay = Baranggay::where('status', '=', 1)->get();
+            $baranggay = Baranggay::where('status', 1)->get();
         }
 
         return DataTables::of($baranggay)->addColumn('action', static function ($data) {
-            $btn = ($data->deleted_at === null) ? "<a class=\"dropdown-item removeBaranggay\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Move Trash  
-                        </a>" : "<a class=\"dropdown-item removeBaranggay\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Delete 
+            $btn = ($data->deleted_at === null) ? "
+                        <a class='dropdown-item' href='$data->id'><i class='fad fa-eye mr-2'></i> View</a>
+                        <a class='dropdown-item' id='$data->id' href='/admin/baranggays/$data->id/edit'><i class='fad fa-file-edit mr-2'></i> Edit</a>
+                        <a class='dropdown-item removeBaranggay' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash-undo-alt mr-2'></i> Move Trash  
+                        </a>" : "<a class='dropdown-item removeBaranggay' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash mr-2'></i> Delete 
                         </a>";
-            $btnRestore = ($data->deleted_at !== null) ? "<a class=\"dropdown-item restoreBaranggay\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Restore 
+            $btnRestore = ($data->deleted_at !== null) ? "<a class='dropdown-item restoreBaranggay' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash-restore-alt mr-2'></i> Restore 
                         </a>" : null;
             $button = <<<EOT
                 <div class="dropdown no-arrow" style="width:50px">
@@ -53,8 +56,6 @@ class BaranggayController extends Controller
                   </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" style="font-size: 13px;">
                         <h6 class="dropdown-header">Actions</h6>
-                        <a class="dropdown-item" href="$data->id"><i class="fad fa-eye mr-2"></i> View</a>
-                        <a class="dropdown-item" id="$data->id" href="/admin/article/$data->id/edit"><i class="fad fa-file-edit mr-2"></i> Edit</a>
                         $btn
                         $btnRestore
                     </div>
@@ -77,9 +78,9 @@ EOT;
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|min:6|max:100',
+            'name' => 'required|min:6|max:255',
             'status' => 'required',
-            'short_description' => 'required|min:6|max:100',
+            'short_description' => 'required|min:6|max:255',
             'description' => 'required|min:10',
             'population' => 'required',
             'address' => 'required|min:10',
@@ -116,9 +117,9 @@ EOT;
 
     public function updateAjax(Request $request){
         $validation = Validator::make($request->all(), [
-            'name' => 'required|min:6|max:100',
+            'name' => 'required|min:6|max:255',
             'status' => 'required',
-            'short_description' => 'required|min:6|max:100',
+            'short_description' => 'required|min:6|max:255',
             'description' => 'required|min:10',
             'population' => 'required',
             'address' => 'required|min:10',
@@ -152,8 +153,7 @@ EOT;
         }
         $output = [
             'error' => $error_array,
-            'success' => true,
-            'id' => $baranggay->id
+            'success' => true
         ];
         return response()->json($output);
     }
@@ -172,11 +172,14 @@ EOT;
     public function massRemove(Request $request)
     {
         $baranggay_id = $request->input('id');
-        $baranggay = Baranggay::whereIn('id', $baranggay_id);
-        if ($baranggay->delete()) {
-            return response()->json(['success' => true]);
+        if (is_array($baranggay_id)) {
+            $baranggay = Baranggay::whereIn('id', $baranggay_id);
+            if ($baranggay->delete()) {
+                return response()->json(['success' => true]);
+            }
         }
-        return response()->json(['failed' => false]);
+        Baranggay::where('id', $baranggay_id)->first()->delete();
+        return response()->json(['success' => true]);
     }
 
     public function restore(Request $request)

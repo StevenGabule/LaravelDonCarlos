@@ -1,91 +1,5 @@
 @extends('backend.layouts.app')
 
-@section('style_extended')
-    <style>
-        tbody tr td {
-            vertical-align: middle !important;
-        }
-
-        .dataTables_length label {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 10px;
-            padding-left: 15px;
-        }
-
-        .custom-select.custom-select-sm.form-control.form-control-sm {
-            margin-left: 5px;
-            margin-right: 5px;
-        }
-
-        .dataTables_filter label {
-            align-items: center;
-            display: inline-flex;
-            margin-left: 200px;
-        }
-
-        .dataTables_filter label input {
-            margin-left: 5px;
-        }
-
-        table.dataTable {
-            border-collapse: collapse !important;
-        }
-
-        tbody tr.odd, tr.even {
-            border-bottom: 1px solid #f0f3ff !important;
-        }
-
-        .dataTables_processing {
-            background: #1B1B2A;
-            color: white;
-            padding: 20px;
-            width: 150px;
-            margin: auto;
-        }
-
-        .dataTables_paginate.paging_simple_numbers {
-            padding-bottom: 4px;
-            margin-top: 4px;
-        }
-
-        .dataTables_paginate.paging_simple_numbers ul {
-            font-size: 11px;
-        }
-
-        .page-item.active .page-link {
-            background-color: #1e1e2d !important;
-            border-color: #1e1e2d !important;
-            font-weight: 600;
-            border-radius: 3px;
-        }
-
-        .page-link {
-            color: #36b9cc;
-            font-weight: bold;
-            transition: all 100ms linear;
-            border: none;
-        }
-
-        .page-link:hover {
-            background-color: #d52a1a;
-            color: white;
-        }
-
-        .dataTables_paginate.paging_simple_numbers ul li {
-            margin-left: 6px;
-        }
-
-        .dataTables_info {
-            margin-left: 15px;
-            font-size: 13px;
-        }
-
-    </style>
-@stop
-
-
 @section('content')
 
     <!-- Begin Page Content -->
@@ -183,10 +97,10 @@
                                class="list-group-item list-group-item-action list-group-custom all"><i
                                     class="fad fa-newspaper mr-2"></i>All Places</a>
                             <a href="{{ route('place.create') }}" class="list-group-item list-group-item-action"><i
-                                    class="fad fa-layer-plus mr-2"></i>Register New Place</a>
+                                    class="fad fa-layer-plus mr-2"></i>New Place</a>
                             <a href="javascript:void(0)"
                                class="list-group-item list-group-item-action drafted"><i
-                                    class="fad fa-file-edit mr-2"></i>Un-Published</a>
+                                    class="fad fa-file-edit mr-2"></i>Draft</a>
                             <a href="javascript:void(0)"
                                class="list-group-item list-group-item-action published"><i
                                     class="fad fa-globe-asia mr-2"></i>Published</a>
@@ -207,7 +121,7 @@
                     <div class="card-body p-0">
                         <div class="text-right py-3 pr-3">
                             <button type="button" class="btn btn-sm btn-info shadow-sm trash"><i
-                                    class="fad fa-trash-restore mr-2"></i>Move To Trash
+                                    class="fad fa-trash-undo-alt mr-2"></i>Move To Trash
                             </button>
                             <button type="button" class="btn btn-sm btn-info shadow-sm DestroyPlaces"><i
                                     class="fad fa-trash mr-2"></i>Delete
@@ -215,16 +129,17 @@
                             <button type="button" class="btn btn-sm btn-info shadow-sm RestoredPlaces"><i
                                     class="fad fa-trash-restore mr-2"></i>Restore
                             </button>
-                            <button type="button" class="btn btn-sm btn-info shadow-sm  clonedArticles"><i
+                            <button type="button" class="btn btn-sm btn-info shadow-sm  clonePlace"><i
                                     class="fad fa-clone mr-2"></i>Clone
                             </button>
                         </div>
                         <div class="table-responsive overflow-hidden">
                             <table id="placesTables"
-                                   class="table table-striped table-hover table-sm custom-font-size">
+                                   class="table table-striped table-hover mb-0 table-sm custom-font-size">
                                 <thead>
                                 <tr>
-                                    <th data-orderable="false"><input type="checkbox" name="checkAll" id="checkAllIds"></th>
+                                    <th data-orderable="false"><input type="checkbox" name="checkAll" id="checkAllIds">
+                                    </th>
                                     <th style="width: 50px">Image</th>
                                     <th style="width:40%">Name</th>
                                     <th>Address</th>
@@ -252,6 +167,18 @@
     <script>
         $(document).ready(function () {
 
+            $(document).on('change', '.place_checkbox', function () {
+                selectRow(this)
+            });
+
+            function selectRow(elem) {
+                if (elem.checked) {
+                    elem.parentNode.parentNode.className = 'highlight';
+                } else {
+                    elem.parentNode.parentNode.className = 'odd';
+                }
+            }
+
             getPlaces();
 
             function getPlaces(type = 'all') {
@@ -260,8 +187,11 @@
                     processing: true,
                     serverSide: true,
                     pageLength: 15,
+                    scrollY: '60vh',
+                    scrollCollapse: true,
                     ajax: `p-all/${type}`,
                     ordering: false,
+                    order: [[5, "desc"]],
                     columns: [
                         {
                             data: 'checkbox',
@@ -270,9 +200,6 @@
                         {
                             data: 'avatar',
                             name: 'avatar',
-                            /*render: data => {
-                                return `<div class='text-center'><img src=${data} class='rounded-circle' style='height: 32px;width: 32px'/></div>`
-                            }*/
                         },
                         {
                             data: 'name',
@@ -303,28 +230,24 @@
 
             $(document).on('click', '.all', function (e) {
                 e.preventDefault();
-                $('#articlesTables').DataTable().destroy();
                 $(".captionText").text('List of All Places');
                 getPlaces();
             });
 
             $(document).on('click', '.viewTrash', function (e) {
                 e.preventDefault();
-                $('#articlesTables').DataTable().destroy();
                 $(".captionText").text('Trash Data');
                 getPlaces('trash');
             });
 
             $(document).on('click', '.drafted', function (e) {
                 e.preventDefault();
-                $('#articlesTables').DataTable().destroy();
                 $(".captionText").text('List of Unpublished Places');
                 getPlaces('drafted');
             });
 
             $(document).on('click', '.published', function (e) {
                 e.preventDefault();
-                $('#articlesTables').DataTable().destroy();
                 $(".captionText").text('List of published Places');
                 getPlaces('published');
             });
@@ -373,23 +296,23 @@
                         }
                     }).fail(err => console.log(err))
                 } else {
-                    alert('Please select atleast one checkbox')
+                        snackbar('Check the data you want to delete.');
                 }
             })
         });
 
         $(document).on('click', '.restorePlace', function (e) {
             e.preventDefault();
-            let id = $(this).attr('id');
+            const id = $(this).attr('id');
 
             if (id.length > 0) {
                 $.ajax({
-                    url: `restore/${id}`,
+                    url: 'p-restore',
                     method: "GET",
                     data: {id: id},
                     success: data => {
                         if (data) {
-                            snackbar('You successfully restore it.');
+                            snackbar('You successfully restored it.');
                             $('#placesTables').DataTable().ajax.reload();
                         }
                     }
@@ -416,18 +339,20 @@
                         }
                     }
                 }).fail(err => console.log(err))
+            } else {
+                snackbar('Check the data you want to clone.');
             }
         });
 
-        $(document).on('click', '.clonedArticles', function () {
+        $(document).on('click', '.clonePlace', function () {
             let id = [];
-            $('.article_checkbox:checked').each(function () {
+            $('.place_checkbox:checked').each(function () {
                 id.push($(this).val());
             });
 
             if (id.length > 0) {
                 $.ajax({
-                    url: 'clone',
+                    url: 'p-clone',
                     method: "GET",
                     data: {id: id},
                     success: _ => {
@@ -435,63 +360,71 @@
                         $('#placesTables').DataTable().ajax.reload();
                     }
                 }).fail(err => console.log(err))
+            } else {
+                snackbar('Check the data you want to clone.');
             }
         });
 
         $(document).on('click', '.killArticle', function (e) {
-            var id = $(this).attr('id');
-            swal({
-                title: "Are you sure?",
-                text: "This will delete permanently.",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
-                closeOnConfirm: false
-            }).then((willDelete) => {
-                if (willDelete) {
-                    $.ajax({
-                        url: 'p-kill',
-                        method: "GET",
-                        data: {id: id},
-                        success: data => {
-                            if (data) {
-                                snackbar('You successfully deleted the article');
-                                $('#placesTables').DataTable().ajax.reload();
+            const id = $(this).attr('id');
+            if (id.length > 0) {
+                swal({
+                    title: "Confirmation",
+                    text: "Are you sure to continue?",
+                    icon: "warning",
+                    dangerMode: true,
+                    buttons: [true, "Continue"],
+                    closeModal: false
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: 'p-kill',
+                            method: "GET",
+                            data: {id: id},
+                            success: data => {
+                                if (data) {
+                                    snackbar('You successfully deleted the data');
+                                    $('#placesTables').DataTable().ajax.reload();
+                                }
                             }
-                        }
-                    }).fail(err => console.log(err))
-                }
-            });
-        })
+                        }).fail(err => console.log(err))
+                    }
+                });
+            } else {
+                snackbar('Check the data you want to delete.');
+            }
+        });
 
         $(document).on('click', '.DestroyPlaces', function (e) {
             const id = [];
             $('.place_checkbox:checked').each(function () {
                 id.push($(this).val());
             });
-            swal({
-                title: "Are you sure?",
-                text: "All places are checked will be delete permanently",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
-                closeOnConfirm: false
-            }).then((willDelete) => {
-                if (willDelete) {
-                    $.ajax({
-                        url: '{{ route("place.kill") }}',
-                        method: "GET",
-                        data: {id: id},
-                        success: _ => {
-                            snackbar('You successfully deleted the data');
-                            $('#placesTables').DataTable().ajax.reload();
-                        }
-                    }).fail(err => console.log(err))
-                }
-            });
-        })
+            if (id.length > 0) {
+                swal({
+                    title: "Are you sure?",
+                    text: "All places are checked will be delete permanently",
+                    icon: "warning",
+                    dangerMode: true,
+                    buttons: [true, "Yes, delete it!"],
+                    closeModal: false
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: '{{ route("place.kill") }}',
+                            method: "GET",
+                            data: {id: id},
+                            success: _ => {
+                                snackbar('You successfully deleted the checked data');
+                                $('#placesTables').DataTable().ajax.reload();
+                            }
+                        }).fail(err => console.log(err))
+                    }
+                });
+            } else {
+                snackbar('Check the data you want to delete.');
+            }
+        });
 
         function snackbar(text = '') {
             let x = $("#snackbar");
@@ -503,8 +436,10 @@
         $('#checkAllIds').on('click', function () {
             if (this.checked === true) {
                 $("#placesTables").find('input[name="place_checkbox[]"]').prop('checked', true);
+                $('tr.odd, tr.even').addClass('highlight');
             } else {
                 $("#placesTables").find('input[name="place_checkbox[]"]').prop('checked', false);
+                $('tr.odd, tr.even,tr').removeClass('highlight');
             }
         });
 

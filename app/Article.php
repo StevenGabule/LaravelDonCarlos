@@ -13,11 +13,6 @@ class Article extends Model
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
-    public function getAvatarAttribute($avatar)
-    {
-        return asset($avatar);
-    }
-
     public function category(): BelongsTo
     {
         return $this->belongsTo(ArticleCategory::class);
