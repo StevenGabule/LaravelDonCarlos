@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
-use App\place;
+use App\Place;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
