@@ -42,7 +42,6 @@
                                        id="inputTitle"
                                        value="{{ $activity->title }}"
                                        required
-                                       data-parsley-pattern="[a-zA-Z 0987654321]+$"
                                        data-parsley-length="[6, 50]"
                                        data-parsley-trigger="keyup">
 
@@ -52,8 +51,8 @@
                                 <label for="inputShortDescription">Short Description</label>
                                 <textarea
                                     name="short_description" rows="2" id="inputShortDescription"
-                                    class="form-control form-control-sm" required data-parsley-pattern="[a-zA-Z 0987654321]+$"
-                                    data-parsley-length="[6, 50]"
+                                    class="form-control form-control-sm" required
+                                    data-parsley-length="[6, 255]"
                                     data-parsley-trigger="keyup">{{ $activity->short_description }}</textarea>
                             </div>
 
@@ -62,8 +61,8 @@
                                 <textarea
                                     name="address"
                                     rows="2" id="inputAddress" class="form-control form-control-sm"
-                                    required data-parsley-pattern="[a-zA-Z 0987654321]+$"
-                                    data-parsley-length="[6, 50]"
+                                    required
+                                    data-parsley-length="[6, 255]"
                                     data-parsley-trigger="keyup">{{ $activity->address }}</textarea>
                             </div>
 
@@ -95,8 +94,8 @@
                             </div>
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
-                                @if($activity->avatar !== "http://127.0.0.1:8000/")
-                                    <img src="{{ asset($activity->avatar) }}" class="img-fluid" id="previewImage" alt="">
+                                @if($activity->avatar !== null)
+                                    <img src="{{ asset('backend/uploads/activities/'.$activity->avatar) }}" class="img-fluid" id="previewImage" alt="">
                                 @else
                                     <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>
                                     <img src="" class="img-fluid" id="previewImage" alt="">

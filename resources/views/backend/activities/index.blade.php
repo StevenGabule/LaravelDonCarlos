@@ -4,14 +4,6 @@
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css"/>--}}
     <link rel="stylesheet" href="{{ asset('backend/calendar/all.css') }}"/>
     <link rel="stylesheet" href="{{ asset('backend/calendar/fullcalendar.min.css') }}"/>
-    <style>
-       /* .calendarCustom {
-            background-color: #1e1e2d;
-            border: 2px solid #2c77f4;
-            color: white;
-            padding: 8px;
-        }*/
-    </style>
 @stop
 
 @section('content')
@@ -86,7 +78,7 @@
                         </div>
                         <div class="table-responsive overflow-hidden">
                             <table id="activitiesTable"
-                                   class="table table-striped table-hover table-sm custom-font-size">
+                                   class="table table-striped table-hover mb-0 table-sm custom-font-size">
                                 <thead>
                                 <tr>
                                     <th data-orderable="false"><input type="checkbox" name="checkAll" id="checkAllIds">
@@ -343,11 +335,13 @@
                         method: "GET",
                         data: {id: id},
                         success: data => {
+                            console.log(data);
                             if (data) {
                                 snackbar('You successfully deleted the data');
                                 $('#activitiesTable').DataTable().ajax.reload();
                             }
-                        }
+                        },
+                        error: err => console.log(err.messaage)
                     }).fail(err => console.log(err))
                 }
             });

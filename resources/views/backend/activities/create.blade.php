@@ -28,8 +28,7 @@
                                        name="title"
                                        id="inputTitle"
                                        required
-                                       data-parsley-pattern="[a-zA-Z 0987654321]+$"
-                                       data-parsley-length="[6, 50]"
+                                       data-parsley-length="[6, 255]"
                                        data-parsley-trigger="keyup">
 
                             </div>
@@ -38,8 +37,8 @@
                                 <label for="inputShortDescription">Short Description</label>
                                 <textarea
                                     name="short_description" rows="2" id="inputShortDescription"
-                                    class="form-control form-control-sm" required data-parsley-pattern="[a-zA-Z 0987654321]+$"
-                                    data-parsley-length="[6, 50]"
+                                    class="form-control form-control-sm" required
+                                    data-parsley-length="[6, 255]"
                                     data-parsley-trigger="keyup"></textarea>
                             </div>
 
@@ -48,8 +47,8 @@
                                 <textarea
                                     name="address"
                                     rows="2" id="inputAddress" class="form-control form-control-sm"
-                                    required data-parsley-pattern="[a-zA-Z 0987654321]+$"
-                                    data-parsley-length="[6, 50]"
+                                    required
+                                    data-parsley-length="[6, 255]"
                                     data-parsley-trigger="keyup"></textarea>
                             </div>
 
@@ -59,7 +58,6 @@
                                           class="form-control inputDescription rounded-0" required
                                           data-parsley-trigger="keyup"></textarea>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -122,7 +120,6 @@
 @section('_script')
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
-
     <script>
         $('#activitiesForm').parsley();
 
@@ -158,7 +155,10 @@
                         cache: false,
                         processData: false,
                         dataType: 'json',
-                        success: ({id, success}) => {
+                        success: ({id, success, error}) => {
+                            if (error.length > 0) {
+                                console.log(error);
+                            }
                             if (success) {
                                 window.location.href = `${id}/edit?created`
                             }
@@ -167,6 +167,5 @@
                 }
             })
         });
-        console.clear();
     </script>
 @stop

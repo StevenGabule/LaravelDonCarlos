@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Carbon\Carbon;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -26,5 +28,18 @@ class Article extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function display_data($value, $def)
+    {
+        if (strlen($value) <= $def) {
+            return $value;
+        }
+        return substr($value, 0, $def) . '...';
+    }
+
+    public function getCreatedAttribute()
+    {
+        return $this->created_at->format('d M');
     }
 }

@@ -27,7 +27,7 @@ class ArticleController extends Controller
         $articles = null;
 
         if ($type === 'all') {
-            $articles = Article::with('category')->latest();
+            $articles = Article::with('category')->orderByDesc('created_at');
         }
 
         if ($type === 'trash') {
@@ -71,7 +71,7 @@ EOT;
             ->editColumn('avatar', static function ($data) {
                 return $data->avatar === null
                     ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' :
-                    "<img src='/$data->avatar'  alt='No image' class='rounded-circle' style='height: 32px;width: 32px' />";
+                    "<img src='/backend/uploads/articles/$data->avatar'  alt='No image' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -95,7 +95,8 @@ EOT;
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+
+        $validation = Validator::make($request->all(), [
             'title' => 'required',
             'status' => 'required',
             'short_description' => 'required',
@@ -105,23 +106,34 @@ EOT;
 
         $new_name = null;
 
-        if ($image = $request->file('avatar')) {
-            $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('backend/uploads/articles'), $new_name);
-            $new_name = "backend/uploads/articles/$new_name";
-        }
+        $error_array = array();
+        if ($validation->fails()) {
+            foreach ($validation->messages()->getMessages() as $field_name => $messages) {
+                $error_array[] = $messages;
+            }
+        } else {
+            if ($image = $request->file('avatar')) {
+                $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('backend/uploads/articles'), $new_name);
+            }
 
-        $article = Article::create([
-            'user_id' => Auth::id(),
-            'title' => $request->get('title'),
-            'slug' => Str::slug($request->get('title')),
-            'status' => $request->get('status'),
-            'avatar' => $new_name,
-            'short_description' => $request->get('short_description'),
-            'description' => $request->get('description'),
-            'category_id' => $request->get('category_id'),
-        ]);
-        return response()->json(['success' => true, 'id' => $article->id]);
+            $article = Article::create([
+                'user_id' => Auth::id(),
+                'title' => $request->get('title'),
+                'slug' => Str::slug($request->get('title')),
+                'status' => $request->get('status'),
+                'avatar' => $new_name,
+                'short_description' => $request->get('short_description'),
+                'description' => $request->get('description'),
+                'category_id' => $request->get('category_id'),
+            ]);
+        }
+        $output = [
+            'error' => $error_array,
+            'success' => true,
+            'id' => $article->id
+        ];
+        return response()->json($output);
     }
 
 

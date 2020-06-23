@@ -13,6 +13,7 @@
     <script src="{{ asset('js/jquery-3.5.1.min.js') }}" defer></script>
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
     <script src="{{ asset('js/index.js') }}" defer></script>
+    @yield('custom')
 </head>
 <body>
 <!-- the first header that is transparent -->
@@ -40,7 +41,7 @@
 <!-- nav links -->
 <div class="nav-head bg-navTransparent">
     <nav class="navbar navbar-expand-lg navbar-light container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ route('index') }}">
             <div class="d-flex">
                 <img src="{{ asset('assets/icons/logo.svg') }}" alt="" class="img-fluid"> &nbsp;&nbsp;
                 <p class="font-oswald-bold h4 my-auto">Don Carlos</p>

@@ -1,44 +1,6 @@
 @extends('backend.layouts.app')
 @section('style_extended')
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-    <style>
-        input.parsley-success,
-        select.parsley-success,
-        textarea.parsley-success {
-            color: #fff;
-            background-color: #1cc88a;
-        }
-
-        input.parsley-error,
-        select.parsley-error,
-        textarea.parsley-error {
-            color: #B94A48;
-            background-color: #F2DEDE;
-        }
-
-        .parsley-errors-list {
-            margin: 2px 0 3px;
-            padding: 0;
-            list-style-type: none;
-            font-size: 0.9em;
-            line-height: 0.9em;
-            opacity: 0;
-
-            transition: all .3s ease-in;
-            -o-transition: all .3s ease-in;
-            -moz-transition: all .3s ease-in;
-            -webkit-transition: all .3s ease-in;
-        }
-
-        .parsley-errors-list.filled {
-            opacity: 1;
-        }
-
-        .parsley-type, .parsley-required, .parsley-equalto, .parsley-pattern, .parsley-length {
-            color: #e71372;
-            margin-top: 6px;
-        }
-    </style>
 @stop
 @section('content')
     <div class="container-fluid">
@@ -65,8 +27,7 @@
                                        name="title"
                                        id="inputTitle"
                                        required
-                                       data-parsley-pattern="[a-zA-Z 0987654321]+$"
-                                       data-parsley-length="[6, 50]"
+                                       data-parsley-length="[6, 100]"
                                        data-parsley-trigger="keyup">
 
                             </div>

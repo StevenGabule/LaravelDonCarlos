@@ -165,60 +165,23 @@
                         <h2 class="font-oswald-bold">Services</h2>
                         <hr class="hr-thin">
                         <div class="row">
-                            <div class="col-12 col-md-6 pt-2">
-                                <div class="d-flex">
-                                    <div class="home-services-sect "><i
-                                            class="fas fa-university fa-2x rounded-circle p-3 bg-gold col-dirtyWhite"></i>
-                                    </div>
-                                    <div class="pl-3">
-                                        <h4 class="font-weight-bold">Insfrastructure</h4>
-                                        <p class="col-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                            sed diam voluptua. At vero eos et accusam et</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 pt-2">
-                                <div class="d-flex">
-                                    <div class="home-services-sect "><i
-                                            class="fas fa-university fa-2x rounded-circle p-3 bg-blue col-dirtyWhite"></i>
-                                    </div>
-                                    <div class="pl-3">
-                                        <h4 class="font-weight-bold">Insfrastructure</h4>
-                                        <p class="col-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                            sed diam voluptua. At vero eos et accusam et</p>
+                            @foreach($services as $service)
+                                <div class="col-12 col-md-6 pt-2">
+                                    <div class="d-flex">
+                                        <div class="home-services-sect "><i
+                                                class="fas fa-university fa-2x rounded-circle p-3 bg-gold col-dirtyWhite"></i>
+                                        </div>
+                                        <div class="pl-3">
+                                            <h4 class="font-weight-bold">{{ $service->name }}</h4>
+                                            <p class="col-text">{{ $service->short_description }}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-md-6 pt-2">
-                                <div class="d-flex">
-                                    <div class="home-services-sect "><i
-                                            class="fas fa-university fa-2x rounded-circle p-3 bg-green col-dirtyWhite"></i>
-                                    </div>
-                                    <div class="pl-3">
-                                        <h4 class="font-weight-bold">Insfrastructure</h4>
-                                        <p class="col-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                            sed diam voluptua. At vero eos et accusam et</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 pt-2">
-                                <div class="d-flex">
-                                    <div class="home-services-sect "><i
-                                            class="fas fa-university fa-2x rounded-circle p-3 bg-red col-dirtyWhite"></i>
-                                    </div>
-                                    <div class="pl-3">
-                                        <h4 class="font-weight-bold">Insfrastructure</h4>
-                                        <p class="col-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                            sed diam voluptua. At vero eos et accusam et</p>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+
+
                             <div class="text-center w-100 my-3">
-                                <a href="#">
+                                <a href="{{ route('services') }}">
                                     <button class="btn btn-outline-gold px-5">
                                         Learn More
                                     </button>
@@ -304,6 +267,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Latest New row div -->
         <div class="bg-light shadow-sm my-4">
             <div class="container py-4">
@@ -311,73 +275,47 @@
                     <div class="col-12 col-lg-3 text-center pt-3">
                         <h2 class="font-oswald-bold">Latest News</h2>
                         <hr class="hr-center-thin">
-                        <p class="my-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                            accusam et</p>
-                        <button class="btn btn-outline-gold px-4 py-1">
+                        <p class="my-4">{{ $latestNews->short_description }}</p>
+                        <a href="{{ route('news.detail', ['slug' => $latestNews->slug]) }}" class="btn btn-outline-gold px-4 py-1">
                             <small>More Info</small>
-                        </button>
+                        </a>
                     </div>
-                    <div class="col-12 col-sm-6 col-lg-3 pt-3">
-                        <div class="card shadow-sm border-0 p-3">
-                            <img class="card-img" src="assets/images/munhall2.jpg" style="max-height: 150px;"
-                                 alt="Announcement Images">
-                            <div class="d-flex flex-row">
-                                <small class="flex-fill"><i class="far fa-user-circle"></i> <span class="user pl-1">Admin</span>
-                                </small>
-                                <small><i class="far fa-clock"></i><span class="news-date pl-1">1 day ago</span>
-                                </small>
-                            </div>
-                            <div class="mt-3">
-                                <h6 class="card-title font-weight-bold">2 FEB : Magkakaroon ng emergency sa pri....</h6>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                                    nonumy</p>
-                                <button class="btn btn-outline-gold px-4 py-1">
-                                    <small>More Info</small>
-                                </button>
+
+                    @foreach($news as $new)
+                        <div class="col-12 col-sm-6 col-lg-3 pt-3">
+                            <div class="card shadow-sm border-0 p-3">
+                                <img class="card-img"
+                                     src="{{ $new->avatar ? asset('/backend/uploads/articles/'.$new->avatar) : asset('assets/icons/images.svg') }}"
+                                     style="max-height: 150px;"
+                                     alt="Announcement Images">
+                                <div class="d-flex flex-row">
+                                    <small class="flex-fill">
+                                        <i class="far fa-user-circle"></i>
+                                        <span class="user pl-1">{{ $new->user->name }}</span>
+                                    </small>
+                                    <small>
+                                        <i class="far fa-clock"></i><span
+                                            class="news-date pl-1">{{ $new->created_at->diffForHumans() }}</span>
+                                    </small>
+                                </div>
+                                <div class="mt-3">
+                                    <h6 class="card-title font-weight-bold" title="{{ $new->title }}">
+                                        <a href="{{ route('news.detail', ['slug' => $new->slug]) }}"
+                                           class="text-dark">
+                                            {{ $new->created }} : {{ $new->display_data($new->title, 50) }}
+                                        </a>
+                                    </h6>
+                                    <p class="card-text">
+                                        {{ $new->display_data($new->short_description, 140) }}
+                                    </p>
+                                    <a href="{{ route('news.detail', ['slug' => $new->slug]) }}" class="btn btn-outline-gold px-4 py-1">
+                                        <small>Read more</small>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-3 pt-3">
-                        <div class="card shadow-sm border-0 p-3">
-                            <img class="card-img" src="assets/images/munhall2.jpg" style="max-height: 150px;"
-                                 alt="Announcement Images">
-                            <div class="d-flex flex-row">
-                                <small class="flex-fill"><i class="far fa-user-circle"></i> <span class="user pl-1">Admin</span>
-                                </small>
-                                <small><i class="far fa-clock"></i><span class="news-date pl-1">1 day ago</span>
-                                </small>
-                            </div>
-                            <div class="mt-3">
-                                <h6 class="card-title font-weight-bold">2 FEB : Magkakaroon ng emergency sa pri....</h6>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                                    nonumy</p>
-                                <button class="btn btn-outline-gold px-4 py-1">
-                                    <small>More Info</small>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-3 pt-3">
-                        <div class="card shadow-sm border-0 p-3">
-                            <img class="card-img" src="assets/images/munhall2.jpg" style="max-height: 150px;"
-                                 alt="Announcement Images">
-                            <div class="d-flex flex-row">
-                                <small class="flex-fill"><i class="far fa-user-circle"></i> <span class="user pl-1">Admin</span>
-                                </small>
-                                <small><i class="far fa-clock"></i><span class="news-date pl-1">1 day ago</span>
-                                </small>
-                            </div>
-                            <div class="mt-3">
-                                <h6 class="card-title font-weight-bold">2 FEB : Magkakaroon ng emergency sa pri....</h6>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                                    nonumy</p>
-                                <button class="btn btn-outline-gold px-4 py-1">
-                                    <small>More Info</small>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                @endforeach
+                <!-- END NEWS CONTENT  -->
                 </div>
             </div>
         </div>
@@ -385,95 +323,66 @@
             <h2 class="text-center font-oswald-bold">Upcoming Events</h2>
             <hr class="hr-center-thin">
             <div class="row my-4">
+                @php
+                    $month = ["", 'Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept','Oct', 'Nov', 'Dec']
+                @endphp
                 <div class="col-12 col-md-6 pt-3">
                     <div class="card shadow-sm border-0">
                         <a href="" class="col-darkGrey home-link-setting">
                             <div class="position-relative">
-                                <img class="card-img" src="assets/images/band.jpg" style="max-height: 350px;"
+                                <img class="card-img" src="{{ asset('/backend/uploads/activities/'.$latestActivity->avatar) }}" style="max-height: 350px;"
                                      alt="Announcement Images">
-                                <h5 class="event-overlay p-3 m-0 bg-gold col-dirtyWhite font-weight-bold text-center">31
-                                    <br> Dec.2020</h5>
+                                <h5 class="event-overlay p-3 m-0 bg-gold col-dirtyWhite font-weight-bold text-center">
+                                    {{ $latestActivity->display_date('day') }}
+                                    <br> {{ $month[$latestActivity->display_date('month')] }} {{ $latestActivity->display_date('year') }}
+
+                                </h5>
                             </div>
                             <div class="m-3">
-                                <h5 class="card-title font-weight-bold m-0">Don Carlos Year end Concert</h5>
+                                <h5 class="card-title font-weight-bold m-0">{{ $latestActivity->title }}</h5>
                                 <div class="d-flex flex-column flex-md-row ">
                                     <small><i class="far fa-clock"></i><span
                                             class="event-date pl-1">5:00 PM - 12:00 AM</span>
                                     </small>
                                     <small class="ml-md-3"><i class="fas fa-map-marker-alt"></i><span
-                                            class="news-date pl-1">Don Carlos Gym</span>
+                                            class="news-date pl-1">{{ $latestActivity->display_address }}</span>
                                     </small>
                                 </div>
-                                <p class="card-text mt-2">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                    diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,</p>
+                                <p class="card-text mt-2">{{ $latestActivity->short_description }}</p>
                             </div>
                         </a>
-
                     </div>
                 </div>
+
                 <div class="col-12 col-md-6 pt-3">
                     <div class="d-flex flex-column">
-                        <a href="" class="home-link-setting">
-                            <div class="d-flex flex-row event-list col-darkGrey">
-                                <h5 class="font-weight-bold bg-gold px-2 py-5 text-white text-center m-0">20 <br> April
-                                    2020</h5>
-                                <div class="p-2 border-top border-bottom">
-                                    <h5 class="font-weight-bold mb-1">Political Conferences</h5>
-                                    <div class="d-flex flex-column flex-md-row ">
-                                        <small><i class="far fa-clock"></i><span class="event-date pl-1">5:00 PM - 12:00 AM</span>
-                                        </small>
-                                        <small class="ml-md-3"><i class="fas fa-map-marker-alt"></i><span
-                                                class="news-date pl-1">Don Carlos Gym</span>
-                                        </small>
-                                    </div>
-                                    <p class="mt-2">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                                        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                                        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </p>
 
-                                </div>
-                            </div>
-                        </a>
-                        <a href="" class="mt-3 home-link-setting">
-                            <div class="d-flex flex-row event-list">
-                                <h5 class="font-weight-bold bg-gold px-2 py-5 text-white text-center m-0">20 <br> Sept
-                                    2020</h5>
-                                <div class="p-2 border-top border-bottom">
-                                    <h5 class="font-weight-bold mb-1">Political Conferences</h5>
-                                    <div class="d-flex flex-column flex-md-row ">
-                                        <small><i class="far fa-clock"></i><span class="event-date pl-1">5:00 PM - 12:00 AM</span>
-                                        </small>
-                                        <small class="ml-md-3"><i class="fas fa-map-marker-alt"></i><span
-                                                class="news-date pl-1">Don Carlos Gym</span>
-                                        </small>
+                        @foreach($activities as $activity)
+                            <a href="" class="home-link-setting mb-3" title="{{ $activity->id }}">
+                                <div class="d-flex flex-row event-list col-darkGrey">
+                                    <h5 class="font-weight-bold bg-gold px-2 py-5 text-white text-center m-0">
+                                        {{ $activity->display_date('day') }}
+                                        <br>
+                                        {{ $month[$activity->display_date('month')] }} {{ $activity->display_date('year') }}</h5>
+                                    <div class="p-2 border-top border-bottom">
+                                        <h5 class="font-weight-bold mb-1">{{ $activity->title }}</h5>
+                                        <div class="d-flex flex-column flex-md-row ">
+                                            <small>
+                                                <i class="far fa-clock"></i>
+                                                <span class="event-date pl-1">
+                                                    {{ $activity->make_date() }}
+                                                </span>
+                                            </small>
+                                            <small class="ml-md-3"><i class="fas fa-map-marker-alt"></i><span
+                                                    class="news-date pl-1">{{ $activity->display_address }}</span>
+                                            </small>
+                                        </div>
+                                        <p class="mt-2">{{ $activity->short_description }} </p>
                                     </div>
-                                    <p class="mt-2">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                                        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                                        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </p>
-
                                 </div>
-                            </div>
-                        </a>
-                        <a href="" class="mt-3 home-link-setting">
-                            <div class="d-flex flex-row event-list">
-                                <h5 class="font-weight-bold bg-gold px-2 py-5 text-white text-center m-0">20 <br> April
-                                    2020</h5>
-                                <div class="p-2 border-top border-bottom">
-                                    <h5 class="font-weight-bold mb-1">Political Conferences</h5>
-                                    <div class="d-flex flex-column flex-md-row ">
-                                        <small><i class="far fa-clock"></i><span class="event-date pl-1">5:00 PM - 12:00 AM</span>
-                                        </small>
-                                        <small class="ml-md-3"><i class="fas fa-map-marker-alt"></i><span
-                                                class="news-date pl-1">Don Carlos Gym</span>
-                                        </small>
-                                    </div>
-                                    <p class="mt-2">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                                        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                                        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </p>
-                                </div>
-                            </div>
-                        </a>
-
-                    </div>
+                            </a>
+                        @endforeach
+                    </div><!-- end of UPCOMING EVENTS -->
                 </div>
             </div>
         </div>

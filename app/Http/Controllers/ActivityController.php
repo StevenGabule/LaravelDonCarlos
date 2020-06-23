@@ -8,6 +8,7 @@ use App\BaranggayOfficial;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
@@ -42,13 +43,16 @@ class ActivityController extends Controller
         }
 
         return DataTables::of($activities)->addColumn('action', static function ($data) {
-            $btn = ($data->deleted_at === null) ? "<a class=\"dropdown-item removeBaranggay\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Move Trash  
-                        </a>" : "<a class=\"dropdown-item removeActivities\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Delete 
+            $btn = ($data->deleted_at === null) ? "
+                        <a class='dropdown-item' href='$data->id'><i class='fad fa-eye mr-2'></i> View</a>
+                        <a class='dropdown-item' id='$data->id' href='/admin/activities/$data->id/edit'><i class='fad fa-file-edit mr-2'></i> Edit</a>
+                        <a class='dropdown-item removeBaranggay' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash mr-2'></i> Move Trash  
+                        </a>" : "<a class='dropdown-item removeActivities' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash mr-2'></i> Delete 
                         </a>";
-            $btnRestore = ($data->deleted_at !== null) ? "<a class=\"dropdown-item restoreActivities\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Restore 
+            $btnRestore = ($data->deleted_at !== null) ? "<a class='dropdown-item restoreActivities' id='$data->id' href='javascript:void(0)'>
+                            <i class='fad fa-trash mr-2'></i> Restore 
                         </a>" : null;
             $button = <<<EOT
                 <div class="dropdown no-arrow" style="width:50px">
@@ -57,8 +61,7 @@ class ActivityController extends Controller
                   </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" style="font-size: 13px;">
                         <h6 class="dropdown-header">Actions</h6>
-                        <a class="dropdown-item" href="$data->id"><i class="fad fa-eye mr-2"></i> View</a>
-                        <a class="dropdown-item" id="$data->id" href="/admin/activities/$data->id/edit"><i class="fad fa-file-edit mr-2"></i> Edit</a>
+                        
                         $btn
                         $btnRestore
                     </div>
@@ -67,7 +70,7 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="activity_checkbox[]" class="activity_checkbox" value="{{$id}}" />')
             ->editColumn('avatar', static function ($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/activities/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -80,10 +83,10 @@ EOT;
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required|min:6|max:100',
+        $validation = Validator::make($request->all(), [
+            'title' => 'required|min:6|max:255',
             'status' => 'required',
-            'short_description' => 'required|min:6|max:100',
+            'short_description' => 'required|min:6|max:255',
             'description' => 'required|min:10',
             'date_start' => 'required',
             'date_end' => 'required',
@@ -91,27 +94,39 @@ EOT;
         ]);
 
         $new_name = null;
+        $act = null;
+        $error_array = array();
+        if ($validation->fails()) {
+            foreach ($validation->messages()->getMessages() as $field_name => $messages) {
+                $error_array[] = $messages;
+            }
+        } else {
+            if ($image = $request->file('avatar')) {
+                $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('backend/uploads/activities'), $new_name);
+            }
 
-        if ($image = $request->file('avatar')) {
-            $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('backend/uploads/activities'), $new_name);
-            $new_name = "backend/uploads/activities/$new_name";
+            $act = Activities::create([
+                'title' => $request->get('title'),
+                'slug' => Str::slug($request->get('title')),
+                'user_id' => Auth::id(),
+                'date_start' => $request->get('date_start'),
+                'date_end' => $request->get('date_end'),
+                'status' => $request->get('status'),
+                'avatar' => $new_name,
+                'short_description' => $request->get('short_description'),
+                'description' => $request->get('description'),
+                'address' => $request->get('address'),
+            ]);
+            $output = [
+                'error' => $error_array,
+                'success' => true,
+                'id' => $act->id
+            ];
         }
 
-        $act = Activities::create([
-            'title' => $request->get('title'),
-            'slug' => Str::slug($request->get('title')),
-            'user_id' => Auth::id(),
-            'date_start' => $request->get('date_start'),
-            'date_end' => $request->get('date_end'),
-            'status' => $request->get('status'),
-            'avatar' => $new_name,
-            'short_description' => $request->get('short_description'),
-            'description' => $request->get('description'),
-            'address' => $request->get('address'),
-        ]);
 
-        return response()->json(['success' => true, 'id' => $act->id]);
+        return response()->json($output);
     }
 
     public function ajaxUpdate(Request $request)
@@ -138,7 +153,6 @@ EOT;
         if ($image = $request->file('avatar')) {
             $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('backend/uploads/activities'), $new_name);
-            $new_name = "backend/uploads/activities/$new_name";
             $activities->avatar = $new_name;
         }
 
@@ -149,7 +163,6 @@ EOT;
             'date_start' => $request->get('date_start'),
             'date_end' => $request->get('date_end'),
             'status' => $request->get('status'),
-            'avatar' => $new_name,
             'short_description' => $request->get('short_description'),
             'description' => $request->get('description'),
             'address' => $request->get('address'),
@@ -177,9 +190,11 @@ EOT;
         $ids = $request->input('id');
         if (is_array($ids)) {
             Activities::withTrashed()->whereIn('id', $ids)->forceDelete();
+            #$this->removeImage($activities->avatar);
             return response()->json(['success' => true]);
         }
         Activities::withTrashed()->where('id', $ids)->first()->forceDelete();
+        #$this->removeImage($activities->avatar);
         return response()->json(['success' => true]);
     }
 
@@ -192,8 +207,24 @@ EOT;
                 return response()->json(['success' => true]);
             }
         }
-        Activities::where('id', $activities)->delete();
+        Activities::where('id', $activities)->first()->delete();
         return response()->json(['failed' => false]);
+    }
+
+    private function removeImage($images): void
+    {
+        if (is_array($images)) {
+            foreach ($images as $image) {
+                $imagePath = '/backend/uploads/activities' . '/' . $image;
+                if (File::exists($imagePath)) {
+                    File::delete($imagePath);
+                }
+            }
+        }
+        $imagePath = "/backend/uploads/activities/$images";
+        if (File::exists($imagePath)) {
+            File::delete($imagePath);
+        }
     }
 
     public function restore(Request $request)
