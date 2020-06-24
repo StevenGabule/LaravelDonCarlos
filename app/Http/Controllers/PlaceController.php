@@ -62,7 +62,7 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="place_checkbox[]" class="place_checkbox" value="{{$id}}" />')
             ->editColumn('avatar', static function($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -89,7 +89,6 @@ EOT;
             $image = $request->file('avatar');
             $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('backend/uploads/places'), $new_name);
-            $new_name = "backend/uploads/places/$new_name";
         }
 
         $place = Place::create([
@@ -135,7 +134,7 @@ EOT;
                 $image = $request->file('avatar');
                 $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('backend/uploads/places'), $new_name);
-                $place->avatar = "backend/uploads/places/$new_name";
+                $place->avatar = $new_name;
             }
 
             $place->name = $request->get('name');

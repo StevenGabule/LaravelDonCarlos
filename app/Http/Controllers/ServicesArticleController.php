@@ -38,7 +38,9 @@ class ServicesArticleController extends Controller
         }
 
         return DataTables::of($serviceArticles)->addColumn('action', static function ($data) {
-            $btn = ($data->deleted_at === null) ? "<a class=\"dropdown-item removeServiceArticle\" id=\"$data->id\" href=\"javascript:void(0)\">
+            $btn = ($data->deleted_at === null) ? "
+                        <a class=\"dropdown-item\" href=\"$data->id\"><i class=\"fad fa-eye mr-2\"></i> View</a>
+                        <a class=\"dropdown-item\" id=\"$data->id\" href=\"/admin/service-article/$data->id/edit\"><i class=\"fad fa-file-edit mr-2\"></i> Edit</a><a class=\"dropdown-item removeServiceArticle\" id=\"$data->id\" href=\"javascript:void(0)\">
                             <i class=\"fad fa-trash mr-2\"></i> Move Trash  
                         </a>" : "<a class=\"dropdown-item killServiceSA\" id=\"$data->id\" href=\"javascript:void(0)\">
                             <i class=\"fad fa-trash mr-2\"></i> Delete 
@@ -53,8 +55,6 @@ class ServicesArticleController extends Controller
                   </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" style="font-size: 13px;">
                         <h6 class="dropdown-header">Actions</h6>
-                        <a class="dropdown-item" href="$data->id"><i class="fad fa-eye mr-2"></i> View</a>
-                        <a class="dropdown-item" id="$data->id" href="/admin/service-article/$data->id/edit"><i class="fad fa-file-edit mr-2"></i> Edit</a>
                         $btn
                         $btnRestore
                     </div>
@@ -63,7 +63,7 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="serviceArticle_checkbox[]" class="serviceArticle_checkbox" value="{{$id}}" />')
             ->editColumn('avatar', static function($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -90,7 +90,6 @@ EOT;
         if ($image = $request->file('avatar')) {
             $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('backend/uploads/service-article'), $new_name);
-            $new_name = "backend/uploads/service-article/$new_name";
         }
 
         $sa = ServicesArticle::create([
@@ -136,7 +135,7 @@ EOT;
                 $image = $request->file('avatar');
                 $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('backend/uploads/service-article'), $new_name);
-                $serviceArticle->avatar = "backend/uploads/service-article/$new_name";
+                $serviceArticle->avatar = $new_name;
             }
             $serviceArticle->name = $request->get('name');
             $serviceArticle->short_description = $request->get('short_description');

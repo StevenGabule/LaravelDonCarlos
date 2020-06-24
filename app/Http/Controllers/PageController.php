@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 
 use App\Activities;
 use App\Article;
+use App\Place;
 use App\Services;
+use App\ServicesArticle;
 
 class PageController extends Controller
 {
@@ -18,7 +20,7 @@ class PageController extends Controller
             ->take(3)
             ->skip(1)
             ->get();
-        
+
         $latestNews = Article::latest()->first();
 
         $activities = Activities::latest()->take(3)->skip(1)->get();
@@ -35,12 +37,35 @@ class PageController extends Controller
 
     public function services()
     {
-        return view('services');
+        $services = Services::latest()->get();
+        $articles = Article::latest()->take(2)->get();
+        return view('services', compact('services', 'articles'));
+    }
+
+    public function services_show($id)
+    {
+        $serviceArt = ServicesArticle::where('services_id', $id)
+            ->orderBy('created_at', 'DESC')
+            ->filter(request()->only(['q']))
+            ->paginate(5);
+        $serviceType = Services::findOrFail($id);
+        $services = Services::latest()->get();
+        $articles = Article::latest()->take(2)->get();
+        return view('services-show', compact('serviceArt', 'services', 'id', 'serviceType', 'articles'));
     }
 
     public function about()
     {
         return view('about');
+    }
+
+    public function service_show_detail($id, $slug)
+    {
+        $serviceType = Services::findOrFail($id);
+        $services = Services::latest()->get();
+        $news = ServicesArticle::whereSlug($slug)->first();
+        $articles = Article::latest()->take(2)->get();
+        return view('services-show-detail', compact('serviceType', 'news', 'services', 'id', 'articles'));
     }
 
     public function transparency()
@@ -50,12 +75,24 @@ class PageController extends Controller
 
     public function news()
     {
-        return view('news');
+        $news = Article::with('user')
+            ->where('status', 1)
+            ->orderBy('created_at', 'DESC')
+            ->filter(request()->only(['q']))
+            ->paginate(9);
+        $articles = Article::latest()->take(2)->get();
+        return view('news', compact('news', 'articles'));
     }
 
     public function tourism()
     {
-        return view('tourism');
+        $places = Place::where('status', 1)->orderBy('created_at', 'desc')->paginate(9);
+        return view('tourism', compact('places'));
+    }
+
+    public function tourismShow($id)
+    {
+
     }
 
     public function events()

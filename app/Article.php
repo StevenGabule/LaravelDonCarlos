@@ -42,4 +42,15 @@ class Article extends Model
     {
         return $this->created_at->format('d M');
     }
+
+    public function scopeFilter($query, $filter) : void
+    {
+        if (isset($filter['q']) && $term = strtolower($filter['q'])) {
+            $query->where(static function($q) use ($term) {
+                $q->orwhereRaw('LOWER(title) LIKE ?', ["%{$term}%"]);
+                $q->orwhereRaw('LOWER(short_description) LIKE ?', ["%{$term}%"]);
+                $q->orwhereRaw('LOWER(description) LIKE ?', ["%{$term}%"]);
+            });
+        }
+    }
 }

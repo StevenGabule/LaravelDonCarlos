@@ -16,4 +16,16 @@ class ServicesArticle extends Model
     {
         return $this->belongsTo(Services::class);
     }
+
+    public function scopeFilter($query, $filter): void
+    {
+        if (isset($filter['q']) && $term = strtolower($filter['q'])) {
+            $query->where(static function($q) use ($term) {
+               $q->orwhereRaw('LOWER(name) LIKE ?', ["%{$term}%"]);
+               $q->orwhereRaw('LOWER(short_description) LIKE ?', ["%{$term}%"]);
+               $q->orwhereRaw('LOWER(description) LIKE ?', ["%{$term}%"]);
+            });
+        }
+    }
+
 }

@@ -15,6 +15,8 @@
 Route::get('/', 'PageController@index')->name('index');
 
 Route::get('/services', 'PageController@services')->name('services');
+Route::get('/services/{id}', 'PageController@services_show')->name('services.show');
+Route::get('/service/{id}/{slug}', 'PageController@service_show_detail')->name('services.show.detail');
 
 Route::get('/about-don-carlos', 'PageController@about')->name('about');
 Route::get('/transparency', 'PageController@transparency')->name('transparency');
@@ -23,6 +25,8 @@ Route::get('/news', 'PageController@news')->name('news');
 Route::get('/news/{slug}', 'PageController@news_details')->name('news.detail');
 
 Route::get('/tourism', 'PageController@tourism')->name('tourism');
+Route::get('/tourism/{slug}', 'PageController@tourismShow')->name('tourism.show');
+
 Route::get('/events', 'PageController@events')->name('events');
 Route::get('/contacts', 'PageController@contacts')->name('contacts');
 

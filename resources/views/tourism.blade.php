@@ -1,4 +1,33 @@
 @extends('layouts.app')
+@section('custom')
+    <style>
+        .pagination {
+            justify-content: center !important;
+            font-weight: 700 !important;
+        }
+
+        .page-item {
+            padding: 5px;
+            border-radius: 25px;
+        }
+
+        .page-item a {
+            border-radius: 8px;
+            color: #F9BF00;
+            border-color: #F9BF00;
+        }
+
+        .page-item.active span.page-link {
+            background-color: #F9BF00 !important;
+            color: #F5F5F5 !important;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            border-color: #F9BF00 !important;;
+        }
+    </style>
+@stop
+
 @section('content')
     <div class="w-100">
         <div class="position-absolute w-100">
@@ -27,234 +56,115 @@
                     <li data-target="#carouselTourism" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner border-radius-1rem">
-                    <div class="carousel-item active ">
-                        <div class="d-flex flex-column flex-lg-row ">
+                    <div class="carousel-item active">
+                        <div class="d-flex flex-column flex-lg-row">
 
                             <!-- recommended dimension 640x480 kay mau man ang image nga gi gamit -->
-                            <img src="../assets/images/seaside-640x480.jpg" class="w-100 h-100 " alt="kahulogan falls image">
+                            <img src="../assets/images/seaside-640x480.jpg" class="w-100 h-100" alt="kahulogan falls image">
 
                             <div class=" px-3 py-5">
-                                <p class="col-gold mb-0 ">Brgy. Sinanguyan, Don Carlos, Bukidnoon</p>
-                                <h2 class="font-oswald-bold ">Kahulogan Falls</h2>
-                                <p class="my-4 ">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                                <p class="col-gold mb-0">Brgy. Sinanguyan, Don Carlos, Bukidnoon</p>
+                                <h2 class="font-oswald-bold">Kahulogan Falls</h2>
+                                <p class="my-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
                                     clita kasd
                                 </p>
-                                <a href=" "><button class="font-oswald btn btn-outline-gold px-4 rounded-0 ">EXPLORE</button></a>
+                                <a href=""><button class="font-oswald btn btn-outline-gold px-4 rounded-0">EXPLORE</button></a>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item ">
-                        <div class="d-flex flex-column flex-lg-row ">
+                    <div class="carousel-item">
+                        <div class="d-flex flex-column flex-lg-row">
 
                             <!-- recommended dimension 640x480 kay mau man ang image nga gi gamit -->
-                            <img src="../assets/images/seaside-640x480.jpg" class="w-100 h-100 " alt="kahulogan falls image">
+                            <img src="../assets/images/seaside-640x480.jpg" class="w-100 h-100" alt="kahulogan falls image">
 
                             <div class=" px-3 py-5">
-                                <p class="col-gold mb-0 ">Brgy. Sinanguyan, Don Carlos, Bukidnoon</p>
-                                <h2 class="font-oswald-bold ">Kahulogan Falls</h2>
-                                <p class="my-4 ">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                                <p class="col-gold mb-0">Brgy. Sinanguyan, Don Carlos, Bukidnoon</p>
+                                <h2 class="font-oswald-bold">Kahulogan Falls</h2>
+                                <p class="my-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
                                     clita kasd
                                 </p>
-                                <a href=" "><button class="font-oswald btn btn-outline-gold px-4 rounded-0 ">EXPLORE</button></a>
+                                <a href=""><button class="font-oswald btn btn-outline-gold px-4 rounded-0">EXPLORE</button></a>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item ">
-                        <div class="d-flex flex-column flex-lg-row ">
+                    <div class="carousel-item">
+                        <div class="d-flex flex-column flex-lg-row">
 
                             <!-- recommended dimension 640x480 kay mau man ang image nga gi gamit -->
-                            <img src="../assets/images/seaside-640x480.jpg" class="w-100 h-100 " alt="kahulogan falls image">
+                            <img src="../assets/images/seaside-640x480.jpg" class="w-100 h-100" alt="kahulogan falls image">
 
                             <div class=" px-3 py-5">
-                                <p class="col-gold mb-0 ">Brgy. Sinanguyan, Don Carlos, Bukidnoon</p>
-                                <h2 class="font-oswald-bold ">Kahulogan Falls</h2>
-                                <p class="my-4 ">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                                <p class="col-gold mb-0">Brgy. Sinanguyan, Don Carlos, Bukidnoon</p>
+                                <h2 class="font-oswald-bold">Kahulogan Falls</h2>
+                                <p class="my-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
                                     clita kasd
                                 </p>
-                                <a href=" "><button class="font-oswald btn btn-outline-gold px-4 rounded-0 ">EXPLORE</button></a>
+                                <a href=""><button class="font-oswald btn btn-outline-gold px-4 rounded-0">EXPLORE</button></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <br><br><br><br>
-            <div class="col-darkGrey ">
-                <h2 class="font-oswald-bold text-center">Favorate Places</h2>
+            <div class="col-darkGrey">
+
+                <h2 class="font-oswald-bold text-center">Favorite Places</h2>
+
                 <hr class="hr-center-thin">
+
                 <div class="row my-4">
+                    @forelse($places as $place)
                     <div class="col-12 col-sm-6 col-lg-4 pt-3">
                         <div class="card bg-light shadow-sm border-0">
                             <div>
                                 <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                                <img class="card-img max-height-250" src="assets/images/squash.jpg" alt="Announcement Images">
+                                <img class="card-img max-height-250"
+                                     src="{{ $place->avatar !== null ? asset('/backend/uploads/places/'.$place->avatar) : asset('assets/icons/mountains.svg')  }}" alt="Announcement Images">
                             </div>
                             <div class="card-body">
-                                <h4 class="font-oswald-bold text-uppercase">Squash Mountain</h4>
-                                <p class="col-gold">Brgy. Sinanguyan, Don Carlos, Bukidnoon</p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor</p>
-                                <button class="btn btn-outline-gold px-4 py-1 rounded-0"><small>Visit Spot</small></button>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-4 pt-3">
-                        <div class="card bg-light shadow-sm border-0">
-                            <div>
-                                <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                                <img class="card-img max-height-250" src="assets/images/linking.jpg" alt="Announcement Images">
-                            </div>
-                            <div class="card-body">
-                                <h4 class="font-oswald-bold text-uppercase">Linking cave</h4>
-                                <p class="col-gold">Brgy. San Antonio East, Don Carlos, Bukid...</p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor</p>
-                                <button class="btn btn-outline-gold px-4 py-1 rounded-0"><small>Visit Spot</small></button>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-4 pt-3">
-                        <div class="card bg-light shadow-sm border-0">
-                            <div>
-                                <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                                <img class="card-img max-height-250" src="assets/images/cabadiangan.jpg" alt="Announcement Images">
-                            </div>
-                            <div class="card-body">
-                                <h4 class="font-oswald-bold text-uppercase">cabadiangan falls</h4>
-                                <p class="col-gold">Brgy. Cabadiangan, Don Carlos, Bukidnoon</p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor</p>
-                                <button class="btn btn-outline-gold px-4 py-1 rounded-0"><small>Visit Spot</small></button>
+                                <h4 class="font-oswald-bold text-uppercase">{{ $place->name }}</h4>
+                                <p class="col-gold">{{ $place->address }}</p>
+                                <p class="card-text">{{ $place->short_description }}</p>
+                                <a href="" class="btn btn-outline-gold px-4 py-1 rounded-0"><small>Visit Spot</small></a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 col-lg-4 pt-3">
-                        <div class="card bg-light shadow-sm border-0">
-                            <div>
-                                <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                                <img class="card-img max-height-250" src="assets/images/squash.jpg" alt="Announcement Images">
-                            </div>
-                            <div class="card-body">
-                                <h4 class="font-oswald-bold text-uppercase">Squash Mountain</h4>
-                                <p class="col-gold">Brgy. Sinanguyan, Don Carlos, Bukidnoon</p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor</p>
-                                <button class="btn btn-outline-gold px-4 py-1 rounded-0"><small>Visit Spot</small></button>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-4 pt-3">
-                        <div class="card bg-light shadow-sm border-0">
-                            <div>
-                                <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                                <img class="card-img max-height-250" src="assets/images/linking.jpg" alt="Announcement Images">
-                            </div>
-                            <div class="card-body">
-                                <h4 class="font-oswald-bold text-uppercase">Linking cave</h4>
-                                <p class="col-gold">Brgy. San Antonio East, Don Carlos, Bukid...</p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor</p>
-                                <button class="btn btn-outline-gold px-4 py-1 rounded-0"><small>Visit Spot</small></button>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-4 pt-3">
-                        <div class="card bg-light shadow-sm border-0">
-                            <div>
-                                <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                                <img class="card-img max-height-250" src="assets/images/cabadiangan.jpg" alt="Announcement Images">
-                            </div>
-                            <div class="card-body">
-                                <h4 class="font-oswald-bold text-uppercase">cabadiangan falls</h4>
-                                <p class="col-gold">Brgy. Cabadiangan, Don Carlos, Bukidnoon</p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor</p>
-                                <button class="btn btn-outline-gold px-4 py-1 rounded-0"><small>Visit Spot</small></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-4 pt-3">
-                        <div class="card bg-light shadow-sm border-0">
-                            <div>
-                                <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                                <img class="card-img max-height-250" src="assets/images/squash.jpg" alt="Announcement Images">
-                            </div>
-                            <div class="card-body">
-                                <h4 class="font-oswald-bold text-uppercase">Squash Mountain</h4>
-                                <p class="col-gold">Brgy. Sinanguyan, Don Carlos, Bukidnoon</p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor</p>
-                                <button class="btn btn-outline-gold px-4 py-1 rounded-0"><small>Visit Spot</small></button>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-4 pt-3">
-                        <div class="card bg-light shadow-sm border-0">
-                            <div>
-                                <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                                <img class="card-img max-height-250" src="assets/images/linking.jpg" alt="Announcement Images">
-                            </div>
-                            <div class="card-body">
-                                <h4 class="font-oswald-bold text-uppercase">Linking cave</h4>
-                                <p class="col-gold">Brgy. San Antonio East, Don Carlos, Bukid...</p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor</p>
-                                <button class="btn btn-outline-gold px-4 py-1 rounded-0"><small>Visit Spot</small></button>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-4 pt-3">
-                        <div class="card bg-light shadow-sm border-0">
-                            <div>
-                                <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                                <img class="card-img max-height-250" src="assets/images/cabadiangan.jpg" alt="Announcement Images">
-                            </div>
-                            <div class="card-body">
-                                <h4 class="font-oswald-bold text-uppercase">cabadiangan falls</h4>
-                                <p class="col-gold">Brgy. Cabadiangan, Don Carlos, Bukidnoon</p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor</p>
-                                <button class="btn btn-outline-gold px-4 py-1 rounded-0"><small>Visit Spot</small></button>
-                            </div>
-                        </div>
-                    </div>
-
+                    @empty
+                        <p>Oops.. No data found</p>
+                    @endforelse
                 </div>
             </div>
         </div>
     </div>
     <!-- pagination Testing -->
-    <nav aria-label="Page my-5 ">
-        <ul class="pagination justify-content-center font-weight-bold general-pagination ">
-            <li class="page-item disabled ">
-                <a class="page-link " href="# " tabindex="-1 ">
+    {{ $places->links() }}
+  {{--  <nav aria-label="Page my-5">
+        <ul class="pagination justify-content-center font-weight-bold general-pagination">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">
                     Prev</a>
             </li>
-            <li class="page-item active "><a class="page-link " href="# ">1</a></li>
-            <li class="page-item "><a class="page-link " href="# ">2</a></li>
-            <li class="page-item "><a class="page-link " href="# ">3</a></li>
-            <li class="page-item ">
-                <a class="page-link " href="# ">Next</a>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
             </li>
         </ul>
-    </nav>
+    </nav>--}}
 
     <!-- travelling tips html section -->
     <div class="my-4 container">
-        <div class="d-flex flex-column flex-lg-row ">
+        <div class="d-flex flex-column flex-lg-row">
 
             <!-- recommended dimension 640x480 kay mau man ang image nga gi gamit -->
-            <img src="../assets/images/adventure-640x480.jpg" class="w-100 h-100 " alt="kahulogan falls image">
+            <img src="../assets/images/adventure-640x480.jpg" class="w-100 h-100" alt="kahulogan falls image">
 
             <div class=" px-3 py-3">
                 <h5 class="col-gold mb-0 font-weight-normal">TRAVELING TIPS</h5>
                 <h2 class="font-oswald-bold text-uppercase">Things to remember when in don carlos</h2>
-                <p class="my-4 ">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+                <p class="my-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
                 </p>
                 <div class="d-flex flex-column mb-4">
                     <p> <i class="fas fa-check-circle col-gold"></i><span class="pl-2">Lorem ipsum</span> </p>
@@ -262,7 +172,7 @@
                     <p> <i class="fas fa-check-circle col-gold"></i><span class="pl-2">Sit amet</span> </p>
                     <p> <i class="fas fa-check-circle col-gold"></i><span class="pl-2">sed diam</span> </p>
                 </div>
-                <a href=" "><button class="font-oswald btn btn-outline-gold px-4 rounded-0 ">EXPLORE</button></a>
+                <a href=""><button class="font-oswald btn btn-outline-gold px-4 rounded-0">EXPLORE</button></a>
             </div>
         </div>
     </div>
