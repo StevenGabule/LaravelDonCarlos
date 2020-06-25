@@ -1,35 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:heroku" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="c8ea968b-c1f4-4306-90da-bf46493a5853" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/backend/uploads/places/2111406592.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/LaravelDonCarlos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LaravelDonCarlos.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/information_schema.FNRwLQ.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_temp_1.zkWuFg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_toast.33HYYw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_toast_temp_1.5ixBaA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/30984ca2-381e-4206-918a-d0645c6a6aae/storage_v2/_src_/database/doncarlos._2nHXg/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/88f9fb3f-725b-40c3-a7f5-c6299a28006b.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/88f9fb3f-725b-40c3-a7f5-c6299a28006b/storage_v2/_src_/database/doncarlos._2nHXg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/88f9fb3f-725b-40c3-a7f5-c6299a28006b/storage_v2/_src_/database/doncarlos._2nHXg/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/88f9fb3f-725b-40c3-a7f5-c6299a28006b/storage_v2/_src_/database/doncarlos._2nHXg/schema/information_schema.FNRwLQ.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/88f9fb3f-725b-40c3-a7f5-c6299a28006b/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/88f9fb3f-725b-40c3-a7f5-c6299a28006b/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/88f9fb3f-725b-40c3-a7f5-c6299a28006b/storage_v2/_src_/database/doncarlos._2nHXg/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/John_paul.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/John_paul.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Article.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Activities.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Activities.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PlaceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PlaceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ServicesArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ServicesArticleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ServicesArticle.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ServicesArticle.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/THEMES/civil-registry-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/THEMES/civil-registry-details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/ArtictleFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ArtictleFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/PlaceFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/PlaceFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/THEMES/tourism-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/THEMES/tourism-details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/services-articles/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/services-articles/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/tourism/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/tourism/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/tourism/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/tourism/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/news.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/services.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/services.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/show-news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/show-news.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/_shared/_articles.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_shared/_articles.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contacts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contacts.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/events.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tourism-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tourism-show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/tourism.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tourism.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/transparency.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transparency.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,42 +78,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>.TRAS</find>
-      <find>snackbar</find>
-      <find>else {</find>
-      <find>Baranggays</find>
-      <find>Question</find>
-      <find>conform</find>
-      <find>swa</find>
-      <find>btn btn-sm btn-info shadow-sm  clonedBaranggay</find>
-      <find>clonedBaranggay</find>
-      <find>'ba.clone</find>
-      <find>bo_checkbox</find>
-      <find>clone</find>
-      <find>&lt;ta</find>
-      <find>console.</find>
-      <find>removeBaranggay</find>
-      <find>bo.kill</find>
-      <find>masre</find>
-      <find>move to</find>
-      <find>.auth .login-half-bg</find>
-      <find>top center</find>
-      <find>Username</find>
-      <find>servc</find>
-      <find>Upcoming Events</find>
-      <find>short_description</find>
-      <find>description</find>
-      <find>http://127.0.0.1:8000/575638580.jpeg`</find>
-      <find>Announcement Images</find>
-      <find>search</find>
-      <find>service_show_detail</find>
-      <find>Favorate Places</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -182,6 +182,11 @@
       <path value="$PROJECT_DIR$/vendor/asm89/stack-cors" />
       <path value="$PROJECT_DIR$/vendor/realrashid/sweet-alert" />
       <path value="$PROJECT_DIR$/vendor/progcode/laravel-fullcalendar" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
     </include_path>
   </component>
   <component name="ProjectId" id="1dl0esG5CBRI8kF7Cyrw33nJIT0" />
@@ -200,31 +205,37 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\laragon\www\LaravelDonCarlos\resources\views" />
-      <recent name="D:\laragon\www\LaravelDonCarlos\public\assets\icons" />
-      <recent name="D:\laragon\www\LaravelDonCarlos\public\frontend\images\auth" />
-      <recent name="D:\laragon\www\LaravelDonCarlos\public\frontend" />
-      <recent name="D:\laragon\www\LaravelDonCarlos\resources\views\backend\activities" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\uploads\articles" />
       <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\uploads\service-article" />
       <recent name="D:\laragon\www\LaravelDonCarlos\resources\views\backend" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\laragon\www\LaravelDonCarlos\resources\views" />
+      <recent name="D:\laragon\www\LaravelDonCarlos\resources\views\backend\transparency_posts" />
+      <recent name="D:\laragon\www\LaravelDonCarlos\resources\views\backend" />
+      <recent name="D:\laragon\www\LaravelDonCarlos\public\assets\icons" />
+      <recent name="D:\laragon\www\LaravelDonCarlos\public\frontend\images\auth" />
+    </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.tourism-details.html">
-    <configuration name="about-personel-details.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:49966/LaravelDonCarlos/public/THEMES/about-personel-details.html" useBuiltInWebServerPort="true">
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="form_result" />
+    </option>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.about-brgy-list-same-civil-registry.html">
+    <configuration name="about-brgy-list-same-civil-registry.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:56580/LaravelDonCarlos/public/THEMES/about-brgy-list-same-civil-registry.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="news.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:49966/LaravelDonCarlos/public/THEMES/news.html" useBuiltInWebServerPort="true">
+    <configuration name="about-personel-details.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:49966/LaravelDonCarlos/public/THEMES/about-personel-details.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="tourism-details.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:49966/LaravelDonCarlos/public/THEMES/tourism-details.html" useBuiltInWebServerPort="true">
@@ -242,11 +253,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.about-brgy-list-same-civil-registry.html" />
         <item itemvalue="JavaScript Debug.tourism-details.html" />
         <item itemvalue="JavaScript Debug.about-personel-details.html" />
         <item itemvalue="JavaScript Debug.trending.html" />
         <item itemvalue="JavaScript Debug.tourism-home.html" />
-        <item itemvalue="JavaScript Debug.news.html" />
       </list>
     </recent_temporary>
   </component>
@@ -280,41 +291,113 @@
       <workItem from="1592843955894" duration="21877000" />
       <workItem from="1592911541601" duration="26659000" />
       <workItem from="1592984477054" duration="534000" />
-      <workItem from="1592986471440" duration="138000" />
+      <workItem from="1592986471440" duration="8045000" />
+      <workItem from="1592995130508" duration="1920000" />
+      <workItem from="1592997068762" duration="759000" />
+      <workItem from="1592999185375" duration="14998000" />
+      <workItem from="1593030411924" duration="24004000" />
+      <workItem from="1593083187839" duration="1029000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="349" y="72" key="#CLI_Interpreters" timestamp="1593043850930">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="349" y="72" key="#CLI_Interpreters/0.0.1536.834@0.0.1536.834" timestamp="1593043850930" />
+    <state x="475" y="60" key="#PHP" timestamp="1593043856093">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="475" y="60" key="#PHP/0.0.1536.834@0.0.1536.834" timestamp="1593043856093" />
     <state x="361" y="75" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592986634793">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="75" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1592986634793" />
+    <state x="450" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1593031022944">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="450" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1593031022944" />
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1593045705143">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1593045705143" />
     <state x="449" y="172" key="DUMP_DIALOG_DIMENSION_KEY" timestamp="1592984684194">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="449" y="172" key="DUMP_DIALOG_DIMENSION_KEY/0.0.1536.834@0.0.1536.834" timestamp="1592984684194" />
-    <state width="1024" height="214" key="GridCell.Tab.0.bottom" timestamp="1592986539828">
+    <state width="1024" height="213" key="GridCell.Tab.0.bottom" timestamp="1592993719765">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="214" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1592986539828" />
-    <state width="1024" height="214" key="GridCell.Tab.0.center" timestamp="1592986539828">
+    <state width="1024" height="213" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1592993719765" />
+    <state width="1024" height="213" key="GridCell.Tab.0.center" timestamp="1592993719765">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="214" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1592986539828" />
-    <state width="1024" height="214" key="GridCell.Tab.0.left" timestamp="1592986539827">
+    <state width="1024" height="213" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1592993719765" />
+    <state width="1024" height="213" key="GridCell.Tab.0.left" timestamp="1592993719765">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="214" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1592986539827" />
-    <state width="1024" height="214" key="GridCell.Tab.0.right" timestamp="1592986539828">
+    <state width="1024" height="213" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1592993719765" />
+    <state width="1024" height="213" key="GridCell.Tab.0.right" timestamp="1592993719765">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="214" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1592986539828" />
+    <state width="1024" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1592993719765" />
     <state width="189" height="457" key="HiddenNamespacesPopup" timestamp="1592986502009">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="189" height="457" key="HiddenNamespacesPopup/0.0.1536.834@0.0.1536.834" timestamp="1592986502009" />
+    <state x="576" y="140" key="NewPhpClassDialog" timestamp="1593035735184">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="576" y="140" key="NewPhpClassDialog/0.0.1536.834@0.0.1536.834" timestamp="1593035735184" />
+    <state x="277" y="62" key="SettingsEditor" timestamp="1593029135269">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="277" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1593029135269" />
+    <state x="607" y="0" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1593036394497">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="607" y="0" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1536.834@0.0.1536.834" timestamp="1593036394497" />
+    <state x="349" y="72" key="com.intellij.database.dbimport.ImportDialog" timestamp="1593030455762">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="349" y="72" key="com.intellij.database.dbimport.ImportDialog/0.0.1536.834@0.0.1536.834" timestamp="1593030455762" />
+    <state x="612" y="190" width="464" height="454" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1593031226757">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="612" y="190" width="464" height="454" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1536.834@0.0.1536.834" timestamp="1593031226757" />
+    <state x="425" y="189" key="run.anything.popup" timestamp="1593022391474">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1593022391474" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1593083221769">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1593083221769" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/PageController.php</url>
+          <line>62</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

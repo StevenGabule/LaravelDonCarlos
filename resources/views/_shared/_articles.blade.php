@@ -9,7 +9,7 @@
             </div>
             <div class="card-body ">
                 <h6 class="card-title font-weight-bold ">
-                    {{ $article->created }} : {{ $article->display_data($article->title, 50) }}
+                    <a href="{{ route('news.detail', ['slug' => $article->slug]) }}" class="text-dark">{{ $article->created }} : {{ $article->display_data($article->title, 50) }}</a>
                 </h6>
                 <p class="card-text ">
                     {{ $article->display_data($article->short_description, 140) }}

@@ -2,8 +2,9 @@
 @section('content')
     <!-- inlineng the background image so it can be dynamicaly change!!!! -->
     <!-- recommended background dimension 1920 x 1280 or landscape HD -->
-    <div class="about-bg-banner position-relative" style="background-image: url('{{ asset('../assets/images/calling.jpg') }}');margin-top: -24px;">
-        <div class="trending-bg-banner-overlay h-100 ">
+    <div class="about-bg-banner position-relative"
+         style="background-image: url('{{ asset('../assets/images/calling.jpg') }}');margin-top: -24px;">
+        <div class="trending-bg-banner-overlay h-100">
             <div class="container col-dirtyWhite h-100">
                 <div class="d-flex h-100">
                     <div class="mt-auto py-3">
@@ -26,60 +27,65 @@
         <div class="row my-4">
             <div class="col-12 col-md-9 pr-lg-5 pt-3">
                 <div class="shadow-sm px-4 py-5">
-                    <form>
+                    <form id="contactForm" method="get">
+                        @csrf
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="font-weight-bold h5 ">Your Name</label>
-                            <input type="email" class="form-control border-bottom-gold" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name">
-                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                            <label for="inputSubmit" class="font-weight-bold h5">
+                                Subject
+                            </label>
+                            <input type="text"
+                                   class="form-control border-bottom-gold"
+                                   autofocus
+                                   required
+                                   name="subject"
+                                   id="inputSubmit"
+                                   aria-describedby="subjectHelp"
+                                   placeholder="State your subject">
                         </div>
+
+                        <div class="form-group">
+                            <label for="inputName" class="font-weight-bold h5">Your Name</label>
+                            <input type="text"
+                                   class="form-control border-bottom-gold"
+                                   name="name"
+                                   required
+                                   id="inputName" aria-describedby="nameHelp" placeholder="Enter your name">
+                        </div>
+
                         <div class="form-group mt-5">
-                            <label for="exampleInputPassword1" class="font-weight-bold h5">Email Address</label>
-                            <input type="password" class="form-control border-bottom-gold" id="exampleInputPassword1" placeholder="Email Address">
+                            <label for="inputEmailAddress" class="font-weight-bold h5">Email Address</label>
+                            <input type="email" name="email" required
+                                   class="form-control border-bottom-gold"
+
+                                   id="inputEmailAddress"
+                                   placeholder="Enter your current email">
                         </div>
+
                         <div class="form-group mt-5">
-                            <label for="exampleInputPassword1" class="font-weight-bold h5">Message</label>
-                            <textarea name="" id="" cols="30" rows="10" class="form-control border-bottom-gold" id="exampleInputPassword1" placeholder="Message"></textarea>
+                            <label for="inputMessage" class="font-weight-bold h5">Message</label>
+                            <textarea name="message"
+                                      id="inputMessage" cols="30"
+                                      rows="10"
+                                      required
+                                      class="form-control border-bottom-gold"
+                                      placeholder="Leave your message here..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-outline-gold px-4 py-1 rounded-0 mt-4">Submit</button>
+{{--                        <button type="submit" class="btn btn-outline-gold px-4 py-1 rounded-0 mt-4" id="btnSubmit">Submit</button>--}}
+                        <button type="submit" class="btn btn-warning" id="btnSubmit"><i class="far fa-paper-plane mr-2"></i> Send</button>
+                        <span id="form_result"></span>
                     </form>
                 </div>
             </div>
+
             <div class="col-12 col-md-3">
+
                 <div class="d-none d-md-block">
                     <h4 class="font-oswald-bold mt-5">Latest Articles</h4>
                     <hr class="hr-thin">
                 </div>
 
                 <div class="row d-none d-md-block">
-
-                    <div class="col-12 pt-3 ">
-                        <div class="card bg-light shadow-sm border-0 ">
-                            <div>
-                                <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                                <img class="card-img max-height-150" src="assets/images/munhall2.jpg " alt="Announcement Images ">
-                            </div>
-                            <div class="card-body ">
-                                <h6 class="card-title font-weight-bold ">2 FEB : Magkakaroon ng emergency sa pri....</h6>
-                                <p class="card-text ">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy</p>
-                                <button class="btn btn-outline-gold px-4 py-1 rounded-0"><small>More Info</small></button>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-12 pt-3 ">
-                        <div class="card bg-light shadow-sm border-0 ">
-                            <div>
-                                <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                                <img class="card-img max-height-150" src="assets/images/munhall2.jpg " alt="Announcement Images ">
-                            </div>
-                            <div class="card-body ">
-                                <h6 class="card-title font-weight-bold ">2 FEB : Magkakaroon ng emergency sa pri....</h6>
-                                <p class="card-text ">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy</p>
-                                <button class="btn btn-outline-gold px-4 py-1 rounded-0"><small>More Info</small></button>
-                            </div>
-
-                        </div>
-                    </div>
+                    @include('_shared._articles')
                 </div>
             </div>
 
@@ -87,3 +93,6 @@
     </div>
 
 @endsection
+@prepend('scripts')
+    <script src="{{ asset('js/_custom.js') }}" defer></script>
+@endprepend

@@ -40,17 +40,17 @@ class PlaceController extends Controller
                         <a class='dropdown-item' href='$data->id'><i class='fad fa-eye mr-2'></i> View</a>
                         <a class='dropdown-item' id='$data->id' href='/admin/place/$data->id/edit'><i class='fad fa-file-edit mr-2'></i> Edit</a>
                         <a class='dropdown-item removePlace' id='$data->id' href='javascript:void(0)'>
-                            <i class='fad fa-trash mr-2'></i> Move Trash  
+                            <i class='fad fa-trash mr-2'></i> Move Trash
                         </a>" : "<a class='dropdown-item killArticle' id='$data->id' href='javascript:void(0)'>
-                            <i class='fad fa-trash mr-2'></i> Delete 
+                            <i class='fad fa-trash mr-2'></i> Delete
                         </a>";
             $btnRestore = ($data->deleted_at !== null) ? "<a class='dropdown-item restorePlace' id='$data->id' href='javascript:void(0)'>
-                            <i class='fad fa-trash-restore-alt mr-2'></i> Restore 
+                            <i class='fad fa-trash-restore-alt mr-2'></i> Restore
                         </a>" : null;
             $button = <<<EOT
                 <div class="dropdown no-arrow" style="width:50px">
                   <a href="javascript:void(0)" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fad fa-ellipsis-h"></i> 
+                        <i class="fad fa-ellipsis-h"></i>
                   </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" style="font-size: 13px;">
                         <h6 class="dropdown-header">Actions</h6>
@@ -62,7 +62,7 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="place_checkbox[]" class="place_checkbox" value="{{$id}}" />')
             ->editColumn('avatar', static function($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/places/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -94,7 +94,7 @@ EOT;
         $place = Place::create([
             'user_id' => Auth::id(),
             'name' => $request->get('name'),
-            'slug' => Str::slug($request->get('slug')),
+            'slug' => Str::slug($request->get('name')),
             'status' => $request->get('status'),
             'address' => $request->get('address'),
             'avatar' => $new_name,

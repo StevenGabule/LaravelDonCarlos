@@ -328,9 +328,9 @@
                 @endphp
                 <div class="col-12 col-md-6 pt-3">
                     <div class="card shadow-sm border-0">
-                        <a href="" class="col-darkGrey home-link-setting">
+                        <a href="{{ route('event.show', ['slug' => $latestActivity->slug]) }}" class="col-darkGrey home-link-setting">
                             <div class="position-relative">
-                                <img class="card-img" src="{{ asset('/backend/uploads/activities/'.$latestActivity->avatar) }}" style="max-height: 350px;"
+                                <img class="card-img" src="{{ $latestActivity->avatar !== null ? asset('/backend/uploads/activities/'.$latestActivity->avatar) : 'https://images.unsplash.com/photo-1573490647695-2892d0bf89e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=799&q=80' }}" style="max-height: 350px;"
                                      alt="Announcement Images">
                                 <h5 class="event-overlay p-3 m-0 bg-gold col-dirtyWhite font-weight-bold text-center">
                                     {{ $latestActivity->display_date('day') }}
@@ -358,7 +358,7 @@
                     <div class="d-flex flex-column">
 
                         @foreach($activities as $activity)
-                            <a href="" class="home-link-setting mb-3" title="{{ $activity->id }}">
+                            <a href="{{ route('event.show', ['slug' => $activity->slug]) }}" class="home-link-setting mb-3" title="{{ $activity->id }}">
                                 <div class="d-flex flex-row event-list col-darkGrey">
                                     <h5 class="font-weight-bold bg-gold px-2 py-5 text-white text-center m-0">
                                         {{ $activity->display_date('day') }}

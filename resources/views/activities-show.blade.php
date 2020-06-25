@@ -1,32 +1,35 @@
 @extends('layouts.app')
+@section('custom')
+    <style>
+        .trending-bg-banner {
+            height: 550px;
+        }
+    </style>
+    @stop
 @section('content')
     <!-- inlineng the background image so it can be dynamicaly change!!!! -->
     <!-- recommended background dimension 1920 x 1280 -->
     <div class="trending-bg-banner position-relative"
-         style="background-image: url('{{ asset('/backend/uploads/places/'.$place->avatar) }}');margin-top: -24px;">
-        <div class="trending-bg-banner-overlay h-100 ">
-            <div class="container col-dirtyWhite h-100">
-                <div class="d-flex h-100">
-                    <div class="mt-auto py-3">
-                        <h2 class="d-inline-block px-4 py-2 bg-gold font-oswald-bold text-white text-uppercase">{{ $place->name }}</h2>
-                        <!-- recommended nga 48char and below and count sa title gekan sa server para dli maguba ang css -->
-                    </div>
-                </div>
-            </div>
-        </div>
+         style="background-image: url('{{ $events->avatar !== null ? asset('/backend/uploads/activities/'.$events->avatar) : 'https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80' }}');margin-top: -24px;">
     </div>
 
     <div class="container">
         <div class="mt-4">
-            <h2 class="font-oswald-bold">{{ $place->name }}</h2>
-            <p><i class="fas fa-map-marker-alt"></i><span class="pl-3 font-weight-bold">{{ $place->address }}</span></p>
-            {!! $place->description !!}
+            <h2 class="font-oswald-bold">{{ $events->title }}</h2>
+            <p>
+                <i class="fas fa-calendar"></i>
+                <span class="pl-3 font-weight-bold">{{ $events->convert_date() }}</span>
+
+                <i class="fas fa-map-marker-alt"></i>
+                <span class="pl-3 font-weight-bold">{{ $events->address }}</span>
+            </p>
+            {!! $events->description !!}
         </div>
         <br>
         <h5 class="font-oswald-bold mt-4">Related Posts</h5>
         <hr class="hr-thin">
         <div class="row mb-4 mt-2">
-            @forelse($relatedPosts as $post)
+            @forelse([] as $post)
                 <div class="col-12 col-sm-6 col-lg-4 pt-3">
                     <div class="card bg-light shadow-sm border-0">
                         <div>
@@ -49,5 +52,4 @@
             @endforelse
         </div><!-- end of row mb-4 -->
     </div>
-
 @endsection

@@ -8,6 +8,8 @@ use App\BaranggayOfficial;
 use App\Place;
 use App\Services;
 use App\ServicesArticle;
+use App\Transparency;
+use App\TransparencyPost;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -195,9 +197,37 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
+        $transparency = [
+            [
+                'title' => 'IATF OMNIBUS GUIDELINES ON THE IMPLEMENTATION OF COMMUNITY QUARANTINE IN THE PHILIPPINES',
+                'slug' => Str::slug('IATF OMNIBUS GUIDELINES ON THE IMPLEMENTATION OF COMMUNITY QUARANTINE IN THE PHILIPPINES'),
+                'short_description' => substr($faker->text, 0, 50),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => 'COVID-19 RISK ASSESSMENT MAP',
+                'slug' => Str::slug('COVID-19 RISK ASSESSMENT MAP'),
+                'short_description' => substr($faker->text, 0, 50),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => 'DAVAO CITY TRAVEL ORDER',
+                'slug' => Str::slug('DAVAO CITY TRAVEL ORDER'),
+                'short_description' => substr($faker->text, 0, 50),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => 'ARTICLES',
+                'slug' => Str::slug('ARTICLES'),
+                'short_description' => substr($faker->text, 0, 50),
+                'created_at' => Carbon::now()
+            ],
+        ];
+
         ArticleCategory::insert($categories);
         Services::insert($services);
         Baranggay::insert($baranggays);
+        Transparency::insert($transparency);
 
         factory(User::class, 1)->create();
         factory(Article::class, 100)->create();
@@ -205,5 +235,6 @@ class DatabaseSeeder extends Seeder
         factory(ServicesArticle::class, 50)->create();
         factory(BaranggayOfficial::class, 100)->create();
         factory(Activities::class, 50)->create();
+        factory(TransparencyPost::class, 100)->create();
     }
 }

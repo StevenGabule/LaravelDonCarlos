@@ -1,18 +1,7 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
 Route::get('/', 'PageController@index')->name('index');
+
 
 Route::get('/services', 'PageController@services')->name('services');
 Route::get('/services/{id}', 'PageController@services_show')->name('services.show');
@@ -20,20 +9,27 @@ Route::get('/service/{id}/{slug}', 'PageController@service_show_detail')->name('
 
 Route::get('/about-don-carlos', 'PageController@about')->name('about');
 Route::get('/transparency', 'PageController@transparency')->name('transparency');
+Route::get('/transparent/{slug}', 'PageController@transparencyShow')->name('transparency.page.show');
+Route::get('/transparency/{slug}/article/{slug1}', 'PageController@transparencyDetail')->name('transparency.detail.show');
 
 Route::get('/news', 'PageController@news')->name('news');
 Route::get('/news/{slug}', 'PageController@news_details')->name('news.detail');
 
 Route::get('/tourism', 'PageController@tourism')->name('tourism');
-Route::get('/tourism/{slug}', 'PageController@tourismShow')->name('tourism.show');
+Route::get('/place/{slug}', 'PageController@tourismShow')->name('tourism.show');
 
-Route::get('/events', 'PageController@events')->name('events');
+Route::get('/events', 'PageController@activities');
+Route::get('/events/{slug}', 'PageController@activitiesShowData')->name('event.show');
+
 Route::get('/contacts', 'PageController@contacts')->name('contacts');
+Route::get('/contact', 'PageController@sending')->name('sending');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'UserController@index')->name('admin');
+
+
 
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
@@ -93,4 +89,37 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::post('act-update', 'ActivityController@ajaxUpdate')->name('activities.update.ajax');
 
     Route::post('resize-update', 'ActivityController@ajaxUpdateFullCalendar')->name('fc.resize');
+
+    Route::resource('transparency', 'TransparencyController');
+    Route::get('transparency-all', 'TransparencyController@all');
+    Route::get('transparency/{id}/delete', 'TransparencyController@delete')->name('transparency.delete');
+
+    Route::resource('transparency-posts', 'TransparencyPostController');
+    Route::get('post-all/{type}', 'TransparencyPostController@all');
+    Route::get('post-massremove', 'TransparencyPostController@massRemove')->name('post.massremove');
+    Route::get('post-restore', 'TransparencyPostController@restore')->name('post.restore');
+    Route::get('post-kill', 'TransparencyPostController@kill')->name('post.kill');
+    Route::post('post-update', 'TransparencyPostController@update_ajax')->name('post.transparency.update');
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

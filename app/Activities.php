@@ -25,6 +25,11 @@ class Activities extends Model
         return date_parse($this->date_start)[$format];
     }
 
+    public function convert_date()
+    {
+        return DateTime::createFromFormat('Y-m-d H:i:s',$this->date_start)->format('D, d M Y');
+    }
+
     public function make_date(): string
     {
         $hour = (int)DateTime::createFromFormat('Y-m-d H:i:s',$this->date_start)->format('H');

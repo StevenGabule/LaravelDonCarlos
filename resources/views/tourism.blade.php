@@ -123,8 +123,12 @@
                                      src="{{ $place->avatar !== null ? asset('/backend/uploads/places/'.$place->avatar) : asset('assets/icons/mountains.svg')  }}" alt="Announcement Images">
                             </div>
                             <div class="card-body">
-                                <h4 class="font-oswald-bold text-uppercase">{{ $place->name }}</h4>
-                                <p class="col-gold">{{ $place->address }}</p>
+                                <h4 class="font-oswald-bold text-uppercase">
+                                    <a href="{{ route('tourism.show', ['slug' => $place->slug] ) }}" class="text-dark">{{ $place->name }}</a>
+                                </h4>
+                                <p class="col-gold">
+                                    {{ $place->address }}
+                                </p>
                                 <p class="card-text">{{ $place->short_description }}</p>
                                 <a href="" class="btn btn-outline-gold px-4 py-1 rounded-0"><small>Visit Spot</small></a>
                             </div>
@@ -138,21 +142,8 @@
         </div>
     </div>
     <!-- pagination Testing -->
+
     {{ $places->links() }}
-  {{--  <nav aria-label="Page my-5">
-        <ul class="pagination justify-content-center font-weight-bold general-pagination">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">
-                    Prev</a>
-            </li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
-        </ul>
-    </nav>--}}
 
     <!-- travelling tips html section -->
     <div class="my-4 container">
