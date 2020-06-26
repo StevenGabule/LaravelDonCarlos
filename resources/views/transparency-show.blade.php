@@ -42,7 +42,7 @@
             <div class="container col-dirtyWhite h-100">
                 <div class="d-flex h-100">
                     <div class="mt-auto py-3">
-                        <h2 class="d-inline-block py-4 font-weight-bold text-white w-75">{{ $transparent->title }}<br><span
+                        <h2 class="d-inline-block py-4 font-weight-bold text-white">{{ $transparent->title }}<br><span
                                 class="col-gold">Transparency</span>
                         </h2>
                         <!-- recommended nga 48char and below and count sa title gekan sa server para dli maguba ang css -->
@@ -104,7 +104,7 @@
                         <a href="/transparency/{{ $slug }}/article/{{$post->slug}}" class="mt-3 shadow-sm p-2 about-page-link">
                             <div class="d-flex">
                                 <div class="pl-3 pt-2">
-                                    <h4 class="font-weight-bold">{{ $post->name }}</h4>
+                                    <h4 class="font-weight-bold">{{ $post->title }}</h4>
                                     <!-- recommended max char length of 150 - 180*  -->
                                     <p>{{ $post->short_description }}</p>
                                 </div>

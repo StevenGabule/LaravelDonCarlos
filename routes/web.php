@@ -8,6 +8,10 @@ Route::get('/services/{id}', 'PageController@services_show')->name('services.sho
 Route::get('/service/{id}/{slug}', 'PageController@service_show_detail')->name('services.show.detail');
 
 Route::get('/about-don-carlos', 'PageController@about')->name('about');
+Route::get('/about-don-carlos/baranggay', 'PageController@about_baranggay')->name('about.baranggay');
+Route::get('/about-don-carlos/baranggay/{slug}', 'PageController@about_baranggay_detail')->name('about.baranggay.detail');
+
+
 Route::get('/transparency', 'PageController@transparency')->name('transparency');
 Route::get('/transparent/{slug}', 'PageController@transparencyShow')->name('transparency.page.show');
 Route::get('/transparency/{slug}/article/{slug1}', 'PageController@transparencyDetail')->name('transparency.detail.show');
@@ -18,7 +22,7 @@ Route::get('/news/{slug}', 'PageController@news_details')->name('news.detail');
 Route::get('/tourism', 'PageController@tourism')->name('tourism');
 Route::get('/place/{slug}', 'PageController@tourismShow')->name('tourism.show');
 
-Route::get('/events', 'PageController@activities');
+Route::get('/events', 'PageController@activities')->name('events');
 Route::get('/events/{slug}', 'PageController@activitiesShowData')->name('event.show');
 
 Route::get('/contacts', 'PageController@contacts')->name('contacts');
@@ -28,9 +32,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'UserController@index')->name('admin');
-
-
-
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::resource('article', 'ArticleController');
@@ -74,7 +75,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::get('bo/{type}', 'BaranggayOfficialController@all')->name('bo.all');
     Route::get('bo-massremove', 'BaranggayOfficialController@massRemove')->name('bo.massremove');
     Route::get('bo-restore', 'BaranggayOfficialController@restore')->name('bo.restore');
-    Route::get('bo-kill', 'BaranggayOfficialController@massRemove')->name('bo.kill');
+    Route::get('bo-kill', 'BaranggayOfficialController@kill')->name('bo.kill');
     Route::post('bo-update', 'BaranggayOfficialController@ajaxUpdate')->name('bo.ajaxUpdate');
     Route::post('bo-group','BaranggayOfficialController@storeGroup')->name('bo.group');
     Route::get('bo-clone', 'BaranggayOfficialController@clone')->name('bo.clone');
@@ -100,6 +101,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::get('post-restore', 'TransparencyPostController@restore')->name('post.restore');
     Route::get('post-kill', 'TransparencyPostController@kill')->name('post.kill');
     Route::post('post-update', 'TransparencyPostController@update_ajax')->name('post.transparency.update');
+
+    Route::resource('departments', 'DepartmentCategoriesController');
+    Route::get('departments-all', 'DepartmentCategoriesController@all')->name('departments.all');
+    Route::get('departments-kill', 'DepartmentCategoriesController@kill')->name('departments.kill');
+
+    Route::resource('department-offices', 'DepartmentOfficesController');
+    Route::get('department-offices-all/{type}', 'DepartmentOfficesController@all')->name('department-offices.all');
+    Route::get('department-offices-kill', 'DepartmentOfficesController@massRemove')->name('department-offices.massremove');
+    Route::post('department-offices-updated', 'DepartmentOfficesController@updateOffice')->name('department-offices.updated');
+
 
 });
 

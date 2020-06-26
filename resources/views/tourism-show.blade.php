@@ -3,7 +3,7 @@
     <!-- inlineng the background image so it can be dynamicaly change!!!! -->
     <!-- recommended background dimension 1920 x 1280 -->
     <div class="trending-bg-banner position-relative"
-         style="background-image: url('{{ asset('/backend/uploads/places/'.$place->avatar) }}');margin-top: -24px;">
+         style="background-image: url('{{ $place->avatar !== null ?asset('/backend/uploads/places/'.$place->avatar) : 'https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80' }}');margin-top: -24px;">
         <div class="trending-bg-banner-overlay h-100 ">
             <div class="container col-dirtyWhite h-100">
                 <div class="d-flex h-100">
@@ -35,7 +35,9 @@
                                  alt="Announcement Images">
                         </div>
                         <div class="card-body">
-                            <h4 class="font-oswald-bold text-uppercase">{{ $post->name }}</h4>
+                            <h4 class="font-oswald-bold text-uppercase">
+                                <a href="{{ route('tourism.show', ['slug' => $post->slug]) }}" class="text-dark">{{ $post->name }}</a>
+                            </h4>
                             <p class="col-gold">{{ $post->address }}</p>
                             <p class="card-text">{{ $post->short_description }}</p>
                             <a href="{{ route('tourism.show', ['slug' => $post->slug]) }}" class="btn btn-outline-gold px-4 py-1 rounded-0">
@@ -45,7 +47,7 @@
                     </div><!-- end of card -->
                 </div>
             @empty
-                <p>Oops...No related post.</p>
+                <p class="ml-3">Oops...No related post.</p>
             @endforelse
         </div><!-- end of row mb-4 -->
     </div>

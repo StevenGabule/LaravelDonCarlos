@@ -29,7 +29,7 @@
         <h5 class="font-oswald-bold mt-4">Related Posts</h5>
         <hr class="hr-thin">
         <div class="row mb-4 mt-2">
-            @forelse([] as $post)
+            @forelse($relatedPosts as $post)
                 <div class="col-12 col-sm-6 col-lg-4 pt-3">
                     <div class="card bg-light shadow-sm border-0">
                         <div>
@@ -38,7 +38,11 @@
                                  alt="Announcement Images">
                         </div>
                         <div class="card-body">
-                            <h4 class="font-oswald-bold text-uppercase">{{ $post->name }}</h4>
+                            <h4 class="font-oswald-bold text-uppercase">
+                                <a class="text-dark" href="{{ route('event.show', ['slug' => $post->slug]) }}">
+                                    {{ $post->title }}
+                                </a>
+                            </h4>
                             <p class="col-gold">{{ $post->address }}</p>
                             <p class="card-text">{{ $post->short_description }}</p>
                             <a href="{{ route('tourism.show', ['slug' => $post->slug]) }}" class="btn btn-outline-gold px-4 py-1 rounded-0">

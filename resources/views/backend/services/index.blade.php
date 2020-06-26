@@ -242,7 +242,7 @@
                     dataType: 'json',
                     beforeSend: function () {
                         x.attr('disabled', true);
-                        x.html(`<div class="spinner-border spinner-border-sm text-white" role="status"><span class="sr-only">Loading...</span></div>`);
+                        x.html(`<div class="spinner-border spinner-border-sm text-white" role="status"><span class="sr-only">Saving...</span></div>`);
                     },
                     success: ({errors, success}) => {
                         if (success) {

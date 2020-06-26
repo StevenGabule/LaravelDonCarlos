@@ -14,20 +14,27 @@
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
     <script src="{{ asset('js/index.js') }}" defer></script>
     @yield('custom')
-
 </head>
 <body>
 <!-- the first header that is transparent -->
 <header>
     <div id="app">
         <div class="container pt-2 d-flex">
-            <h5 class="font-lato-bold mr-4 col-gold">GOV.PH</h5>
+            <h5 class="font-lato-bold mr-4 col-gold">
+                <a href="https://www.gov.ph/" class="text-warning" target="_blank">GOV.PH</a>
+            </h5>
             <div class="d-none d-md-block">
                 <div class="d-flex">
-                    <p class="mr-4 mb-0"><i class="fas fa-phone-alt col-green"></i>&nbsp;&nbsp;(088) 828 4817</p>
-                    <p class="mr-4 mb-0"><i class="fas fa-map-marker-alt col-green"></i>&nbsp;&nbsp;Sample St. Don
-                        Carlos
-                        City</p>
+                    <p class="mr-4 mb-0">
+                        <a href="tel:+496170961709" class="text-white">
+                            <i class="fas fa-phone-alt col-green"></i>&nbsp;&nbsp;(088) 828 4817
+                        </a>
+                    </p>
+                    <p class="mr-4 mb-0">
+                        <a href="https://www.google.com/maps/place/Don+Carlos,+Bukidnon/@7.6951118,124.8858799,12.5z/data=!4m5!3m4!1s0x32ff30601b685ad7:0x8eb5f368f8380c44!8m2!3d7.6880909!4d124.8844867" target="_blank" class="text-white"><i class="fas fa-map-marker-alt col-green"></i>&nbsp;&nbsp;
+                            Don Carlos City
+                        </a>
+                    </p>
                 </div>
             </div>
             <div class="ml-auto d-flex">
@@ -56,37 +63,38 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+                <li class="nav-item text-uppercase">
                     <a class="nav-link" href="{{ route('index') }}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('about') }}">About</a>
+                <li class="nav-item text-uppercase">
+                    <a class="nav-link" href="{{ route('about') }}">Know Don Carlos</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item text-uppercase">
                     <a class="nav-link" href="{{ route('services') }}">Services</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item text-uppercase">
                     <a class="nav-link" href="{{ route('transparency') }}">Transparency</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item text-uppercase">
                     <a class="nav-link" href="{{ route('news') }}">News</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item text-uppercase">
                     <a class="nav-link" href="{{ route('tourism') }}">Tourism</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/events">Events</a>
+                <li class="nav-item text-uppercase">
+                    <a class="nav-link" href="{{ route('events') }}">Events</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contacts">Contact Us</a>
+                <li class="nav-item text-uppercase">
+                    <a class="nav-link" href="{{ route('contacts') }}">Contact Us</a>
                 </li>
                 @auth
                     <li class="nav-item">
-                        <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-                           class="nav-link" href="{{ route('logout') }}">Logout</a>
+                        <a href="{{ route('admin') }}" class="nav-link">ADMIN</a>
+                        {{--<a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                           class="nav-link" href="{{ route('logout') }}">LOGOUT</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
-                        </form>
+                        </form>--}}
                     </li>
                 @endauth
             </ul>
@@ -122,7 +130,7 @@
             <div class="col-12 col-md-3 pb-2">
                 <div>
                     <h3 class="font-oswald-med">About Don Carlos</h3>
-                    <hr class="hr-thick"></hr>
+                    <hr class="hr-thick" />
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vestibulum tempus auctor. Morbi
                     porta tristique laoreet. Aenean cursus ex arcu, ac pulvinar nibh pulvinar quis. Nunc erat est,
@@ -132,7 +140,7 @@
             <div class="col-12 col-md-3 pb-2">
                 <div>
                     <h3 class="font-oswald-med">Contact Details</h3>
-                    <hr class="hr-thick"></hr>
+                    <hr class="hr-thick" />
                 </div>
                 <p><i class="fas fa-phone-alt"></i>&nbsp;&nbsp;(088) 828 4817</p>
                 <p><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Sample St. Don Carlos City</p>
@@ -141,7 +149,7 @@
             <div class="col-12 col-md-3 pb-2">
                 <div>
                     <h3 class="font-oswald-med">Useful Links</h3>
-                    <hr class="hr-thick"></hr>
+                    <hr class="hr-thick" />
                 </div>
                 <p>
                     <i class="fas fa-square"></i>&nbsp;&nbsp;
@@ -167,7 +175,7 @@
             <div class="col-12 col-md-3 pb-2">
                 <div>
                     <h3 class="font-oswald-med">Services</h3>
-                    <hr class="hr-thick"></hr>
+                    <hr class="hr-thick" />
                 </div>
                 <p>
                     <i class="fas fa-square"></i>&nbsp;&nbsp;
@@ -184,6 +192,7 @@
 </div>
 
 @stack('scripts')
+
 </body>
 </html>
 

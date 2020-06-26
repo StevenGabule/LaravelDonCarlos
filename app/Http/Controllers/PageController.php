@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 
 use App\Activities;
 use App\Article;
+use App\Baranggay;
+use App\BaranggayOfficial;
 use App\Message;
 use App\Place;
 use App\Services;
 use App\ServicesArticle;
 use App\Transparency;
 use App\TransparencyPost;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -61,7 +64,33 @@ class PageController extends Controller
 
     public function about()
     {
-        return view('about');
+        $articles = Article::latest()->take(2)->get();
+        return view('about', compact('articles'));
+    }
+
+    public function about_baranggay()
+    {
+        $articles = Article::latest()->take(2)->get();
+        $baranggays = Baranggay::latest()->filter(request()->only(['q']))->paginate(5);
+        return view('about.baranggays', compact('articles', 'baranggays'));
+    }
+
+    public function about_baranggay_detail($slug)
+    {
+        /*
+         * SQL CODE
+         *
+         * select bo.name, bo.position, bo."from", bo."to", bo.baranggay_id, bo.created_at
+                from baranggays
+                         inner join baranggay_officials bo on baranggays.id = bo.baranggay_id
+                where baranggays.slug = 'barangay-maapag' and (bo."from" BETWEEN 2020 AND 2021)
+        */
+
+        $articles = Article::latest()->take(2)->get();
+        $baranggay = Baranggay::whereSlug($slug)->first();
+
+        $officials = $baranggay->baranggay_officials()->get();
+        return view('about.baranggay_detail', compact('articles', 'baranggay', 'officials'));
     }
 
     public function service_show_detail($id, $slug)
@@ -133,7 +162,8 @@ class PageController extends Controller
     public function activitiesShowData($slug)
     {
         $events = Activities::whereSlug($slug)->first();
-        return view('activities-show', compact('events'));
+        $relatedPosts = Activities::latest()->take(3)->get();
+        return view('activities-show', compact('events', 'relatedPosts'));
     }
 
     public function contacts()

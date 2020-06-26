@@ -58,6 +58,7 @@
             <span class="px-2">></span>
             <span class="">{{ $serviceType->name }}</span>
         </nav>
+
         <hr class="hr-thin">
 
         <form action="{{ route('services.show', ['id' => $id]) }}">
@@ -68,10 +69,10 @@
                     placeholder="search"
                     id="example-search-input">
                 <span class="input-group-append">
-                <button type="submit" class="input-group-text bg-transparent">
-                    <i class="fa fa-search "></i>
-                </button>
-            </span>
+                    <button type="submit" class="input-group-text bg-transparent">
+                        <i class="fa fa-search "></i>
+                    </button>
+                </span>
             </div>
         </form>
 
@@ -98,7 +99,8 @@
             <div class="col-12 col-md-9">
                 <div class="d-flex flex-column pl-lg-4">
                     @forelse($serviceArt as $article_service)
-                        <a href="{{ route('services.show.detail', ['id' => $id, 'slug' => $article_service->slug]) }}" class="mt-3 shadow-sm p-2 about-page-link">
+                        <a href="{{ route('services.show.detail', ['id' => $id, 'slug' => $article_service->slug]) }}"
+                           class="mt-3 shadow-sm p-2 about-page-link">
                             <div class="d-flex">
                                 <img class="card-img w-150px"
                                      src="{{ $article_service->avatar ? asset('/backend/uploads/service-article/'.$article_service->avatar) : asset('assets/icons/images.svg') }}"
@@ -110,7 +112,7 @@
                                 </div>
                             </div>
                         </a>
-                        @empty
+                    @empty
                         <p>Oops..No data found</p>
                     @endforelse
                     <div class="mt-4">

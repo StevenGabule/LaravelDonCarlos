@@ -130,7 +130,7 @@
                                     {{ $place->address }}
                                 </p>
                                 <p class="card-text">{{ $place->short_description }}</p>
-                                <a href="" class="btn btn-outline-gold px-4 py-1 rounded-0"><small>Visit Spot</small></a>
+                                <a href="{{ route('tourism.show', ['slug' => $place->slug] ) }}" class="btn btn-outline-gold px-4 py-1 rounded-0"><small>Visit Spot</small></a>
                             </div>
                         </div>
                     </div>

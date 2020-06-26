@@ -4,7 +4,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" >
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -137,6 +137,20 @@
                 <i class="fad fa-fw fa-calendar-alt blueish"></i>
                 <span>Inbox</span></a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('departments.index') }}">
+                <i class="fad fa-fw fa-calendar-alt blueish"></i>
+                <span>Departments</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('department-offices.index') }}">
+                <i class="fad fa-fw fa-calendar-alt blueish"></i>
+                <span>Departments Offices</span></a>
+        </li>
+
+
 
     </ul>
     <!-- End of Sidebar -->

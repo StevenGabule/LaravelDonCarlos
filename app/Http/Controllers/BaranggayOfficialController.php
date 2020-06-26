@@ -6,7 +6,6 @@ use App\Baranggay;
 use App\BaranggayOfficial;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
 
@@ -40,24 +39,24 @@ class BaranggayOfficialController extends Controller
         return DataTables::of($baranggayOfficials)->addColumn('action', static function ($data) {
             $btn = ($data->deleted_at === null) ? "
                         <a class='dropdown-item' href='$data->id'><i class='fad fa-eye mr-2'></i> View</a>
-                        <a class='dropdown-item editOfficial' 
+                        <a class='dropdown-item editOfficial'
                             id='$data->id' href='javascript:void(0)'><i class='fad fa-file-edit mr-2'></i> Edit
                         </a><a class='dropdown-item removeBaranggay' id='$data->id' href='javascript:void(0)'>
-                            <i class='fad fa-trash mr-2'></i> Move Trash  
+                            <i class='fad fa-trash mr-2'></i> Move Trash
                         </a>" : "<a class='dropdown-item killBaranggayOfficial' id='$data->id' href='javascript:void(0)'>
-                            <i class='fad fa-trash mr-2'></i> Delete 
+                            <i class='fad fa-trash mr-2'></i> Delete
                         </a>";
             $btnRestore = ($data->deleted_at !== null) ? "<a class='dropdown-item restoreBaranggayOfficial' id='$data->id' href='javascript:void(0)'>
-                            <i class='fad fa-trash-restore-alt mr-2'></i> Restore 
+                            <i class='fad fa-trash-restore-alt mr-2'></i> Restore
                         </a>" : null;
             $button = <<<EOT
                 <div class="dropdown no-arrow" style="width:50px">
                   <a href="javascript:void(0)" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fad fa-ellipsis-h"></i> 
+                        <i class="fad fa-ellipsis-h"></i>
                   </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" style="font-size: 13px;">
                         <h6 class="dropdown-header">Actions</h6>
-                       
+
                         $btn
                         $btnRestore
                     </div>
@@ -66,7 +65,7 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="bo_checkbox[]" class="bo_checkbox" id="{{$id}}" value="{{$id}}" />')
             ->editColumn('avatar', static function ($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/$data->avatar' alt='No Image found' class='rounded-circle' style='height: 32px;width: 32px' />";
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/officials/$data->avatar' alt='No Image found' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -94,7 +93,6 @@ EOT;
         if ($image = $request->file('avatar')) {
             $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('backend/uploads/officials'), $new_name);
-            $new_name = "backend/uploads/officials/$new_name";
         }
 
         BaranggayOfficial::create([
@@ -139,7 +137,6 @@ EOT;
         if ($image = $request->file('avatarCapitan')) {
             $captainImage = mt_rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('backend/uploads/officials'), $captainImage);
-            $captainImage = "backend/uploads/officials/$captainImage";
         }
 
         // captain
@@ -158,7 +155,6 @@ EOT;
         if ($image = $request->file('avatarChairman')) {
             $avatarChairman = mt_rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('backend/uploads/officials'), $avatarChairman);
-            $avatarChairman = "backend/uploads/officials/$avatarChairman";
         }
 
         // Chairman
@@ -177,7 +173,6 @@ EOT;
         if ($image = $request->file('avatarSecretary')) {
             $avatarSecretary = mt_rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('backend/uploads/officials'), $avatarSecretary);
-            $avatarSecretary = "backend/uploads/officials/$avatarSecretary";
         }
 
         // Secretary
@@ -197,7 +192,6 @@ EOT;
         if ($image = $request->file('avatarTreasurer')) {
             $avatarTreasure = mt_rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('backend/uploads/officials'), $avatarTreasure);
-            $avatarTreasure = "backend/uploads/officials/$avatarTreasure";
         }
 
         $dataInsert[] = array('baranggay_id' => $request->baranggay_id,
@@ -269,7 +263,6 @@ EOT;
         if ($image = $request->file('avatar')) {
             $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('backend/uploads/officials'), $new_name);
-            $new_name = "backend/uploads/officials/$new_name";
             $officials->avatar = $new_name;
         }
 
@@ -307,7 +300,6 @@ EOT;
         if ($image = $request->file('avatar')) {
             $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('backend/uploads/officials'), $new_name);
-            $new_name = "backend/uploads/officials/$new_name";
             $officials->avatar = $new_name;
         }
 

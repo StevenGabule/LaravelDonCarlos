@@ -32,7 +32,7 @@
             <span class="px-2">></span>
             <a href="{{ route('transparency') }}">Transparency</a>
             <span class="px-2">></span>
-            <a href="/transparent/{{$transparent->slug}}">{{ $transparent->title }}</a>
+            <a href="/transparent/{{$transparent->title}}">{{ $transparent->title }}</a>
             <span class="px-2">></span>
             <span>{{ $post->title }}</span>
         </nav>
@@ -42,7 +42,7 @@
             <div class="col-12 col-md-3">
                 <div class="d-flex flex-column">
                     @foreach($transparencies as $transparency)
-                        <a href="/transparent/{{$transparency->slug1}}"
+                        <a href="/transparent/{{$transparency->slug}}"
                            class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3 {{ $transparency->slug == $slug1 ? 'active' : '' }}">
                             <p class="mb-0">{{ $transparency->title }} <i class="fas fa-arrow-right float-right pt-1"></i></p>
                         </a>
