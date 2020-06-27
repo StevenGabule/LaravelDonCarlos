@@ -25,32 +25,31 @@
                                 <input type="text"
                                        class="form-control form-control-sm rounded-0"
                                        name="name"
-                                       id="inputName"
-                                       required
-                                       data-parsley-trigger="keyup">
-
+                                       id="inputName">
+                                <small id="nameMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputShortDescription">Short Description</label>
                                 <textarea name="short_description"
                                           id="inputShortDescription" class="form-control form-control-sm"
-                                          rows="2"
-                                          required data-parsley-trigger="keyup"></textarea>
+                                          rows="2"></textarea>
+                                <small id="shortDescriptionMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputAddress">Address</label>
                                 <textarea name="address"
-                                          id="inputAddress" class="form-control form-control-sm" rows="2" required
-                                          data-parsley-trigger="keyup"></textarea>
+                                          id="inputAddress"
+                                          class="form-control form-control-sm" rows="2"></textarea>
+                                <small id="addressMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputDescription">Description</label>
                                 <textarea name="description" id="inputDescription"
-                                          class="form-control form-control-sm inputDescription rounded-0" required
-                                          data-parsley-trigger="keyup"></textarea>
+                                          class="form-control form-control-sm inputDescription rounded-0"></textarea>
+                                <small id="descriptionMessage" class="form-text"></small>
                             </div>
 
                         </div>
@@ -81,14 +80,15 @@
 
                             <div class="form-group">
                                 <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control" required>
+                                <select name="status" id="inputStatus" class="custom-select">
                                     <option value="">-- Select the status --</option>
                                     <option value="1">Published</option>
                                     <option value="0">Draft</option>
                                 </select>
+                                <small id="statusMessage" class="form-text"></small>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-sm">
+                                <button type="submit" class="btn btn-primary btn-sm" id="btnSave">
                                     <i class="fad fa-save mr-2"></i> Save
                                 </button>
                             </div>
@@ -102,10 +102,8 @@
 
 @section('_script')
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
 
     <script>
-        $('#placeForm').parsley();
 
         $(document).ready(function () {
 
@@ -127,29 +125,95 @@
                 readURL(this);
             });
 
-            /* CREATING AN ARTICLE */
             $('#placeForm').on('submit', function (e) {
                 e.preventDefault();
-                // let formData = $(this).serialize();
-                if ($('#placeForm').parsley().isValid()) {
-                    $.ajax({
-                        url: '{{ route('place.store') }}',
-                        method: 'POST',
-                        data: new FormData(this),
-                        contentType: false,
-                        cache: false,
-                        processData: false,
-                        dataType: 'json',
-                        success: ({success, id}) => {
-                            if (success) {
-                                window.location.href = `${id}/edit?created`
-                            }
-                        }
-                    }).fail((err) => console.log(err))
-                }
-            })
+                const x = $("#btnSave");
 
+                const _name = $("#inputName");
+                const _status = $("#inputStatus");
+                const _short_description = $("#inputShortDescription");
+                const _address = $("#inputAddress");
+                const _description = $("#inputDescription");
+
+                const _nameMsg = $("#nameMessage");
+                const _statusMsg = $("#statusMessage");
+                const _short_descriptionMsg = $("#shortDescriptionMessage");
+                const _addressMsg = $("#addressMessage");
+                const _descriptionMsg = $("#descriptionMessage");
+
+                $.ajax({
+                    url: '{{ route('place.store') }}',
+                    method: 'POST',
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType: 'json',
+                    beforeSend: () => {
+                        $("#inputStatus, #inputName, #inputShortDescription, #inputDescription, #inputAddress")
+                            .removeClass(['is-valid', 'is-invalid']);
+                        $("#nameMessage, #statusMessage, #shortDescriptionMessage, #descriptionMessage, #addressMessage")
+                            .removeClass(['text-success', 'text-danger']);
+                        x.attr('disabled', true);
+                        x.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> SAVING...`)
+                    },
+                    success: ({id}) => {
+                        window.location.href = `${id}/edit?created`
+                    },
+                    error: err => {
+                        x.attr('disabled', false);
+                        x.html(`<i class="fad fa-save mr-2"></i> Save`);
+
+                        const {name, description, address, short_description, status} = err.responseJSON.errors;
+
+                        // name
+                        if (name && name[0].length > 0) {
+                            _name.addClass('is-invalid');
+                            _nameMsg.addClass('text-danger').text(name[0]);
+                        } else {
+                            _name.addClass('is-valid');
+                            _nameMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // status
+                        if (status && status[0].length > 0) {
+                            _status.addClass('is-invalid');
+                            _statusMsg.addClass('text-danger').text(status[0]);
+                        } else {
+                            _status.addClass('is-valid');
+                            _statusMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // address
+                        if (address && address[0].length > 0) {
+                            _address.addClass('is-invalid');
+                            _addressMsg.addClass('text-danger').text(address[0])
+                        } else {
+                            _address.addClass('is-valid');
+                            _addressMsg.addClass('text-success');
+                            _addressMsg.text("Looks good.");
+                        }
+
+                        // short description
+                        if (short_description && short_description[0].length > 0) {
+                            _short_description.addClass('is-invalid');
+                            _short_descriptionMsg.addClass('text-danger').text(short_description[0]);
+                        } else {
+                            _short_description.addClass('is-valid');
+                            _short_descriptionMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // description
+                        if (description && description[0].length > 0) {
+                            _description.addClass('is-invalid');
+                            _descriptionMsg.addClass('text-danger').text(description[0]);
+                        } else {
+                            _description.addClass('is-valid');
+                            _descriptionMsg.addClass('text-success').text("Looks good.");
+                        }
+                    }
+                }).fail((err) => console.log(err))
+            })
         })
-        ;
     </script>
 @stop

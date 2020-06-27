@@ -25,33 +25,174 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8ea968b-c1f4-4306-90da-bf46493a5853" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/LaravelDonCarlos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LaravelDonCarlos.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/John_paul.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/John_paul.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Baranggay.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Baranggay.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ActivityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ActivityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BaranggayOfficialController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BaranggayOfficialController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/THEMES/about-brgy-list-same-civil-registry.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/THEMES/about-brgy-list-same-civil-registry.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/icons/mountains.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/icons/mountains.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/about.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/about.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/activities-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/activities-show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/services/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/services/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/services-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/services-show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tourism-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tourism-show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tourism.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tourism.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/transparency-show-detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transparency-show-detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/transparency-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transparency-show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PlaceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PlaceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ServicesArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ServicesArticleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TransparencyPostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TransparencyPostController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/1012859446.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/1052321606.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/1088812615.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/1151329322.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/1185460813.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/1225191891.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/1339703418.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/1513595671.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/1591624518.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/1953464578.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/1969808624.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/348821504.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/360510582.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/374722072.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/639530296.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/793249480.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/801078277.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/83132886.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/880368347.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/activities/90702065.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/1019606718.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/1027339022.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/1282088202.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/1309153756.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/13277768.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/1437427157.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/1489002330.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/1514492480.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/1532297976.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/1575857424.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/1590217774.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/1624535110.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/1683540797.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/1876560746.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/1887645574.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/1928742798.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/1972738850.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/2031882932.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/2085745550.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/242562546.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/32028995.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/354913598.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/411394863.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/49278680.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/508499562.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/517616045.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/574291429.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/575638580.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/624682936.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/893826552.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/articles/969915312.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/baranggays/1240540368.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/baranggays/2031005693.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/baranggays/2066258554.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/baranggays/2145738882.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/baranggays/228030607.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/baranggays/520892389.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/baranggays/7738445.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/baranggays/808307719.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/office/1823487222.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/office/427209312.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1032438444.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1202705181.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1221552823.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1249077114.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1256974873.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1275997870.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/128894784.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1382578206.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1396339583.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1406359980.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1427133607.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1461054419.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1465526365.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1535801116.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1574317751.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1646257837.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1646665780.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1711817433.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/173376904.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1750796467.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1755023659.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1798702483.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1817699898.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1898531392.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1906208576.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1950065640.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/196086081.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/1974025976.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/2033798306.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/2062382091.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/2068859694.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/2107088890.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/2107573949.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/2121986147.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/2141507572.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/261699281.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/300752271.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/469855506.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/488051052.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/493672880.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/527037246.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/582482589.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/582868808.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/587692581.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/612667719.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/645231888.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/648293188.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/655062710.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/687583907.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/687903607.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/744546579.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/749975806.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/752214400.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/757811391.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/83358901.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/843529172.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/975416859.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/978009042.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/officials/987788624.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/1132978613.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/1151367670.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/134730191.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/1348810801.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/1586886224.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/1591931457.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/1721539674.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/1813176124.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/1858364031.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/2111406592.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/263987685.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/289262614.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/355268664.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/45624899.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/678543921.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/717954026.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/places/936242676.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/service-article/1056794912.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/service-article/1303720671.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/service-article/1443742799.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/service-article/1547764905.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/service-article/1587989495.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/service-article/1641573629.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/service-article/1652090623.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/service-article/25534061.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/service-article/404485320.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/service-article/555974461.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/service-article/577082766.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/uploads/service-article/695992244.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/_shared/_articles.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_shared/_articles.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/baranggay/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/baranggay/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/news/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/news/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/news/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/news/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/news/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/news/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/services-articles/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/services-articles/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/services-articles/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/services-articles/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/tourism/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/tourism/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/tourism/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/tourism/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/transparency_posts/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/transparency_posts/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/transparency_posts/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/transparency_posts/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/show-news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/show-news.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -195,7 +336,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/backend/department_offices" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/backend/uploads/office" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -203,17 +344,17 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\laragon\www\LaravelDonCarlos\resources\views\backend\department_offices" />
-      <recent name="D:\laragon\www\LaravelDonCarlos\resources\views\backend\departments" />
-      <recent name="D:\laragon\www\LaravelDonCarlos\resources\views\backend" />
-      <recent name="D:\laragon\www\LaravelDonCarlos\resources\views" />
-      <recent name="D:\laragon\www\LaravelDonCarlos\resources\views\backend\transparency_posts" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\uploads\articles" />
       <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\uploads\service-article" />
       <recent name="D:\laragon\www\LaravelDonCarlos\resources\views\backend" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\uploads\office" />
+      <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\uploads\officials" />
+      <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\uploads\baranggays" />
+      <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\uploads\activities" />
+      <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\uploads\service-article" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -288,7 +429,9 @@
       <workItem from="1592997068762" duration="759000" />
       <workItem from="1592999185375" duration="14998000" />
       <workItem from="1593030411924" duration="24004000" />
-      <workItem from="1593083187839" duration="42489000" />
+      <workItem from="1593083187839" duration="62044000" />
+      <workItem from="1593199287546" duration="19244000" />
+      <workItem from="1593257626281" duration="141000" />
     </task>
     <servers />
   </component>
@@ -324,10 +467,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="450" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1593031022944" />
-    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1593138212307">
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1593211749098">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1593138212307" />
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1593211749098" />
     <state x="484" y="66" key="#console.sql" timestamp="1593110448088">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -336,54 +479,54 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="449" y="172" key="DUMP_DIALOG_DIMENSION_KEY/0.0.1536.834@0.0.1536.834" timestamp="1592984684194" />
-    <state width="1024" height="272" key="GridCell.Tab.0.bottom" timestamp="1593118121977">
+    <state width="1493" height="265" key="GridCell.Tab.0.bottom" timestamp="1593198260626">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="272" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1593118121977" />
-    <state width="1024" height="272" key="GridCell.Tab.0.center" timestamp="1593118121977">
+    <state width="1493" height="265" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1593198260626" />
+    <state width="1493" height="265" key="GridCell.Tab.0.center" timestamp="1593198260626">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="272" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1593118121977" />
-    <state width="1024" height="272" key="GridCell.Tab.0.left" timestamp="1593118121977">
+    <state width="1493" height="265" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1593198260626" />
+    <state width="1493" height="265" key="GridCell.Tab.0.left" timestamp="1593198260625">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="272" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1593118121977" />
-    <state width="1024" height="272" key="GridCell.Tab.0.right" timestamp="1593118121977">
+    <state width="1493" height="265" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1593198260625" />
+    <state width="1493" height="265" key="GridCell.Tab.0.right" timestamp="1593198260626">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="272" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1593118121977" />
-    <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1593103563421">
+    <state width="1493" height="265" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1593198260626" />
+    <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1593198260626">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1593103563421" />
-    <state width="1493" height="265" key="GridCell.Tab.1.center" timestamp="1593103563421">
+    <state width="1493" height="265" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1593198260626" />
+    <state width="1493" height="265" key="GridCell.Tab.1.center" timestamp="1593198260626">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1593103563421" />
-    <state width="1493" height="265" key="GridCell.Tab.1.left" timestamp="1593103563421">
+    <state width="1493" height="265" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1593198260626" />
+    <state width="1493" height="265" key="GridCell.Tab.1.left" timestamp="1593198260626">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1593103563421" />
-    <state width="1493" height="265" key="GridCell.Tab.1.right" timestamp="1593103563421">
+    <state width="1493" height="265" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1593198260626" />
+    <state width="1493" height="265" key="GridCell.Tab.1.right" timestamp="1593198260626">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1593103563421" />
-    <state width="1493" height="265" key="GridCell.Tab.2.bottom" timestamp="1593103563422">
+    <state width="1493" height="265" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1593198260626" />
+    <state width="1493" height="265" key="GridCell.Tab.2.bottom" timestamp="1593198260627">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1593103563422" />
-    <state width="1493" height="265" key="GridCell.Tab.2.center" timestamp="1593103563422">
+    <state width="1493" height="265" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1593198260627" />
+    <state width="1493" height="265" key="GridCell.Tab.2.center" timestamp="1593198260626">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1593103563422" />
-    <state width="1493" height="265" key="GridCell.Tab.2.left" timestamp="1593103563422">
+    <state width="1493" height="265" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1593198260626" />
+    <state width="1493" height="265" key="GridCell.Tab.2.left" timestamp="1593198260626">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1593103563422" />
-    <state width="1493" height="265" key="GridCell.Tab.2.right" timestamp="1593103563422">
+    <state width="1493" height="265" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1593198260626" />
+    <state width="1493" height="265" key="GridCell.Tab.2.right" timestamp="1593198260626">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1593103563422" />
+    <state width="1493" height="265" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1593198260626" />
     <state width="189" height="457" key="HiddenNamespacesPopup" timestamp="1592986502009">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -392,10 +535,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="576" y="140" key="NewPhpClassDialog/0.0.1536.834@0.0.1536.834" timestamp="1593035735184" />
-    <state x="604" y="340" key="NewPhpFileDialog" timestamp="1593118449491">
+    <state x="604" y="340" key="NewPhpFileDialog" timestamp="1593205805635">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="604" y="340" key="NewPhpFileDialog/0.0.1536.834@0.0.1536.834" timestamp="1593118449491" />
+    <state x="604" y="340" key="NewPhpFileDialog/0.0.1536.834@0.0.1536.834" timestamp="1593205805635" />
     <state x="277" y="62" key="SettingsEditor" timestamp="1593029135269">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -412,13 +555,13 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="612" y="0" width="464" height="834" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1536.834@0.0.1536.834" timestamp="1593140231428" />
-    <state x="425" y="189" width="672" height="677" key="run.anything.popup" timestamp="1593143551274">
+    <state x="425" y="189" width="672" height="677" key="run.anything.popup" timestamp="1593203802517">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1593143551274" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1593167354682">
+    <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1593203802517" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1593257658521">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1593167354682" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1593257658521" />
   </component>
 </project>

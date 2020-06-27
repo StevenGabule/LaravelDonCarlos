@@ -4,7 +4,7 @@
             <div>
                 <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
                 <img class="card-img max-height-150"
-                     src="{{ $article->avatar ? asset('/backend/uploads/articles/'.$article->avatar) : asset('assets/icons/images.svg') }}"
+                     src="{{ $article->avatar ? asset('/backend/uploads/articles/thumbnail/'.$article->avatar) : asset('assets/icons/images.svg') }}"
                      alt="Announcement Images ">
             </div>
             <div class="card-body ">

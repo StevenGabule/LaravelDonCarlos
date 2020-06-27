@@ -33,9 +33,10 @@
                 </div>
             </div>
 
-            <div class="d-none alert alert-success alert-dismissible shadow-lg fade show" role="alert">
-                <strong><i class="fad fa-meteor blueish mr-2"></i> Successfully Updated!</strong> The service article has been
-                modified and ready to see.
+            <div class="d-none alert alert-primary alert-dismissible shadow-lg fade show" role="alert">
+                <strong><i class="fad fa-meteor blueish mr-2"></i> Successfully Updated!</strong> The service article
+                has been
+                modified and ready to view.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -51,11 +52,8 @@
                                        class="form-control form-control-sm rounded-0"
                                        value="{{ $sa->name }}"
                                        name="name"
-                                       id="inputName"
-                                       required
-                                       data-parsley-pattern="[a-zA-Z 0987654321-]+$"
-                                       data-parsley-length="[6, 50]"
-                                       data-parsley-trigger="keyup">
+                                       id="inputName">
+                                <small id="nameMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
@@ -63,21 +61,17 @@
                                 <textarea name="short_description"
                                           id="shortDescription"
                                           class="form-control form-control-sm"
-                                          rows="2"
-                                          required
-                                          data-parsley-trigger="keyup"
-                                          data-parsley-length="[6, 50]">{{ $sa->short_description }}</textarea>
+                                          rows="2">{{ $sa->short_description }}</textarea>
+                                <small id="shortDescriptionMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputDescription">Description</label>
                                 <textarea name="description"
                                           id="inputDescription"
-                                          class="form-control rounded-0" required
-                                          data-parsley-trigger="keyup">{!! $sa->description !!}</textarea>
+                                          class="form-control rounded-0">{!! $sa->description !!}</textarea>
+                                <small id="descriptionMessage" class="form-text"></small>
                             </div>
-
-
 
                         </div>
                     </div>
@@ -102,7 +96,8 @@
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
                                 @if($sa->avatar !== null)
-                                    <img src="{{ asset('/backend/uploads/service-article/'.$sa->avatar) }}" class="img-fluid" id="previewImage" alt="">
+                                    <img src="{{ asset('/backend/uploads/service-article/large/'.$sa->avatar) }}"
+                                         class="img-fluid" id="previewImage" alt="">
                                 @else
                                     <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>
                                     <img src="" class="img-fluid" id="previewImage" alt="">
@@ -111,27 +106,30 @@
 
                             <div class="form-group">
                                 <label for="inputCategory">Select Service Category:</label>
-                                <select name="service_id" id="inputCategory" class="form-control" required>
+                                <select name="service_id" id="inputCategory" class="custom-select">
                                     <option value="">-- Select Type--</option>
                                     @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" {{ $sa->services_id === $category->id ? 'selected' : '' }}>
+                                        <option
+                                            value="{{ $category->id }}" {{ $sa->services_id === $category->id ? 'selected' : '' }}>
                                             {{ $category->name }}
                                         </option>
                                     @endforeach
                                 </select>
+                                <small id="categoryMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control" required>
+                                <select name="status" id="inputStatus" class="custom-select">
                                     <option value="">-- Select the status --</option>
                                     <option value="1" {{ $sa->status === 1 ? 'selected' : '' }}>Published</option>
                                     <option value="0" {{ $sa->status === 0 ? 'selected' : '' }}>Draft</option>
                                 </select>
+                                <small id="statusMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-sm">
+                                <button type="submit" class="btn btn-primary btn-sm" id="btnSave">
                                     <i class="fad fa-save fa-fw mr-2"></i>Update
                                 </button>
                             </div>
@@ -146,11 +144,8 @@
 
 @section('_script')
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
     <script>
         $(document).ready(function () {
-            const elemForm = $('#serviceArticleForm');
-            elemForm.parsley();
 
             $('#inputDescription').summernote({
                 placeholder: 'Leave your description here',
@@ -183,29 +178,97 @@
                 x.toggleClass('d-none');
             }
 
-            elemForm.on('submit', function (e) {
+            $("#serviceArticleForm").on('submit', function (e) {
                 e.preventDefault();
-                if (elemForm.parsley().isValid()) {
-                    $.ajax({
-                        url: '{{ route('sa.update.ajax') }}',
-                        method: 'POST',
-                        data: new FormData(this),
-                        contentType: false,
-                        cache: false,
-                        processData: false,
-                        dataType: 'json',
-                        beforeSend: function () {
-                            setTimeout(() => $(".alert.alert-success").toggleClass('d-none'), 5000)
-                        },
-                        success: ({success}) => {
-                            if (success) {
-                                $(".alert.alert-success").toggleClass('d-none');
-                            }
-                        },
-                        error: err => console.error(err),
-                    })
-                }
+
+                const x = $("#btnSave");
+
+                const _name = $("#inputName");
+                const _category = $("#inputCategory");
+                const _status = $("#inputStatus");
+                const _short_description = $("#inputShortDescription");
+                const _description = $("#inputDescription");
+
+                const _nameMsg = $("#nameMessage");
+                const _categoryMsg = $("#categoryMessage");
+                const _statusMsg = $("#statusMessage");
+                const _short_descriptionMsg = $("#shortDescriptionMessage");
+                const _descriptionMsg = $("#descriptionMessage");
+
+                $.ajax({
+                    url: '{{ route('sa.update.ajax') }}',
+                    method: 'POST',
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType: 'json',
+                    beforeSend: () => {
+                        $("#inputStatus, #inputName, #inputShortDescription, #inputDescription, #inputCategory")
+                            .removeClass(['is-valid', 'is-invalid']);
+                        $("#nameMessage, #statusMessage, #shortDescriptionMessage, #descriptionMessage, #categoryMessage")
+                            .removeClass(['text-success', 'text-danger']);
+                        x.attr('disabled', true);
+                        x.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> UPDATING...`)
+                    },
+                    success: data => {
+                        x.attr('disabled', false);
+                        x.html(`<i class="fad fa-save mr-2"></i> Update`);
+                        $(".alert.alert-primary").toggleClass('d-none');
+                    },
+                    error: err => {
+                        x.attr('disabled', false);
+                        x.html(`<i class="fad fa-save mr-2"></i> Update`);
+                        const {name, description, short_description, status, service_id} = err.responseJSON.errors;
+
+                        // name
+                        if (name && name[0].length > 0) {
+                            _name.addClass('is-invalid');
+                            _nameMsg.addClass('text-danger').text(name[0]);
+                        } else {
+                            _name.addClass('is-valid');
+                            _nameMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // status
+                        if (status && status[0].length > 0) {
+                            _status.addClass('is-invalid');
+                            _statusMsg.addClass('text-danger').text(status[0]);
+                        } else {
+                            _status.addClass('is-valid');
+                            _statusMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // short description
+                        if (short_description && short_description[0].length > 0) {
+                            _short_description.addClass('is-invalid');
+                            _short_descriptionMsg.addClass('text-danger').text(short_description[0]);
+                        } else {
+                            _short_description.addClass('is-valid');
+                            _short_descriptionMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // description
+                        if (description && description[0].length > 0) {
+                            _description.addClass('is-invalid');
+                            _descriptionMsg.addClass('text-danger').text(description[0]);
+                        } else {
+                            _description.addClass('is-valid');
+                            _descriptionMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // category
+                        if (service_id && service_id[0].length > 0) {
+                            _category.addClass('is-invalid');
+                            _categoryMsg.addClass('text-danger').text(service_id[0]);
+                        } else {
+                            _category.addClass('is-valid');
+                            _categoryMsg.addClass('text-success').text("Looks good.");
+                        }
+                    },
+                })
             })
         });
+        console.clear();
     </script>
 @stop

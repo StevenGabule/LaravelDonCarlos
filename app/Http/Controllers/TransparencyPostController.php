@@ -61,10 +61,7 @@ class TransparencyPostController extends Controller
 EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="post_checkbox[]" class="post_checkbox" value="{{$id}}" />')
-            ->editColumn('avatar', static function ($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/places/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
-            })
-            ->rawColumns(['action', 'checkbox', 'avatar'])
+            ->rawColumns(['action', 'checkbox'])
             ->make(true);
     }
 
@@ -77,7 +74,7 @@ EOT;
 
     public function store(Request $request)
     {
-        $validation = Validator::make($request->all(), [
+        $this->validate($request, [
             'transparency_id' => 'required',
             'title' => 'required',
             'short_description' => 'required',
@@ -85,68 +82,42 @@ EOT;
             'status' => 'required',
         ]);
 
-        $error_array = [];
-        if ($validation->fails()) {
-            foreach ($validation->messages()->getMessages() as $field_name => $messages) {
-                $error_array[] = $messages;
-            }
-        } else {
-            $post = TransparencyPost::create([
-                'title' => $request->get('title'),
-                'transparency_id' => $request->get('transparency_id'),
-                'user_id' => Auth::id(),
-                'slug' => Str::slug($request->get('title')),
-                'short_description' => $request->get('short_description', null),
-                'description' => $request->get('description', null),
-                'status' => $request->get('status', 0),
-            ]);
-        }
-        $output = [
-            'error' => $error_array,
-            'success' => true,
-            'id' => $post->id
-        ];
+        $post = TransparencyPost::create([
+            'title' => $request->get('title'),
+            'transparency_id' => $request->get('transparency_id'),
+            'user_id' => Auth::id(),
+            'slug' => Str::slug($request->get('title')),
+            'short_description' => $request->get('short_description', null),
+            'description' => $request->get('description', null),
+            'status' => $request->get('status', 0),
+        ]);
 
+        $output = ['id' => $post->id];
         return response()->json($output);
     }
 
     public function update_ajax(Request $request)
     {
-        if ($request->ajax()) {
-            $validation = Validator::make($request->all(), [
-                'transparency_id' => 'required',
-                'title' => 'required',
-                'short_description' => 'required',
-                'description' => 'required',
-                'status' => 'required',
-            ]);
+        $this->validate($request, [
+            'transparency_id' => 'required',
+            'title' => 'required',
+            'short_description' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+        ]);
+        $post = TransparencyPost::where('id', $request->input('post_id'))->first();
+        $post->update([
+            'title' => $request->get('title'),
+            'transparency_id' => $request->get('transparency_id'),
+            'user_id' => Auth::id(),
+            'slug' => Str::slug($request->get('title')),
+            'short_description' => $request->get('short_description', null),
+            'description' => $request->get('description', null),
+            'status' => $request->get('status', 0),
+        ]);
 
-            $error_array = [];
-            if ($validation->fails()) {
-                foreach ($validation->messages()->getMessages() as $field_name => $messages) {
-                    $error_array[] = $messages;
-                }
-            } else {
-                $post = TransparencyPost::where('id',$request->input('post_id'))->first();
-                $post->update([
-                    'title' => $request->get('title'),
-                    'transparency_id' => $request->get('transparency_id'),
-                    'user_id' => Auth::id(),
-                    'slug' => Str::slug($request->get('title')),
-                    'short_description' => $request->get('short_description', null),
-                    'description' => $request->get('description', null),
-                    'status' => $request->get('status', 0),
-                ]);
-            }
-
-            $output = [
-                'errors' => $error_array,
-                'success' => true
-            ];
-
-            return response()->json($output);
-        }
-
+        $output = ['success' => true];
+        return response()->json($output);
     }
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Services;
 use App\servicesArticle;
+use App\Traits\ImageHandle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -13,10 +14,13 @@ use Yajra\DataTables\DataTables;
 
 class ServicesArticleController extends Controller
 {
+    use ImageHandle;
+
     public function index()
     {
         return view('backend.services-articles.index');
     }
+
     public function all(Request $request, $type)
     {
         $serviceArticles = null;
@@ -41,17 +45,17 @@ class ServicesArticleController extends Controller
             $btn = ($data->deleted_at === null) ? "
                         <a class=\"dropdown-item\" href=\"$data->id\"><i class=\"fad fa-eye mr-2\"></i> View</a>
                         <a class=\"dropdown-item\" id=\"$data->id\" href=\"/admin/service-article/$data->id/edit\"><i class=\"fad fa-file-edit mr-2\"></i> Edit</a><a class=\"dropdown-item removeServiceArticle\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Move Trash  
+                            <i class=\"fad fa-trash mr-2\"></i> Move Trash
                         </a>" : "<a class=\"dropdown-item killServiceSA\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Delete 
+                            <i class=\"fad fa-trash mr-2\"></i> Delete
                         </a>";
             $btnRestore = ($data->deleted_at !== null) ? "<a class=\"dropdown-item restoreServiceSA\" id=\"$data->id\" href=\"javascript:void(0)\">
-                            <i class=\"fad fa-trash mr-2\"></i> Restore 
+                            <i class=\"fad fa-trash mr-2\"></i> Restore
                         </a>" : null;
             $button = <<<EOT
                 <div class="dropdown no-arrow" style="width:50px">
                   <a href="javascript:void(0)" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fad fa-ellipsis-h"></i> 
+                        <i class="fad fa-ellipsis-h"></i>
                   </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" style="font-size: 13px;">
                         <h6 class="dropdown-header">Actions</h6>
@@ -62,8 +66,8 @@ class ServicesArticleController extends Controller
 EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="serviceArticle_checkbox[]" class="serviceArticle_checkbox" value="{{$id}}" />')
-            ->editColumn('avatar', static function($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+            ->editColumn('avatar', static function ($data) {
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/service-article/small/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -78,18 +82,18 @@ EOT;
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|min:6|max:100',
+            'name' => 'required',
             'status' => 'required',
-            'short_description' => 'required|min:6|max:100',
+            'short_description' => 'required',
             'description' => 'required',
             'service_id' => 'required',
         ]);
 
-        $new_name = null;
+        $name = null;
 
-        if ($image = $request->file('avatar')) {
-            $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('backend/uploads/service-article'), $new_name);
+        if ($originalImage = $request->file('avatar')) {
+            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage, $name, 'service-article');
         }
 
         $sa = ServicesArticle::create([
@@ -98,7 +102,7 @@ EOT;
             'name' => $request->get('name'),
             'slug' => Str::slug($request->get('name')),
             'status' => $request->get('status'),
-            'avatar' => $new_name,
+            'avatar' => $name,
             'short_description' => $request->get('short_description'),
             'description' => $request->get('description'),
         ]);
@@ -115,41 +119,31 @@ EOT;
 
     public function updateAjax(Request $request)
     {
-        $validation = Validator::make($request->all(), [
-            'name' => 'required|min:6|max:100',
+        $this->validate($request, [
+            'name' => 'required',
             'status' => 'required',
-            'short_description' => 'required|min:6|max:100',
+            'short_description' => 'required',
             'description' => 'required',
             'service_id' => 'required',
         ]);
 
         $serviceArticle = ServicesArticle::findOrFail($request->input('service_article_id'));
 
-        $error_array = array();
-        if ($validation->fails()) {
-            foreach ($validation->messages()->getMessages() as $field_name => $messages) {
-                $error_array[] = $messages;
-            }
-        } else {
-            if ($request->file('avatar')) {
-                $image = $request->file('avatar');
-                $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path('backend/uploads/service-article'), $new_name);
-                $serviceArticle->avatar = $new_name;
-            }
-            $serviceArticle->name = $request->get('name');
-            $serviceArticle->short_description = $request->get('short_description');
-            $serviceArticle->description = $request->get('description');
-            $serviceArticle->services_id = $request->get('service_id');
-            $serviceArticle->slug = Str::slug($request->get('name'));
-            $serviceArticle->status = $request->get('status');
-            $serviceArticle->save();
+        if ($originalImage = $request->file('avatar')) {
+            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages($serviceArticle->avatar, $originalImage, $name, 'service-article');
+            $serviceArticle->avatar = $name;
         }
-        $output = [
-            'error' => $error_array,
-            'success' => true,
-            'id' => $serviceArticle->id
-        ];
+
+        $serviceArticle->name = $request->get('name');
+        $serviceArticle->short_description = $request->get('short_description');
+        $serviceArticle->description = $request->get('description');
+        $serviceArticle->services_id = $request->get('service_id');
+        $serviceArticle->slug = Str::slug($request->get('name'));
+        $serviceArticle->status = $request->get('status');
+        $serviceArticle->save();
+        $output = ['success' => true];
+
         return response()->json($output);
     }
 
@@ -169,25 +163,20 @@ EOT;
         return response()->json(['success' => true]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\servicesArticle  $services_article
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(servicesArticle $services_article)
-    {
-        //
-    }
-
     public function kill(Request $request)
     {
         $ids = $request->input('id');
         if (is_array($ids)) {
-            ServicesArticle::withTrashed()->whereIn('id', $ids)->forceDelete();
+            foreach ($ids as $id) {
+                $art = ServicesArticle::withTrashed()->where('id', $id)->first();
+                $this->removeImages($art->avatar, 'service-article');
+                $art->forceDelete();
+            }
             return response()->json(['success' => true]);
         }
-        ServicesArticle::withTrashed()->where('id', $ids)->first()->forceDelete();
+        $one = ServicesArticle::withTrashed()->where('id', $ids)->first();
+        $this->removeImages($one->avatar, 'service-article');
+        $one->forceDelete();
         return response()->json(['success' => true]);
     }
 

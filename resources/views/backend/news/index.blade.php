@@ -388,6 +388,9 @@
                                 snackbar('You successfully deleted the article');
                                 $('#articlesTables').DataTable().ajax.reload();
                             }
+                        },
+                        error: err => {
+                            console.error(err.responseJSON.errors)
                         }
                     }).fail(err => console.log(err))
                 }

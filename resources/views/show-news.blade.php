@@ -10,7 +10,7 @@
     <!-- inlineng the background image so it can be dynamicaly change!!!! -->
     <!-- recommended background dimension 1920 x 1280 -->
     <div class="about-bg-banner position-relative"
-         style="background-image: url('{{ asset('/backend/uploads/articles/'.$news->avatar) }}');margin-top: -24px;">
+         style="background: url('{{ asset('/backend/uploads/articles/large/'.$news->avatar) }}') no-repeat center center / cover;margin-top: -24px;">
         <div class="trending-bg-banner-overlay h-100 ">
             <div class="container col-dirtyWhite h-100">
                 <div class="d-flex h-100">
@@ -39,6 +39,8 @@
                 <!-- recommended dimension of  a landscape 1920 x 500 or HD 1920 x 1280-->
                 <!-- recommnded image medium dimension 1280 x 853 but blury-->
                 {!! $news->description  !!}
+
+                <div id="disqus_thread"></div>
             </div>
             <div class="col-12 col-md-3">
                 <div class="d-none d-md-block">

@@ -49,31 +49,31 @@
                                        value="{{ $place->name }}"
                                        name="name"
                                        id="inputName">
+                                <small id="nameMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputShortDescription">Short Description</label>
                                 <textarea name="short_description"
-                                          id="inputShortDescription" class="form-control"
-                                          rows="3"
-                                          required data-parsley-trigger="keyup" data-parsley-length="[6, 50]">{{ $place->short_description }}</textarea>
+                                          id="inputShortDescription" class="form-control form-control-sm"
+                                          rows="3">{{ $place->short_description }}</textarea>
+                                <small id="shortDescriptionMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputAddress">Address</label>
                                 <textarea name="address"
                                           id="inputAddress"
-                                          class="form-control" rows="4"
-                                          required data-parsley-trigger="keyup"
-                                          data-parsley-length="[6, 50]">{{ $place->address }}</textarea>
+                                          class="form-control form-control-sm" rows="4">{{ $place->address }}</textarea>
+                                <small id="addressMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputDescription">Description</label>
                                 <textarea name="description" id="inputDescription"
-                                          class="form-control rounded-0">{!! $place->description !!}</textarea>
+                                          class="form-control form-control-sm rounded-0">{!! $place->description !!}</textarea>
+                                <small id="descriptionMessage" class="form-text"></small>
                             </div>
-
 
                         </div>
                     </div>
@@ -98,23 +98,26 @@
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
                                 @if($place->avatar !== null)
-                                    <img src="{{ asset('/backend/uploads/places/'.$place->avatar) }}" class="img-fluid" id="previewImage" alt="">
+                                    <img src="{{ asset('/backend/uploads/places/large/'.$place->avatar) }}" class="img-fluid" id="previewImage" alt="">
                                 @else
                                     <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>
                                     <img src="" class="img-fluid" id="previewImage" alt="">
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control" required>
+                                <label for="inputStatus">Status</label>
+                                <select name="status" id="inputStatus" class="form-control form-control-sm">
                                     <option value="">-- Select the status --</option>
                                     <option value="1" {{ $place->status === 1 ? 'selected' : '' }}>Published</option>
                                     <option value="0" {{ $place->status === 0 ? 'selected' : '' }}>Draft</option>
                                 </select>
+                                <small id="statusMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-sm"><i class="fad fa-save fa-fw mr-1"></i> Update</button>
+                                <button type="submit" class="btn btn-primary btn-sm" id="btnSave">
+                                    <i class="fad fa-save fa-fw mr-1"></i> Update
+                                </button>
                             </div>
 
                         </div>
@@ -162,6 +165,20 @@
 
             $('#placeForm').on('submit', function (e) {
                 e.preventDefault();
+                const x = $("#btnSave");
+
+                const _name = $("#inputName");
+                const _status = $("#inputStatus");
+                const _short_description = $("#inputShortDescription");
+                const _address = $("#inputAddress");
+                const _description = $("#inputDescription");
+
+                const _nameMsg = $("#nameMessage");
+                const _statusMsg = $("#statusMessage");
+                const _short_descriptionMsg = $("#shortDescriptionMessage");
+                const _addressMsg = $("#addressMessage");
+                const _descriptionMsg = $("#descriptionMessage");
+
                 $.ajax({
                     url: '{{ route('place.update.ajax') }}',
                     method: 'POST',
@@ -170,18 +187,79 @@
                     cache: false,
                     processData: false,
                     dataType: 'json',
-                    beforeSend: function () {
-                        setTimeout(() => $(".alert.alert-success").toggleClass('d-none'), 5000)
+                    beforeSend: () => {
+                        $("#inputStatus, #inputName, #inputShortDescription, #inputDescription, #inputAddress")
+                            .removeClass(['is-valid', 'is-invalid']);
+                        $("#nameMessage, #statusMessage, #shortDescriptionMessage, #descriptionMessage, #addressMessage")
+                            .removeClass(['text-success', 'text-danger']);
+                        x.attr('disabled', true);
+                        x.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> UPDATING...`)
                     },
+
                     success: ({success}) => {
+                        x.attr('disabled', false);
+                        x.html(`<i class="fad fa-save mr-2"></i> Update`);
                         if (success) {
                             $(".alert.alert-success").toggleClass('d-none');
                         }
                     },
-                    error: err => console.error(err),
+
+                    error: err => {
+                        x.attr('disabled', false);
+                        x.html(`<i class="fad fa-save mr-2"></i> Save`);
+
+                        const {name, description, address, short_description, status} = err.responseJSON.errors;
+
+                        // name
+                        if (name && name[0].length > 0) {
+                            _name.addClass('is-invalid');
+                            _nameMsg.addClass('text-danger').text(name[0]);
+                        } else {
+                            _name.addClass('is-valid');
+                            _nameMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // status
+                        if (status && status[0].length > 0) {
+                            _status.addClass('is-invalid');
+                            _statusMsg.addClass('text-danger').text(status[0]);
+                        } else {
+                            _status.addClass('is-valid');
+                            _statusMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // address
+                        if (address && address[0].length > 0) {
+                            _address.addClass('is-invalid');
+                            _addressMsg.addClass('text-danger').text(address[0])
+                        } else {
+                            _address.addClass('is-valid');
+                            _addressMsg.addClass('text-success');
+                            _addressMsg.text("Looks good.");
+                        }
+
+                        // short description
+                        if (short_description && short_description[0].length > 0) {
+                            _short_description.addClass('is-invalid');
+                            _short_descriptionMsg.addClass('text-danger').text(short_description[0]);
+                        } else {
+                            _short_description.addClass('is-valid');
+                            _short_descriptionMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // description
+                        if (description && description[0].length > 0) {
+                            _description.addClass('is-invalid');
+                            _descriptionMsg.addClass('text-danger').text(description[0]);
+                        } else {
+                            _description.addClass('is-valid');
+                            _descriptionMsg.addClass('text-success').text("Looks good.");
+                        }
+                    }
                 })
             })
 
         });
+        console.clear();
     </script>
 @stop

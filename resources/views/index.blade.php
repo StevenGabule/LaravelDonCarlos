@@ -285,7 +285,7 @@
                         <div class="col-12 col-sm-6 col-lg-3 pt-3">
                             <div class="card shadow-sm border-0 p-3">
                                 <img class="card-img"
-                                     src="{{ $new->avatar ? asset('/backend/uploads/articles/'.$new->avatar) : asset('assets/icons/images.svg') }}"
+                                     src="{{ $new->avatar ? asset('/backend/uploads/articles/thumbnail/'.$new->avatar) : asset('assets/icons/images.svg') }}"
                                      style="max-height: 150px;"
                                      alt="Announcement Images">
                                 <div class="d-flex flex-row">

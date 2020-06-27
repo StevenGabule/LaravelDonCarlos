@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Place;
+use App\Traits\ImageHandle;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,8 @@ use Yajra\DataTables\DataTables;
 
 class PlaceController extends Controller
 {
+    use ImageHandle;
+
     public function index()
     {
         return view('backend.tourism.index');
@@ -61,8 +64,8 @@ class PlaceController extends Controller
 EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="place_checkbox[]" class="place_checkbox" value="{{$id}}" />')
-            ->editColumn('avatar', static function($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/places/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+            ->editColumn('avatar', static function ($data) {
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/places/small/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -83,12 +86,11 @@ EOT;
             'description' => 'required',
         ]);
 
-        $new_name = null;
+        $name = null;
 
-        if ($request->file('avatar')) {
-            $image = $request->file('avatar');
-            $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('backend/uploads/places'), $new_name);
+        if ($originalImage = $request->file('avatar')) {
+            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage, $name, 'places');
         }
 
         $place = Place::create([
@@ -97,7 +99,7 @@ EOT;
             'slug' => Str::slug($request->get('name')),
             'status' => $request->get('status'),
             'address' => $request->get('address'),
-            'avatar' => $new_name,
+            'avatar' => $name,
             'categories' => 'uncategories',
             'short_description' => $request->get('short_description'),
             'description' => $request->get('description'),
@@ -113,45 +115,31 @@ EOT;
 
     public function updateAjax(Request $request)
     {
-        $validation = Validator::make($request->all(), [
+        $this->validate($request, [
             'name' => 'required',
             'address' => 'required',
             'status' => 'required',
-            'description' => 'required',
             'short_description' => 'required',
+            'description' => 'required',
         ]);
 
         $place = Place::findOrFail($request->input('place_id'));
 
-        $error_array = array();
-
-        if ($validation->fails()) {
-            foreach ($validation->messages()->getMessages() as $field_name => $messages) {
-                $error_array[] = $messages;
-            }
-        } else {
-            if ($request->file('avatar')) {
-                $image = $request->file('avatar');
-                $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path('backend/uploads/places'), $new_name);
-                $place->avatar = $new_name;
-            }
-
-            $place->name = $request->get('name');
-            $place->slug = Str::slug($request->get('name'));
-            $place->short_description = $request->get('short_description');
-            $place->description = $request->get('description');
-            $place->address = $request->get('address');
-            $place->status = $request->get('status');
-            $place->save();
+        if ($originalImage = $request->file('avatar')) {
+            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages($place->avatar, $originalImage, $name, 'places');
+            $place->avatar = $name;
         }
 
-        $output = [
-            'error' => $error_array,
-            'success' => true,
-            'id' => $place->id
-        ];
+        $place->name = $request->get('name');
+        $place->slug = Str::slug($request->get('name'));
+        $place->short_description = $request->get('short_description');
+        $place->description = $request->get('description');
+        $place->address = $request->get('address');
+        $place->status = $request->get('status');
+        $place->save();
 
+        $output = ['success' => true];
         return response()->json($output);
     }
 
@@ -180,10 +168,16 @@ EOT;
     {
         $ids = $request->input('id');
         if (is_array($ids)) {
-            Place::withTrashed()->whereIn('id', $ids)->forceDelete();
+            foreach ($ids as $id) {
+                $place = Place::withTrashed()->where('id', $id)->first();
+                $this->removeImages($place->avatar, 'places');
+                $place->forceDelete();
+            }
             return response()->json(['success' => true]);
         }
-        Place::withTrashed()->where('id', $ids)->first()->forceDelete();
+        $one = Place::withTrashed()->where('id', $ids)->first();
+        $this->removeImages($one->avatar, 'places');
+        $one->forceDelete();
         return response()->json(['success' => true]);
     }
 

@@ -36,7 +36,7 @@ Route::get('/admin', 'UserController@index')->name('admin');
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::resource('article', 'ArticleController');
     Route::get('all/{type}', 'ArticleController@all')->name('articles.all');
-    Route::post('update', 'ArticleController@updateAjax')->name('article.update.ajax');
+    Route::post('update', 'ArticleController@update_ajax')->name('article.update.ajax');
     Route::get('restore', 'ArticleController@restore')->name('article.restore');
     Route::get('kill', 'ArticleController@kill')->name('article.kill');
     Route::get('massremove', 'ArticleController@massRemove')->name('article.massremove');

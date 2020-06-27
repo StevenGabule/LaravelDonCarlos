@@ -20,31 +20,29 @@
                 <div class="col-xl-9 col-lg-8">
                     <div class="card shadow mb-4">
                         <div class="card-body">
+                            <span id="form_result"></span>
                             <div class="form-group">
                                 <label for="inputTitle">Title</label>
                                 <input type="text"
                                        class="form-control form-control-sm rounded-0"
                                        name="title"
-                                       id="inputTitle"
-                                       required
-                                       data-parsley-length="[6, 100]"
-                                       data-parsley-trigger="keyup">
-
+                                       id="inputTitle">
+                                <small id="titleMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputShortDescription">Short Description</label>
                                 <textarea name="short_description" id="inputShortDescription" rows="3"
                                           class="form-control form-control-sm"></textarea>
+                                <small id="shortDescriptionMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputDescription">Description</label>
                                 <textarea name="description" id="inputDescription"
-                                          class="form-control inputDescription rounded-0" required
-                                          data-parsley-trigger="keyup"></textarea>
+                                          class="form-control inputDescription rounded-0"></textarea>
+                                <small id="descriptionMessage" class="form-text"></small>
                             </div>
-
 
                         </div>
                     </div>
@@ -60,7 +58,8 @@
                                 </div>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="inputGroupFile01" name="avatar"
-                                           aria-describedby="inputGroupFileAddon01" accept="image/x-png,image/gif,image/jpeg">
+                                           aria-describedby="inputGroupFileAddon01"
+                                           accept="image/x-png,image/gif,image/jpeg">
                                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                 </div>
                             </div>
@@ -72,25 +71,27 @@
 
                             <div class="form-group">
                                 <label for="inputCategory">Select Category:</label>
-                                <select name="category_id" id="inputCategory" class="form-control" required>
+                                <select name="category_id" id="inputCategory" class="custom-select">
                                     <option value="">-- Select Category--</option>
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
+                                <small id="categoryMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
-                                <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control" required>
+                                <label for="inputStatus">Status</label>
+                                <select name="status" id="inputStatus" class="custom-select">
                                     <option value="">-- Select the status --</option>
                                     <option value="1">Published</option>
                                     <option value="0">Draft</option>
                                 </select>
+                                <small id="statusMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-sm">
+                                <button type="submit" class="btn btn-primary btn-sm" id="btnSave">
                                     <i class="fad fa-save fa-fw mr-1"></i> Save
                                 </button>
                             </div>
@@ -104,10 +105,9 @@
 
 @section('_script')
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
 
     <script>
-        $('#articleForm').parsley();
+
 
         $(document).ready(function () {
 
@@ -129,11 +129,25 @@
                 readURL(this);
             });
 
-        /* CREATING AN ARTICLE */
-        $('#articleForm').on('submit', function (e) {
-            e.preventDefault();
-            // let formData = $(this).serialize();
-            if ($('#articleForm').parsley().isValid()) {
+            /* CREATING AN ARTICLE */
+            $('#articleForm').on('submit', function (e) {
+                e.preventDefault();
+                const x = $("#btnSave");
+                const cat = $("#inputCategory");
+                const catMsg = $("#categoryMessage");
+
+                const _title = $("#inputTitle");
+                const _msgTitle = $("#titleMessage");
+
+                const _shortDescription = $("#inputShortDescription");
+                const _msgShortDescription = $("#shortDescriptionMessage");
+
+                const _description = $("#inputDescription");
+                const _msgDescription = $("#descriptionMessage");
+
+                const _status = $("#inputStatus");
+                const _msgStatus = $("#statusMessage");
+
                 $.ajax({
                     url: '{{ route('article.store') }}',
                     method: 'POST',
@@ -142,16 +156,81 @@
                     cache: false,
                     processData: false,
                     dataType: 'json',
-                    success: ({success, id}) => {
-                        if (success) {
-                            window.location.href = `${id}/edit?created`
+                    beforeSend: () => {
+                        $("#inputCategory, #inputTitle, #inputShortDescription, #inputDescription, #inputStatus")
+                            .removeClass(['is-valid', 'is-invalid']);
+                        $("#titleMessage, #categoryMessage, #shortDescriptionMessage, #descriptionMessage, #statusMessage")
+                            .removeClass(['text-success', 'text-danger']);
+                        x.attr('disabled', true);
+                        x.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> SAVING...`)
+                    },
+                    success: ({ id }) => {
+                        window.location.href = `${id}/edit?created`
+                    },
+                    error: err => {
+                        x.attr('disabled', false);
+                        x.html(`<i class="fad fa-save mr-2"></i> Save`);
+
+                        const {category_id, description, short_description, status, title} = err.responseJSON.errors;
+                        if (category_id && category_id[0].length > 0) {
+                            cat.addClass('is-invalid');
+                            catMsg.addClass('text-danger')
+                            catMsg.text(category_id[0]);
+                        } else {
+                            cat.addClass('is-valid');
+                            catMsg.addClass('text-success');
+                            catMsg.text("Looks good.");
                         }
+
+                        // title
+                        if (title && title[0].length > 0) {
+                            _title.addClass('is-invalid');
+                            _msgTitle.addClass('text-danger')
+                            _msgTitle.text(title[0]);
+                        } else {
+                            _title.addClass('is-valid');
+                            _msgTitle.addClass('text-success');
+                            _msgTitle.text("Looks good.");
+                        }
+
+                        // short description
+                        if (short_description && short_description[0].length > 0) {
+                            _shortDescription.addClass('is-invalid');
+                            _msgShortDescription.addClass('text-danger')
+                            _msgShortDescription.text(short_description[0]);
+                        } else {
+                            _shortDescription.addClass('is-valid');
+                            _msgShortDescription.addClass('text-success');
+                            _msgShortDescription.text("Looks good.");
+                        }
+
+                        // description
+                        if (description && description[0].length > 0) {
+                            _description.addClass('is-invalid');
+                            _msgDescription.addClass('text-danger')
+                            _msgDescription.text("Please fill up the description field");
+                        } else {
+                            _description.addClass('is-valid');
+                            _msgDescription.addClass('text-success');
+                            _msgDescription.text("Looks good.");
+                        }
+
+                        // status
+                        if (status && status[0].length > 0) {
+                            _status.addClass('is-invalid');
+                            _msgStatus.addClass('text-danger')
+                            _msgStatus.text(status[0]);
+                        } else {
+                            _status.addClass('is-valid');
+                            _msgStatus.addClass('text-success');
+                            _msgStatus.text("Looks good.");
+                        }
+
+                        console.error(err.responseJSON.errors)
                     }
                 }).fail((err) => console.log(err))
-            }
+            })
         })
-
-        })
-        ;
+        console.clear();
     </script>
 @stop

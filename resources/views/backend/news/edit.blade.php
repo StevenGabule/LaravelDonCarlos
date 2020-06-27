@@ -30,8 +30,8 @@
             </div>
 
             <div class="d-none alert alert-success alert-dismissible shadow-lg fade show" role="alert">
-                <strong><i class="fad fa-meteor blueish mr-2"></i> Successfully Updated!</strong> The article has been
-                modified and ready to see.
+                <strong><i class="fad fa-meteor blueish mr-2"></i> Successfully Add/Updated!</strong> The article has been
+                add/modified.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -48,18 +48,21 @@
                                        value="{{ $article->title }}"
                                        name="title"
                                        id="inputTitle">
+                                <small id="titleMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputShortDescription">Short Description</label>
                                 <textarea name="short_description" id="inputShortDescription" rows="3"
                                           class="form-control form-control-sm">{{ $article->short_description }}</textarea>
+                                <small id="shortDescriptionMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputDescription">Description</label>
                                 <textarea name="description" id="inputDescription"
                                           class="form-control rounded-0">{!! $article->description !!}</textarea>
+                                <small id="descriptionMessage" class="form-text"></small>
                             </div>
 
                         </div>
@@ -84,7 +87,8 @@
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
                                 @if($article->avatar !== null)
-                                    <img src="{{ asset('/backend/uploads/articles/'.$article->avatar) }}" class="img-fluid" id="previewImage" alt="">
+                                    <img src="{{ asset('/backend/uploads/articles/large/'.$article->avatar) }}"
+                                         class="img-fluid" id="previewImage" alt="">
                                 @else
                                     <i class="fad fa-images fa-goner"
                                        style="font-size: 100px;"></i>
@@ -97,24 +101,27 @@
                                 <select name="category_id" id="inputCategory" class="form-control">
                                     <option value="">-- Select Category--</option>
                                     @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" {{ $category->id === $article->category_id ? 'selected' : '' }}>
+                                        <option
+                                            value="{{ $category->id }}" {{ $category->id === $article->category_id ? 'selected' : '' }}>
                                             {{ $category->name }}
                                         </option>
                                     @endforeach
                                 </select>
+                                <small id="categoryMessage" class="form-text"></small>
                             </div>
                             <div class="form-group">
-                                <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control" required>
+                                <label for="inputStatus">Status</label>
+                                <select name="status" id="inputStatus" class="form-control">
                                     <option value="">-- Select the status --</option>
                                     <option value="1" {{ $article->status === 1 ? 'selected' : '' }}>Published</option>
                                     <option value="0" {{ $article->status === 0 ? 'selected' : '' }}>Draft</option>
                                 </select>
+                                <small id="statusMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    <i class="fad fa-save fa-fw mr-1"></i>Update
+                                <button type="submit" class="btn btn-primary btn-sm" id="btnSave">
+                                    <i class="fad fa-save mr-2"></i> Update
                                 </button>
                             </div>
                         </div>
@@ -162,6 +169,23 @@
 
             $('#articleForm').on('submit', function (e) {
                 e.preventDefault();
+
+                const _save = $("#btnSave");
+                const cat = $("#inputCategory");
+                const catMsg = $("#categoryMessage");
+
+                const _title = $("#inputTitle");
+                const _msgTitle = $("#titleMessage");
+
+                const _shortDescription = $("#inputShortDescription");
+                const _msgShortDescription = $("#shortDescriptionMessage");
+
+                const _description = $("#inputDescription");
+                const _msgDescription = $("#descriptionMessage");
+
+                const _status = $("#inputStatus");
+                const _msgStatus = $("#statusMessage");
+
                 $.ajax({
                     url: '{{ route('article.update.ajax') }}',
                     method: 'POST',
@@ -170,18 +194,87 @@
                     cache: false,
                     processData: false,
                     dataType: 'json',
-                    beforeSend: function () {
-                        setTimeout(() => $(".alert.alert-success").toggleClass('d-none'), 5000)
+                    beforeSend: () => {
+                        $("#inputCategory, #inputTitle, #inputShortDescription, #inputDescription, #inputStatus")
+                            .removeClass(['is-valid', 'is-invalid']);
+                        $("#titleMessage, #categoryMessage, #shortDescriptionMessage, #descriptionMessage, #statusMessage")
+                            .removeClass(['text-success', 'text-danger']);
+                        _save.attr('disabled', true);
+                        _save.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> UPDATING...`)
                     },
-                    success: ({success}) => {
-                        if (success) {
-                            $(".alert.alert-success").toggleClass('d-none');
+
+                    success: data => {
+                        $(".alert.alert-success").toggleClass('d-none');
+                        _save.attr('disabled', false);
+                        _save.html(`<i class="fad fa-save mr-2"></i> Update`);
+                    },
+
+                    error: err => {
+                        _save.attr('disabled', false);
+                        _save.html(`<i class="fad fa-save mr-2"></i> Save`);
+                        const {category_id, description, short_description, status, title} = err.responseJSON.errors;
+                        if (category_id && category_id[0].length > 0) {
+                            cat.addClass('is-invalid');
+                            catMsg.addClass('text-danger')
+                            catMsg.text(category_id[0]);
+                        } else {
+                            cat.addClass('is-valid');
+                            catMsg.addClass('text-success');
+                            catMsg.text("Looks good.");
                         }
+
+                        // title
+                        if (title && title[0].length > 0) {
+                            _title.addClass('is-invalid');
+                            _msgTitle.addClass('text-danger')
+                            _msgTitle.text(title[0]);
+                        } else {
+                            _title.addClass('is-valid');
+                            _msgTitle.addClass('text-success');
+                            _msgTitle.text("Looks good.");
+                        }
+
+                        // short description
+                        if (short_description && short_description[0].length > 0) {
+                            _shortDescription.addClass('is-invalid');
+                            _msgShortDescription.addClass('text-danger')
+                            _msgShortDescription.text(short_description[0]);
+                        } else {
+                            _shortDescription.addClass('is-valid');
+                            _msgShortDescription.addClass('text-success');
+                            _msgShortDescription.text("Looks good.");
+                        }
+
+                        // description
+                        if (description && description[0].length > 0) {
+                            _description.addClass('is-invalid');
+                            _msgDescription.addClass('text-danger')
+                            _msgDescription.text("Please fill up the description field");
+                        } else {
+                            _description.addClass('is-valid');
+                            _msgDescription.addClass('text-success');
+                            _msgDescription.text("Looks good.");
+                        }
+
+                        // status
+                        if (status && status[0].length > 0) {
+                            _status.addClass('is-invalid');
+                            _msgStatus.addClass('text-danger')
+                            _msgStatus.text(status[0]);
+                        } else {
+                            _status.addClass('is-valid');
+                            _msgStatus.addClass('text-success');
+                            _msgStatus.text("Looks good.");
+                        }
+
+                        console.error(err.responseJSON.errors)
                     },
-                    error: err => console.error(err),
+
+                }).fail(err => {
+                    console.error(err);
                 })
             })
-
         });
+        console.clear();
     </script>
 @stop
