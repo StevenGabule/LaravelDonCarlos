@@ -150,9 +150,8 @@
                             render: _ => `<span class="font-weight-bold text-capitalize">${_.substr(0, 30)}...</span>`
                         },
                         {
-                            data: 'date_start',
-                            name: 'date_start',
-                            render: _ => moment(_).format('LLL')
+                            data: 'event_start',
+                            name: 'event_start',
                         },
                         {
                             data: 'date_end',
@@ -231,13 +230,12 @@
                 let id = $(this).attr('id');
                 if (id.length > 0) {
                     swal({
-                        title: `Question`,
+                        title: "Confirmation",
                         text: "Are you sure to continue?",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
-                        confirmButtonText: "Yes, delete it!",
-                        closeOnConfirm: false
+                        icon: "warning",
+                        dangerMode: true,
+                        buttons: [true, "Continue"],
+                        closeModal: false
                     }).then((willDelete) => {
                         if (willDelete) {
                             $.ajax({
@@ -318,48 +316,18 @@
             }
         });
 
-        $(document).on('click', '.killArticle', function (e) {
-            const id = $(this).attr('id');
-            swal({
-                title: "Are you sure?",
-                text: "Are you sure to delete this data?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
-                closeOnConfirm: false
-            }).then((willDelete) => {
-                if (willDelete) {
-                    $.ajax({
-                        url: `kill`,
-                        method: "GET",
-                        data: {id: id},
-                        success: data => {
-                            console.log(data);
-                            if (data) {
-                                snackbar('You successfully deleted the data');
-                                $('#activitiesTable').DataTable().ajax.reload();
-                            }
-                        },
-                        error: err => console.log(err.messaage)
-                    }).fail(err => console.log(err))
-                }
-            });
-        })
-
         $(document).on('click', '.destroyActivities', function (e) {
             const id = [];
             $('.activity_checkbox:checked').each(function () {
                 id.push($(this).val());
             });
             swal({
-                title: `Question`,
+                title: "Confirmation",
                 text: "Are you sure to continue?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
-                closeOnConfirm: false
+                icon: "warning",
+                dangerMode: true,
+                buttons: [true, "Continue"],
+                closeModal: false
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
@@ -403,66 +371,23 @@
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay,listMonth'
                 },
-
-                editable: true,
                 displayEventTime: true,
-                selectable: true,
                 selectHelper: true,
                 eventLimit: true,
                 events: [
-                        @foreach($activities as $activity) {
-                        id: '{{ $activity->id }}',
-                        title: '{{ $activity->title }}',
-                        start: '{{ $activity->date_start }}',
-                        end: '{{ $activity->date_end }}',
-                        className: 'calendarCustom',
-
-                        url: '/admin/activities/{{ $activity->id }}/edit',
-                    },
-                    @endforeach
+                        @foreach($activities as $activity)
+                            {
+                                id: '{{ $activity->id }}',
+                                title: '{{ $activity->title }}',
+                                start: '{{ $activity->event_start.' ' .$activity->opening_time }}',
+                                end: '{{ $activity->event_start.' ' .$activity->closing_time }}',
+                                color: '#34bfa3',
+                                className: 'calendarCustom',
+                                url: '/admin/activities/{{ $activity->id }}/edit',
+                            },
+                        @endforeach
                 ],
-                eventRender: function (event, element, view) {
-                    event.allDay = event.allDay === 'true';
-                },
-
-                select: function (start, end, allDay) {
-
-                },
-                eventDrop: function (event, delta, revertFunc) {
-                    edit(event);
-                },
-                eventResize: function (event, dayDelta, minuteDelta, revertFunc) {
-                    edit(event);
-                },
             });
-
-            function edit(event) {
-                let end;
-                const start = event.start.format('YYYY-MM-DD HH:mm:ss');
-                if (event.end) {
-                    end = event.end.format('YYYY-MM-DD HH:mm:ss');
-                } else {
-                    end = start;
-                }
-
-                Event = [];
-                Event[0] = event.id;
-                Event[1] = start;
-                Event[2] = end;
-
-                $.ajax({
-                    url: '{{ route('fc.resize') }}',
-                    type: "POST",
-                    data: {
-                        Event,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: data => {
-                        console.log(data)
-                    },
-                    error: err => console.error(err)
-                });
-            }
         })
     </script>
 @stop

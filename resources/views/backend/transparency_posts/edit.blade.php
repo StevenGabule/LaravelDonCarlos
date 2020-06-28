@@ -164,6 +164,7 @@
                     error: err => {
                         x.attr('disabled', false);
                         x.html(`<i class="fad fa-save mr-2"></i> Update`);
+
                         const {title, description, short_description, status, transparency_id} = err.responseJSON.errors;
 
                         // title

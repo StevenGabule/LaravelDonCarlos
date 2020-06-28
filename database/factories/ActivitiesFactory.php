@@ -17,8 +17,9 @@ $factory->define(Activities::class, static function (Faker $faker) {
         'title' => $title,
         'slug' => $slug,
         'description' => $faker->paragraphs(10, true),
-        'date_start' => $faker->dateTimeThisMonth('now', 'Asia/Manila'),
-        'date_end' => $faker->dateTimeThisMonth('now', 'Asia/Manila'),
+        'event_start' => $faker->date('Y/m/d', 'now'),
+        'opening_time' => $faker->time(),
+        'closing_time' => $faker->time(),
         'address' => $faker->address,
         'status' => random_int(0,1)
     ];

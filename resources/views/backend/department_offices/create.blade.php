@@ -30,7 +30,7 @@
                                        class="form-control form-control-sm rounded-0"
                                        name="name"
                                        id="inputName">
-
+                                <small id="nameMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
@@ -39,6 +39,7 @@
                                           id="inputAddress"
                                           class="form-control form-control-sm"
                                           rows="2"></textarea>
+                                <small id="addressMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
@@ -47,12 +48,15 @@
                                           id="shortDescription"
                                           class="form-control form-control-sm"
                                           rows="2"></textarea>
+                                <small id="shortDescriptionMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputDescription">Description</label>
-                                <textarea name="description" id="inputDescription"
-                                          class="form-control form-control-sm inputDescription rounded-0"></textarea>
+                                <textarea name="description"
+                                          id="inputDescription"
+                                          class="form-control form-control-sm"></textarea>
+                                <small id="descriptionMessage" class="form-text"></small>
                             </div>
                         </div>
                     </div>
@@ -81,26 +85,28 @@
 
                             <div class="form-group">
                                 <label for="inputCategory">Select the department:</label>
-                                <select name="department_category_id" id="inputCategory" class="form-control" required>
+                                <select name="department_category_id" id="inputCategory" class="custom-select custom-select-sm">
                                     <option value="">-- Select one--</option>
                                     @foreach($departments as $department)
                                         <option value="{{ $department->id }}">{{ $department->name }}</option>
                                     @endforeach
                                 </select>
+                                <small id="categoryMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control">
+                                <select name="status" id="inputStatus" class="custom-select custom-select-sm">
                                     <option value="">-- Select the status --</option>
                                     <option value="1">Published</option>
                                     <option value="0">Draft</option>
                                 </select>
+                                <small id="statusMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-sm" id="btnSave">
-                                    Save
+                                    <i class="fad fa-save fa-fw"></i> Save
                                 </button>
                             </div>
 
@@ -141,6 +147,22 @@
             $('#officesTable').on('submit', function (e) {
                 e.preventDefault();
                 const x = $("#btnSave");
+
+                const _name = $("#inputName");
+                const _address = $("#inputAddress");
+                const _short_description = $("#shortDescription");
+                const _description = $("#inputDescription");
+                const _department_category_id = $("#inputCategory");
+                const _status = $("#inputStatus");
+
+                const _nameMsg = $("#nameMessage");
+                const _addressMsg = $("#addressMessage");
+                const _short_descriptionMsg = $("#shortDescriptionMessage");
+                const _descriptionMsg = $("#descriptionMessage")
+                const _statusMsg = $("#statusMessage");
+                const _categoryMsg = $("#categoryMessage");
+                const allIds = $("#nameMessage, #addressMessage, #statusMessage, #shortDescriptionMessage, #descriptionMessage, #categoryMessage");
+
                 $.ajax({
                     url: '{{ route('department-offices.store') }}',
                     method: 'POST',
@@ -150,29 +172,79 @@
                     processData: false,
                     dataType: 'json',
                     beforeSend: () => {
+                        $("#inputStatus, #inputName, #inputAddress, #shortDescription, #inputDescription, #inputCategory").removeClass(['is-valid', 'is-invalid']);
+                        allIds.removeClass(['text-success', 'text-danger']);
+                        $("#nameMessage, #addressMessage, #statusMessage, #shortDescriptionMessage, #descriptionMessage, #categoryMessage")
+                            .addClass('d-none');
                         x.attr('disabled', true);
-                        x.html(`Saving...`);
-                    },
-                    success: ({id, success, errors}) => {
-                        if (errors && errors.length > 0) {
-                            let html = '';
-                            html = '<div class="alert alert-danger">';
-                            const errorLength = errors.length;
-                            for (let count = 0; count < errorLength; count++) {
-                                html += '<p class="mb-0">' + errors[count] + '</p>';
-                            }
-                            html += '</div>';
 
-                            $("#form_result").html(html);
-                        } else {
-                            window.location.href = `${id}/edit?created`
-                        }
+                        x.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> SAVING...`)
+                    },
+                    success: ({id}) => {
+                        window.location.href = `${id}/edit?created`
                         x.attr('disabled', false);
-                        x.html(`  <i class="fad fa-save mr-2"></i> Save`);
+                        x.html(`<i class="fad fa-save mr-2"></i> Save`);
                     },
                     error: err => {
                         x.attr('disabled', false);
                         x.html(`<i class="fad fa-save mr-2"></i> Save`);
+                        console.log(err.responseJSON.errors);
+                        allIds.removeClass('d-none');
+                        const {name, description, short_description, status, department_category_id, address} = err.responseJSON.errors;
+
+                        // name
+                        if (name && name[0].length > 0) {
+                            _name.addClass('is-invalid');
+                            _nameMsg.addClass('text-danger').text(name[0]);
+                        } else {
+                            _name.addClass('is-valid');
+                            _nameMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // status
+                        if (status && status[0].length > 0) {
+                            _status.addClass('is-invalid');
+                            _statusMsg.addClass('text-danger').text(status[0]);
+                        } else {
+                            _status.addClass('is-valid');
+                            _statusMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // address
+                        if (address && address[0].length > 0) {
+                            _address.addClass('is-invalid');
+                            _addressMsg.addClass('text-danger').text(address[0]);
+                        } else {
+                            _address.addClass('is-valid');
+                            _addressMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // short description
+                        if (short_description && short_description[0].length > 0) {
+                            _short_description.addClass('is-invalid');
+                            _short_descriptionMsg.addClass('text-danger').text(short_description[0]);
+                        } else {
+                            _short_description.addClass('is-valid');
+                            _short_descriptionMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // description
+                        if (description && description[0].length > 0) {
+                            _description.addClass('is-invalid');
+                            _descriptionMsg.addClass('text-danger').text(description[0]);
+                        } else {
+                            _description.addClass('is-valid');
+                            _descriptionMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // department_category_id
+                        if (department_category_id && department_category_id[0].length > 0) {
+                            _department_category_id.addClass('is-invalid');
+                            _categoryMsg.addClass('text-danger').text("The department field is required.");
+                        } else {
+                            _department_category_id.addClass('is-valid');
+                            _categoryMsg.addClass('text-success').text("Looks good.");
+                        }
                     },
                 }).fail((err) => console.log(err))
             })

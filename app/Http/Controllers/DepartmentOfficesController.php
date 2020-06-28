@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Activities;
 use App\DepartmentCategories;
 use App\DepartmentOffices;
+use App\Traits\ImageHandle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -13,6 +14,7 @@ use Yajra\DataTables\DataTables;
 
 class DepartmentOfficesController extends Controller
 {
+    use ImageHandle;
 
     public function index()
     {
@@ -85,49 +87,36 @@ EOT;
 
     public function store(Request $request)
     {
-        $validation = Validator::make($request->all(), [
-            'name' => 'required|min:6|max:255',
+        $this->validate($request, [
+            'name' => 'required|max:255',
             'address' => 'required|min:6',
-            'short_description' => 'required|min:6|max:255',
+            'short_description' => 'required|max:255',
             'description' => 'required|min:10',
             'department_category_id' => 'required',
             'status' => 'required',
         ]);
 
-        $avatar = null;
         $office = null;
-        $error_array = array();
+        $name = null;
 
-        if ($validation->fails()) {
-            foreach ($validation->messages()->getMessages() as $field_name => $messages) {
-                $error_array[] = $messages;
-            }
-            return response()->json(['errors' => $error_array]);
-        } else {
-            if ($image = $request->file('avatar')) {
-                $avatar = mt_rand() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path('backend/uploads/office'), $avatar);
-            }
-            $office = DepartmentOffices::create([
-                'name' => $request->get('name'),
-                'slug' => Str::slug($request->get('name')),
-                'user_id' => Auth::id(),
-                'status' => $request->get('status'),
-                'department_category_id' => $request->get('department_category_id'),
-                'avatar' => $avatar,
-                'short_description' => $request->get('short_description'),
-                'description' => $request->get('description'),
-                'address' => $request->get('address'),
-            ]);
+        if ($originalImage = $request->file('avatar')) {
+            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage, $name, 'office');
         }
 
-        $output = [
-            'error' => $error_array,
-            'success' => true,
-            'id' => $office->id
-        ];
+        $office = DepartmentOffices::create([
+            'name' => $request->get('name'),
+            'slug' => Str::slug($request->get('name')),
+            'user_id' => Auth::id(),
+            'status' => $request->get('status'),
+            'department_category_id' => $request->get('department_category_id'),
+            'avatar' => $name,
+            'short_description' => $request->get('short_description'),
+            'description' => $request->get('description'),
+            'address' => $request->get('address'),
+        ]);
 
-        return response()->json($output);
+        return response()->json(['id' => $office->id]);
     }
 
 
@@ -140,50 +129,36 @@ EOT;
 
     public function updateOffice(Request $request)
     {
-        $validation = Validator::make($request->all(), [
-            'name' => 'required|min:6|max:255',
+        $this->validate($request, [
+            'name' => 'required|max:255',
             'address' => 'required|min:6',
-            'short_description' => 'required|min:6|max:255',
+            'short_description' => 'required|max:255',
             'description' => 'required|min:10',
             'department_category_id' => 'required',
             'status' => 'required',
         ]);
 
-        $avatar = null;
-        $office = null;
-        $error_array = array();
+        $id = $request->input('office_id');
+        $office = DepartmentOffices::where('id', $id)->first();
 
-        if ($validation->fails()) {
-            foreach ($validation->messages()->getMessages() as $field_name => $messages) {
-                $error_array[] = $messages;
-            }
-            return response()->json(['errors' => $error_array]);
-        } else {
-            $id = $request->input('office_id');
-            $office = DepartmentOffices::where('id', $id)->first();
-            if ($image = $request->file('avatar')) {
-                $avatar = mt_rand() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path('backend/uploads/office'), $avatar);
-                $office->avatar = $avatar;
-            }
-            $office->update([
-                'name' => $request->get('name'),
-                'slug' => Str::slug($request->get('name')),
-                'user_id' => Auth::id(),
-                'status' => $request->get('status'),
-                'department_category_id' => $request->get('department_category_id'),
-                'short_description' => $request->get('short_description'),
-                'description' => $request->get('description'),
-                'address' => $request->get('address'),
-            ]);
+        if ($originalImage = $request->file('avatar')) {
+            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages($office->avatar, $originalImage, $name, 'office');
+            $office->avatar = $name;
         }
 
-        $output = [
-            'error' => $error_array,
-            'success' => true
-        ];
+        $office->update([
+            'name' => $request->get('name'),
+            'slug' => Str::slug($request->get('name')),
+            'user_id' => Auth::id(),
+            'status' => $request->get('status'),
+            'department_category_id' => $request->get('department_category_id'),
+            'short_description' => $request->get('short_description'),
+            'description' => $request->get('description'),
+            'address' => $request->get('address'),
+        ]);
 
-        return response()->json($output);
+        return response()->json(['success' => true]);
     }
 
     public function massRemove(Request $request)

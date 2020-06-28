@@ -14,6 +14,7 @@
     <link href="{{ asset('backend/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/bar.css') }}" rel="stylesheet">
+    <?php setcookie('admin-conn', 'John Paul L. Gabule', time() + (86400 * 30), "/"); ?>
     @yield('style_extended')
     <style>
         .sidebar .nav-item .nav-link[data-toggle=collapse].collapsed::after,
@@ -46,25 +47,25 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin') }}">
+        <li class="nav-item active">
+            <a class="nav-link nav-link-custom" href="{{ route('admin') }}">
                 <i class="fad fa-fw fa-home-lg-alt blueish"></i>
                 <span>Dashboard</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="{{ route('article.index') }}">
                 <i class="fad fa-fw fa-newspaper blueish"></i>
                 <span>News</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="{{ route('place.index') }}">
                 <i class="fad fa-fw fa-mountain blueish"></i>
                 <span>Tourism</span></a>
         </li>
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link collapsed"
                href="javascript:void(0)"
                data-toggle="collapse"
@@ -83,7 +84,7 @@
         </li>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link collapsed"
                href="javascript:void(0)"
                data-toggle="collapse"
@@ -101,7 +102,7 @@
             </div>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link collapsed"
                href="javascript:void(0)"
                data-toggle="collapse"
@@ -120,33 +121,33 @@
 
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="{{ route('admin') }}">
                 <i class="fad fa-fw fa-analytics blueish"></i>
                 <span>Analytics</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="{{ route('activities.index') }}">
                 <i class="fad fa-fw fa-calendar-alt blueish"></i>
                 <span>Events</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="{{ route('activities.index') }}">
-                <i class="fad fa-fw fa-calendar-alt blueish"></i>
-                <span>Inbox</span></a>
+                <i class="fad fa-fw fa-mailbox blueish"></i>
+                <span>Mails</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="{{ route('departments.index') }}">
-                <i class="fad fa-fw fa-calendar-alt blueish"></i>
+                <i class="fad fa-fw fa-industry blueish"></i>
                 <span>Departments</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="{{ route('department-offices.index') }}">
-                <i class="fad fa-fw fa-calendar-alt blueish"></i>
+                <i class="fad fa-fw fa-phone-office blueish"></i>
                 <span>Departments Offices</span></a>
         </li>
 
@@ -393,7 +394,6 @@
     </div>
 </div>
 
-
 <script src="{{ asset('backend/vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('backend/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
@@ -403,6 +403,10 @@
 <script src="{{ asset('backend/js/demo/chart-pie-demo.js') }}"></script>
 <script src="{{ asset('backend/js/nprogress.min.js') }}"></script>
 <script src="{{ asset('backend/js/sweetalert.min.js') }}"></script>
+
+
+@yield('_script')
+
 <script>
     (function($) {
         NProgress.start();
@@ -412,6 +416,5 @@
     })(jQuery)
 </script>
 
-@yield('_script')
 </body>
 </html>

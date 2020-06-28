@@ -333,8 +333,8 @@
                                 <img class="card-img" src="{{ $latestActivity->avatar !== null ? asset('/backend/uploads/activities/'.$latestActivity->avatar) : 'https://images.unsplash.com/photo-1573490647695-2892d0bf89e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=799&q=80' }}" style="max-height: 350px;"
                                      alt="Announcement Images">
                                 <h5 class="event-overlay p-3 m-0 bg-gold col-dirtyWhite font-weight-bold text-center">
-                                    {{ $latestActivity->display_date('day') }}
-                                    <br> {{ $month[$latestActivity->display_date('month')] }} {{ $latestActivity->display_date('year') }}
+{{--                                    {{ $latestActivity->display_date('day') }}--}}
+{{--                                    <br> {{ $month[$latestActivity->display_date('month')] }} {{ $latestActivity->display_date('year') }}--}}
 
                                 </h5>
                             </div>
@@ -370,7 +370,8 @@
                                             <small>
                                                 <i class="far fa-clock"></i>
                                                 <span class="event-date pl-1">
-                                                    {{ $activity->make_date() }}
+                                                    {{ $activity->time_gap($activity->opening_time) }} -
+                                                    {{ $activity->time_gap($activity->closing_time) }}
                                                 </span>
                                             </small>
                                             <small class="ml-md-3"><i class="fas fa-map-marker-alt"></i><span

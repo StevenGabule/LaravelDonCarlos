@@ -3,12 +3,14 @@
 namespace App;
 
 use DateTime;
+use Facade\FlareClient\Time\Time;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Activities extends Model
 {
     use SoftDeletes;
+
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
@@ -22,22 +24,23 @@ class Activities extends Model
 
     public function display_date($format)
     {
-        return date_parse($this->date_start)[$format];
+        return date_parse($this->event_start)[$format];
     }
 
     public function convert_date()
     {
-        return DateTime::createFromFormat('Y-m-d H:i:s',$this->date_start)->format('D, d M Y');
+        return DateTime::createFromFormat('Y-m-d H:i:s', $this->event_start)->format('D, d M Y');
     }
 
-    public function make_date(): string
+    public function time_gap($time): string
     {
-        $hour = (int)DateTime::createFromFormat('Y-m-d H:i:s',$this->date_start)->format('H');
-        if ($hour <= 12) {
-            return DateTime::createFromFormat('Y-m-d H:i:s',$this->date_start)->format('H:i A');
+        $openingTime = (int)DateTime::createFromFormat('H:i:s', $time)->format('H');
+
+        if ($openingTime <= 12) {
+            return DateTime::createFromFormat('H:i:s', $time)->format('H:i A');
         }
 
-        $setHour = $hour - 12;
-        return $setHour . ':'.DateTime::createFromFormat('Y-m-d H:i:s',$this->date_start)->format('i A');
+        $openHour = $openingTime - 12;
+        return $openHour . ':' . DateTime::createFromFormat('H:i:s', $time)->format('i A');
     }
 }

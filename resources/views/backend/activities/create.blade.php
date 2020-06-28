@@ -1,6 +1,9 @@
 @extends('backend.layouts.app')
 @section('style_extended')
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css"/>
+
 @stop
 @section('content')
     <div class="container-fluid">
@@ -8,7 +11,6 @@
             @csrf
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Write New Event</h1>
-
                 <div>
                     <a href="{{ route('activities.index') }}"
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
@@ -24,43 +26,93 @@
                             <div class="form-group">
                                 <label for="inputTitle">Title</label>
                                 <input type="text"
-                                       class="form-control form-control-sm rounded-0"
+                                       class="form-control form-control-sm"
                                        name="title"
-                                       id="inputTitle"
-                                       required
-                                       data-parsley-length="[6, 255]"
-                                       data-parsley-trigger="keyup">
-
+                                       id="inputTitle">
+                                <small id="nameMessage" class="form-text"></small>
                             </div>
+                            <div class="form-row">
+                                <div class="form-group col-4">
+                                    <label for="inputStartDate">Event Date</label>
+                                    <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                                        <input type="text"
+                                               id="inputEventStart"
+                                               name="event_start"
+                                               class="form-control form-control-sm datetimepicker-input"
+                                               data-toggle="datetimepicker"
+                                               data-target="#datetimepicker4"/>
+                                        <div class="input-group-append" data-target="#datetimepicker4"
+                                             data-toggle="datetimepicker">
+                                            <div class="input-group-text" >
+                                                <i class="fal fa-calendar-day"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <small id="eventStartMessage" class="form-text"></small>
+                                </div>
+
+                                <div class="form-group col-4">
+                                    <label for="inputOpeningTime">Opening Time</label>
+                                    <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                                        <input type="text"
+                                               id="inputOpeningTime"
+                                               name="opening_time"
+                                               class="form-control form-control-sm datetimepicker-input"
+                                               data-toggle="datetimepicker"
+                                               data-target="#datetimepicker3"/>
+                                        <div class="input-group-append" data-target="#datetimepicker3"
+                                             data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fal fa-clock"></i></div>
+                                        </div>
+                                    </div>
+                                    <small id="openingTimeMessage" class="form-text"></small>
+                                </div>
+
+                                <div class="form-group col-4">
+                                    <label for="inputClosingTime">Closing Time</label>
+                                    <div class="input-group date" id="datetimepicker5" data-target-input="nearest">
+                                        <input type="text"
+                                               class="form-control form-control-sm datetimepicker-input"
+                                               id="inputClosingTime"
+                                               name="closing_time"
+                                               data-toggle="datetimepicker"
+                                               data-target="#datetimepicker5"/>
+                                        <div class="input-group-append" data-target="#datetimepicker5"
+                                             data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fal fa-clock"></i></div>
+                                        </div>
+                                    </div>
+                                    <small id="closingTimeMessage" class="form-text"></small>
+                                </div>
+                            </div><!-- end of form row -->
 
                             <div class="form-group">
                                 <label for="inputShortDescription">Short Description</label>
                                 <textarea
                                     name="short_description" rows="2" id="inputShortDescription"
-                                    class="form-control form-control-sm" required
-                                    data-parsley-length="[6, 255]"
-                                    data-parsley-trigger="keyup"></textarea>
+                                    class="form-control form-control-sm"></textarea>
+                                <small id="shortDescriptionMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputAddress">Address</label>
                                 <textarea
                                     name="address"
-                                    rows="2" id="inputAddress" class="form-control form-control-sm"
-                                    required
-                                    data-parsley-length="[6, 255]"
-                                    data-parsley-trigger="keyup"></textarea>
+                                    rows="2" id="inputAddress" class="form-control form-control-sm"></textarea>
+                                <small id="addressMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputDescription">Description</label>
                                 <textarea name="description" id="inputDescription"
-                                          class="form-control inputDescription rounded-0" required
-                                          data-parsley-trigger="keyup"></textarea>
+                                          class="form-control form-control-sm"></textarea>
+                                <small id="descriptionMessage" class="form-text"></small>
                             </div>
+
                         </div>
                     </div>
                 </div>
+
                 <div class="col-xl-3 col-lg-4">
                     <div class="card shadow mb-4">
                         <!-- Card Body -->
@@ -84,8 +136,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control" required>
+                                <label for="inputStatus">Status</label>
+                                <select name="status" id="inputStatus" class="custom-select custom-select-sm">
                                     <option value="">-- Select the status --</option>
                                     <option value="1">Published</option>
                                     <option value="0">Draft</option>
@@ -93,20 +145,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="dateStart">Started Date</label>
-                                <input type="datetime-local"
-                                       id="dateStart" class="form-control form-control-sm" name="date_start" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="dateEnd">End Date</label>
-                                <input type="datetime-local"
-                                       id="dateEnd" class="form-control form-control-sm" name="date_end" required>
-                            </div>
-
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    <i class="fad fa-save fa-fw mr-2"></i>Save
+                                <button type="submit" class="btn btn-primary btn-sm" id="btnSave">
+                                    <i class="fad fa-save fa-fw mr-2"></i> Save
                                 </button>
                             </div>
                         </div>
@@ -119,11 +159,25 @@
 
 @section('_script')
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
+    <script src="{{ asset('backend/js/moment.min.js') }}"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
     <script>
-        $('#activitiesForm').parsley();
 
         $(document).ready(function () {
+
+            $('#datetimepicker4').datetimepicker({
+                defaultDate: moment().format('L'),
+                format: 'L'
+            });
+
+            $('#datetimepicker3').datetimepicker({
+                format: 'LT'
+            });
+
+            $('#datetimepicker5').datetimepicker({
+                format: 'LT'
+            });
 
             $('#inputDescription').summernote({
                 tabSize: 2,
@@ -143,28 +197,133 @@
                 readURL(this);
             });
 
-            /* CREATING AN ARTICLE */
             $('#activitiesForm').on('submit', function (e) {
                 e.preventDefault();
-                if ($('#activitiesForm').parsley().isValid()) {
-                    $.ajax({
-                        url: '{{ route('activities.store') }}',
-                        method: 'POST',
-                        data: new FormData(this),
-                        contentType: false,
-                        cache: false,
-                        processData: false,
-                        dataType: 'json',
-                        success: ({id, success, error}) => {
-                            if (error.length > 0) {
-                                console.log(error);
-                            }
-                            if (success) {
-                                window.location.href = `${id}/edit?created`
-                            }
+                const x = $("#btnSave");
+
+                const _title = $("#inputTitle");
+                const _event_start = $("#inputEventStart");
+                const _opening_time = $("#inputOpeningTime");
+                const _closing_time = $("#inputClosingTime");
+                const _short_description = $("#inputShortDescription");
+                const _description = $("#inputDescription");
+                const _address = $("#inputAddress");
+                const _status = $("#inputStatus");
+
+                const _titleMsg = $("#titleMessage");
+                const _eventStartMsg = $("#eventStartMessage");
+                const _openingTimeMsg = $("#openingTimeMessage");
+                const _closingTimeMsg = $("#closingTimeMessage");
+                const _short_descriptionMsg = $("#shortDescriptionMessage");
+                const _descriptionMsg = $("#descriptionMessage")
+                const _addressMsg = $("#addressMessage");
+                const _statusMsg = $("#statusMessage");
+
+                $.ajax({
+                    url: '{{ route('activities.store') }}',
+                    method: 'POST',
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType: 'json',
+                    beforeSend: () => {
+                        $("#inputTitle, #inputEventDate, #inputOpeningTime, #inputClosingTime, #inputShortDescription, #inputDescription, #inputAddress, #inputStatus")
+                            .removeClass(['is-valid', 'is-invalid']);
+                        $("#titleMessage, #eventStartMessage, #openingTimeMessage, #closingTimeMessage, " +
+                            "#descriptionMessage, #shortDescriptionMessage, #addressMessage, #statusMessage")
+                            .removeClass(['text-success', 'text-danger']);
+                        x.attr('disabled', true);
+                        x.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> SAVING...`)
+                    },
+                    success: ({id}) => {
+                        x.attr('disabled', false);
+                        x.html(`<i class="fad fa-save mr-2"></i> Saving`);
+                        window.location.href = `${id}/edit?created`
+                    },
+                    error: err => {
+                        x.attr('disabled', false);
+                        x.html(`<i class="fad fa-save mr-2"></i> Saving`);
+                        const {title,
+                            short_description,
+                            description,
+                            event_start,
+                            opening_time,
+                            closing_time, status, address} = err.responseJSON.errors;
+                        console.log(err.responseJSON.errors);
+                        // name
+                        if (title && title[0].length > 0) {
+                            _title.addClass('is-invalid');
+                            _titleMsg.addClass('text-danger').text(title[0]);
+                        } else {
+                            _title.addClass('is-valid');
+                            _titleMsg.addClass('text-success').text("Looks good.");
                         }
-                    }).fail((err) => console.log(err))
-                }
+
+                        // status
+                        if (status && status[0].length > 0) {
+                            _status.addClass('is-invalid');
+                            _statusMsg.addClass('text-danger').text(status[0]);
+                        } else {
+                            _status.addClass('is-valid');
+                            _statusMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // address
+                        if (address && address[0].length > 0) {
+                            _address.addClass('is-invalid');
+                            _addressMsg.addClass('text-danger').text(address[0]);
+                        } else {
+                            _address.addClass('is-valid');
+                            _addressMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // short description
+                        if (short_description && short_description[0].length > 0) {
+                            _short_description.addClass('is-invalid');
+                            _short_descriptionMsg.addClass('text-danger').text(short_description[0]);
+                        } else {
+                            _short_description.addClass('is-valid');
+                            _short_descriptionMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // description
+                        if (description && description[0].length > 0) {
+                            _description.addClass('is-invalid');
+                            _descriptionMsg.addClass('text-danger').text(description[0]);
+                        } else {
+                            _description.addClass('is-valid');
+                            _descriptionMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // event start
+                        if (event_start && event_start[0].length > 0) {
+                            _event_start.addClass('is-invalid');
+                            _eventStartMsg.addClass('text-danger').text(event_start[0]);
+                        } else {
+                            _event_start.addClass('is-valid');
+                            _eventStartMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // opening time
+                        if (opening_time &&opening_time[0].length > 0) {
+                            _opening_time.addClass('is-invalid');
+                            _openingTimeMsg.addClass('text-danger').text(opening_time[0]);
+                        } else {
+                            _opening_time.addClass('is-valid');
+                            _openingTimeMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // closing time
+                        if (closing_time && closing_time[0].length > 0) {
+                            _closing_time.addClass('is-invalid');
+                            _closingTimeMsg.addClass('text-danger').text(closing_time[0]);
+                        } else {
+                            _closing_time.addClass('is-valid');
+                            _closingTimeMsg.addClass('text-success').text("Looks good.");
+                        }
+                    }
+                }).fail((err) => console.log(err))
             })
         });
     </script>

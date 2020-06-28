@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Baranggay;
+use App\Traits\ImageHandle;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,7 @@ use Yajra\DataTables\DataTables;
 
 class BaranggayController extends Controller
 {
+    use ImageHandle;
 
     public function index()
     {
@@ -42,17 +44,17 @@ class BaranggayController extends Controller
                         <a class='dropdown-item' href='$data->id'><i class='fad fa-eye mr-2'></i> View</a>
                         <a class='dropdown-item' id='$data->id' href='/admin/baranggays/$data->id/edit'><i class='fad fa-file-edit mr-2'></i> Edit</a>
                         <a class='dropdown-item removeBaranggay' id='$data->id' href='javascript:void(0)'>
-                            <i class='fad fa-trash-undo-alt mr-2'></i> Move Trash  
+                            <i class='fad fa-trash-undo-alt mr-2'></i> Move Trash
                         </a>" : "<a class='dropdown-item removeBaranggay' id='$data->id' href='javascript:void(0)'>
-                            <i class='fad fa-trash mr-2'></i> Delete 
+                            <i class='fad fa-trash mr-2'></i> Delete
                         </a>";
             $btnRestore = ($data->deleted_at !== null) ? "<a class='dropdown-item restoreBaranggay' id='$data->id' href='javascript:void(0)'>
-                            <i class='fad fa-trash-restore-alt mr-2'></i> Restore 
+                            <i class='fad fa-trash-restore-alt mr-2'></i> Restore
                         </a>" : null;
             $button = <<<EOT
                 <div class="dropdown no-arrow" style="width:50px">
                   <a href="javascript:void(0)" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fad fa-ellipsis-h"></i> 
+                        <i class="fad fa-ellipsis-h"></i>
                   </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" style="font-size: 13px;">
                         <h6 class="dropdown-header">Actions</h6>
@@ -64,7 +66,7 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="baranggay_checkbox[]" class="baranggay_checkbox" value="{{$id}}" />')
             ->editColumn('avatar', static function ($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/baranggays/small/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -78,20 +80,19 @@ EOT;
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|min:6|max:255',
+            'name' => 'required',
             'status' => 'required',
-            'short_description' => 'required|min:6|max:255',
-            'description' => 'required|min:10',
+            'short_description' => 'required',
+            'description' => 'required',
             'population' => 'required',
-            'address' => 'required|min:10',
+            'address' => 'required',
         ]);
 
-        $new_name = null;
+        $name = null;
 
-        if ($image = $request->file('avatar')) {
-            $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('backend/uploads/baranggays'), $new_name);
-            $new_name = "backend/uploads/baranggays/$new_name";
+        if ($originalImage = $request->file('avatar')) {
+            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage, $name, 'baranggays');
         }
 
         $sa = Baranggay::create([
@@ -100,7 +101,7 @@ EOT;
             'user_id' => Auth::id(),
             'population' => $request->get('population'),
             'status' => $request->get('status'),
-            'avatar' => $new_name,
+            'avatar' => $name,
             'short_description' => $request->get('short_description'),
             'description' => $request->get('description'),
             'address' => $request->get('address'),
@@ -115,57 +116,54 @@ EOT;
         return view('backend.baranggay.edit', compact('baranggay'));
     }
 
-    public function updateAjax(Request $request){
-        $validation = Validator::make($request->all(), [
-            'name' => 'required|min:6|max:255',
+    public function updateAjax(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
             'status' => 'required',
-            'short_description' => 'required|min:6|max:255',
-            'description' => 'required|min:10',
+            'short_description' => 'required',
+            'description' => 'required',
             'population' => 'required',
-            'address' => 'required|min:10',
+            'address' => 'required',
         ]);
 
 
-        $error_array = array();
-        if ($validation->fails()) {
-            foreach ($validation->messages()->getMessages() as $field_name => $messages) {
-                $error_array[] = $messages;
-            }
-        } else {
-            $baranggay = Baranggay::findOrFail($request->input('baranggay_id'));
+        $baranggay = Baranggay::findOrFail($request->input('baranggay_id'));
 
-            if ($image = $request->file('avatar')) {
-                $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path('backend/uploads/baranggays'), $new_name);
-                $baranggay->avatar = "backend/uploads/baranggays/$new_name";
-            }
-
-            $baranggay->update([
-                'name' => $request->get('name'),
-                'slug' => Str::slug($request->get('name')),
-                'user_id' => Auth::id(),
-                'population' => $request->get('population'),
-                'status' => $request->get('status'),
-                'short_description' => $request->get('short_description'),
-                'description' => $request->get('description'),
-                'address' => $request->get('address'),
-            ]);
+        if ($originalImage = $request->file('avatar')) {
+            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages($baranggay->avatar, $originalImage, $name, 'baranggays');
+            $baranggay->avatar = $name;
         }
-        $output = [
-            'error' => $error_array,
-            'success' => true
-        ];
-        return response()->json($output);
+
+        $baranggay->update([
+            'name' => $request->get('name'),
+            'slug' => Str::slug($request->get('name')),
+            'user_id' => Auth::id(),
+            'population' => $request->get('population'),
+            'status' => $request->get('status'),
+            'short_description' => $request->get('short_description'),
+            'description' => $request->get('description'),
+            'address' => $request->get('address'),
+        ]);
+
+        return response()->json(['success' => true]);
     }
 
     public function kill(Request $request)
     {
         $ids = $request->input('id');
         if (is_array($ids)) {
-            Baranggay::withTrashed()->whereIn('id', $ids)->forceDelete();
+            foreach ($ids as $id) {
+                $baranggay= Baranggay::withTrashed()->where('id', $id)->first();
+                $this->removeImages($baranggay->avatar, 'baranggays');
+                $baranggay->forceDelete();
+            }
             return response()->json(['success' => true]);
         }
-        Baranggay::withTrashed()->where('id', $ids)->first()->forceDelete();
+        $one = Baranggay::withTrashed()->where('id', $ids)->first();
+        $this->removeImages($one->avatar, 'baranggays');
+        $one->forceDelete();
         return response()->json(['success' => true]);
     }
 

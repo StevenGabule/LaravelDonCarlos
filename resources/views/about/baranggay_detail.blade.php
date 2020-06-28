@@ -70,7 +70,7 @@
                         <div class="col-6 col-md-4 col-lg-3 p-2">
                             <a href="javascript:void(0)" style="cursor: default" class="about-page-link">
                                 <div class="shadow-sm pb-1">
-                                    <img src="{{ $official->avatar !== null ? asset('/backend/uploads/officials/'.$official->avatar) : asset('assets/images/blank.png') }}"
+                                    <img src="{{ $official->avatar !== null ? asset('/backend/uploads/officials/thumbnail/'.$official->avatar) : asset('assets/images/blank.png') }}"
                                          class="img-fluid" alt="">
                                     <h6 class="font-oswald-bold mt-4 px-3">{{$official->name}}</h6>
                                     <p class="font-weight-bold px-3">Baranggay {{ $position[$official->position] }}</p>

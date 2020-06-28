@@ -131,7 +131,6 @@
                 readURL(this);
             });
 
-            /* CREATING AN ARTICLE */
             $('#baranggayForm').on('submit', function (e) {
                 e.preventDefault();
                 const x = $("#btnSave");
@@ -151,7 +150,7 @@
                 const _descriptionMsg = $("#descriptionMessage")
 
                 $.ajax({
-                    url: 'adadd{{ route('baranggays.store') }}',
+                    url: '{{ route('baranggays.store') }}',
                     method: 'POST',
                     data: new FormData(this),
                     contentType: false,
@@ -173,7 +172,7 @@
                         x.attr('disabled', false);
                         x.html(`<i class="fad fa-save mr-2"></i> Saving`);
                         const {name, description, short_description, status, population, address} = err.responseJSON.errors;
-
+                        console.log(err.responseJSON.errors);
                         // name
                         if (name && name[0].length > 0) {
                             _name.addClass('is-invalid');

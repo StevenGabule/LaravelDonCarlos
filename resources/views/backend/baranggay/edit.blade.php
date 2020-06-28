@@ -40,37 +40,33 @@
                                        class="form-control form-control-sm rounded-0"
                                        name="name"
                                        id="inputName"
-                                       value="{{ $baranggay->name }}"
-                                       required
-                                       data-parsley-pattern="[a-zA-Z0-9., ]+$"
-                                       data-parsley-length="[6, 50]"
-                                       data-parsley-trigger="keyup">
-
+                                       value="{{ $baranggay->name }}">
+                                <small id="nameMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputShortDescription">Short Description</label>
                                 <textarea
                                     name="short_description" rows="2" id="inputShortDescription"
-                                    class="form-control form-control-sm" required data-parsley-pattern="[a-zA-Z, .0987654321]+$"
-                                    data-parsley-length="[6, 255]"
-                                    data-parsley-trigger="keyup">{{ $baranggay->short_description }}</textarea>
+                                    class="form-control form-control-sm">{{ $baranggay->short_description }}</textarea>
+                                <small id="shortDescriptionMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputAddress">Address</label>
                                 <textarea
                                     name="address"
-                                    rows="2" id="inputAddress" class="form-control form-control-sm"
-                                    required data-parsley-pattern="[a-zA-Z0123456789 -.,]+$"
-                                    data-parsley-trigger="keyup">{{ $baranggay->address }}</textarea>
+                                    rows="2" id="inputAddress"
+                                    class="form-control form-control-sm">{{ $baranggay->address }}</textarea>
+                                <small id="addressMessage" class="form-text"></small>
+
                             </div>
 
                             <div class="form-group">
                                 <label for="inputDescription">Description</label>
                                 <textarea name="description" id="inputDescription"
-                                          class="form-control inputDescription rounded-0" required
-                                          data-parsley-trigger="keyup">{!! $baranggay->description !!}</textarea>
+                                          class="form-control inputDescription rounded-0">{!! $baranggay->description !!}</textarea>
+                                <small id="descriptionMessage" class="form-text"></small>
                             </div>
 
                         </div>
@@ -95,7 +91,8 @@
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
                                 @if($baranggay->avatar !== null)
-                                    <img src="{{ asset($baranggay->avatar) }}" class="img-fluid" id="previewImage" alt="">
+                                    <img src="{{ asset('/backend/uploads/baranggays/large/'.$baranggay->avatar) }}"
+                                         class="img-fluid" id="previewImage" alt="">
                                 @else
                                     <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>
                                     <img src="" class="img-fluid" id="previewImage" alt="">
@@ -103,23 +100,27 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control" required>
+                                <label for="inputStatus">Status</label>
+                                <select name="status" id="inputStatus" class="form-control">
                                     <option value="">-- Select the status --</option>
-                                    <option value="1" {{ (int)$baranggay->status === 1 ? 'selected' : '' }}>Published</option>
-                                    <option value="0" {{ (int)$baranggay->status === 0 ? 'selected' : '' }}>Draft</option>
+                                    <option value="1" {{ (int)$baranggay->status === 1 ? 'selected' : '' }}>Published
+                                    </option>
+                                    <option value="0" {{ (int)$baranggay->status === 0 ? 'selected' : '' }}>Draft
+                                    </option>
                                 </select>
+                                <small id="statusMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputPopulation">Number of Population</label>
                                 <input type="text" id="inputPopulation" value="{{ $baranggay->population }}"
-                                       class="form-control form-control-sm" name="population" required>
+                                       class="form-control form-control-sm" name="population">
+                                <small id="populationMessage" class="form-text"></small>
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    <i class="fad fa-save fa-fw mr-2"></i>Update
+                                <button type="submit" class="btn btn-primary btn-sm" id="btnSave">
+                                    <i class="fad fa-save fa-fw mr-2"></i> Update
                                 </button>
                             </div>
                         </div>
@@ -132,10 +133,8 @@
 
 @section('_script')
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
 
     <script>
-        $('#baranggayForm').parsley();
 
         $(document).ready(function () {
 
@@ -157,36 +156,115 @@
                 readURL(this);
             });
 
-            /* UPDATING AN ARTICLE */
             const url_string = window.location.href;
             const url = new URL(url_string);
             const _created = url.href.split('/')[6].split('?')[1];
-
             if (_created === 'created') {
-                const x = $(".alert.alert-success");
+                const x = $(".alert.alert-primary");
                 setTimeout(() => x.toggleClass('d-none'), 3000);
                 x.toggleClass('d-none');
             }
 
-            /* CREATING AN ARTICLE */
             $('#baranggayForm').on('submit', function (e) {
                 e.preventDefault();
-                if ($('#baranggayForm').parsley().isValid()) {
-                    $.ajax({
-                        url: '{{ route('ba.update.ajax') }}',
-                        method: 'POST',
-                        data: new FormData(this),
-                        contentType: false,
-                        cache: false,
-                        processData: false,
-                        dataType: 'json',
-                        success: ({success}) => {
-                            if (success) {
-                                $(".alert.alert-primary").toggleClass('d-none');
-                            }
+                const x = $("#btnSave");
+
+                const _name = $("#inputName");
+                const _address = $("#inputAddress");
+                const _population = $("#inputPopulation");
+                const _status = $("#inputStatus");
+                const _short_description = $("#inputShortDescription");
+                const _description = $("#inputDescription");
+
+                const _nameMsg = $("#nameMessage");
+                const _addressMsg = $("#addressMessage");
+                const _populationMsg = $("#populationMessage");
+                const _statusMsg = $("#statusMessage");
+                const _short_descriptionMsg = $("#shortDescriptionMessage");
+                const _descriptionMsg = $("#descriptionMessage")
+
+                $.ajax({
+                    url: '{{ route('ba.update.ajax') }}',
+                    method: 'POST',
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType: 'json',
+                    beforeSend: () => {
+                        $(".alert.alert-primary").addClass('d-none');
+                        $("#inputStatus, #inputName, #inputAddress, #inputShortDescription, #inputDescription, #inputPopulation")
+                            .removeClass(['is-valid', 'is-invalid']);
+                        $("#nameMessage, #addressMessage, #statusMessage, #shortDescriptionMessage, #descriptionMessage, #populationMessage")
+                            .removeClass(['text-success', 'text-danger']);
+                        x.attr('disabled', true);
+                        x.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> UPDATING...`)
+                    },
+                    success: _ => {
+                        $(".alert.alert-primary").removeClass('d-none');
+                        x.attr('disabled', false);
+                        x.html(`<i class="fad fa-save mr-2"></i> Update`);
+                    },
+                    error: err => {
+                        x.attr('disabled', false);
+                        x.html(`<i class="fad fa-save mr-2"></i> Update`);
+                        const {name, description, short_description, status, population, address} = err.responseJSON.errors;
+                        console.log(err.responseJSON.errors);
+                        // name
+                        if (name && name[0].length > 0) {
+                            _name.addClass('is-invalid');
+                            _nameMsg.addClass('text-danger').text(name[0]);
+                        } else {
+                            _name.addClass('is-valid');
+                            _nameMsg.addClass('text-success').text("Looks good.");
                         }
-                    }).fail((err) => console.log(err))
-                }
+
+                        // status
+                        if (status && status[0].length > 0) {
+                            _status.addClass('is-invalid');
+                            _statusMsg.addClass('text-danger').text(status[0]);
+                        } else {
+                            _status.addClass('is-valid');
+                            _statusMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // address
+                        if (address && address[0].length > 0) {
+                            _address.addClass('is-invalid');
+                            _addressMsg.addClass('text-danger').text(address[0]);
+                        } else {
+                            _address.addClass('is-valid');
+                            _addressMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // short description
+                        if (short_description && short_description[0].length > 0) {
+                            _short_description.addClass('is-invalid');
+                            _short_descriptionMsg.addClass('text-danger').text(short_description[0]);
+                        } else {
+                            _short_description.addClass('is-valid');
+                            _short_descriptionMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // description
+                        if (description && description[0].length > 0) {
+                            _description.addClass('is-invalid');
+                            _descriptionMsg.addClass('text-danger').text(description[0]);
+                        } else {
+                            _description.addClass('is-valid');
+                            _descriptionMsg.addClass('text-success').text("Looks good.");
+                        }
+
+                        // population
+                        if (population && population[0].length > 0) {
+                            _population.addClass('is-invalid');
+                            _populationMsg.addClass('text-danger').text(population[0]);
+                        } else {
+                            _population.addClass('is-valid');
+                            _populationMsg.addClass('text-success').text("Looks good.");
+                        }
+                    }
+                }).fail((err) => console.log(err))
             })
         })
     </script>

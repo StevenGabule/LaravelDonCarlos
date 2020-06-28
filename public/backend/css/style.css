@@ -253,3 +253,8 @@ tr.highlight {
 .swal-overlay {
     background-color: rgba(44, 119, 244, 0.45);
 }
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle,
+.btn-primary.disabled, .btn-primary:disabled {
+    border-color: transparent;
+}
+

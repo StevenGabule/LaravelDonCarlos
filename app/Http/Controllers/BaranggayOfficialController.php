@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Baranggay;
 use App\BaranggayOfficial;
+use App\Traits\ImageHandle;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
 use Yajra\DataTables\DataTables;
 
 class BaranggayOfficialController extends Controller
 {
+    use ImageHandle;
+
     public function index()
     {
         $baranggays = Baranggay::latest()->get();
@@ -65,7 +70,10 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="bo_checkbox[]" class="bo_checkbox" id="{{$id}}" value="{{$id}}" />')
             ->editColumn('avatar', static function ($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/officials/$data->avatar' alt='No Image found' class='rounded-circle' style='height: 32px;width: 32px' />";
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/officials/small/$data->avatar' alt='No Image found' class='rounded-circle' style='height: 32px;width: 32px' />";
+            })
+            ->editColumn('created_at', static function($data) {
+                return $data->created_at->format('d M Y');
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -88,12 +96,13 @@ EOT;
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
-        $new_name = null;
+        $name = null;
 
-        if ($image = $request->file('avatar')) {
-            $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('backend/uploads/officials'), $new_name);
+        if ($originalImage = $request->file('avatar')) {
+            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage, $name, 'officials');
         }
+
 
         BaranggayOfficial::create([
             'baranggay_id' => $request->baranggay_id,
@@ -102,7 +111,7 @@ EOT;
             'from' => $request->from,
             'to' => $request->to,
             'status' => $request->status,
-            'avatar' => $new_name
+            'avatar' => $name
         ]);
 
         return response()->json(['success' => true]);
@@ -134,9 +143,10 @@ EOT;
         $dataInsert = [];
 
         $captainImage = null;
-        if ($image = $request->file('avatarCapitan')) {
-            $captainImage = mt_rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('backend/uploads/officials'), $captainImage);
+
+        if ($originalImage1 = $request->file('avatarCapitan')) {
+            $captainImage = mt_rand() . '.' . $originalImage1->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage1, $captainImage, 'officials');
         }
 
         // captain
@@ -152,27 +162,29 @@ EOT;
         );
 
         $avatarChairman = null;
-        if ($image = $request->file('avatarChairman')) {
-            $avatarChairman = mt_rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('backend/uploads/officials'), $avatarChairman);
+
+        if ($originalImage2 = $request->file('avatarChairman')) {
+            $avatarChairman = mt_rand() . '.' . $originalImage2->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage2, $avatarChairman, 'officials');
         }
 
         // Chairman
         $dataInsert[] = array(
-            'baranggay_id' => $request->baranggay_id,
-            'name' => $request->name_chairman,
-            'position' => $request->position_chairman,
-            'from' => $request->from,
-            'to' => $request->to,
-            'status' => $request->status,
+            'baranggay_id' => $request->input('baranggay_id'),
+            'name' => $request->input('name_chairman'),
+            'position' => $request->input('position_chairman'),
+            'from' => $request->input('from'),
+            'to' => $request->input('to'),
+            'status' => $request->input('status'),
             'avatar' => $avatarChairman,
             'created_at' => Carbon::now(),
         );
 
         $avatarSecretary = null;
-        if ($image = $request->file('avatarSecretary')) {
-            $avatarSecretary = mt_rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('backend/uploads/officials'), $avatarSecretary);
+
+        if ($originalImage3 = $request->file('avatarSecretary')) {
+            $avatarSecretary = mt_rand() . '.' . $originalImage3->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage3, $avatarSecretary, 'officials');
         }
 
         // Secretary
@@ -189,12 +201,14 @@ EOT;
 
         // treasure
         $avatarTreasure = null;
-        if ($image = $request->file('avatarTreasurer')) {
-            $avatarTreasure = mt_rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('backend/uploads/officials'), $avatarTreasure);
+
+        if ($originalImage4 = $request->file('avatarTreasurer')) {
+            $avatarTreasure = mt_rand() . '.' . $originalImage4->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage4, $avatarTreasure, 'officials');
         }
 
-        $dataInsert[] = array('baranggay_id' => $request->baranggay_id,
+        $dataInsert[] = array(
+            'baranggay_id' => $request->baranggay_id,
             'name' => $request->name_treasurer,
             'position' => $request->position_treasure,
             'from' => $request->from,
@@ -203,7 +217,6 @@ EOT;
             'avatar' => $avatarTreasure,
             'created_at' => Carbon::now(),
         );
-
 
         foreach ($request->position_kagawad as $key => $v) {
             $data = array(
@@ -222,17 +235,6 @@ EOT;
         BaranggayOfficial::insert($dataInsert);
 
         return response()->json(['articles' => $request->all(), 'success' => true]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\baranggayOfficial $baranggay_official
-     * @return \Illuminate\Http\Response
-     */
-    public function show(baranggayOfficial $baranggay_official)
-    {
-        //
     }
 
     public function edit($id)
@@ -294,13 +296,14 @@ EOT;
         if ($error->fails()) {
             return response()->json(['errors' => $error->errors()->all()]);
         }
+
         $id = $request->input('official_id');
         $officials = BaranggayOfficial::findOrFail($id);
 
-        if ($image = $request->file('avatar')) {
-            $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('backend/uploads/officials'), $new_name);
-            $officials->avatar = $new_name;
+        if ($originalImage = $request->file('avatar')) {
+            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages($officials->avatar, $originalImage, $name, 'officials');
+            $officials->avatar = $name;
         }
 
         $officials->update([
@@ -315,25 +318,20 @@ EOT;
         return response()->json(['success' => true]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\baranggayOfficial $baranggay_official
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(baranggayOfficial $baranggay_official)
-    {
-        //
-    }
-
     public function kill(Request $request)
     {
         $ids = $request->input('id');
         if (is_array($ids)) {
-            BaranggayOfficial::withTrashed()->whereIn('id', $ids)->forceDelete();
+            foreach ($ids as $id) {
+                $official = BaranggayOfficial::withTrashed()->where('id', $id)->first();
+                $this->removeImages($official->avatar, 'officials');
+                $official->forceDelete();
+            }
             return response()->json(['success' => true]);
         }
-        BaranggayOfficial::withTrashed()->where('id', $ids)->first()->forceDelete();
+        $official = BaranggayOfficial::withTrashed()->where('id', $ids)->first();
+        $this->removeImages($official->avatar, 'officials');
+        $official->forceDelete();
         return response()->json(['success' => true]);
     }
 
@@ -383,5 +381,27 @@ EOT;
             BaranggayOfficial::insert($data);
             return response()->json(['success' => true], 200);
         }
+    }
+
+    public function uploadImages($old, $image, $name, $model)
+    {
+        $thumbnailImage = Image::make($image);
+        $thumbnailPath = public_path() . "/backend/uploads/$model/thumbnail/";
+        $avatarPath = public_path() . "/backend/uploads/$model/small/";
+
+        if ($old !== null) {
+            $this->removeImages($old, $model);
+        }
+
+        $thumbnailImage->resize(244, 244)->save($thumbnailPath . $name);
+        $thumbnailImage->resize(32, 32)->save($avatarPath . $name);
+    }
+
+    public function removeImages($image, $model)
+    {
+        $thumbnailPath = public_path() . "/backend/uploads/$model/thumbnail/$image";
+        $avatarPath = public_path() . "/backend/uploads/$model/small/$image";
+        if (File::exists($thumbnailPath)) File::delete($thumbnailPath);
+        if (File::exists($avatarPath)) File::delete($avatarPath);
     }
 }

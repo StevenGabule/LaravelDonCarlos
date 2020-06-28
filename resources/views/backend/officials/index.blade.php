@@ -391,7 +391,7 @@
                     </div><!-- end of modal body -->
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"  id="closeGroupModal">Close</button>
                         <button type="submit" class="btn btn-primary btn-sm" id="btn-group-official">Save changes
                         </button>
                     </div>
@@ -407,11 +407,10 @@
 @section('_script')
     <script src="{{ asset('backend/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('backend/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('backend/js/moment.min.js') }}"></script>
     <script>
-        console.clear();
+        var addRow = 1;
         $(document).ready(function () {
-            getBaranggays();
+            getBaranggayOfficials();
             $(document).on('change', '.bo_checkbox', function () {
                 selectRow(this)
             });
@@ -424,7 +423,7 @@
                 }
             }
 
-            function getBaranggays(type = 'all') {
+            function getBaranggayOfficials(type = 'all') {
                 /*1-kagawad|2-Captain|3-SK|4-Secretary|5-treasurer*/
                 const position = ['', 'Kagawad', 'Capitan', 'SK Chairman', 'Secretary', 'Treasurer'];
                 $('#officialsTable').DataTable({
@@ -474,7 +473,6 @@
                         {
                             data: 'created_at',
                             name: 'created_at',
-                            render: data => moment(data).format('L')
                         },
                         {
                             data: 'action',
@@ -487,25 +485,25 @@
             $(document).on('click', '.all', function (e) {
                 e.preventDefault();
                 $(".captionText").text('List of All Registered Baranggay Officials');
-                getBaranggays();
+                getBaranggayOfficials();
             });
 
             $(document).on('click', '.viewTrash', function (e) {
                 e.preventDefault();
                 $(".captionText").text('Trash Data');
-                getBaranggays('trash');
+                getBaranggayOfficials('trash');
             });
 
             $(document).on('click', '.drafted', function (e) {
                 e.preventDefault();
                 $(".captionText").text('Un-Published');
-                getBaranggays('drafted');
+                getBaranggayOfficials('drafted');
             });
 
             $(document).on('click', '.published', function (e) {
                 e.preventDefault();
                 $(".captionText").text('Published');
-                getBaranggays('published');
+                getBaranggayOfficials('published');
             });
 
             $(document).on('click', '.trash', function (e) {
@@ -714,16 +712,19 @@
             const fas = $('.faGoneCap');
             readURLOfficers(this, elem, fas);
         });
+
         $("#inputAvatarChairman").change(function () {
             const elem = $('#previewImageChairman');
             const fas = $('.faGoneCha');
             readURLOfficers(this, elem, fas);
         });
+
         $("#inputAvatarSecretary").change(function () {
             const elem = $('#previewImageSec');
             const fas = $('.faGoneSec');
             readURLOfficers(this, elem, fas);
         });
+
         $("#inputAvatarTreasurer").change(function () {
             const elem = $('#previewImageTrea');
             const fas = $('.faGoneTrea');
@@ -817,6 +818,7 @@
         });
 
         $(document).on('click', '#newGroupOfficial', function () {
+            console.log(addRow)
             $("#NameModalLabel").text('Register Group Officers');
             $("#OfficialGroupForm")[0].reset();
             $(".fa-group-goner").removeClass('d-none');
@@ -868,6 +870,13 @@
                     $("#form_group_result").html(html);
                     x.attr('disabled', false);
                     x.html('Save Changes');
+
+                    for(let i = 0; i < addRow; i++) {
+                        $('#row' + i).remove();
+                    }
+                    addRow = 1;
+                    $("#kagawadLimit").addClass('d-none');
+                    add_kagawad()
                 },
                 error: err => {
                     console.error(err);
@@ -912,24 +921,32 @@
         }
 
         add_kagawad();
-        var count = 1;
+
         $(document).on('click', '#add_more', function () {
-            if (count <= 6) {
-                count = count + 1;
-                add_kagawad(count);
+            if (addRow <= 6) {
+                add_kagawad(addRow);
+                addRow += 1;
             } else {
                 $("#kagawadLimit").removeClass('d-none');
             }
-
         });
 
         $(document).on('click', '.remove', function () {
             let row_no = $(this).attr("id");
-            count = count - 1;
+            addRow -=1;
             $('#row' + row_no).remove();
             $("#kagawadLimit").addClass('d-none');
         });
 
-        console.clear();
+        $(document).on('click', '#closeGroupModal', function () {
+            for(let i = 0; i < addRow; i++) {
+                $('#row' + i).remove();
+            }
+            addRow = 1;
+            $("#kagawadLimit").addClass('d-none');
+            add_kagawad()
+            console.log(addRow);
+        })
+
     </script>
 @stop

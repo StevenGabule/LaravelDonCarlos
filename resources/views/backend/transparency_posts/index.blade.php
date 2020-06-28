@@ -139,7 +139,7 @@
                                     <th data-orderable="false">
                                         <input type="checkbox" name="checkAll" id="checkAllIds">
                                     </th>
-                                    <th style="width:20%">Category</th>
+                                    <th style="width:20%">Service</th>
                                     <th>Name</th>
                                     <th>Views</th>
                                     <th>Status</th>
