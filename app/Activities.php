@@ -29,7 +29,7 @@ class Activities extends Model
 
     public function convert_date()
     {
-        return DateTime::createFromFormat('Y-m-d H:i:s', $this->event_start)->format('D, d M Y');
+        return DateTime::createFromFormat('Y-m-d', $this->event_start)->format('D, d M Y');
     }
 
     public function time_gap($time): string
@@ -42,5 +42,10 @@ class Activities extends Model
 
         $openHour = $openingTime - 12;
         return $openHour . ':' . DateTime::createFromFormat('H:i:s', $time)->format('i A');
+    }
+
+    public function display_image(): string
+    {
+        return $this->avatar !== null ? asset('/backend/uploads/activities/large/'.$this->avatar) : 'https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80';
     }
 }

@@ -72,6 +72,14 @@ EOT;
                 return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/activities/small/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
             })->editColumn('event_start', static function ($data) {
                 return DateTime::createFromFormat('Y-m-d', $data->event_start)->format('M d Y');
+            })->editColumn('opening_time', static function ($data) {
+                $hour = (int)DateTime::createFromFormat('H:m:s', $data->opening_time)->format('H');
+                if ($hour <= 12) {
+                    return DateTime::createFromFormat('H:m:s', $data->opening_time)->format('H:i');
+                }
+                $setHour = $hour - 12;
+                return $setHour . DateTime::createFromFormat('H:m:s', $data->opening_time)->format(':i');
+
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);

@@ -54,7 +54,7 @@
                             <div class="col-12 col-sm-6 col-lg-4 pt-3">
                                 <div class="card shadow-sm border-0 bg-light p-3">
                                     <img class="card-img"
-                                         src="{{ $new->avatar ? asset('/backend/uploads/articles/'.$new->avatar) : asset('assets/icons/images.svg') }}"
+                                         src="{{ $new->avatar ? asset('/backend/uploads/articles/thumbnail/'.$new->avatar) : asset('assets/icons/images.svg') }}"
                                          style="max-height: 150px;"
                                          alt="Announcement Images">
                                     <div class="d-flex flex-row">
@@ -117,43 +117,7 @@
                     <h5 class="font-oswald-bold">Featured Post</h5>
                     <hr class="hr-thin">
                     <div class="row">
-                        <div class="col-12 col-sm-6 col-lg-12 pt-3">
-                            <div class="card bg-light shadow-sm border-0">
-                                <div>
-                                    <img class="card-img" src="assets/images/munhall2.jpg" style="max-height: 150px;"
-                                         alt="Announcement Images">
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="card-title font-weight-bold">2 FEB : Magkakaroon ng emergency sa
-                                        pri....</h6>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                        diam nonumy</p>
-                                    <button class="btn btn-outline-gold px-4 py-1">
-                                        <small>More Info</small>
-                                    </button>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-lg-12 pt-3">
-                            <div class="card bg-light shadow-sm border-0">
-                                <div>
-                                    <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                                    <img class="card-img" src="assets/images/munhall2.jpg" style="max-height: 150px;"
-                                         alt="Announcement Images">
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="card-title font-weight-bold">2 FEB : Magkakaroon ng emergency sa
-                                        pri....</h6>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                        diam nonumy</p>
-                                    <button class="btn btn-outline-gold px-4 py-1">
-                                        <small>More Info</small>
-                                    </button>
-                                </div>
-
-                            </div>
-                        </div>
+                        @include('_shared._articles')
                     </div>
                 </div>
             </div>

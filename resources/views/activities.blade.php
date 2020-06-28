@@ -4,7 +4,7 @@
         $month = ["", 'Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept','Oct', 'Nov', 'Dec']
     @endphp
     <div class="trending-bg-banner-tourism position-relative"
-         style="background-image: url('{{ asset('/backend/uploads/activities/'.$upcoming->avatar) }}'); margin-top: -24px;">
+         style="background-image: url('{{ asset('/backend/uploads/activities/large/'.$upcoming->avatar) }}'); margin-top: -24px;">
         <div class="trending-bg-banner-overlay h-100">
             <div class="container col-dirtyWhite h-100">
                 <div class="col-12 col-md-6 h-100">
@@ -16,8 +16,8 @@
                                 {{ (int)strlen($upcoming->title) <= 48 ? $upcoming->title : substr($upcoming->title, 0, 48) . '...' }}
                             </h2>
                             <div class="d-flex flex-column flex-md-row">
-                                <p><i class="far fa-clock"></i><span
-                                        class="pl-1">{{ $upcoming->make_date() }}</span>
+                                <p><i class="far fa-clock"></i>
+                                    <span class="pl-1">{{ $upcoming->convert_date() }}</span>
                                 </p>
                                 <p class="ml-md-3">
                                     <i class="fas fa-map-marker-alt"></i>
@@ -26,7 +26,8 @@
                             </div>
                             <p>{{ $upcoming->short_description }}</p>
                             <h6 class="d-inline-block bg-gold px-4 py-2 text-white mt-3">
-                                {{ $upcoming->display_date('day') }} {{ $month[$upcoming->display_date('month')] }} {{ $upcoming->display_date('year') }}
+                                {{ $upcoming->display_date('day') }}
+                                {{ $month[$upcoming->display_date('month')] }} {{ $upcoming->display_date('year') }}
                             </h6>
                         </div>
                     </div>
@@ -45,7 +46,7 @@
                         <div class="position-relative">
                             <img class="card-img"
                                  src="{{ ($event->avatar !== null) ?
-                                            asset('/backend/uploads/activities/' . $event->avatar)
+                                            asset('/backend/uploads/activities/thumbnail/' . $event->avatar)
                                             : asset('assets/icons/images.svg') }}"
                                  style="max-height: 350px;"
                                  alt="{{ $event->title }}">
@@ -60,7 +61,7 @@
                             <div class="d-flex flex-column flex-md-row">
                                 <small>
                                     <i class="far fa-clock"></i>
-                                    <span class="event-date pl-1">{{ $event->make_date() }}</span>
+                                    <span class="event-date pl-1">{{ $event->event_start }}</span>
                                 </small>
                                 <small class="ml-md-3">
                                     <i class="fas fa-map-marker-alt"></i>

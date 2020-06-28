@@ -86,7 +86,8 @@
                                     <th style="width: 50px">Image</th>
                                     <th style="width:24%">Title</th>
                                     <th>Date Start</th>
-                                    <th>Date End</th>
+                                    <th>Opening</th>
+                                    <th>Closing</th>
                                     <th>Status</th>
                                     <th>Date</th>
                                     <th>Actions</th>
@@ -154,9 +155,12 @@
                             name: 'event_start',
                         },
                         {
-                            data: 'date_end',
-                            name: 'date_end',
-                            render: _ => moment(_).format('LLL')
+                            data: 'closing_time',
+                            name: 'closing_time'
+                        },
+                        {
+                            data: 'opening_time',
+                            name: 'opening_time'
                         },
                         {
                             data: 'status',

@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-
+use Artesaos\SEOTools\Facades\SEOMeta;
 use App\Activities;
 use App\Article;
 use App\Baranggay;
-use App\BaranggayOfficial;
 use App\Message;
 use App\Place;
 use App\Services;
 use App\ServicesArticle;
 use App\Transparency;
 use App\TransparencyPost;
-use Carbon\Carbon;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,6 +20,14 @@ class PageController extends Controller
 {
     public function index()
     {
+        SEOTools::setTitle('Don Carlos Official Website');
+        SEOTools::setDescription('Don carlos official for news, programs');
+        SEOTools::opengraph()->setUrl(env('APP_URL'));
+        SEOTools::setCanonical(env('APP_URL'));
+        SEOTools::opengraph()->addProperty('type', 'articles');
+        SEOTools::twitter()->setSite(env('APP_URL'));
+        SEOTools::jsonLd()->addImage('');
+
         $services = Services::latest()->take(4)->get();
         $news = Article::with('user')
             ->where('status', 1)
@@ -29,16 +36,16 @@ class PageController extends Controller
             ->skip(1)
             ->get();
 
-        $latestNews = Article::latest()->first();
+        $latestNews = Article::latest()->firstOrFail();
 
         $activities = Activities::latest()->take(3)->skip(1)->get();
-        $latestActivity = Activities::latest()->first();
+        $latestActivity = Activities::latest()->firstOrFail();
         return view('index', compact('services', 'news', 'activities', 'latestActivity', 'latestNews'));
     }
 
     public function news_details($slug)
     {
-        $news = Article::whereSlug($slug)->first();
+        $news = Article::whereSlug($slug)->firstOrFail();
         $articles = Article::latest()->take(2)->get();
         return view('show-news', compact('news', 'articles'));
     }
@@ -77,17 +84,8 @@ class PageController extends Controller
 
     public function about_baranggay_detail($slug)
     {
-        /*
-         * SQL CODE
-         *
-         * select bo.name, bo.position, bo."from", bo."to", bo.baranggay_id, bo.created_at
-                from baranggays
-                         inner join baranggay_officials bo on baranggays.id = bo.baranggay_id
-                where baranggays.slug = 'barangay-maapag' and (bo."from" BETWEEN 2020 AND 2021)
-        */
-
         $articles = Article::latest()->take(2)->get();
-        $baranggay = Baranggay::whereSlug($slug)->first();
+        $baranggay = Baranggay::whereSlug($slug)->firstOrFail();
 
         $officials = $baranggay->baranggay_officials()->get();
         return view('about.baranggay_detail', compact('articles', 'baranggay', 'officials'));
@@ -97,7 +95,7 @@ class PageController extends Controller
     {
         $serviceType = Services::findOrFail($id);
         $services = Services::latest()->get();
-        $news = ServicesArticle::whereSlug($slug)->first();
+        $news = ServicesArticle::whereSlug($slug)->firstOrFail();
         $articles = Article::latest()->take(2)->get();
         return view('services-show-detail', compact('serviceType', 'news', 'services', 'id', 'articles'));
     }
@@ -112,7 +110,7 @@ class PageController extends Controller
     public function transparencyShow($slug)
     {
         $articles = Article::latest()->take(2)->get();
-        $transparent = Transparency::whereSlug($slug)->first();
+        $transparent = Transparency::whereSlug($slug)->firstOrFail();
         $transparencies = Transparency::latest()->get();
         $posts = TransparencyPost::where('transparency_id', $transparent->id)->filter(request()->only(['q']))->paginate(10);
         return view('transparency-show', compact('posts', 'articles', 'transparent', 'transparencies', 'slug'));
@@ -121,8 +119,8 @@ class PageController extends Controller
     public function transparencyDetail($slug1, $slug2)
     {
         $articles = Article::latest()->take(2)->get();
-        $transparent = Transparency::whereSlug($slug1)->first();
-        $post = TransparencyPost::whereSlug($slug2)->first();
+        $transparent = Transparency::whereSlug($slug1)->firstOrFail();
+        $post = TransparencyPost::whereSlug($slug2)->firstOrFail();
         $transparencies = Transparency::latest()->get();
         return view('transparency-show-detail',
             compact('articles', 'transparent', 'transparencies', 'post', 'slug1', 'slug2'));
@@ -148,21 +146,21 @@ class PageController extends Controller
     public function tourismShow($slug)
     {
         $relatedPosts = Place::latest()->take(3)->get();
-        $place = Place::whereSlug($slug)->first();
+        $place = Place::whereSlug($slug)->firstOrFail();
         return view('tourism-show', compact('place', 'relatedPosts'));
     }
 
     public function activities()
     {
         $activities = Activities::latest()->orderBy('created_at', 'desc')->skip(1)->paginate(10);
-        $upcoming = Activities::latest()->first();
+        $upcoming = Activities::latest()->firstOrFail();
         return view('activities', compact('activities', 'upcoming'));
     }
 
     public function activitiesShowData($slug)
     {
-        $events = Activities::whereSlug($slug)->first();
         $relatedPosts = Activities::latest()->take(3)->get();
+        $events = Activities::whereSlug($slug)->firstOrFail();
         return view('activities-show', compact('events', 'relatedPosts'));
     }
 

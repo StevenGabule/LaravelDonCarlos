@@ -59,7 +59,7 @@
             <span class="px-2">></span>
             <a href="{{ route('transparency') }}">Transparency</a>
             <span class="px-2">></span>
-            <span class="">{{ $transparent->title }}</span>
+            <span>{{ $transparent->title }}</span>
         </nav>
         <hr class="hr-thin">
 

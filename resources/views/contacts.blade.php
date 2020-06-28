@@ -19,9 +19,9 @@
     <div class="container">
         <!-- tinanban kay para sa ako mas dali og mas sayon -->
         <nav aria-label="breadcrumb" class="about-breadcrumb h6 my-4">
-            <a href="">Home</a>
-            <span class="px-2">></span>
-            <a href="">Contact us</a>
+            <a href="{{ route('index') }}">Home</a>
+            <span class="px-2">&gt;</span>
+            <span>Contact us</span>
         </nav>
         <hr class="hr-thin">
         <div class="row my-4">

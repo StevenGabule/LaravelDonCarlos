@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+    {{--<title>{{ config('app.name', 'Laravel') }}</title>--}}
+    {!! SEOMeta::generate() !!}
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
@@ -110,16 +110,18 @@
 <article class="bg-green cnct-banner">
     <div class="container py-3">
         <div class="row">
-            <div class="col-12 col-md-8 col-dirtyWhite mb-3 font-weight-bold">
-                <span>If you have any concern... We are available</span>
+            <div class="col-12 col-md-8 col-dirtyWhite mb-0 font-weight-bold">
+                <p class="pt-3">If you have any concern... We are available</p>
             </div>
-            <div class="col-12 col-md-4 ">
-                <span class="ml-auto">
-                    <button class="btn btn-outline-banner btn-large w-100 font-weight-bold">
+
+            <div class="col-12 col-md-4">
+                <p class="ml-auto bottom-contact" style="padding-top: 7px !important;margin-bottom: 0 !important;">
+                    <a href="{{ route('contacts') }}" class="btn btn-outline-banner btn-large w-100 font-weight-bold">
                         Contact Us
-                    </button>
-                </span>
+                    </a>
+                </p>
             </div>
+
         </div>
     </div>
 </article>

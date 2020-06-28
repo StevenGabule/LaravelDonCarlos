@@ -258,3 +258,8 @@ tr.highlight {
     border-color: transparent;
 }
 
+
+.bottom-contact {
+    padding-top: 7px !important;
+    margin-bottom: 0 !important;
+}

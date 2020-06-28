@@ -120,7 +120,7 @@
                             <div>
                                 <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
                                 <img class="card-img max-height-250"
-                                     src="{{ $place->avatar !== null ? asset('/backend/uploads/places/'.$place->avatar) : asset('assets/icons/mountains.svg')  }}" alt="Announcement Images">
+                                     src="{{ $place->avatar !== null ? asset('/backend/uploads/places/original/'.$place->avatar) : asset('assets/icons/mountains.svg')  }}" alt="Announcement Images">
                             </div>
                             <div class="card-body">
                                 <h4 class="font-oswald-bold text-uppercase">

@@ -15,8 +15,8 @@
     <!-- breadcrumbs -->
     <div class="container">
         <nav aria-label="breadcrumb" class="about-breadcrumb h6 my-4">
-            <a href="">Home</a>
-            <span class="px-2">></span>
+            <a href="{{ route('index') }}">Home</a>
+            <span class="px-2">&gt;</span>
             <span>Know Don Carlos</span>
         </nav>
         <hr class="hr-thin" />

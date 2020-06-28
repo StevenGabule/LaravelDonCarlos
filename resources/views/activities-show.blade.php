@@ -10,7 +10,7 @@
     <!-- inlineng the background image so it can be dynamicaly change!!!! -->
     <!-- recommended background dimension 1920 x 1280 -->
     <div class="trending-bg-banner position-relative"
-         style="background-image: url('{{ $events->avatar !== null ? asset('/backend/uploads/activities/'.$events->avatar) : 'https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80' }}');margin-top: -24px;">
+         style="background-image: url('{{ $events->display_image() }}');margin-top: -24px;">
     </div>
 
     <div class="container">
@@ -18,7 +18,9 @@
             <h2 class="font-oswald-bold">{{ $events->title }}</h2>
             <p>
                 <i class="fas fa-calendar"></i>
-                <span class="pl-3 font-weight-bold">{{ $events->convert_date() }}</span>
+                <span class="pl-3 font-weight-bold">
+                    {{ $events->convert_date() }}
+                </span>
 
                 <i class="fas fa-map-marker-alt"></i>
                 <span class="pl-3 font-weight-bold">{{ $events->address }}</span>
@@ -34,7 +36,7 @@
                     <div class="card bg-light shadow-sm border-0">
                         <div>
                             <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                            <img class="card-img max-height-250" src="{{ $post->avatar !== null ? asset('/backend/uploads/places/'.$post->avatar) : asset('assets/icons/mountains.svg') }}"
+                            <img class="card-img max-height-250" src="{{ $post->avatar !== null ? asset('/backend/uploads/activities/large/'.$post->avatar) : asset('assets/icons/mountains.svg') }}"
                                  alt="Announcement Images">
                         </div>
                         <div class="card-body">
@@ -52,7 +54,7 @@
                     </div><!-- end of card -->
                 </div>
             @empty
-                <p>Oops...No related post.</p>
+                <p class="pl-3">Oops...No related post.</p>
             @endforelse
         </div><!-- end of row mb-4 -->
     </div>

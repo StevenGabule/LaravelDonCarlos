@@ -10,7 +10,7 @@
     <!-- inlineng the background image so it can be dynamicaly change!!!! -->
     <!-- recommended background dimension 1920 x 1280 -->
     <div class="about-bg-banner position-relative"
-         style="background: url('{{ asset('/backend/uploads/articles/large/'.$news->avatar) }}') no-repeat center center / cover;margin-top: -24px;">
+         style="background: url('{{ $news->display_image() }}') no-repeat center center / cover;margin-top: -24px;">
         <div class="trending-bg-banner-overlay h-100 ">
             <div class="container col-dirtyWhite h-100">
                 <div class="d-flex h-100">

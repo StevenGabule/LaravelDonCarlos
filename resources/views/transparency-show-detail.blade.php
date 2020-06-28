@@ -29,13 +29,14 @@
         <!-- tinanban kay para sa ako mas dali og mas sayon -->
         <nav aria-label="breadcrumb" class="about-breadcrumb h6 my-4">
             <a href="{{ route('index') }}">Home</a>
-            <span class="px-2">></span>
+            <span class="px-2">&gt;</span>
             <a href="{{ route('transparency') }}">Transparency</a>
-            <span class="px-2">></span>
-            <a href="/transparent/{{$transparent->title}}">{{ $transparent->title }}</a>
-            <span class="px-2">></span>
+            <span class="px-2">&gt;</span>
+            <a href="/transparent/{{$transparent->slug}}" class="text-capitalize">{{ $transparent->title }}</a>
+            <span class="px-2">&gt;</span>
             <span>{{ $post->title }}</span>
         </nav>
+
         <hr class="hr-thin">
 
         <div class="row my-4">
