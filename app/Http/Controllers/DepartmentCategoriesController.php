@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\DepartmentCategories;
-use App\TransparencyPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -21,7 +20,6 @@ class DepartmentCategoriesController extends Controller
     {
         $departments = DepartmentCategories::latest()->get();
         return DataTables::of($departments)->addColumn('action', static function ($data) {
-
             $button = <<<EOT
                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                   <button type="button" id="$data->id" class="btn btn-info btn-sm btnEdit">Edit</button>
@@ -33,7 +31,6 @@ EOT;
             return $data->created_at->format('d, M Y');
         })->rawColumns(['action', 'created_at'])->make(true);
     }
-
 
     public function store(Request $request)
     {
@@ -105,5 +102,4 @@ EOT;
         DepartmentCategories::findOrFail($id)->first()->delete();
         return response()->json(['success' => true]);
     }
-
 }

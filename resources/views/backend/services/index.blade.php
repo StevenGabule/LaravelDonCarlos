@@ -229,7 +229,6 @@
                 $("#NewEditServicesModal").modal('show');
             });
 
-            /* CREATING AN ARTICLE */
             $('#servicesForm').on('submit', function (e) {
                 e.preventDefault();
                 let formData = $(this).serialize();

@@ -12,8 +12,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Article extends Model
 {
     use SoftDeletes;
-    protected $guarded = [];
+
     protected $dates = ['deleted_at'];
+    protected $guarded = [];
 
     public function category(): BelongsTo
     {
@@ -43,10 +44,10 @@ class Article extends Model
         return $this->created_at->format('d M');
     }
 
-    public function scopeFilter($query, $filter) : void
+    public function scopeFilter($query, $filter): void
     {
         if (isset($filter['q']) && $term = strtolower($filter['q'])) {
-            $query->where(static function($q) use ($term) {
+            $query->where(static function ($q) use ($term) {
                 $q->orwhereRaw('LOWER(title) LIKE ?', ["%{$term}%"]);
                 $q->orwhereRaw('LOWER(short_description) LIKE ?', ["%{$term}%"]);
                 $q->orwhereRaw('LOWER(description) LIKE ?', ["%{$term}%"]);
@@ -54,7 +55,7 @@ class Article extends Model
         }
     }
 
-    public function display_image() : string
+    public function display_image(): string
     {
         return $this->avatar !== null ? "/backend/uploads/articles/large/$this->avatar" : 'https://images.unsplash.com/photo-1558449033-7ae045d2c81a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80';
     }

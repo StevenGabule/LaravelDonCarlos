@@ -119,5 +119,6 @@
     <orderEntry type="library" name="summernote" level="application" />
     <orderEntry type="library" name="parsley.js" level="application" />
     <orderEntry type="library" name="tempusdominus-bootstrap-4" level="application" />
+    <orderEntry type="library" name="dropzone" level="application" />
   </component>
 </module>

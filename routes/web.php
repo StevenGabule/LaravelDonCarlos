@@ -111,26 +111,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::get('department-offices-kill', 'DepartmentOfficesController@massRemove')->name('department-offices.massremove');
     Route::post('department-offices-updated', 'DepartmentOfficesController@updateOffice')->name('department-offices.updated');
 
+    Route::resource('file-upload', 'TransparencyFileController');
+    Route::get('file-render', 'TransparencyFileController@render')->name('file.render');
+    Route::post('file-mass-remove', 'TransparencyFileController@mass_remove')->name('file.mass.remove');
 
+    Route::resource('messages', 'MessageController');
+    Route::get('messages-all/{type}', 'MessageController@all')->name('messages.all');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

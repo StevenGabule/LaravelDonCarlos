@@ -14,7 +14,6 @@
     <link href="{{ asset('backend/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/bar.css') }}" rel="stylesheet">
-    <?php setcookie('admin-conn', 'John Paul L. Gabule', time() + (86400 * 30), "/"); ?>
     @yield('style_extended')
     <style>
         .sidebar .nav-item .nav-link[data-toggle=collapse].collapsed::after,
@@ -134,7 +133,7 @@
         </li>
 
         <li class="nav-item active">
-            <a class="nav-link" href="{{ route('activities.index') }}">
+            <a class="nav-link" href="{{ route('messages.index') }}">
                 <i class="fad fa-fw fa-mailbox blueish"></i>
                 <span>Mails</span></a>
         </li>
@@ -151,7 +150,11 @@
                 <span>Departments Offices</span></a>
         </li>
 
-
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ route('file-upload.index') }}">
+                <i class="fad fa-fw fa-cloud-upload-alt blueish"></i>
+                <span>Upload Files</span></a>
+        </li>
 
     </ul>
     <!-- End of Sidebar -->
@@ -358,8 +361,6 @@
                 </div>
             </div>
         </footer>
-        <!-- End of Footer -->
-
     </div>
     <!-- End of Content Wrapper -->
 
@@ -404,7 +405,6 @@
 <script src="{{ asset('backend/js/nprogress.min.js') }}"></script>
 <script src="{{ asset('backend/js/sweetalert.min.js') }}"></script>
 
-
 @yield('_script')
 
 <script>
@@ -415,6 +415,5 @@
         };
     })(jQuery)
 </script>
-
 </body>
 </html>
