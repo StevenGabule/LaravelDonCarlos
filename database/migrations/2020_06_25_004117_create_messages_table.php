@@ -21,8 +21,8 @@ class CreateMessagesTable extends Migration
             $table->string('subject');
             $table->string('email');
             $table->string('message');
-            $table->tinyInteger('status')->default(0)->comment('0-unread|1-read');
-            $table->tinyInteger('label')->default(3);
+            $table->tinyInteger('status')->default(0)->comment('0-unread|1-read|2-sent');
+            $table->tinyInteger('label')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

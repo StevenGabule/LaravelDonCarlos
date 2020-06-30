@@ -30,22 +30,21 @@
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/information_schema.FNRwLQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/John_paul.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/John_paul.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Article.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DepartmentCategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DepartmentCategoriesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Message.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Message.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/ReplyToUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/ReplyToUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/MessageFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/MessageFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_06_25_004117_create_messages_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_06_25_004117_create_messages_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/services/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/services/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/publicbackend/uploads/files/1839360070it-seminar-gettingstartedwithsqlite-130705053950-phpapp02.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/publicbackend/uploads/files/2045561529MongoDB Recipes.pdf/phpEBD3.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/publicbackend/uploads/files/357645949MongoDB The Definitive Guide, 3rd Edition.epub/phpEBE4.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/publicbackend/uploads/files/37230020JavaScript Cookbook, 2nd Edition.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/publicbackend/uploads/files/585417632jesselt-sqlite-pres-140424092709-phpapp02.pdf/phpE251.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/publicbackend/uploads/files/970865471handsonusingsqlitedatabase-130713150836-phpapp01.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/publicbackend/uploads/files/981530034Laravel Up and Running.pdf/phpE271.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/mails/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/mails/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/template-mail/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/template-mail/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -195,7 +194,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -249,7 +248,7 @@
     </recent_temporary>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\John paul\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -286,7 +285,8 @@
       <workItem from="1593083187839" duration="62044000" />
       <workItem from="1593199287546" duration="19244000" />
       <workItem from="1593257626281" duration="48461000" />
-      <workItem from="1593369958483" duration="39710000" />
+      <workItem from="1593369958483" duration="53502000" />
+      <workItem from="1593465675572" duration="15084000" />
     </task>
     <servers />
   </component>
@@ -313,6 +313,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="349" y="72" key="#CLI_Interpreters/0.0.1536.834@0.0.1536.834" timestamp="1593043850930" />
+    <state x="654" y="280" key="#Notifications" timestamp="1593460708734">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="654" y="280" key="#Notifications/0.0.1536.834@0.0.1536.834" timestamp="1593460708734" />
     <state x="475" y="60" key="#PHP" timestamp="1593043856093">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -325,10 +329,14 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="450" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1593031022944" />
-    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1593401541576">
+    <state x="537" y="186" width="460" height="618" key="#com.intellij.tools.ToolEditorDialog" timestamp="1593471168636">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1593401541576" />
+    <state x="537" y="186" width="460" height="618" key="#com.intellij.tools.ToolEditorDialog/0.0.1536.834@0.0.1536.834" timestamp="1593471168636" />
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1593473285922">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1593473285922" />
     <state x="484" y="66" key="#console.sql" timestamp="1593110448088">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -405,18 +413,18 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="397" y="137" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1593405511270" />
-    <state x="277" y="62" key="SettingsEditor" timestamp="1593029135269">
+    <state x="277" y="62" key="SettingsEditor" timestamp="1593471281014">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="277" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1593029135269" />
+    <state x="277" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1593471281014" />
     <state x="490" y="159" width="540" height="524" key="StructurePopup" timestamp="1593395928947">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="490" y="159" width="540" height="524" key="StructurePopup/0.0.1536.834@0.0.1536.834" timestamp="1593395928947" />
-    <state x="607" y="0" width="312" height="244" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1593283735989">
+    <state x="607" y="0" width="312" height="244" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1593488144561">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="607" y="0" width="312" height="244" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1536.834@0.0.1536.834" timestamp="1593283735989" />
+    <state x="607" y="0" width="312" height="244" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1536.834@0.0.1536.834" timestamp="1593488144561" />
     <state x="595" y="304" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog" timestamp="1593386915868">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -425,10 +433,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="349" y="72" key="com.intellij.database.dbimport.ImportDialog/0.0.1536.834@0.0.1536.834" timestamp="1593258274589" />
-    <state x="612" y="0" width="464" height="834" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1593407915609">
+    <state x="612" y="0" width="464" height="834" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1593492284618">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="612" y="0" width="464" height="834" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1536.834@0.0.1536.834" timestamp="1593407915609" />
+    <state x="612" y="0" width="464" height="834" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1536.834@0.0.1536.834" timestamp="1593492284618" />
     <state x="579" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593405444039">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -437,9 +445,9 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1593411317123" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1593412118766">
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1593492428429">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1593412118766" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1593492428429" />
   </component>
 </project>

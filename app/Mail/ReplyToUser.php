@@ -21,18 +21,21 @@ class ReplyToUser extends Mailable
 
     public function build()
     {
-        $mail = $this->from(Auth::user()->email)->subject($this->data['subject'])->markdown('backend.template-mail.index')->with('data', $this->data);
-        /**/
-        if (is_array($this->data['file'])) {
-            foreach ($this->data['file'] as $file) {
-                $mail->attach($file->getRealPath(), [
-                    'as'=> $file->getClientOriginalName()
+        $mail = $this->from(Auth::user()->email)
+            ->subject($this->data['subject'])
+            ->markdown('backend.template-mail.index')->with('data', $this->data);
+        if (!is_null($this->data['file'])) {
+            if (is_array($this->data['file'])) {
+                foreach ($this->data['file'] as $file) {
+                    $mail->attach($file->getRealPath(), [
+                        'as'=> $file->getClientOriginalName()
+                    ]);
+                }
+            } else {
+                $mail->attach($this->data['file']->getRealPath(), [
+                    'as'=> $this->data['file']->getClientOriginalName()
                 ]);
             }
-        } else {
-            $mail->attach($this->data['file']->getRealPath(), [
-                'as'=> $this->data['file']->getClientOriginalName()
-            ]);
         }
         return $mail;
     }

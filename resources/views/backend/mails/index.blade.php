@@ -1,7 +1,11 @@
 @extends('backend.layouts.app')
 @section('style_extended')
-    <style>
-    </style>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/tokenfield-typeahead.min.css"
+          integrity="sha256-wjzCZMOsihqVFmuuKOTcseOy9q46Q7VqMTktUoWDilw=" crossorigin="anonymous"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css"
+          integrity="sha256-4qBzeX420hElp9/FzsuqUNqVobcClz1BjnXoxUDSYQ0=" crossorigin="anonymous"/>
 @stop
 @section('content')
 
@@ -24,15 +28,16 @@
                         <div class="list-group small rounded-0 border-0">
                             <a href="javascript:void(0)"
                                class="list-group-item list-group-item-action list-group-custom all"><i
-                                    class="fad fa-newspaper mr-2"></i>All List</a>
-                            <a href="{{ route('article.create') }}" class="list-group-item list-group-item-action"><i
-                                    class="fad fa-layer-plus mr-2"></i>Create</a>
+                                    class="fad fa-newspaper mr-2"></i>All Mails</a>
                             <a href="javascript:void(0)"
-                               class="list-group-item list-group-item-action drafted"><i
-                                    class="fad fa-file-edit mr-2"></i>Drafts</a>
+                               class="list-group-item list-group-item-action read"><i
+                                    class="fad fa-file-edit mr-2"></i>Read</a>
                             <a href="javascript:void(0)"
-                               class="list-group-item list-group-item-action published"><i
-                                    class="fad fa-globe-asia mr-2"></i>Published</a>
+                               class="list-group-item list-group-item-action unread"><i
+                                    class="fad fa-file-edit mr-2"></i>Unread</a>
+                            <a href="javascript:void(0)"
+                               class="list-group-item list-group-item-action sent"><i
+                                    class="fad fa-globe-asia mr-2"></i>Sent</a>
                             <a href="javascript:void(0)"
                                class="list-group-item list-group-item-action viewTrash"><i
                                     class="fad fa-dumpster mr-2"></i>Trash</a>
@@ -54,13 +59,13 @@
                                 <i class="fad fa-send-back mr-2"></i>Compose
                             </button>
 
-                            <button type="button" class="btn btn-sm btn-info shadow-sm trash"><i
+                            <button type="button" class="btn btn-sm btn-info shadow-sm moveToTrash"><i
                                     class="fad fa-trash-undo-alt mr-2"></i>Move To Trash
                             </button>
-                            <button type="button" class="btn btn-sm btn-info shadow-sm DestroyArticles"><i
-                                    class="fad fa-trash mr-2"></i>Delete
+                            <button type="button" class="btn btn-sm btn-info shadow-sm destroyMail">
+                                <i class="fad fa-trash mr-2"></i> Delete
                             </button>
-                            <button type="button" class="btn btn-sm btn-info shadow-sm RestoredArticles"><i
+                            <button type="button" class="btn btn-sm btn-info shadow-sm restoreMail"><i
                                     class="fad fa-trash-restore mr-2"></i>Restore
                             </button>
                         </div>
@@ -73,7 +78,6 @@
                                         <input type="checkbox" name="checkAll" id="checkAllIds">
                                     </th>
                                     <th>Name</th>
-                                    <th>Subject</th>
                                     <th>Email</th>
                                     <th>Status</th>
                                     <th>Date</th>
@@ -89,7 +93,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Send Message Modal -->
     <div class="modal fade" id="sendingEmailToCustomerModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
          role="dialog"
          aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -106,12 +110,16 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="inputTo" class="col-form-label">Recipient:</label>
-                        <input type="text" name="to" class="form-control form-control-sm" id="inputTo">
+                        <input type="text" name="to" class="form-control form-control-sm"
+                               id="inputTo">
+                        <div id="emailList">
+                        </div>
                         <small id="toMessage" class="form-text"></small>
                     </div>
                     <div class="form-group">
                         <label for="inputSubject" class="col-form-label">Subject:</label>
-                        <input type="text" name="subject" class="form-control form-control-sm" id="inputSubject">
+                        <input type="text" name="subject" class="form-control form-control-sm" id="inputSubject"
+                               value="">
                         <small id="subjectMessage" class="form-text"></small>
                     </div>
                     <div class="form-group">
@@ -135,6 +143,32 @@
         </div>
     </div>
 
+    <!-- VIEW MESSAGE MODAL -->
+    <div class="modal fade" id="viewMessageModal" tabindex="-1"
+         role="dialog"
+         aria-labelledby="viewMsgModal" aria-hidden="true">
+
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content modal-content-">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewMsgModal">Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div id="outputMessage"></div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- /.container-fluid -->
     <div id="snackbar" class="shadow rounded"></div>
 @stop
@@ -142,8 +176,17 @@
 @section('_script')
     <script src="{{ asset('backend/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('backend/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
     <script>
         $(document).ready(function () {
+
+            $('#inputTo').tokenfield({
+                autocomplete: {
+                    source: [],
+                    delay: 100
+                },
+            });
 
             getMails();
 
@@ -174,7 +217,6 @@
                     destroy: true,
                     processing: true,
                     serverSide: true,
-                    pageLength: 15,
                     scrollY: '60vh',
                     scrollCollapse: true,
                     ajax: `messages-all/${type}`,
@@ -188,10 +230,6 @@
                         {
                             data: 'name',
                             name: 'name',
-                        },
-                        {
-                            data: 'subject',
-                            name: 'subject',
                         },
                         {
                             data: 'email',
@@ -236,7 +274,7 @@
                         $("#inputTo, #inputMessage, #inputSubject").removeClass(['is-valid', 'is-invalid']);
                         $("#toMessage, #subjectMessage, #senderMessage").removeClass(['text-success', 'text-danger']);
                         x.attr('disabled', true);
-                        x.html(`<div class="spinner-border spinner-border-sm text-white" role="status"><span class="sr-only">Saving...</span></div>`);
+                        x.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Please wait...`);
                     },
                     success: data => {
                         $("#sendingEmailToCustomerModal").modal('hide');
@@ -244,6 +282,7 @@
                         $("#messageForm")[0].reset();
                         x.attr('disabled', false);
                         x.html(`<i class="fad fa-paper-plane mr-1"></i> Send`);
+                        $('#mailsTable').DataTable().ajax.reload();
                     },
                     error: err => {
                         x.attr('disabled', false);
@@ -277,9 +316,98 @@
                 })
             });
 
-            $('[data-dismiss="modal"]').on('click', function() {
+            $('[data-dismiss="modal"]').on('click', function () {
                 $("#messageForm")[0].reset();
+                $(".form-text").addClass('d-none');
+                $("#inputTo, #inputMessage, #inputSubject").removeClass(['is-valid', 'is-invalid']);
+                $("#toMessage, #subjectMessage, #senderMessage").removeClass(['text-success', 'text-danger']);
             })
+
+
+            $(document).on('click', '.all', function (e) {
+                e.preventDefault();
+                $(".captionText").text('All Mails');
+                getMails();
+            });
+
+            $(document).on('click', '.viewTrash', function (e) {
+                e.preventDefault();
+                $(".captionText").text('Trash Mails');
+                getMails('trash');
+            });
+
+
+            $(document).on('click', '.read', function (e) {
+                e.preventDefault();
+                $(".captionText").text('Read Mails');
+                getMails('read');
+            });
+
+
+            $(document).on('click', '.unread', function (e) {
+                e.preventDefault();
+                $(".captionText").text('Unread Mails');
+                getMails('unread');
+            });
+
+            $(document).on('click', '.sent', function (e) {
+                e.preventDefault();
+                $(".captionText").text('Sent Email');
+                getMails('sent');
+            });
+
+            $(document).on('click', '.viewMessage', function (e) {
+                e.preventDefault();
+                let id = $(this).attr('id');
+                if (id.length > 0) {
+                    $.ajax({
+                        url: `messages/${id}`,
+                        method: "GET",
+                        data: {id: id},
+                        beforeSend: () => {
+                            $("#outputMessage").html(`<div class="d-flex justify-content-center">
+                              <div class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                              </div>
+                            </div>`);
+                        },
+                        success: ({messages}) => {
+                            const {id, name, subject, message} = messages;
+                            $("#outputMessage").html(`
+                               <strong>Name</strong><br /> ${name} <br /> <br />
+                               <strong>Subject</strong><br /> ${subject} <br /> <br />
+                                <strong>Message</strong><br />${message}
+                            `);
+                            $("#mailsTable").DataTable().ajax.reload();
+                        }
+                    })
+                }
+                $("#viewMessageModal").modal('show');
+            });
+
+        });
+
+        $(document).on('click', '.restoreMail', function () {
+
+            let id = [];
+            $('.message_checkbox:checked').each(function () {
+                id.push($(this).val());
+            });
+
+            if (id.length > 0) {
+                $.ajax({
+                    url: '{{ route('message.restore') }}',
+                    method: "GET",
+                    data: {id: id},
+                    success: data => {
+                        snackbar('You successfully restored all the mails.');
+                        $('#mailsTable').DataTable().ajax.reload();
+                        $('#checkAllIds').prop('checked', false);
+                    }
+                })
+            } else {
+                snackbar('Select the item you want to clone.');
+            }
         });
 
         function snackbar(text = '') {
@@ -289,5 +417,85 @@
             setTimeout(() => x.removeClass("show"), 3000);
         }
 
+        /*moveToTrash*/
+        $(document).on('click', '.moveToTrash', function (e) {
+            e.preventDefault();
+            let id = [];
+            $('.message_checkbox:checked').each(function () {
+                id.push($(this).val());
+            });
+
+            if (id.length > 0) {
+                $.ajax({
+                    url: "{{ route('message.remove')}}",
+                    method: "GET",
+                    data: {id: id},
+                    success: data => {
+                        snackbar('You successfully remove the checked data.');
+                        $('#mailsTable').DataTable().ajax.reload();
+                        $('#checkAllIds').prop('checked', false);
+                    }
+                }).fail(err => console.log(err))
+            } else {
+                snackbar('Please select atleast one checkbox');
+            }
+        });
+
+        $(document).on('click', '.moveTrash', function (e) {
+            e.preventDefault();
+            let id = $(this).attr('id');
+            if (id.length > 0) {
+                $.ajax({
+                    url: "{{ route('message.remove')}}",
+                    method: "GET",
+                    data: {id: id},
+                    success: data => {
+                        snackbar('You successfully remove the checked data.');
+                        $('#mailsTable').DataTable().ajax.reload();
+                        $('#checkAllIds').prop('checked', false);
+                    }
+                }).fail(err => console.log(err))
+            } else {
+                snackbar('Please select atleast one checkbox');
+            }
+        });
+
+
+        $(document).on('click', '.destroyMail', function (e) {
+            let id = [];
+            $('.message_checkbox:checked').each(function () {
+                id.push($(this).val());
+            });
+            if (id.length > 0) {
+                swal({
+                    title: "Confirmation",
+                    text: "Are you sure to continue?",
+                    icon: "warning",
+                    dangerMode: true,
+                    buttons: [true, "Continue"],
+                    closeModal: false
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: '{{ route('message.kill') }}',
+                            method: "GET",
+                            data: {id: id},
+                            success: data => {
+                                if (data) {
+                                    snackbar('You successfully deleted the data');
+                                    $('#mailsTable').DataTable().ajax.reload();
+                                    $('#checkAllIds').prop('checked', false);
+                                }
+                            }
+                        })
+                    }
+                });
+            } else {
+                snackbar('Check the item you want to delete.');
+            }
+        });
+
+
+        console.clear();
     </script>
 @stop

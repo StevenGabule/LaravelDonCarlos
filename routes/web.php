@@ -117,4 +117,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
 
     Route::resource('messages', 'MessageController');
     Route::get('messages-all/{type}', 'MessageController@all')->name('messages.all');
+    Route::get('fetch-mail', 'MessageController@fetch')->name('fetch.email');
+    Route::get('message-remove', 'MessageController@remove')->name('message.remove');
+    Route::get('message-restore', 'MessageController@restore')->name('message.restore');
+    Route::get('message-kill', 'MessageController@kill')->name('message.kill');
+//    Route::get('message-fetch', 'MessageController@fetch_message')->name('message.kill');
+
 });

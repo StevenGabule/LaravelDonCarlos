@@ -24,27 +24,34 @@ class MessageController extends Controller
         $articles = null;
 
         if ($type === 'all') {
-            $messages = Message::with('user')->latest()->get();
+            $messages = Message::latest()->get();
         }
 
         if ($type === 'trash') {
-            $messages = Message::with('user')->onlyTrashed()->get();
+            $messages = Message::onlyTrashed()->get();
         }
 
-        if ($type === 'drafted') {
-            $messages = Message::with('user')->where('status', '=', 0)->get();
+        if ($type === 'unread') {
+            $messages = Message::where('status', '=', 0)->get();
         }
 
-        if ($type === 'published') {
-            $messages = Message::with('user')->where('status', '=', 1)->get();
+        if ($type === 'read') {
+            $messages = Message::where('status', '=', 1)->get();
         }
-        #0-unread|1-read
+
+        if ($type === 'sent') {
+            $messages = Message::where('status','=' ,2)->get();
+        }
 
         return DataTables::of($messages)->addColumn('action', static function ($data) {
             $btn = ($data->deleted_at === null) ? "
-                        <a class='dropdown-item' href='$data->id'><i class='fad fa-eye mr-2'></i> View</a>
-                        <a class='dropdown-item' id='$data->id' href='/admin/article/$data->id/edit'><i class='fad fa-file-edit mr-2'></i> Edit</a>
-                        <a class='dropdown-item removeArticle' id='$data->id' href='javascript:void(0)'>
+                        <button class='dropdown-item viewMessage' id='$data->id'>
+                            <i class='fad fa-eye mr-2'></i> View
+                        </button>
+                        <button class='dropdown-item' id='$data->id'>
+                            <i class='fad fa-file-edit mr-2'></i> Resend
+                        </button>
+                        <a class='dropdown-item moveTrash' id='$data->id' href='javascript:void(0)'>
                             <i class='fad fa-trash mr-2'></i> Move Trash
                         </a>" : "<a class='dropdown-item killArticle' id='$data->id' href='javascript:void(0)'>
                             <i class='fad fa-trash mr-2'></i> Delete
@@ -66,13 +73,13 @@ class MessageController extends Controller
 EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="message_checkbox[]" class="message_checkbox" value="{{$id}}" />')
-           ->editColumn('status', function($data) {
-               return $this->state_status($data->status);
-           })
-            ->editColumn('subject', function($data) {
+            ->editColumn('status', function ($data) {
+                return $this->state_status($data->status);
+            })
+            ->editColumn('subject', function ($data) {
                 return strlen($data->subject) <= 50 ? $data->subject : substr($data->subject, 0, 45) . '...';
             })
-            ->editColumn('created_at', function($data) {
+            ->editColumn('created_at', function ($data) {
                 return $data->created_at->diffForHumans();
             })
             ->rawColumns(['action', 'checkbox', 'status', 'created_at', 'subject'])
@@ -81,19 +88,10 @@ EOT;
 
     public function state_status($status)
     {
-        $arr = ["Unread", "Read"];
+        $arr = ["Unread", "Read", "Sent"];
         return $arr[$status];
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     public function store(Request $request)
     {
@@ -103,73 +101,90 @@ EOT;
             'message' => 'required',
         ]);
 
-
         $data = array(
             'name' => Auth::user()->name,
             'email' => Auth::user()->email,
-            'to' => $request->to,
             'status' => 1,
-            'file' => $request->file('avatar'),
+            'file' => $request->hasFile('avatar') ? $request->file('avatar') : null,
             'created_at' => Carbon::now(),
             'subject' => $request->subject,
             'message' => $request->message,
         );
-        Mail::to($request->to)->send(new ReplyToUser($data));
 
-        Message::create([
-            'name' => Auth::user()->name,
-            'email' => Auth::user()->email,
-            'to' => $request->to,
-            'status' => 1,
-            'created_at' => Carbon::now(),
-            'subject' => $request->subject,
-            'message' => $request->message,
-        ]);
+        $arr = explode(",", $request->to);
+        $recipients = [];
+        $send = [];
+
+        foreach ($arr as $item) {
+            $ar = array(
+                'name' => Auth::user()->name,
+                'email' => Auth::user()->email,
+                'to' => trim($item),
+                'status' => 1,
+                'created_at' => Carbon::now(),
+                'subject' => $request->subject,
+                'message' => $request->message,
+            );
+            $send[] = $ar;
+            $recipients[] = trim($item);
+        }
+
+        Mail::to($recipients)->send(new ReplyToUser($data));
+        Message::insert($send);
+        return response()->json(['success' => true, 'arr' => $arr]);
+    }
+
+    public function fetch(Request $request)
+    {
+        $term = $request->get('term');
+        $mails = Message::select('email')->whereRaw('LOWER(email) LIKE ?', ["%{$term}%"])->get();
+        return response()->json(['emails' => $mails]);
+    }
+
+    public function show($id)
+    {
+        $message = Message::findOrFail($id);
+        if ($message->status !== 1 and $message->status ) {
+            $message->update([
+                'status' => 1
+            ]);
+        }
+
+        return response()->json(['messages' => $message], 200);
+    }
+
+    public function remove(Request $request)
+    {
+        $messagesId = $request->input('id');
+        if (is_array($messagesId)) {
+            $message = Message::whereIn('id', $messagesId);
+            if ($message->delete()) {
+                return response()->json(['success' => true], 200);
+            }
+        }
+        Message::where('id', $messagesId)->firstOrFail()->delete();
+        return response()->json(['failed' => false]);
+    }
+
+    public function restore(Request $request)
+    {
+        $ids = $request->input('id');
+        if (is_array($ids)) {
+            Message::withTrashed()->whereIn('id', $ids)->restore();
+            return response()->json(['success' => true]);
+        }
+        Message::withTrashed()->where('id', $ids)->first()->restore();
         return response()->json(['success' => true]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Message $message)
+    public function kill(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Message $message)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Message $message)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Message $message)
-    {
-        //
+        $ids = $request->input('id');
+        if (is_array($ids)) {
+            Message::withTrashed()->whereIn('id', $ids)->forceDelete();
+            return response()->json(['success' => true]);
+        }
+        Message::withTrashed()->where('id', $ids)->first()->forceDelete();
+        return response()->json(['success' => true]);
     }
 }

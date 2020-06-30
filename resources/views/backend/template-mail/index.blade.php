@@ -3,6 +3,6 @@
 
     {{ $data['message'] }}
 
-    Thanks,<br>
+    Thanks,
     Doncarlos.com
 @endcomponent

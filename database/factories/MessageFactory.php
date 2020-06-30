@@ -14,6 +14,5 @@ $factory->define(Message::class, function (Faker $faker) {
         'message' => $faker->paragraph(),
         'status' => 0,
         'label' => 3,
-        'user_id' => 1
     ];
 });
