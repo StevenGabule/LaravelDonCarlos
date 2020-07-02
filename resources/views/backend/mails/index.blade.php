@@ -220,7 +220,7 @@
                     scrollY: '60vh',
                     scrollCollapse: true,
                     ajax: `messages-all/${type}`,
-                    order: [[0, "desc"]],
+                    order: [[4, "desc"]],
                     columns: [
                         {
                             data: 'checkbox',
@@ -401,6 +401,23 @@
                     data: {id: id},
                     success: data => {
                         snackbar('You successfully restored all the mails.');
+                        $('#mailsTable').DataTable().ajax.reload();
+                        $('#checkAllIds').prop('checked', false);
+                    }
+                })
+            } else {
+                snackbar('Select the item you want to clone.');
+            }
+        });
+        $(document).on('click', '.restoreIndMail', function () {
+            let id = $(this).attr('id');
+            if (id.length > 0) {
+                $.ajax({
+                    url: '{{ route('message.restore') }}',
+                    method: "GET",
+                    data: {id: id},
+                    success: data => {
+                        snackbar('You successfully restored the mails.');
                         $('#mailsTable').DataTable().ajax.reload();
                         $('#checkAllIds').prop('checked', false);
                     }

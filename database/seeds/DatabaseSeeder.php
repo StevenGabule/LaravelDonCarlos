@@ -5,6 +5,7 @@ use App\Article;
 use App\ArticleCategory;
 use App\Baranggay;
 use App\BaranggayOfficial;
+use App\DepartmentCategories;
 use App\Place;
 use App\Services;
 use App\ServicesArticle;
@@ -224,6 +225,7 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
+
         ArticleCategory::insert($categories);
         Services::insert($services);
         Baranggay::insert($baranggays);
@@ -236,5 +238,95 @@ class DatabaseSeeder extends Seeder
         factory(BaranggayOfficial::class, 100)->create();
         factory(Activities::class, 50)->create();
         factory(TransparencyPost::class, 100)->create();
+
+        User::create([
+            'name' => 'Admin Muck',
+            'email' => 'admin@gmail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]);
+
+        User::create([
+            'name' => 'Admin Mock',
+            'email' => 'admin2@gmail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]);
+
+       /* Services::create([
+            'name' => 'Social Services',
+            'short_description' => 'Davao City has pioneered in implementing local laws that made it a',
+            'status' => 1,
+            'created_at' => Carbon::now()
+        ]);
+
+        Services::create([
+            'name' => 'Civil Registry Services',
+            'short_description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In quia ut voluptatem. Ad animi commodi facilis possimus quae quo reprehenderit.",
+            'status' => 1,
+            'created_at' => Carbon::now()]);
+
+        Services::create([
+            'name' => 'Online Payment',
+            'short_description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In quia ut voluptatem. Ad animi commodi facilis possimus quae quo reprehenderit.",
+            'status' => 1,
+            'created_at' => Carbon::now()
+        ]);
+
+
+        Services::create([
+            'name' => 'Landmark Legislations',
+            'short_description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In quia ut voluptatem. Ad animi commodi facilis possimus quae quo reprehenderit.",
+            'status' => 1,
+            'created_at' => Carbon::now()
+        ]);
+
+
+        Services::create([
+            'name' => 'Career Opportunities',
+            'short_description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In quia ut voluptatem. Ad animi commodi facilis possimus quae quo reprehenderit.",
+            'status' => 1,
+            'created_at' => Carbon::now()
+        ]);*/
+
+        DepartmentCategories::create([
+            'name' => 'Economic Development',
+            'slug' => Str::slug('Economic Development'),
+            'description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In quia ut voluptatem. Ad animi commodi facilis possimus quae quo reprehenderit.",
+            'created_at' => Carbon::now()
+
+        ]);
+
+        DepartmentCategories::create([
+            'name' => 'Fiscal Development',
+            'slug' => Str::slug('Fiscal Development'),
+            'description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In quia ut voluptatem. Ad animi commodi facilis possimus quae quo reprehenderit.",
+            'created_at' => Carbon::now()
+        ]);
+
+        DepartmentCategories::create([
+            'name' => 'Infrastructure Development',
+            'slug' => Str::slug('Infrastructure Development'),
+            'description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In quia ut voluptatem. Ad animi commodi facilis possimus quae quo reprehenderit.",
+            'created_at' => Carbon::now()
+        ]);
+
+        DepartmentCategories::create([
+            'name' => 'Public Administration',
+            'slug' => Str::slug('Public Administration'),
+            'description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In quia ut voluptatem. Ad animi commodi facilis possimus quae quo reprehenderit.",
+            'created_at' => Carbon::now()
+        ]);
+
+        DepartmentCategories::create([
+            'name' => 'Social Service',
+            'slug' => Str::slug('Social Service'),
+            'description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In quia ut voluptatem. Ad animi commodi facilis possimus quae quo reprehenderit.",
+            'created_at' => Carbon::now()
+        ]);
+
+
     }
 }

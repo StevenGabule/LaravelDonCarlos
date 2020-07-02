@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TransparencyPost extends Model
@@ -26,5 +27,10 @@ class TransparencyPost extends Model
                 $q->orwhereRaw('LOWER(description) LIKE ?', ["%{$term}%"]);
             });
         }
+    }
+
+    public function transparency_post_files(): HasMany
+    {
+        return $this->hasMany(TransparentPostFile::class);
     }
 }

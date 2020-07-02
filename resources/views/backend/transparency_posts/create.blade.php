@@ -1,6 +1,7 @@
 @extends('backend.layouts.app')
 @section('style_extended')
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 @stop
 @section('content')
     <div class="container-fluid">
@@ -75,6 +76,18 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="inputSelectPicker" class="font-weight-bold">Connect Your files</label>
+                                <select class="form-control selectpicker" id="inputSelectPicker" name="transparency_file_id[]"
+                                        data-live-search="true" multiple>
+                                    @forelse($transparentFiles as $files)
+                                        <option value="{{ $files->id }}">{{ $files->name }}</option>
+                                    @empty
+                                        <option value="">Please add some files</option>
+                                    @endforelse
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-sm" id="btnSave">
                                     <i class="fad fa-save mr-2"></i> Save
                                 </button>
@@ -89,6 +102,7 @@
 
 @section('_script')
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
     <script>
 

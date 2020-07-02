@@ -102,6 +102,7 @@ EOT;
         $article = Article::create([
             'user_id' => Auth::id(),
             'title' => $request->get('title'),
+            'important' => $request->get('important', false),
             'slug' => Str::slug($request->get('title')),
             'status' => $request->get('status'),
             'avatar' => $name,
@@ -141,6 +142,7 @@ EOT;
 
         $article->update([
             'title' => $request->get('title'),
+            'important' => $request->important === null ? false : true,
             'slug' => Str::slug($request->get('title')),
             'description' => $request->get('description'),
             'short_description' => $request->get('short_description'),

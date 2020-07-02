@@ -153,7 +153,27 @@
         <li class="nav-item active">
             <a class="nav-link" href="{{ route('file-upload.index') }}">
                 <i class="fad fa-fw fa-cloud-upload-alt blueish"></i>
-                <span>Upload Files</span></a>
+                <span>Files</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ route('accounts') }}">
+                <i class="fad fa-fw fa-users blueish"></i>
+                <span>Accounts</span>
+            </a>
+        </li>
+
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ route('page-content.index') }}">
+                <i class="fad fa-fw fa-users blueish"></i>
+                <span>Pages Content</span>
+            </a>
+        </li>
+
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ route('need-content.index') }}">
+                <i class="fad fa-fw fa-users blueish"></i>
+                <span>Award And Mandate</span>
+            </a>
         </li>
 
     </ul>

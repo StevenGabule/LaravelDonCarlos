@@ -25,7 +25,7 @@
             <div class="col-12 col-md-9 pr-lg-5 pt-3">
                 <div class="card mb-3 border-0 shadow-sm font-weight-bold">
                     <div class="card-body">
-                        <a href="" class="text-dark text-hover">History of Don Carlos, Bukidnon</a>
+                        <a href="{{ route('page.show', ['slug' => $content->slug]) }}" class="text-dark text-hover">History of Don Carlos, Bukidnon</a>
                     </div>
                 </div>
 
@@ -37,25 +37,25 @@
 
                 <div class="card mb-3 border-0 shadow-sm font-weight-bold">
                     <div class="card-body">
-                        <a href="" class="text-dark text-hover">Department And Offices</a>
+                        <a href="{{ route('departments') }}" class="text-dark text-hover">Department And Offices</a>
                     </div>
                 </div>
 
                 <div class="card mb-3 border-0 shadow-sm font-weight-bold">
                     <div class="card-body">
-                        <a href="" class="text-dark text-hover">Mission And Vision</a>
+                        <a href="{{ route('page.show', ['slug' => $content1->slug]) }}" class="text-dark text-hover">Mission And Vision</a>
                     </div>
                 </div>
 
                 <div class="card mb-3 border-0 shadow-sm font-weight-bold">
                     <div class="card-body">
-                        <a href="" class="text-dark text-hover">Mandate</a>
+                        <a href="{{ route('mandate') }}" class="text-dark text-hover">Mandate</a>
                     </div>
                 </div>
 
                 <div class="card mb-3 border-0 shadow-sm font-weight-bold">
                     <div class="card-body">
-                        <a href="" class="text-dark text-hover">Awards</a>
+                        <a href="{{ route('awards') }}" class="text-dark text-hover">Awards</a>
                     </div>
                 </div>
             </div>

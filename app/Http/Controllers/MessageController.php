@@ -48,15 +48,12 @@ class MessageController extends Controller
                         <button class='dropdown-item viewMessage' id='$data->id'>
                             <i class='fad fa-eye mr-2'></i> View
                         </button>
-                        <button class='dropdown-item' id='$data->id'>
-                            <i class='fad fa-file-edit mr-2'></i> Resend
-                        </button>
                         <a class='dropdown-item moveTrash' id='$data->id' href='javascript:void(0)'>
                             <i class='fad fa-trash mr-2'></i> Move Trash
                         </a>" : "<a class='dropdown-item killArticle' id='$data->id' href='javascript:void(0)'>
                             <i class='fad fa-trash mr-2'></i> Delete
                         </a>";
-            $btnRestore = ($data->deleted_at !== null) ? "<a class='dropdown-item restoreArticle' id='$data->id' href='javascript:void(0)'>
+            $btnRestore = ($data->deleted_at !== null) ? "<a class='dropdown-item restoreIndMail' id='$data->id' href='javascript:void(0)'>
                             <i class='fad fa-trash-restore mr-2'></i> Restore
                         </a>" : null;
             $button = <<<EOT
@@ -80,7 +77,7 @@ EOT;
                 return strlen($data->subject) <= 50 ? $data->subject : substr($data->subject, 0, 45) . '...';
             })
             ->editColumn('created_at', function ($data) {
-                return $data->created_at->diffForHumans();
+                return $data->created_at->format('M d Y') . ', '. $data->created_at->diffForHumans();
             })
             ->rawColumns(['action', 'checkbox', 'status', 'created_at', 'subject'])
             ->make(true);

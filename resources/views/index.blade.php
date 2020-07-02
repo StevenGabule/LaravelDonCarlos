@@ -1,87 +1,101 @@
 @extends('layouts.app')
+@section('custom')
+    <style>
+        /* Carousel base class */
+        .carousel {
+            margin-top: -24px;
+        }
+
+        /* Since positioning the image, we need to help out the caption */
+        .carousel-caption {
+            bottom: 3rem;
+            z-index: 10;
+        }
+
+        /* Declare heights because of positioning of img element */
+        .carousel-item {
+            height: 32rem;
+        }
+
+        .carousel-item > img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            height: 32rem;
+        }
+
+    </style>
+@stop
 @section('content')
-    <article class="carousel-cont" style="margin-top: -24px;">
-        <div id="carouselHome" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselHome" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselHome" data-slide-to="1"></li>
-                <li data-target="#carouselHome" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item carousel-slide-1 active">
-                    <div class="carousel-slide-cont">
-                        <div>
-                            <div class="col-12 col-lg-6 p-0 m-0">
-                                <h4 class="font-oswald-med">WELCOME TO</h4>
-                                <h2 class="font-weight-bold col-gold">DON CARLOS CITY</h2>
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-                                    eos et accusam et justo duo dolores et ea rebum. Stet clita
-                                    kasd
-                                </p>
-                                <a href="">
-                                    <button class="font-oswald btn btn-outline-banner px-5">EXPLORE</button>
-                                </a>
-                            </div>
-                        </div>
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+
+            <div class="carousel-item active"
+                 style="background: url('{{ $newHeadLine->avatar !== null ? asset('backend/uploads/articles/large/' . $newHeadLine->avatar) : 'https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'}}') no-repeat center center / cover">
+                <div class="container">
+                    <div class="carousel-caption text-left">
+                        <h1>{{ $newHeadLine->title }}.</h1>
+                        <p>{{ $newHeadLine->short_description }}</p>
+                        <p><a class="btn btn-sm btn-warning"
+                              href="{{ route('news.detail', ['slug' => $newHeadLine->slug]) }}" role="button">Read
+                                more...</a></p>
                     </div>
                 </div>
-                <div class="carousel-item carousel-slide-1">
-                    <div class="carousel-slide-cont">
-                        <!-- inside a div para ma margin center ang content gamit ang flex -->
-                        <div>
-                            <div class="col-12 col-lg-6 p-0 m-0">
-                                <h4 class="font-oswald-med">WELCOME TO</h4>
-                                <h2 class="font-weight-bold col-gold">DON CARLOS CITY</h2>
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-                                    eos et accusam et justo duo dolores et ea rebum. Stet clita
-                                    kasd
-                                </p>
-                                <a href="">
-                                    <button class="font-oswald btn btn-outline-banner px-5">EXPLORE</button>
-                                </a>
-                            </div>
-                        </div>
+            </div><!-- news update -->
+
+            <div class="carousel-item"
+                 style="background: url('{{ $eventHeadLine->avatar !== null ? asset('backend/uploads/activities/large/' . $eventHeadLine->avatar) : 'https://images.unsplash.com/photo-1549451371-64aa98a6f660?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80' }}') no-repeat center center / cover;">
+
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>{{ $eventHeadLine->title }}</h1>
+                        <p>{{$eventHeadLine->short_description}}</p>
+                        <p><a class="btn btn-sm btn-warning"
+                              href="{{ route('event.show', ['slug' => $eventHeadLine->slug]) }}" role="button">Learn
+                                more</a></p>
                     </div>
                 </div>
-                <div class="carousel-item carousel-slide-1">
-                    <div class="carousel-slide-cont">
-                        <!-- inside a div para ma margin center ang content gamit ang flex -->
-                        <div>
-                            <div class="col-12 col-lg-6 p-0 m-0">
-                                <h4 class="font-oswald-med">WELCOME TO</h4>
-                                <h2 class="font-weight-bold col-gold">DON CARLOS CITY</h2>
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-                                    eos et accusam et justo duo dolores et ea rebum. Stet clita
-                                    kasd
-                                </p>
-                                <a href="">
-                                    <button class="font-oswald btn btn-outline-banner px-5">EXPLORE</button>
-                                </a>
-                            </div>
-                        </div>
+            </div><!-- events and activties -->
+
+            <div class="carousel-item"
+                 style="background: url('{{ $placeHeadLine->avatar !== null ? asset('backend/uploads/places/large/' . $placeHeadLine->avatar) : 'https://images.unsplash.com/photo-1525489196064-0752fa4e16f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80' }}') no-repeat center center / cover">
+
+                <div class="container">
+                    <div class="carousel-caption text-right">
+                        <h1>{{ $placeHeadLine->name }}</h1>
+                        <p>{{ $placeHeadLine->short_description }}</p>
+                        <p><a class="btn btn-sm btn-warning" href="/place/{{$placeHeadLine->slug}}" role="button">Browse
+                                more</a></p>
                     </div>
                 </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselHome" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselHome" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+            </div><!-- tourism -->
         </div>
-    </article>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div><!-- end of carousel -->
+
     <!-- main content for home  -->
     <main class="py-5">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-9">
                     <h2 class="font-oswald-bold">Plans and Programs</h2>
+
                     <hr class="hr-thin">
+
                     <div class="row no-gutters w-100 text-center">
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
                             <button class="btn btn-home-programs py-3 px-0 shadow-sm w-100"><i
@@ -109,27 +123,20 @@
                             </button>
                         </div>
                     </div>
-                    <!-- the arport section -->
+
+                    <!-- the first page content section -->
                     <div class="d-flex flex-column flex-md-row my-5 prog-content-container">
                         <!-- ge background nako ang image para dili mo stretch -->
                         <div class="prog-cont-image1"
-                             style="background-image: url('{{ asset('assets/images/airport.jpg') }}');"></div>
+                             style="background-image: url('{{ asset('backend/uploads/page-content/thumbnail/' . $content1->avatar) }}');"></div>
                         <!-- <img src="assets/images/airport.jpg" alt=""> -->
                         <div class="text-center mt-5 mt-md-0 mx-md-4">
-                            <h3 class="font-weight-bold">Don Carlos Domestic Airport</h3>
+                            <h3 class="font-weight-bold">{{ $content1->title }}</h3>
                             <hr class="hr-center-thin">
-                            <p class="my-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                                vero eos et accusam et Lorem ipsum dolor sit amet, consetetur sadipscing
-                                elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                sed diam voluptua. At vero eos et accusam et Lorem ipsum dolor sit amet, consetetur
-                                sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                accusam et</p>
-                            <a href="#">
-                                <button class="btn btn-outline-gold px-5">
-                                    Learn More
-                                </button>
+                            <p class="my-4">{{ $content1->short_description }}</p>
+                            <a href="{{ route('page.show', ['slug' => $content1->slug]) }}"
+                               class="btn btn-outline-gold px-5">
+                                Learn More
                             </a>
 
                         </div>
@@ -137,26 +144,18 @@
                     <!-- Meet the woman to care section -->
                     <div class="bg-light px-3 py-5 d-flex flex-column flex-md-row">
                         <div class="text-center">
-                            <h3 class="font-weight-bold">Meet Woman Who Care About Our City</h3>
+                            <h3 class="font-weight-bold">{{ $content2->title }}</h3>
                             <hr class="hr-center-thin">
-                            <p class="my-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                                vero eos et accusam et Lorem ipsum dolor sit amet, consetetur sadipscing
-                                elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                sed diam voluptua. At vero eos et accusam et Lorem ipsum dolor sit amet, consetetur
-                                sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                accusam et</p>
-                            <a href="#">
-                                <button class="btn btn-outline-gold px-5">
-                                    Learn More
-                                </button>
+                            <p class="my-4">{{ $content2->short_description  }}</p>
+                            <a href="{{ route('page.show', ['slug' => $content2->slug]) }}"
+                               class="btn btn-outline-gold px-5">
+                                Learn More
                             </a>
                         </div>
                         <div class="ml-md-3 mt-3 mt-md-0">
                             <!-- inline image so that it can be change -->
                             <div class="prog-cont-image2"
-                                 style="background-image: url('{{ asset('assets/images/doctor.png') }}');"></div>
+                                 style="background-image: url('{{ asset('backend/uploads/page-content/original/' . $content2->avatar) }}');"></div>
                         </div>
 
                     </div>
@@ -187,7 +186,6 @@
                                     </button>
                                 </a>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -218,52 +216,38 @@
                         <h2 class="font-oswald-bold">Announcement</h2>
                         <hr class="hr-thin">
                         <div class="row">
-                            <div class="col-12 col-sm-6 col-lg-12 pt-3">
-                                <div class="card bg-light shadow-sm border-0">
-                                    <div>
-                                        <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                                        <img class="card-img max-height-150" src="assets/images/munhall2.jpg"
-                                             alt="Announcement Images">
-                                        <div class="bg-deepRed px-4 rounded-left text-white important-overlay">
-                                            IMPORTANT
+                            @forelse($newsImportant as $important)
+                                <div class="col-12 col-sm-6 col-lg-12 pt-3">
+                                    <div class="card bg-light shadow-sm border-0">
+                                        <div>
+                                            <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
+                                            <img class="card-img max-height-150"
+                                                 src="{{  $important->avatar ? asset('/backend/uploads/articles/thumbnail/'.$important->avatar) : asset('assets/icons/images.svg') }}"
+                                                 alt="Announcement Images">
+                                            <div class="bg-deepRed px-4 rounded-left text-white important-overlay">
+                                                IMPORTANT
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="card-title font-weight-bold">2 FEB : Magkakaroon ng emergency sa
-                                            pri....</h6>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                            sed diam nonumy</p>
-                                        <button class="btn btn-outline-gold px-4 py-1">
-                                            <small>More Info</small>
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-12 pt-3">
-                                <div class="card bg-light shadow-sm border-0">
-                                    <div>
-                                        <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                                        <img class="card-img max-height-150" src="assets/images/munhall2.jpg"
-                                             alt="Announcement Images">
-                                        <div class="bg-deepRed px-4 rounded-left text-white important-overlay">
-                                            IMPORTANT
+                                        <div class="card-body">
+                                            <h6 class="card-title font-weight-bold">
+                                                {{ $important->created }}
+                                                : {{ $important->display_data($important->title, 50) }}</h6>
+                                            <p class="card-text">
+                                                {{ $important->display_data($important->short_description, 140) }}
+                                            </p>
+                                            <a href="{{ route('news.detail', ['slug' => $important->slug]) }}"
+                                               class="btn btn-outline-gold px-4 py-1">
+                                                <small>More Info</small>
+                                            </a>
                                         </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="card-title font-weight-bold">2 FEB : Magkakaroon ng emergency sa
-                                            pri....</h6>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                            sed diam nonumy</p>
-                                        <button class="btn btn-outline-gold px-4 py-1">
-                                            <small>More Info</small>
-                                        </button>
-                                    </div>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                    </div>
+                                </div><!-- end of col 12 -->
+                            @empty
+                                <p class="pl-3">No announcement's today</p>
+                            @endforelse
+                        </div><!-- end of row -->
+                    </div><!-- end of announcement  -->
                 </div>
             </div>
         </div>
@@ -276,7 +260,8 @@
                         <h2 class="font-oswald-bold">Latest News</h2>
                         <hr class="hr-center-thin">
                         <p class="my-4">{{ $latestNews->short_description }}</p>
-                        <a href="{{ route('news.detail', ['slug' => $latestNews->slug]) }}" class="btn btn-outline-gold px-4 py-1">
+                        <a href="{{ route('news.detail', ['slug' => $latestNews->slug]) }}"
+                           class="btn btn-outline-gold px-4 py-1">
                             <small>More Info</small>
                         </a>
                     </div>
@@ -308,7 +293,8 @@
                                     <p class="card-text">
                                         {{ $new->display_data($new->short_description, 140) }}
                                     </p>
-                                    <a href="{{ route('news.detail', ['slug' => $new->slug]) }}" class="btn btn-outline-gold px-4 py-1">
+                                    <a href="{{ route('news.detail', ['slug' => $new->slug]) }}"
+                                       class="btn btn-outline-gold px-4 py-1">
                                         <small>Read more</small>
                                     </a>
                                 </div>
@@ -328,14 +314,17 @@
                 @endphp
                 <div class="col-12 col-md-6 pt-3">
                     <div class="card shadow-sm border-0">
-                        <a href="{{ route('event.show', ['slug' => $latestActivity->slug]) }}" class="col-darkGrey home-link-setting">
+                        <a href="{{ route('event.show', ['slug' => $latestActivity->slug]) }}"
+                           class="col-darkGrey home-link-setting">
                             <div class="position-relative">
-                                <img class="card-img" src="{{ $latestActivity->avatar !== null ? asset('/backend/uploads/activities/large/'.$latestActivity->avatar) : 'https://images.unsplash.com/photo-1573490647695-2892d0bf89e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=799&q=80' }}" style="max-height: 350px;"
+                                <img class="card-img"
+                                     src="{{ $latestActivity->avatar !== null ? asset('/backend/uploads/activities/large/'.$latestActivity->avatar) : 'https://images.unsplash.com/photo-1573490647695-2892d0bf89e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=799&q=80' }}"
+                                     style="max-height: 350px;"
                                      alt="Announcement Images">
                                 <h5 class="event-overlay p-3 m-0 bg-gold col-dirtyWhite font-weight-bold text-center">
-{{--                                    {{ $latestActivity->display_date('day') }}--}}
-{{--                                    <br> {{ $month[$latestActivity->display_date('month')] }} {{ $latestActivity->display_date('year') }}--}}
-
+                                    {{ $latestActivity->display_date('day') }}
+                                    <br>
+                                    {{ $month[$latestActivity->display_date('month')] }} {{ $latestActivity->display_date('year') }}
                                 </h5>
                             </div>
                             <div class="m-3">
@@ -358,12 +347,14 @@
                     <div class="d-flex flex-column">
 
                         @foreach($activities as $activity)
-                            <a href="{{ route('event.show', ['slug' => $activity->slug]) }}" class="home-link-setting mb-3" title="{{ $activity->id }}">
+                            <a href="{{ route('event.show', ['slug' => $activity->slug]) }}"
+                               class="home-link-setting mb-3" title="{{ $activity->id }}">
                                 <div class="d-flex flex-row event-list col-darkGrey">
                                     <h5 class="font-weight-bold bg-gold px-2 py-5 text-white text-center m-0">
                                         {{ $activity->display_date('day') }}
                                         <br>
-                                        {{ $month[$activity->display_date('month')] }} {{ $activity->display_date('year') }}</h5>
+                                        {{ $month[$activity->display_date('month')] }} {{ $activity->display_date('year') }}
+                                    </h5>
                                     <div class="p-2 border-top border-bottom">
                                         <h5 class="font-weight-bold mb-1">{{ $activity->title }}</h5>
                                         <div class="d-flex flex-column flex-md-row ">
@@ -390,3 +381,14 @@
     </main>
 
 @endsection
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $('.carousel').carousel({
+                keyboard: true,
+                touch: true
+            })
+        })
+    </script>
+@stop

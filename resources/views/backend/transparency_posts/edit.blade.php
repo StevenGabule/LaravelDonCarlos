@@ -1,6 +1,9 @@
 @extends('backend.layouts.app')
 @section('style_extended')
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
 @stop
 @section('content')
     <div class="container-fluid">
@@ -78,14 +81,43 @@
                     <div class="card shadow mb-4">
                         <!-- Card Body -->
                         <div class="card-body">
+
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select name="status" id="inputStatus" class="custom-select">
                                     <option value="">-- Select the status --</option>
-                                    <option value="1" {{ $post->status === 0 ? 'selected' : '' }}>Published</option>
-                                    <option value="0" {{ $post->status === 1 ? 'selected' : '' }}>Draft</option>
+                                    <option value="1" {{ $post->status === 1 ? 'selected' : '' }}>Published</option>
+                                    <option value="0" {{ $post->status === 0 ? 'selected' : '' }}>Draft</option>
                                 </select>
                                 <small id="statusMessage" class="form-text"></small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputSelectPicker" class="font-weight-bold">Connect Your files</label>
+                                <select class="form-control selectpicker" id="inputSelectPicker" name="transparency_file_id[]"
+                                        data-live-search="true" multiple>
+                                    @forelse($transparentFiles as $files)
+                                        <option value="{{ $files->id }}">{{ $files->name }}</option>
+                                    @empty
+                                        <option value="">Please add some files</option>
+                                    @endforelse
+                                </select>
+                            </div>
+
+
+                            @php
+                                $val = [];
+                            @endphp
+                            <div class="form-group">
+                                <label class="font-weight-bold">Transparent files</label>
+                                @forelse($post->transparency_post_files as $item)
+                                    <p class="small border p-3"><i class="fad fa-fw fa-file-alt"></i> {{ $item->transparent_file->name }}</p>
+                                    @php
+                                        $val[] = $item->transparent_file->id;
+                                    @endphp
+                                @empty
+                                    <p class="text-danger">No transparent file selected</p>
+                                @endforelse
                             </div>
 
                             <div class="form-group">
@@ -99,19 +131,26 @@
             </div>
         </form>
     </div>
+    @php
+        $ids = json_encode($val);
+    @endphp
 @stop
 
 @section('_script')
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
     <script>
 
         $(document).ready(function () {
+            const _val = <?= $ids ?>;
 
             $('#inputDescription').summernote({
                 tabSize: 2,
                 height: 300
             });
+
+            $(".selectpicker").selectpicker('val', _val)
 
             const url_string = window.location.href;
             const url = new URL(url_string);
@@ -157,9 +196,10 @@
                         x.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> UPDATING...`)
                     },
                     success: _ => {
-                        $(".alert.alert-primary").removeClass('d-none');
+                        window.location.reload();
+                        /*$(".alert.alert-primary").removeClass('d-none');
                         x.attr('disabled', false);
-                        x.html(`<i class="fad fa-save mr-2"></i> Update`)
+                        x.html(`<i class="fad fa-save mr-2"></i> Update`)*/
                     },
                     error: err => {
                         x.attr('disabled', false);
@@ -212,7 +252,7 @@
                             _categoryMsg.addClass('text-success').text("Looks good.");
                         }
                     }
-                }).fail((err) => console.log(err))
+                })
             })
         })
     </script>

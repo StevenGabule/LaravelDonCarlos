@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
     <!-- inlineng the background image so it can be dynamicaly change!!!! -->
     <!-- recommended background dimension 1920 x 1280 or landscape HD -->
     <div class="about-bg-banner position-relative"

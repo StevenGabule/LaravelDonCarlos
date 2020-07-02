@@ -18,6 +18,7 @@ class CreateArticlesTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->tinyInteger('status')->default(0)->comment('0 - for draft | 1 - for pub.');
             $table->text('avatar')->nullable();
+            $table->boolean('important')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

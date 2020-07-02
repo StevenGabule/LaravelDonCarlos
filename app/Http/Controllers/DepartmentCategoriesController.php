@@ -34,7 +34,6 @@ EOT;
 
     public function store(Request $request)
     {
-
         $validation = Validator::make($request->all(), [
             'name' => 'required',
             'description' => 'required'

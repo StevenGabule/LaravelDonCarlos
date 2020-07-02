@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Place;
 use App\Transparency;
+use App\TransparencyFile;
 use App\TransparencyPost;
+use App\TransparentPostFile;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -68,7 +71,8 @@ EOT;
     public function create()
     {
         $transparencies = Transparency::latest()->get();
-        return view('backend.transparency_posts.create', compact('transparencies'));
+        $transparentFiles = TransparencyFile::latest()->get();
+        return view('backend.transparency_posts.create', compact('transparencies', 'transparentFiles'));
     }
 
 
@@ -92,6 +96,21 @@ EOT;
             'status' => $request->get('status', 0),
         ]);
 
+        $data = [];
+        if ($request->transparency_file_id) {
+            foreach ($request->transparency_file_id as $item) {
+
+                $arr = array(
+                    'transparency_file_id' => $item,
+                    'transparency_post_id' => $post->id,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                );
+                $data[] = $arr;
+            }
+            TransparentPostFile::insert($data);
+        }
+
         $output = ['id' => $post->id];
         return response()->json($output);
     }
@@ -105,7 +124,10 @@ EOT;
             'description' => 'required',
             'status' => 'required',
         ]);
-        $post = TransparencyPost::where('id', $request->input('post_id'))->first();
+
+        $id = $request->input('post_id');
+        $post = TransparencyPost::where('id', $id)->firstOrFail();
+
         $post->update([
             'title' => $request->get('title'),
             'transparency_id' => $request->get('transparency_id'),
@@ -113,8 +135,39 @@ EOT;
             'slug' => Str::slug($request->get('title')),
             'short_description' => $request->get('short_description', null),
             'description' => $request->get('description', null),
-            'status' => $request->get('status', 0),
+            'status' => $request->get('status'),
         ]);
+
+
+        $data = [];
+        if ($request->transparency_file_id) {
+
+            // adding
+            foreach ($request->transparency_file_id as $item) {
+                $transFile = TransparentPostFile::where('transparency_post_id', $id)->where('transparency_file_id', $item)->exists();
+                if ($transFile) {
+                    continue;
+                }
+                $arr = array(
+                    'transparency_file_id' => $item,
+                    'transparency_post_id' => $id,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                );
+                $data[] = $arr;
+            }
+
+            TransparentPostFile::insert($data);
+
+            // deleting if user uncheck some connection files in transparency post
+             TransparentPostFile::where('transparency_post_id', $id)
+                 ->whereNotIn('transparency_file_id', $request->transparency_file_id)->delete();
+
+        }
+
+        if ($request->transparency_file_id === null) {
+            TransparentPostFile::where('transparency_post_id', $id)->delete();
+        }
 
         $output = ['success' => true];
         return response()->json($output);
@@ -123,11 +176,11 @@ EOT;
 
     public function edit($id)
     {
-        $post = TransparencyPost::findOrFail($id);
+        $post = TransparencyPost::with('transparency_post_files')->findOrFail($id);
         $transparencies = Transparency::latest()->get();
-        return view('backend.transparency_posts.edit', compact('post', 'transparencies'));
+        $transparentFiles = TransparencyFile::latest()->get();
+        return view('backend.transparency_posts.edit', compact('post', 'transparencies', 'transparentFiles'));
     }
-
 
     public function massRemove(Request $request)
     {

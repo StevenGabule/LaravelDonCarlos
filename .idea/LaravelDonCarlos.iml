@@ -122,5 +122,6 @@
     <orderEntry type="library" name="dropzone" level="application" />
     <orderEntry type="library" name="bootstrap-tokenfield" level="application" />
     <orderEntry type="library" name="jqueryui" level="application" />
+    <orderEntry type="library" name="bootstrap-select" level="application" />
   </component>
 </module>

@@ -51,18 +51,26 @@
                     <div class="card shadow mb-4">
                         <!-- Card Body -->
                         <div class="card-body">
-                            <h6>Featured Image</h6>
-                            <div class="input-group input-group-sm mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                                </div>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile01" name="avatar"
-                                           aria-describedby="inputGroupFileAddon01"
-                                           accept="image/x-png,image/gif,image/jpeg">
-                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                </div>
+                            <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                                <input type="checkbox" class="custom-control-input" id="customControlInline" name="important">
+                                <label class="custom-control-label" for="customControlInline">Mark as
+                                    Announcement</label>
                             </div>
+
+                            <div class="form-group">
+                                <h6>Featured Image</h6>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="avatar"
+                                               aria-describedby="inputGroupFileAddon01"
+                                               accept="image/x-png,image/gif,image/jpeg">
+                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                    </div>
+                                </div>
+                            </div><!-- end of form-group -->
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
                                 <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>
@@ -164,7 +172,7 @@
                         x.attr('disabled', true);
                         x.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> SAVING...`)
                     },
-                    success: ({ id }) => {
+                    success: ({id}) => {
                         window.location.href = `${id}/edit?created`
                     },
                     error: err => {

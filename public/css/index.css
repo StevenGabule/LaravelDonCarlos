@@ -478,14 +478,17 @@ textarea {
 .navbar-light .navbar-nav .nav-link:hover {
     color: #ffc107;
 }
+
 .navbar-light .navbar-nav .nav-link {
     font-size: 16px;
     font-weight: bold;
     transition: color 100ms linear;
 }
+
 a.text-dark.text-hover {
     transition: color 100ms linear;
 }
+
 a.text-dark.text-hover:hover {
     color: #ffc107 !important;
     text-decoration: none !important;

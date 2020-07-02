@@ -70,7 +70,7 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="office_checkbox[]" class="office_checkbox" value="{{$id}}" />')
             ->editColumn('avatar', static function ($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/places/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/office/small/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->editColumn('created_at', static function ($data) {
                 return $data->created_at->format('d, M Y');

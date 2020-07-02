@@ -69,13 +69,13 @@
                                            required autocomplete="current-password"
                                            placeholder="Password">
                                 </div>
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
+
+                            </div><!-- password -->
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
-                            </div><!-- password -->
-
+                            @enderror
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-1">
                                     <div class="form-check">
@@ -92,7 +92,15 @@
                                 <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
                                    type="submit">LOGIN</button>
                             </div>
-
+                            @if (isset($errors) && $errors->any())
+                                <div class="alert alert-danger" role="alert">
+                                    <ul class="mb-0">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{  $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                         </form>
                     </div>
                 </div>

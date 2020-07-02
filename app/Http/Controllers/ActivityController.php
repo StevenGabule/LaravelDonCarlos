@@ -60,7 +60,6 @@ class ActivityController extends Controller
                   </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" style="font-size: 13px;">
                         <h6 class="dropdown-header">Actions</h6>
-
                         $btn
                         $btnRestore
                     </div>

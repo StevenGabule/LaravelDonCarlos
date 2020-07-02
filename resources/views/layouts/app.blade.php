@@ -6,7 +6,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{--<title>{{ config('app.name', 'Laravel') }}</title>--}}
     {!! SEOMeta::generate() !!}
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Oswald:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
@@ -31,7 +33,8 @@
                         </a>
                     </p>
                     <p class="mr-4 mb-0">
-                        <a href="https://www.google.com/maps/place/Don+Carlos,+Bukidnon/@7.6951118,124.8858799,12.5z/data=!4m5!3m4!1s0x32ff30601b685ad7:0x8eb5f368f8380c44!8m2!3d7.6880909!4d124.8844867" target="_blank" class="text-white"><i class="fas fa-map-marker-alt col-green"></i>&nbsp;&nbsp;
+                        <a href="https://www.google.com/maps/place/Don+Carlos,+Bukidnon/@7.6951118,124.8858799,12.5z/data=!4m5!3m4!1s0x32ff30601b685ad7:0x8eb5f368f8380c44!8m2!3d7.6880909!4d124.8844867"
+                           target="_blank" class="text-white"><i class="fas fa-map-marker-alt col-green"></i>&nbsp;&nbsp;
                             Don Carlos City
                         </a>
                     </p>
@@ -90,11 +93,6 @@
                 @auth
                     <li class="nav-item">
                         <a href="{{ route('admin') }}" class="nav-link">ADMIN</a>
-                        {{--<a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-                           class="nav-link" href="{{ route('logout') }}">LOGOUT</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>--}}
                     </li>
                 @endauth
             </ul>
@@ -132,7 +130,7 @@
             <div class="col-12 col-md-3 pb-2">
                 <div>
                     <h3 class="font-oswald-med">About Don Carlos</h3>
-                    <hr class="hr-thick" />
+                    <hr class="hr-thick"/>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vestibulum tempus auctor. Morbi
                     porta tristique laoreet. Aenean cursus ex arcu, ac pulvinar nibh pulvinar quis. Nunc erat est,
@@ -142,51 +140,53 @@
             <div class="col-12 col-md-3 pb-2">
                 <div>
                     <h3 class="font-oswald-med">Contact Details</h3>
-                    <hr class="hr-thick" />
+                    <hr class="hr-thick"/>
                 </div>
-                <p><i class="fas fa-phone-alt"></i>&nbsp;&nbsp;(088) 828 4817</p>
-                <p><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Sample St. Don Carlos City</p>
-                <p><i class="fas fa-envelope"></i>&nbsp;&nbsp;Samplemail@mail.com</p>
+                <p><a href="tel:+496170961709"><i class="fas fa-phone-alt"></i>&nbsp;&nbsp;(088) 828 4817</a></p>
+                <p>
+                    <a href="https://www.google.com/maps/place/Don+Carlos,+Bukidnon/@7.6951118,124.8858799,12.5z/data=!4m5!3m4!1s0x32ff30601b685ad7:0x8eb5f368f8380c44!8m2!3d7.6880909!4d124.8844867"
+                       target="_blank"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Don Carlos City</a></p>
+                <p><a href="mailto:sample@gmail.com"><i class="fas fa-envelope"></i>&nbsp;&nbsp;someone@mail.com</a></p>
             </div>
             <div class="col-12 col-md-3 pb-2">
                 <div>
                     <h3 class="font-oswald-med">Useful Links</h3>
-                    <hr class="hr-thick" />
+                    <hr class="hr-thick"/>
                 </div>
                 <p>
                     <i class="fas fa-square"></i>&nbsp;&nbsp;
-                    <a href="http://">Home</a>
+                    <a href="{{ route('index') }}">Home</a>
                 </p>
                 <p>
                     <i class="fas fa-square"></i>&nbsp;&nbsp;
-                    <a href="http://">About Don Carlos</a>
+                    <a href="{{ route('about') }}">About Don Carlos</a>
                 </p>
                 <p>
                     <i class="fas fa-square"></i>&nbsp;&nbsp;
-                    <a href="http://">Transparency</a>
+                    <a href="{{ route('transparency') }}">Transparency</a>
                 </p>
                 <p>
                     <i class="fas fa-square"></i>&nbsp;&nbsp;
-                    <a href="http://">Tourism</a>
+                    <a href="{{ route('tourism') }}">Tourism</a>
                 </p>
                 <p>
                     <i class="fas fa-square"></i>&nbsp;&nbsp;
-                    <a href="http://">Events</a>
+                    <a href="{{ route('events') }}">Events</a>
                 </p>
             </div>
             <div class="col-12 col-md-3 pb-2">
                 <div>
                     <h3 class="font-oswald-med">Services</h3>
-                    <hr class="hr-thick" />
+                    <hr class="hr-thick"/>
                 </div>
-                <p>
-                    <i class="fas fa-square"></i>&nbsp;&nbsp;
-                    <a href="http://">Civil Registry</a>
-                </p>
-                <p>
-                    <i class="fas fa-square"></i>&nbsp;&nbsp;
-                    <a href="http://">Social Services</a>
-                </p>
+            {{--    @forelse($services as $service)
+                    <p>
+                        <i class="fas fa-square"></i>&nbsp;&nbsp;
+                        <a href="/services/{{$service->id}}">{{ $service->name }}y</a>
+                    </p>
+                @empty
+                    <p>No Service available</p>
+                @endforelse--}}
             </div>
         </div>
     </div>
