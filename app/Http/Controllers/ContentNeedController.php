@@ -103,6 +103,7 @@ EOT;
             'description' => $request->description,
             'status' => $request->status == 1 ? true : false,
             'avatar' => $name,
+            'user_id' => Auth::id(),
             'need_type' => $request->need_type
         ]);
 
@@ -141,6 +142,7 @@ EOT;
             'description' => $request->description,
             'status' => $request->status == 1 ? true : false,
             'need_type' => $request->need_type,
+            'user_id' => Auth::id(),
             'avatar' => $name,
         ]);
 
@@ -163,6 +165,7 @@ EOT;
                     'status' => false,
                     'need_type' => $content->need_type,
                     'avatar' => null,
+                    'user_d' => Auth::id(),
                     'created_at' => Carbon::now()
                 ];
                 $data[] = $temp;

@@ -5,7 +5,9 @@ use App\Article;
 use App\ArticleCategory;
 use App\Baranggay;
 use App\BaranggayOfficial;
+use App\ContentNeed;
 use App\DepartmentCategories;
+use App\PageContent;
 use App\Place;
 use App\Services;
 use App\ServicesArticle;
@@ -44,27 +46,32 @@ class DatabaseSeeder extends Seeder
         $services = [
             [
                 'name' => 'Social Services',
-                'short_description' => null,
+                'short_description' => Str::substr($faker->text, 0, 50),
+                'status' => 1,
                 'created_at' => Carbon::now(),
             ],
             [
                 'name' => 'Civil Register Services',
-                'short_description' => null,
+                'short_description' => Str::substr($faker->text, 0, 50),
+                'status' => 1,
                 'created_at' => Carbon::now(),
             ],
             [
                 'name' => 'Online Payment',
                 'short_description' => 'Skip the line and feel more convenient with Davao City’s online payment',
+                'status' => 1,
                 'created_at' => Carbon::now(),
             ],
             [
                 'name' => 'Landmark Legislations',
                 'short_description' => 'Davao City has pioneered in implementing local laws that made it a recognizable city in the Philippines',
+                'status' => 1,
                 'created_at' => Carbon::now(),
             ],
             [
                 'name' => 'Career Opportunities',
                 'short_description' => 'Davao City offers an array of employment opportunities for Dabawenyos.',
+                'status' => 1,
                 'created_at' => Carbon::now(),
             ]
         ];
@@ -238,6 +245,7 @@ class DatabaseSeeder extends Seeder
         factory(BaranggayOfficial::class, 100)->create();
         factory(Activities::class, 50)->create();
         factory(TransparencyPost::class, 100)->create();
+        factory(ContentNeed::class, 100)->create();
 
         User::create([
             'name' => 'Admin Muck',
@@ -255,48 +263,45 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-       /* Services::create([
-            'name' => 'Social Services',
-            'short_description' => 'Davao City has pioneered in implementing local laws that made it a',
-            'status' => 1,
+        PageContent::create([
+            'title' => 'Don Carlos Domestic Airport',
+            'slug' => Str::slug('Don Carlos Domestic Airport'),
+            'short_description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et',
+            'description' => 'Content herer...',
             'created_at' => Carbon::now()
         ]);
 
-        Services::create([
-            'name' => 'Civil Registry Services',
-            'short_description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In quia ut voluptatem. Ad animi commodi facilis possimus quae quo reprehenderit.",
-            'status' => 1,
-            'created_at' => Carbon::now()]);
-
-        Services::create([
-            'name' => 'Online Payment',
-            'short_description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In quia ut voluptatem. Ad animi commodi facilis possimus quae quo reprehenderit.",
-            'status' => 1,
+        PageContent::create([
+            'title' => 'Meet Woman Who Care About Our City',
+            'slug' => Str::slug('Meet Woman Who Care About Our City'),
+            'short_description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et',
+            'description' => 'Content here...',
             'created_at' => Carbon::now()
         ]);
 
 
-        Services::create([
-            'name' => 'Landmark Legislations',
-            'short_description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In quia ut voluptatem. Ad animi commodi facilis possimus quae quo reprehenderit.",
-            'status' => 1,
+        PageContent::create([
+            'title' => 'History Of Don Carlos Bukidnon',
+            'slug' => Str::slug('History Of Don Carlos Bukidnon'),
+            'short_description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et',
+            'description' => 'Content here...',
             'created_at' => Carbon::now()
         ]);
 
 
-        Services::create([
-            'name' => 'Career Opportunities',
-            'short_description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In quia ut voluptatem. Ad animi commodi facilis possimus quae quo reprehenderit.",
-            'status' => 1,
+        PageContent::create([
+            'title' => 'Mission and Vision',
+            'slug' => Str::slug('Mission and Vision'),
+            'short_description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et',
+            'description' => 'Content here...',
             'created_at' => Carbon::now()
-        ]);*/
+        ]);
 
         DepartmentCategories::create([
             'name' => 'Economic Development',
             'slug' => Str::slug('Economic Development'),
             'description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In quia ut voluptatem. Ad animi commodi facilis possimus quae quo reprehenderit.",
             'created_at' => Carbon::now()
-
         ]);
 
         DepartmentCategories::create([

@@ -370,4 +370,13 @@ class PageController extends Controller
         $services = Services::latest()->get();
         return view('award', compact('articles', 'awards', 'services', 'type', 'content', 'content1'));
     }
+
+    public function content_show($type, $slug)
+    {
+        $content = ContentNeed::whereSlug($slug)->firstOrFail();
+        $content1 = PageContent::findOrFail(4);
+        $articles = Article::latest()->take(2)->get();
+        $services = Services::latest()->get();
+        return view('award-details', compact('content', 'articles', 'content1', 'type', 'services'));
+    }
 }

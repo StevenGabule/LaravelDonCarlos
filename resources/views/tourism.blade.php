@@ -67,8 +67,9 @@
                         <div class="d-flex flex-column flex-lg-row">
 
                             <!-- recommended dimension 640x480 kay mau man ang image nga gi gamit -->
-                            <img src="{{ $slide->avatar !== null ? asset('/backend/uploads/places/original/' . $slide->avatar) : 'https://images.unsplash.com/photo-1564937689754-0ef73a2d3b31?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1172&q=80' }}" class="w-100 h-100"
-                                 alt="kahulogan falls image">
+                            <img
+                                src="{{ $slide->avatar !== null ? asset('/backend/uploads/places/original/' . $slide->avatar) : 'https://images.unsplash.com/photo-1564937689754-0ef73a2d3b31?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1172&q=80' }}" class="w-100 h-100"
+                                 style="max-width:680px;max-height:390px;" alt="image not found">
 
                             <div class=" px-3 py-5">
                                 <p class="col-gold mb-0">{{ $slide->name }}</p>

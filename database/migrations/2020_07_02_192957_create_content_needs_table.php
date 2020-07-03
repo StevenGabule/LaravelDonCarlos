@@ -15,6 +15,7 @@ class CreateContentNeedsTable extends Migration
     {
         Schema::create('content_needs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->string('slug');
             $table->text('short_description');

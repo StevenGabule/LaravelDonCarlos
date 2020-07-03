@@ -40,7 +40,7 @@
                 <div class="d-flex h-100">
                     <div class="mt-auto py-3">
                         <h2 class="d-inline-block py-4 font-weight-bold text-white">
-                            <span class="col-gold"></span>
+                            <span class="col-gold">{{ $content->title }}</span>
                         </h2>
                         <!-- recommended nga 48char and below and count sa title gekan sa server para dli maguba ang css -->
                     </div>
@@ -55,25 +55,10 @@
             <span class="px-2">&gt;</span>
             <a href="{{ route('about') }}">About Don Carlos</a>
             <span class="px-2">&gt;</span>
-            <span>Awards</span>
+            <span class="text-capitalize">{{ $type }}</span>
         </nav>
 
         <hr class="hr-thin">
-
-        <form action="">
-            <div class="input-group ml-auto" style="width: 300px;">
-                <input
-                    class="form-control py-2 border-right-0 border"
-                    type="text" name="q" value="{{ $_GET['q'] ?? '' }}"
-                    placeholder="search"
-                    id="example-search-input">
-                <span class="input-group-append">
-                    <button type="submit" class="input-group-text bg-transparent">
-                        <i class="fa fa-search "></i>
-                    </button>
-                </span>
-            </div>
-        </form>
 
         <div class="row my-4">
             <div class="col-12 col-md-3">
@@ -109,26 +94,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-9">
-                <div class="d-flex flex-column pl-lg-4">
-                    @forelse($awards as $award)
-                        <a href="{{ route('content.show', ['slug' => $award->slug, 'type' => (int)$award->need_type == 1 ? 'awards' : 'mandate']) }}" class="mt-3 shadow-sm p-2 about-page-link">
-                            <div class="d-flex">
-                                <img class="card-img w-150px"
-                                     src="{{ $award->avatar ? asset('/backend/uploads/content-needs/thumbnail/'.$award->avatar) : asset('assets/icons/images.svg') }}"
-                                     alt="Image not found">
-                                <div class="pl-3 pt-2">
-                                    <h4 class="font-weight-bold">{{ $award->title }}</h4>
-                                    <!-- recommended max char length of 150 - 180*  -->
-                                    <p>{{ $award->short_description }}</p>
-                                </div>
-                            </div>
-                        </a>
-                    @empty
-                        <p>Oop... No data found</p>
-                    @endforelse
-                </div><!-- end of d-flex -->
-                <br>
-                {{ $awards->links() }}
+                {!! $content->description !!}
             </div><!-- end of col-md-9 -->
 
         </div>

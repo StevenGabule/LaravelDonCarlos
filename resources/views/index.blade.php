@@ -128,7 +128,7 @@
                     <div class="d-flex flex-column flex-md-row my-5 prog-content-container">
                         <!-- ge background nako ang image para dili mo stretch -->
                         <div class="prog-cont-image1"
-                             style="background-image: url('{{ asset('backend/uploads/page-content/thumbnail/' . $content1->avatar) }}');"></div>
+                             style="background-image: url('{{ $content1->avatar !== null ? asset('backend/uploads/page-content/thumbnail/' . $content1->avatar) : 'https://images.unsplash.com/photo-1559311648-874c28a0b7c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1031&q=80' }}');"></div>
                         <!-- <img src="assets/images/airport.jpg" alt=""> -->
                         <div class="text-center mt-5 mt-md-0 mx-md-4">
                             <h3 class="font-weight-bold">{{ $content1->title }}</h3>
@@ -155,7 +155,7 @@
                         <div class="ml-md-3 mt-3 mt-md-0">
                             <!-- inline image so that it can be change -->
                             <div class="prog-cont-image2"
-                                 style="background-image: url('{{ asset('backend/uploads/page-content/original/' . $content2->avatar) }}');"></div>
+                                 style="background-image: url('{{ $content2->avatar !== null ? asset('backend/uploads/page-content/original/' . $content2->avatar) : 'https://images.unsplash.com/photo-1559311648-874c28a0b7c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1031&q=80' }}');"></div>
                         </div>
 
                     </div>

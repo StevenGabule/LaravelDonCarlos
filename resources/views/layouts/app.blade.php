@@ -179,14 +179,14 @@
                     <h3 class="font-oswald-med">Services</h3>
                     <hr class="hr-thick"/>
                 </div>
-            {{--    @forelse($services as $service)
+                @forelse($services as $service)
                     <p>
                         <i class="fas fa-square"></i>&nbsp;&nbsp;
                         <a href="/services/{{$service->id}}">{{ $service->name }}y</a>
                     </p>
                 @empty
                     <p>No Service available</p>
-                @endforelse--}}
+                @endforelse
             </div>
         </div>
     </div>

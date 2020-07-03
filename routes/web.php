@@ -36,13 +36,14 @@ Route::get('/department/{id}/{slug1}/{slug2}','PageController@department_list_sh
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin', 'UserController@index')->name('admin');
 
 Route::get('/features/{slug}', 'PageController@page_show')->name('page.show');
 Route::get('/don-carlos/awards', 'PageController@award')->name('awards');
 Route::get('/don-carlos/mandate', 'PageController@mandate')->name('mandate');
+Route::get('/don-carlos/{type}/{slug}', 'PageController@content_show')->name('content.show');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
+    Route::get('/', 'UserController@index')->name('admin');
 
     // NEWS AND UPDATES ROUTES
     Route::resource('article', 'ArticleController');
