@@ -72,9 +72,10 @@ class PageController extends Controller
 
         SEOTools::setTitle($news->title);
         SEOTools::setDescription($news->short_description);
+        $services = Services::latest()->get();
 
         $articles = Article::latest()->take(2)->get();
-        return view('show-news', compact('news', 'articles'));
+        return view('show-news', compact('news', 'articles', 'services'));
     }
 
     public function services()
