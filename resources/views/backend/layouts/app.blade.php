@@ -164,14 +164,14 @@
 
         <li class="nav-item active">
             <a class="nav-link" href="{{ route('page-content.index') }}">
-                <i class="fad fa-fw fa-users blueish"></i>
+                <i class="fad fa-fw fa-pager  blueish"></i>
                 <span>Pages Content</span>
             </a>
         </li>
 
         <li class="nav-item active">
             <a class="nav-link" href="{{ route('need-content.index') }}">
-                <i class="fad fa-fw fa-users blueish"></i>
+                <i class="fad fa-fw fa-file-certificate blueish"></i>
                 <span>Award And Mandate</span>
             </a>
         </li>
