@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
 use App\Services;
-use App\servicesArticle;
+use App\ServicesArticle;
 use App\Traits\ImageHandle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
