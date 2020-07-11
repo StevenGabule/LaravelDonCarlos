@@ -18,12 +18,14 @@
             <h2 class="font-oswald-bold">{{ $events->title }}</h2>
             <p>
                 <i class="fas fa-calendar"></i>
-                <span class="pl-3 font-weight-bold">
+                <span class="font-weight-bold">
                     {{ $events->convert_date() }}
                 </span>
 
-                <i class="fas fa-map-marker-alt"></i>
-                <span class="pl-3 font-weight-bold">{{ $events->address }}</span>
+               <span class="ml-3">
+                    <i class="fas fa-map-marker-alt"></i>
+                <span class="font-weight-bold">{{ $events->address }}</span>
+               </span>
             </p>
             {!! $events->description !!}
         </div>

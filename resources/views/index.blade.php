@@ -43,7 +43,7 @@
                     <div class="carousel-caption text-left">
                         <h1>{{ $newHeadLine->title }}.</h1>
                         <p>{{ $newHeadLine->short_description }}</p>
-                        <p><a class="btn btn-sm btn-warning"
+                        <p><a class="btn btn-sm btn-success"
                               href="{{ route('news.detail', ['slug' => $newHeadLine->slug]) }}" role="button">Read
                                 more...</a></p>
                     </div>
@@ -57,7 +57,7 @@
                     <div class="carousel-caption">
                         <h1>{{ $eventHeadLine->title }}</h1>
                         <p>{{$eventHeadLine->short_description}}</p>
-                        <p><a class="btn btn-sm btn-warning"
+                        <p><a class="btn btn-sm btn-success"
                               href="{{ route('event.show', ['slug' => $eventHeadLine->slug]) }}" role="button">Learn
                                 more</a></p>
                     </div>
@@ -71,7 +71,7 @@
                     <div class="carousel-caption text-right">
                         <h1>{{ $placeHeadLine->name }}</h1>
                         <p>{{ $placeHeadLine->short_description }}</p>
-                        <p><a class="btn btn-sm btn-warning" href="/place/{{$placeHeadLine->slug}}" role="button">Browse
+                        <p><a class="btn btn-sm btn-success" href="/place/{{$placeHeadLine->slug}}" role="button">Browse
                                 more</a></p>
                     </div>
                 </div>
@@ -98,29 +98,33 @@
 
                     <div class="row no-gutters w-100 text-center">
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <button class="btn btn-home-programs py-3 px-0 shadow-sm w-100"><i
-                                    class="fas fa-university fa-2x"></i><br><span class="font-weight-bold">Insfrastructure</span>
-                            </button>
+                            <a href="" class="btn btn-home-programs py-3 px-0 shadow-sm w-100"><i
+                                    class="fas fa-university fa-2x"></i><br><span class="font-weight-bold">Infrastructure</span>
+                            </a>
                         </div>
+
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <button class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="" class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-tractor fa-2x"></i><br><span
-                                    class="font-weight-bold">Agriculture</span></button>
+                                    class="font-weight-bold">Agriculture</span></a>
                         </div>
+
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <button class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="" class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-heartbeat fa-2x"></i><br><span
-                                    class="font-weight-bold">Healthcare</span></button>
+                                    class="font-weight-bold">Healthcare</span></a>
                         </div>
+
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <button class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="" class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-graduation-cap fa-2x"></i><br><span
-                                    class="font-weight-bold">Education</span></button>
+                                    class="font-weight-bold">Education</span></a>
                         </div>
+
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <button class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="" class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-plane fa-2x"></i><br><span class="font-weight-bold">Tourism</span>
-                            </button>
+                            </a>
                         </div>
                     </div>
 
@@ -197,18 +201,18 @@
                         <div class="row">
                             <div class="col-12 col-md-4 col-lg-12 pt-3">
                                 <h5 class="font-weight-bold">PNP:</h5>
-                                <span class="pl-4">09236785946</span><br>
-                                <span class="pl-4">09267854366</span>
+                                <span class="pl-4"><a href="tel:20292929" class="text-dark">09236785946</a></span><br>
+                                <span class="pl-4"><a href="tel:20292929" class="text-dark">09236785946</a></span>
                             </div>
                             <div class="col-12 col-md-4 col-lg-12 pt-3">
                                 <h5 class="font-weight-bold">FIRE:</h5>
-                                <span class="pl-4">09236785946</span><br>
-                                <span class="pl-4">09267854366</span>
+                                <span class="pl-4"><a href="tel:20292929" class="text-dark">09236785946</a></span><br>
+                                <span class="pl-4"><a href="tel:20292929" class="text-dark">09236785946</a></span>
                             </div>
                             <div class="col-12 col-md-4 col-lg-12 pt-3">
                                 <h5 class="font-weight-bold">RESCUE:</h5>
-                                <span class="pl-4">09236785946</span><br>
-                                <span class="pl-4">09267854366</span>
+                                <span class="pl-4"><a href="tel:20292929" class="text-dark">09236785946</a></span><br>
+                                <span class="pl-4"><a href="tel:20292929" class="text-dark">09236785946</a></span>
                             </div>
                         </div>
                     </div>
@@ -306,7 +310,7 @@
             </div>
         </div>
         <div class="container mt-5">
-            <h2 class="text-center font-oswald-bold">Upcoming Events</h2>
+            <h2 class="text-center font-oswald-bold">Activities And Upcoming Events</h2>
             <hr class="hr-center-thin">
             <div class="row my-4">
                 @php
@@ -321,7 +325,7 @@
                                      src="{{ $latestActivity->avatar !== null ? asset('/backend/uploads/activities/large/'.$latestActivity->avatar) : 'https://images.unsplash.com/photo-1573490647695-2892d0bf89e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=799&q=80' }}"
                                      style="max-height: 350px;"
                                      alt="Announcement Images">
-                                <h5 class="event-overlay p-3 m-0 bg-gold col-dirtyWhite font-weight-bold text-center">
+                                <h5 class="event-overlay p-3 m-0 bg-green-event col-dirtyWhite font-weight-bold text-center">
                                     {{ $latestActivity->display_date('day') }}
                                     <br>
                                     {{ $month[$latestActivity->display_date('month')] }} {{ $latestActivity->display_date('year') }}
@@ -350,7 +354,7 @@
                             <a href="{{ route('event.show', ['slug' => $activity->slug]) }}"
                                class="home-link-setting mb-3" title="{{ $activity->id }}">
                                 <div class="d-flex flex-row event-list col-darkGrey">
-                                    <h5 class="font-weight-bold bg-gold px-2 py-5 text-white text-center m-0">
+                                    <h5 class="font-weight-bold bg-green-event px-2 py-5 text-white text-center m-0">
                                         {{ $activity->display_date('day') }}
                                         <br>
                                         {{ $month[$activity->display_date('month')] }} {{ $activity->display_date('year') }}

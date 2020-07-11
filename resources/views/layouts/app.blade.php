@@ -43,11 +43,10 @@
             <div class="ml-auto d-flex">
                 <div>
                     <a href="http://"><img src="{{ asset('assets/icons/fb.svg') }}" alt=""></a>
-                    <a href="http://"><img src="{{ asset('assets/icons/tw.svg') }}" alt=""></a>
-                    <a href="http://"><img src="{{ asset('assets/icons/insta.svg') }}" alt=""></a>
                 </div>
             </div>
         </div>
+    </div>
 </header>
 <!-- nav links -->
 <div class="nav-head bg-navTransparent">
@@ -59,11 +58,13 @@
             </div>
         </a>
         <!-- <a class="navbar-brand" href="#"><img src="assets/icons/logo.svg" alt="">&nbsp;&nbsp;<span class="font-oswald wght-bold h2 pt-5">Don Carlos</span></a> -->
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             <!-- <i class="fas fa-bars"></i> -->
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item text-uppercase">
@@ -142,11 +143,11 @@
                     <h3 class="font-oswald-med">Contact Details</h3>
                     <hr class="hr-thick"/>
                 </div>
-                <p><a href="tel:+496170961709"><i class="fas fa-phone-alt"></i>&nbsp;&nbsp;(088) 828 4817</a></p>
+                <p><a href="tel:+496170961709"  class="text-white"><i class="fas fa-phone-alt"></i>&nbsp;&nbsp;(088) 828 4817</a></p>
                 <p>
                     <a href="https://www.google.com/maps/place/Don+Carlos,+Bukidnon/@7.6951118,124.8858799,12.5z/data=!4m5!3m4!1s0x32ff30601b685ad7:0x8eb5f368f8380c44!8m2!3d7.6880909!4d124.8844867"
-                       target="_blank"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Don Carlos City</a></p>
-                <p><a href="mailto:sample@gmail.com"><i class="fas fa-envelope"></i>&nbsp;&nbsp;someone@mail.com</a></p>
+                       target="_blank" class="text-white"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Don Carlos City</a></p>
+                <p><a href="mailto:sample@gmail.com" class="text-white"><i class="fas fa-envelope"></i>&nbsp;&nbsp;someone@mail.com</a></p>
             </div>
             <div class="col-12 col-md-3 pb-2">
                 <div>
@@ -155,23 +156,23 @@
                 </div>
                 <p>
                     <i class="fas fa-square"></i>&nbsp;&nbsp;
-                    <a href="{{ route('index') }}">Home</a>
+                    <a href="{{ route('index') }}" class="text-white">Home</a>
                 </p>
                 <p>
                     <i class="fas fa-square"></i>&nbsp;&nbsp;
-                    <a href="{{ route('about') }}">About Don Carlos</a>
+                    <a href="{{ route('about') }}" class="text-white">About Don Carlos</a>
                 </p>
                 <p>
                     <i class="fas fa-square"></i>&nbsp;&nbsp;
-                    <a href="{{ route('transparency') }}">Transparency</a>
+                    <a href="{{ route('transparency') }}" class="text-white">Transparency</a>
                 </p>
                 <p>
                     <i class="fas fa-square"></i>&nbsp;&nbsp;
-                    <a href="{{ route('tourism') }}">Tourism</a>
+                    <a href="{{ route('tourism') }}" class="text-white">Tourism</a>
                 </p>
                 <p>
                     <i class="fas fa-square"></i>&nbsp;&nbsp;
-                    <a href="{{ route('events') }}">Events</a>
+                    <a href="{{ route('events') }}" class="text-white">Events</a>
                 </p>
             </div>
             <div class="col-12 col-md-3 pb-2">
@@ -182,7 +183,7 @@
                 @forelse($services as $service)
                     <p>
                         <i class="fas fa-square"></i>&nbsp;&nbsp;
-                        <a href="/services/{{$service->id}}">{{ $service->name }}y</a>
+                        <a href="/services/{{$service->id}}" class="text-white">{{ $service->name }}y</a>
                     </p>
                 @empty
                     <p>No Service available</p>

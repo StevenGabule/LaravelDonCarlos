@@ -31,8 +31,9 @@ class PageController extends Controller
         SEOTools::twitter()->setSite(env('APP_URL'));
         SEOTools::jsonLd()->addImage('');*/
 
-        $services = Services::latest()->get();
-        $news = Article::with('user')
+        $services = Services::select('id', 'name', 'short_description')->latest()->get();
+        $news = Article::with('user:id,name,created_at')
+            ->select('id', 'user_id', 'title', 'short_description', 'slug', 'avatar', 'created_at')
             ->where('status', 1)
             ->where('important', false)
             ->orderBy('created_at', 'DESC')
@@ -46,12 +47,12 @@ class PageController extends Controller
         $content1 = PageContent::findOrFail(1);
         $content2 = PageContent::findOrFail(2);
 
-        $newHeadLine = Article::latest()->firstOrFail();
-        $eventHeadLine = Activities::latest()->firstOrFail();
-        $placeHeadLine = Place::latest()->firstOrFail();
+        $newHeadLine = Article::where('status', 1)->latest()->firstOrFail();
+        $eventHeadLine = Activities::where('status', 1)->latest()->firstOrFail();
+        $placeHeadLine = Place::where('status', 1)->latest()->firstOrFail();
 
-        $activities = Activities::latest()->take(3)->skip(1)->get();
-        $latestActivity = Activities::latest()->firstOrFail();
+        $activities = Activities::where('status', 1)->latest()->take(3)->skip(1)->get();
+        $latestActivity = Activities::where('status', 1)->latest()->firstOrFail();
 
 
         return view('index', compact('services',
@@ -356,7 +357,7 @@ class PageController extends Controller
         $content = PageContent::findOrFail(3);
         $content1 = PageContent::findOrFail(4);
         $articles = Article::latest()->take(2)->get();
-        $awards = ContentNeed::where('status',true)->where('deleted_at', '=', null)->where('need_type', 1)->orderBy('created_at', 'DESC')->filter(request()->only(['q']))->paginate(5);
+        $awards = ContentNeed::where('status', true)->where('deleted_at', '=', null)->where('need_type', 1)->orderBy('created_at', 'DESC')->filter(request()->only(['q']))->paginate(5);
         $services = Services::latest()->get();
         return view('award', compact('articles', 'awards', 'services', 'type', 'content', 'content1'));
     }
@@ -367,7 +368,7 @@ class PageController extends Controller
         $content = PageContent::findOrFail(3);
         $content1 = PageContent::findOrFail(4);
         $articles = Article::latest()->take(2)->get();
-        $awards = ContentNeed::where('status',true)->where('deleted_at', '=', null)->where('need_type', 2)->orderBy('created_at', 'DESC')->filter(request()->only(['q']))->paginate(5);
+        $awards = ContentNeed::where('status', true)->where('deleted_at', '=', null)->where('need_type', 2)->orderBy('created_at', 'DESC')->filter(request()->only(['q']))->paginate(5);
         $services = Services::latest()->get();
         return view('award', compact('articles', 'awards', 'services', 'type', 'content', 'content1'));
     }

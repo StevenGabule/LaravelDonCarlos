@@ -13,17 +13,17 @@
 
         .page-item a {
             border-radius: 8px;
-            color: #F9BF00;
-            border-color: #F9BF00;
+            color: #28a745;
+            border-color: #28a745;
         }
 
         .page-item.active span.page-link {
-            background-color: #F9BF00 !important;
+            background-color: #28a745 !important;
             color: #F5F5F5 !important;
             -webkit-border-radius: 5px;
             -moz-border-radius: 5px;
             border-radius: 5px;
-            border-color: #F9BF00 !important;;
+            border-color: #28a745 !important;;
         }
     </style>
 @stop
@@ -35,7 +35,7 @@
             <div class="container col-dirtyWhite h-100">
                 <div class="d-flex h-100">
                     <div class="mt-auto py-5">
-                        <h2 class="d-inline-block px-4 py-2 bg-gold font-weight-bold text-white">NEWS</h2>
+                        <h2 class="d-inline-block px-4 py-2 bg-green-event font-weight-bold text-white">NEWS  </h2>
                     </div>
                 </div>
             </div>

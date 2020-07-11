@@ -30,28 +30,28 @@
       <Owner>postgres</Owner>
       <IntrospectionStateNumber>62432</IntrospectionStateNumber>
       <Current>1</Current>
-      <Relations>sequence|table|67204|67206|1
-sequence|table|67224|67226|1
-sequence|table|67236|67238|1
-sequence|table|67249|67251|1
-sequence|table|67261|67263|1
-sequence|table|67273|67275|1
-sequence|table|67286|67288|1
-sequence|table|67298|67300|1
-sequence|table|62821|62823|1
-sequence|table|67452|67454|1
-sequence|table|67473|67475|1
-sequence|table|67318|67320|1
-sequence|table|67330|67332|1
-sequence|table|67338|67340|1
+      <Relations>sequence|table|67473|67475|1
+sequence|table|67391|67393|1
+sequence|table|67402|67404|1
 sequence|table|67346|67348|1
 sequence|table|67354|67356|1
 sequence|table|67367|67369|1
 sequence|table|67378|67380|1
-sequence|table|67391|67393|1
-sequence|table|67402|67404|1
 sequence|table|67414|67416|1
 sequence|table|67426|67428|1
+sequence|table|67452|67454|1
+sequence|table|67261|67263|1
+sequence|table|67224|67226|1
+sequence|table|67236|67238|1
+sequence|table|67249|67251|1
+sequence|table|67318|67320|1
+sequence|table|67330|67332|1
+sequence|table|67338|67340|1
+sequence|table|67273|67275|1
+sequence|table|67286|67288|1
+sequence|table|67298|67300|1
+sequence|table|67204|67206|1
+sequence|table|62821|62823|1
 </Relations>
     </database>
     <database id="8" parent="1" name="dragonstackdb">
@@ -52402,6 +52402,7 @@ sequence|table|67426|67428|1
     </sequence>
     <table id="4721" parent="30" name="activities">
       <ObjectId>67238</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>61802</StateNumber>
     </table>
@@ -52422,6 +52423,7 @@ sequence|table|67426|67428|1
     </table>
     <table id="4725" parent="30" name="articles">
       <ObjectId>67251</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>62390</StateNumber>
     </table>
