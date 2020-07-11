@@ -14,7 +14,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "fzaninotto/faker": "^1.9.1",
         "guzzlehttp/guzzle": "^6.5",
-        "intervention/image": "^2.5",
+        "intervention/image": "2.5.1.*",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
         "progcode/laravel-fullcalendar": "^1.3",
