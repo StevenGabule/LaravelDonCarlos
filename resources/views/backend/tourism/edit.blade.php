@@ -181,6 +181,9 @@
 
                 $.ajax({
                     url: '{{ route('place.update.ajax') }}',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
                     method: 'POST',
                     data: new FormData(this),
                     contentType: false,

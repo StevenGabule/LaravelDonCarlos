@@ -143,6 +143,9 @@
 
                 $.ajax({
                     url: '{{ route('place.store') }}',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
                     method: 'POST',
                     data: new FormData(this),
                     contentType: false,
