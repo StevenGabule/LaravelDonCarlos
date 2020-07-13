@@ -84,7 +84,6 @@ EOT;
             'status' => 'required',
             'short_description' => 'required',
             'description' => 'required',
-            'avatar' => 'sometimes|required|mimes:jpeg,bmp,png,jpg',
         ]);
 
         $name = null;
