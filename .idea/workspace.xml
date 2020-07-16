@@ -25,8 +25,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8ea968b-c1f4-4306-90da-bf46493a5853" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/THEMES/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/THEMES/css/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -299,7 +300,7 @@
       <workItem from="1594770798241" duration="8438000" />
       <workItem from="1594860799447" duration="11354000" />
       <workItem from="1594877596990" duration="1200000" />
-      <workItem from="1594920682479" duration="7956000" />
+      <workItem from="1594920682479" duration="8484000" />
     </task>
     <servers />
   </component>
