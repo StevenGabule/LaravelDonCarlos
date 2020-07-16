@@ -51,7 +51,7 @@ class PageController extends Controller
          * 8 - tour
          * 5 - agr
          * */
-        $contents = PageContent::whereIn('id', [1,2,7,5,6,9,8])->get();
+        $contents = PageContent::whereIn('id', [1,2,6,7,5,8,9])->get();
 
         $newHeadLine = Article::where('status', 1)->latest()->first();
         $eventHeadLine = Activities::where('status', 1)->latest()->firstOrFail();
