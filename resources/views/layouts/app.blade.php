@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="short icon" href="{{ asset('assets/icons/87px-Ph_seal_don_carlos.jpg') }}">
     {{--<title>{{ config('app.name', 'Laravel') }}</title>--}}
     {!! SEOMeta::generate() !!}
     <link
@@ -53,8 +54,7 @@
     <nav class="navbar navbar-expand-lg navbar-light container">
         <a class="navbar-brand" href="{{ route('index') }}">
             <div class="d-flex">
-                <img src="{{ asset('assets/icons/logo.svg') }}" alt="" class="img-fluid"> &nbsp;&nbsp;
-                <p class="font-oswald-bold h4 my-auto">Don Carlos</p>
+                <img src="{{ asset('assets/icons/logos.png') }}" alt="" class="img-fluid"> &nbsp;&nbsp;
             </div>
         </a>
         <!-- <a class="navbar-brand" href="#"><img src="assets/icons/logo.svg" alt="">&nbsp;&nbsp;<span class="font-oswald wght-bold h2 pt-5">Don Carlos</span></a> -->
@@ -195,6 +195,7 @@
 </div>
 
 @stack('scripts')
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bdccd37bc145bb8"></script>
 
 </body>
 </html>

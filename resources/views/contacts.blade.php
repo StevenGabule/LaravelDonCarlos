@@ -4,7 +4,7 @@
     <!-- inlineng the background image so it can be dynamicaly change!!!! -->
     <!-- recommended background dimension 1920 x 1280 or landscape HD -->
     <div class="about-bg-banner position-relative"
-         style="background-image: url('{{ asset('../assets/images/calling.jpg') }}');margin-top: -24px;">
+         style="background: url('https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80') no-repeat center center / cover;margin-top: -24px;">
         <div class="trending-bg-banner-overlay h-100">
             <div class="container col-dirtyWhite h-100">
                 <div class="d-flex h-100">

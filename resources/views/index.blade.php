@@ -40,12 +40,9 @@
             <div class="carousel-item active"
                  style="background: url('{{ $newHeadLine->avatar !== null ? asset('backend/uploads/articles/large/' . $newHeadLine->avatar) : 'https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'}}') no-repeat center center / cover">
                 <div class="container">
-                    <div class="carousel-caption text-left">
-                        <h1>{{ $newHeadLine->title }}.</h1>
-                        <p>{{ $newHeadLine->short_description }}</p>
-                        <p><a class="btn btn-sm btn-success"
-                              href="{{ route('news.detail', ['slug' => $newHeadLine->slug]) }}" role="button">Read
-                                more...</a></p>
+                    <div class="carousel-caption text-left mb-5">
+                        <h3><a class="text-white" href="{{ route('news.detail', ['slug' => $newHeadLine->slug]) }}">{{ $newHeadLine->title }}</a></h3>
+                        <p class="lead">{{ $newHeadLine->short_description }}</p>
                     </div>
                 </div>
             </div><!-- news update -->
@@ -54,12 +51,9 @@
                  style="background: url('{{ $eventHeadLine->avatar !== null ? asset('backend/uploads/activities/large/' . $eventHeadLine->avatar) : 'https://images.unsplash.com/photo-1549451371-64aa98a6f660?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80' }}') no-repeat center center / cover;">
 
                 <div class="container">
-                    <div class="carousel-caption">
-                        <h1>{{ $eventHeadLine->title }}</h1>
-                        <p>{{$eventHeadLine->short_description}}</p>
-                        <p><a class="btn btn-sm btn-success"
-                              href="{{ route('event.show', ['slug' => $eventHeadLine->slug]) }}" role="button">Learn
-                                more</a></p>
+                    <div class="carousel-caption  mb-5">
+                        <h3><a class="text-white" href="{{ route('event.show', ['slug' => $eventHeadLine->slug]) }}">{{ $eventHeadLine->title }}</a></h3>
+                        <p class="lead">{{$eventHeadLine->short_description}}</p>
                     </div>
                 </div>
             </div><!-- events and activties -->
@@ -68,11 +62,9 @@
                  style="background: url('{{ $placeHeadLine->avatar !== null ? asset('backend/uploads/places/large/' . $placeHeadLine->avatar) : 'https://images.unsplash.com/photo-1525489196064-0752fa4e16f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80' }}') no-repeat center center / cover">
 
                 <div class="container">
-                    <div class="carousel-caption text-right">
-                        <h1>{{ $placeHeadLine->name }}</h1>
-                        <p>{{ $placeHeadLine->short_description }}</p>
-                        <p><a class="btn btn-sm btn-success" href="/place/{{$placeHeadLine->slug}}" role="button">Browse
-                                more</a></p>
+                    <div class="carousel-caption text-right mb-5">
+                        <h3><a class="text-white" href="/place/{{$placeHeadLine->slug}}">{{ $placeHeadLine->name }}</a></h3>
+                        <p class="lead">{{ $placeHeadLine->short_description }}</p>
                     </div>
                 </div>
             </div><!-- tourism -->
@@ -98,32 +90,32 @@
 
                     <div class="row no-gutters w-100 text-center">
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="" class="btn btn-home-programs py-3 px-0 shadow-sm w-100"><i
-                                    class="fas fa-university fa-2x"></i><br><span class="font-weight-bold">Infrastructure</span>
+                            <a href="{{ route('page.show', ['slug' => $contents[2]->slug]) }}" class="btn btn-home-programs py-3 px-0 shadow-sm w-100"><i
+                                    class="fas fa-university fa-2x"></i><br><span class="font-weight-bold">{{ $contents[2]->title}}</span>
                             </a>
                         </div>
-
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="{{ route('page.show', ['slug' => $contents[3]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-tractor fa-2x"></i><br><span
                                     class="font-weight-bold">Agriculture</span></a>
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="{{ route('page.show', ['slug' => $contents[4]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-heartbeat fa-2x"></i><br><span
                                     class="font-weight-bold">Healthcare</span></a>
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="{{ route('page.show', ['slug' => $contents[5]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-graduation-cap fa-2x"></i><br><span
                                     class="font-weight-bold">Education</span></a>
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="" class="btn btn-home-programs py-3 shadow-sm w-100"><i
-                                    class="fas fa-plane fa-2x"></i><br><span class="font-weight-bold">Tourism</span>
+                            <a href="{{ route('page.show', ['slug' => $contents[6]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                                    class="fas fa-plane fa-2x"></i><br><span
+                                    class="font-weight-bold">Tourism</span>
                             </a>
                         </div>
                     </div>
@@ -132,13 +124,13 @@
                     <div class="d-flex flex-column flex-md-row my-5 prog-content-container">
                         <!-- ge background nako ang image para dili mo stretch -->
                         <div class="prog-cont-image1"
-                             style="background-image: url('{{ $content1->avatar !== null ? asset('backend/uploads/page-content/thumbnail/' . $content1->avatar) : 'https://images.unsplash.com/photo-1559311648-874c28a0b7c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1031&q=80' }}');"></div>
+                             style="background-image: url('{{ $contents[0]->avatar !== null ? asset('backend/uploads/page-content/thumbnail/' . $contents[0]->avatar) : 'https://images.unsplash.com/photo-1559311648-874c28a0b7c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1031&q=80' }}');"></div>
                         <!-- <img src="assets/images/airport.jpg" alt=""> -->
                         <div class="text-center mt-5 mt-md-0 mx-md-4">
-                            <h3 class="font-weight-bold">{{ $content1->title }}</h3>
+                            <h3 class="font-weight-bold">{{ $contents[0]->title }}</h3>
                             <hr class="hr-center-thin">
-                            <p class="my-4">{{ $content1->short_description }}</p>
-                            <a href="{{ route('page.show', ['slug' => $content1->slug]) }}"
+                            <p class="my-4">{{ $contents[0]->short_description }}</p>
+                            <a href="{{ route('page.show', ['slug' => $contents[0]->slug]) }}"
                                class="btn btn-outline-gold px-5">
                                 Learn More
                             </a>
@@ -148,10 +140,10 @@
                     <!-- Meet the woman to care section -->
                     <div class="bg-light px-3 py-5 d-flex flex-column flex-md-row">
                         <div class="text-center">
-                            <h3 class="font-weight-bold">{{ $content2->title }}</h3>
+                            <h3 class="font-weight-bold">{{ $contents[1]->title }}</h3>
                             <hr class="hr-center-thin">
-                            <p class="my-4">{{ $content2->short_description  }}</p>
-                            <a href="{{ route('page.show', ['slug' => $content2->slug]) }}"
+                            <p class="my-4">{{ $contents[1]->short_description  }}</p>
+                            <a href="{{ route('page.show', ['slug' => $contents[1]->slug]) }}"
                                class="btn btn-outline-gold px-5">
                                 Learn More
                             </a>
@@ -159,7 +151,7 @@
                         <div class="ml-md-3 mt-3 mt-md-0">
                             <!-- inline image so that it can be change -->
                             <div class="prog-cont-image2"
-                                 style="background-image: url('{{ $content2->avatar !== null ? asset('backend/uploads/page-content/original/' . $content2->avatar) : 'https://images.unsplash.com/photo-1559311648-874c28a0b7c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1031&q=80' }}');"></div>
+                                 style="background-image: url('{{ $contents[1]->avatar !== null ? asset('backend/uploads/page-content/original/' . $contents[1]->avatar) : 'https://images.unsplash.com/photo-1559311648-874c28a0b7c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1031&q=80' }}');"></div>
                         </div>
 
                     </div>

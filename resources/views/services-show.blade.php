@@ -86,7 +86,7 @@
                         </a>
                     @endforeach
                 </div>
-
+                <div class="addthis_inline_share_toolbox"></div>
                 <div class="d-none d-md-block">
                     <h4 class="font-oswald-bold mt-5">Latest Articles</h4>
                     <hr class="hr-thin">

@@ -40,7 +40,12 @@
                 <!-- recommnded image medium dimension 1280 x 853 but blury-->
                 {!! $news->description  !!}
 
-                <div id="disqus_thread"></div>
+                <br>
+                <div>
+                    <div><p>Share with anyone:</p></div>
+                    <div class="addthis_inline_share_toolbox"></div>
+                </div>
+                <br>
             </div>
             <div class="col-12 col-md-3">
                 <div class="d-none d-md-block">

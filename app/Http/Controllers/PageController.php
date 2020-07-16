@@ -42,28 +42,27 @@ class PageController extends Controller
             ->get();
 
         $newsImportant = Article::where('important', true)->limit(2)->get();
-        $latestNews = Article::latest()->firstOrFail();
+        $latestNews = Article::latest()->first();
 
-        $content1 = PageContent::findOrFail(1);
-        $content2 = PageContent::findOrFail(2);
+        $contents = PageContent::whereIn('id', [1,2,5,6,8,9,10])->get();
 
-        $newHeadLine = Article::where('status', 1)->latest()->firstOrFail();
+        $newHeadLine = Article::where('status', 1)->latest()->first();
         $eventHeadLine = Activities::where('status', 1)->latest()->firstOrFail();
-        $placeHeadLine = Place::where('status', 1)->latest()->firstOrFail();
+        $placeHeadLine = Place::where('status', 1)->latest()->first();
 
         $activities = Activities::where('status', 1)->latest()->take(3)->skip(1)->get();
-        $latestActivity = Activities::where('status', 1)->latest()->firstOrFail();
-
+        $latestActivity = Activities::where('status', 1)->latest()->first();
 
         return view('index', compact('services',
             'news',
+            'contents',
             'newHeadLine',
             'eventHeadLine',
             'placeHeadLine',
             'activities',
             'latestActivity',
             'latestNews',
-            'content1', 'content2', 'newsImportant'));
+            'newsImportant'));
     }
 
     public function news_details($slug)
@@ -121,12 +120,15 @@ class PageController extends Controller
     {
         $articles = Article::latest()->take(2)->get();
 
+        $content = PageContent::findOrFail(3);
+        $content1 = PageContent::findOrFail(4);
+
         SEOTools::setTitle('Baranggay of Don Carlos');
         SEOTools::setDescription('List of all the baranggay in don carlos');
-
+        $type = 'baranggay';
         $services = Services::latest()->get();
         $baranggays = Baranggay::latest()->filter(request()->only(['q']))->paginate(5);
-        return view('about.baranggays', compact('articles', 'baranggays', 'services'));
+        return view('about.baranggays', compact('articles', 'baranggays', 'services', 'content', 'content1', 'type'));
     }
 
     public function about_baranggay_detail($slug)

@@ -96,7 +96,12 @@
             <div class="col-12 col-md-9">
                 {!! $content->description !!}
             </div><!-- end of col-md-9 -->
-
+            <br>
+            <div>
+                <div><p>Share with anyone:</p></div>
+                <div class="addthis_inline_share_toolbox"></div>
+            </div>
+            <br>
         </div>
     </div>
 @endsection

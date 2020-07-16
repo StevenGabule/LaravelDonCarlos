@@ -78,17 +78,33 @@
         <div class="row my-4">
             <div class="col-12 col-md-3">
                 <div class="d-flex flex-column">
-                    @include('_shared._about')
+                    <a href="{{ route('about.baranggay') }}" class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3 {{ $type == 'baranggay' ? 'active' : '' }}">
+                        <p class="mb-0">List of Baranggay <i class="fas fa-arrow-right float-right pt-1"></i></p>
+                    </a>
+                    <a href="{{ route('departments') }}" class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3">
+                        <p class="mb-0">Department and Offices <i class="fas fa-arrow-right float-right pt-1"></i></p>
+                    </a>
+                    <a href="{{ route('page.show', ['slug' => $content->slug]) }}" class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3">
+                        <p class="mb-0">History <i class="fas fa-arrow-right float-right pt-1"></i></p>
+                    </a>
+                    <a href="{{ route('page.show', ['slug' => $content1->slug]) }}" class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3">
+                        <p class="mb-0">Mission and Vision <i class="fas fa-arrow-right float-right pt-1"></i></p>
+                    </a>
+                    <a href="{{ route('mandate') }}" class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3 {{ $type == 'mandate' ? 'active' : '' }}">
+                        <p class="mb-0">Mandate <i class="fas fa-arrow-right float-right pt-1"></i></p>
+                    </a>
+                    <a href="{{ route('awards') }}" class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3 {{ $type == 'awards' ? 'active' : '' }}">
+                        <p class="mb-0">Awards <i class="fas fa-arrow-right float-right pt-1"></i></p>
+                    </a>
+
                 </div>
+
                 <div class="d-none d-md-block">
                     <h4 class="font-oswald-bold mt-5">Latest Articles</h4>
                     <hr class="hr-thin">
                 </div>
-
                 <div class="row d-none d-md-block">
-
                     @include('_shared._articles')
-
                 </div>
             </div>
             <div class="col-12 col-md-9">

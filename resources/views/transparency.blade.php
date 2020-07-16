@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="about-bg-banner position-relative"
-         style="background: url({{ asset('../assets/images/calling.jpg') }});margin-top: -24px;">
+         style="background: url('https://images.unsplash.com/photo-1587116987844-bd3d2f866f16?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80') no-repeat center center / cover;margin-top: -24px;">
         <div class="trending-bg-banner-overlay h-100">
             <div class="container col-dirtyWhite h-100">
                 <div class="d-flex h-100">

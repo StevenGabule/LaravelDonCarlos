@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Activities;
+use App\Article;
+use App\Place;
+use App\ServicesArticle;
+use App\TransparencyFile;
+use App\TransparencyPost;
+use App\TransparentPostFile;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +19,22 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('backend.index');
+        $news = Article::latest()->limit(6)->get();
+        $places = Place::latest()->limit(6)->get();
+        $tranPosts = TransparencyPost::latest()->limit(6)->get();
+        $servicePosts = ServicesArticle::latest()->limit(6)->get();
+        $transparentFiles = TransparencyFile::latest()->limit(6)->get();
+        $mostDownloadFiles = TransparencyFile::orderBy('clicked', 'desc')->get();
+        $activities = Activities::latest()->limit(6)->get();
+        return view('backend.index', compact(
+            'news',
+            'places',
+            'tranPosts',
+            'servicePosts',
+            'transparentFiles',
+            'activities',
+            'mostDownloadFiles'
+        ));
     }
 
     public function users()
@@ -73,7 +95,6 @@ EOT;
 
     public function update(Request $request)
     {
-
         $validation = Validator::make($request->all(), [
             'name' => 'required|min:6|max:100',
             'email' => 'required|min:6|email',

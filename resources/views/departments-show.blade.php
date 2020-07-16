@@ -48,7 +48,6 @@
                         </a>
                     @endforeach
                 </div>
-
                 <div class="d-none d-md-block">
                     <h4 class="font-oswald-bold mt-5">Latest Articles</h4>
                     <hr class="hr-thin">

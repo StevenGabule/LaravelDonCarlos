@@ -10,280 +10,227 @@
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
         </div>
 
-        <!-- Content Row -->
-        <div class="row">
+        @include('backend.shared._status')
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Total Views Today
-                                </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">40,000</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fad fa-eye fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        @include('backend.shared._analytics')
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-success shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Total Published News
-                                </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">215,000</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fad fa-newspaper fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-info shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Total Tourist Spot
-                                </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">20</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fad fa-mountain fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Total Unique Viewers
-                                </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">10,008</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fad fa-globe-asia fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Content Row -->
 
         <div class="row">
-
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
+            <div class="col-xl-4 col-lg-4">
                 <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Visitors Analytics</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Most Recent News</h6>
+                        <a href="{{ route('article.create') }}"
+                           class="btn btn-danger btn-sm font-weight-bold text-small">Create</a>
                     </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="chart-area">
-                            <canvas id="myAreaChart"></canvas>
-                        </div>
+                    <div class="card-body p-0">
+                        <table class="table table-sm small">
+                            <thead>
+                            <tr>
+                                <th class="pl-4">Name</th>
+                                <th>Views</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse($news as $new)
+                                <tr>
+                                    <td class="pl-4">{{ substr($new->title, 0, 30) . '...' }}</td>
+                                    <td>4,000</td>
+                                </tr>
+                            @empty
+                                <tr style="height: 220px">
+                                    <td colspan="3">
+                                        <p class="text-center font-weight-bold">Oops.. Data found</p>
+                                    </td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
 
-            <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
+            <div class="col-xl-4 col-lg-4">
                 <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                        <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                 aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
+                        <h6 class="m-0 font-weight-bold text-primary">Most Added Tourist Spot</h6>
+                        <a href="{{ route('place.create') }}" class="btn btn-danger btn-sm font-weight-bold text-small">Create</a>
                     </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="chart-pie pt-4 pb-2">
-                            <canvas id="myPieChart"></canvas>
-                        </div>
-                        <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Direct
-                    </span>
-                            <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Social
-                    </span>
-                            <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> Referral
-                    </span>
-                        </div>
+                    <div class="card-body p-0">
+                        <table class="table table-sm small">
+                            <thead>
+                            <tr>
+                                <th class="pl-4">Name</th>
+                                <th>Views</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse($places as $place)
+                                <tr>
+                                    <td class="pl-4">{{ substr($place->name,0,40 ) . '...' }}</td>
+                                    <td>4,000</td>
+                                </tr>
+                            @empty
+                                <tr style="height: 220px">
+                                    <td colspan="3">
+                                        <p class="text-center font-weight-bold">Oops.. Data found</p>
+                                    </td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="col-xl-4 col-lg-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Most Transparent Post</h6>
+                        <a href="{{ route('transparency-posts.create') }}"
+                           class="btn btn-danger btn-sm font-weight-bold text-small">Create</a>
+                    </div>
+                    <div class="card-body p-0">
+                        <table class="table table-sm small">
+                            <thead>
+                            <tr>
+                                <th class="pl-4">Name</th>
+                                <th>Views</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse($tranPosts as $tranPost)
+                                <tr>
+                                    <td class="pl-4">{{ substr($tranPost->title, 0, 40) . '...' }}</td>
+                                    <td>4,000</td>
+                                </tr>
+                            @empty
+                                <tr style="height: 220px">
+                                    <td colspan="3">
+                                        <p class="text-center font-weight-bold">Oops.. Data found</p>
+                                    </td>
+                                </tr>
+                            @endforelse
 
-        <!-- Content Row -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end of row -->
+
         <div class="row">
-
-            <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
-
-                <!-- Project Card Example -->
+            <div class="col-xl-4 col-lg-4">
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Most Service Article</h6>
+                        <a href="{{ route('service-article.create') }}"
+                           class="btn btn-danger btn-sm font-weight-bold text-small">Create</a>
                     </div>
-                    <div class="card-body">
-                        <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                 aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                    <div class="card-body p-0">
+                        <table class="table table-sm small">
+                            <thead>
+                            <tr>
+                                <th class="pl-4">Name</th>
+                                <th>Views</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            @forelse($servicePosts as $servicePost)
+                                <tr>
+                                    <td class="pl-4">{{ substr($servicePost->name, 0,40) . '...' }}</td>
+                                    <td>4,000</td>
+                                </tr>
+                            @empty
+                                <tr style="height: 220px">
+                                    <td colspan="3">
+                                        <p class="text-center font-weight-bold">Oops.. Data found</p>
+                                    </td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
-                <!-- Color System -->
-                <div class="row">
-                    <div class="col-lg-6 mb-4">
-                        <div class="card bg-primary text-white shadow">
-                            <div class="card-body">
-                                Primary
-                                <div class="text-white-50 small">#4e73df</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-4">
-                        <div class="card bg-success text-white shadow">
-                            <div class="card-body">
-                                Success
-                                <div class="text-white-50 small">#1cc88a</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-4">
-                        <div class="card bg-info text-white shadow">
-                            <div class="card-body">
-                                Info
-                                <div class="text-white-50 small">#36b9cc</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-4">
-                        <div class="card bg-warning text-white shadow">
-                            <div class="card-body">
-                                Warning
-                                <div class="text-white-50 small">#f6c23e</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-4">
-                        <div class="card bg-danger text-white shadow">
-                            <div class="card-body">
-                                Danger
-                                <div class="text-white-50 small">#e74a3b</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-4">
-                        <div class="card bg-secondary text-white shadow">
-                            <div class="card-body">
-                                Secondary
-                                <div class="text-white-50 small">#858796</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-
-            <div class="col-lg-6 mb-4">
-
-                <!-- Illustrations -->
+            <div class="col-xl-4 col-lg-4">
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Most Recent Upload</h6>
+                        <a href="{{ route('file-upload.create') }}" class="btn btn-danger btn-sm font-weight-bold text-small">Create</a>
                     </div>
-                    <div class="card-body">
-                        <div class="text-center">
-                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                 src="img/undraw_posting_photo.svg" alt="">
-                        </div>
-                        <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank"
-                                                                                              rel="nofollow"
-                                                                                              href="https://undraw.co/">unDraw</a>,
-                            a constantly updated collection of beautiful svg images that you can use completely free and
-                            without attribution!</p>
-                        <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw
-                            &rarr;</a>
+                    <div class="card-body p-0">
+                        <table class="table table-sm small">
+                            <thead>
+                            <tr>
+                                <th class="pl-4">Name</th>
+                                <th>Type</th>
+                                <th>Download</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse($transparentFiles as $transparentFile)
+                            <tr>
+                                <td class="pl-4">{{ substr($transparentFile->name, 0, 40) . '...' }}</td>
+                                <td>{{ ($transparentFile->type) }}</td>
+                                <td>4,000</td>
+                            </tr>
+                            @empty
+                                <tr style="height: 220px">
+                                    <td colspan="3">
+                                        <p class="text-center font-weight-bold">Oops.. Data found</p>
+                                    </td>
+                                </tr>
+                            @endforelse
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
-                <!-- Approach -->
+            </div>
+            <div class="col-xl-4 col-lg-4">
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Activities and Upcoming</h6>
+                        <a href="{{ route('activities.create') }}"
+                           class="btn btn-danger btn-sm font-weight-bold text-small">Create</a>
                     </div>
-                    <div class="card-body">
-                        <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce CSS bloat
-                            and poor page performance. Custom CSS classes are used to create custom components and
-                            custom utility classes.</p>
-                        <p class="mb-0">Before working with this theme, you should become familiar with the Bootstrap
-                            framework, especially the utility classes.</p>
+                    <div class="card-body p-0">
+                        <table class="table table-sm small">
+                            <thead>
+                            <tr>
+                                <th class="pl-4">Name</th>
+                                <th>Views</th>
+                                <th>Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse($activities as $activity)
+                                <tr>
+                                    <td class="pl-4">{{ substr($activity->title, 0, 20) . '...' }}</td>
+                                    <td>4,000</td>
+                                    <td>{{ $activity->convert_date() }}</td>
+                                </tr>
+
+                            @empty
+                                <tr style="height: 220px">
+                                    <td colspan="3">
+                                        <p class="text-center font-weight-bold">Oops.. Data found</p>
+                                    </td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
             </div>
         </div>
-    </div>
-    <!-- /.container-fluid -->
+    </div><!-- /.container-fluid -->
+
 @stop
+
+@section('_script')
+    <script src="{{ asset('backend/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('backend/js/dashboard/index.js') }}"></script>
+    <script src="{{ asset('backend/js/demo/chart-pie-demo.js') }}"></script>
+@endsection

@@ -57,12 +57,19 @@
                 <div class="row d-none d-md-block">
                     @include('_shared._articles')
                 </div>
+
             </div>
             <div class="col-12 col-md-9">
                 <div class="d-flex flex-column pl-lg-4">
                 <h3>{{ $office->name }}</h3>
                     {!! $office->description !!}
                 </div>
+                <br>
+                <div>
+                    <div><p>Share with anyone:</p></div>
+                    <div class="addthis_inline_share_toolbox"></div>
+                </div>
+                <br>
             </div>
         </div>
     </div>

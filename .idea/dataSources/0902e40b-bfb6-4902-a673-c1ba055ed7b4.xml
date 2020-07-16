@@ -31,26 +31,26 @@
       <IntrospectionStateNumber>62432</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|67473|67475|1
-sequence|table|67391|67393|1
-sequence|table|67402|67404|1
-sequence|table|67346|67348|1
+sequence|table|67452|67454|1
 sequence|table|67354|67356|1
 sequence|table|67367|67369|1
-sequence|table|67378|67380|1
-sequence|table|67414|67416|1
-sequence|table|67426|67428|1
-sequence|table|67452|67454|1
-sequence|table|67261|67263|1
-sequence|table|67224|67226|1
-sequence|table|67236|67238|1
-sequence|table|67249|67251|1
+sequence|table|67346|67348|1
 sequence|table|67318|67320|1
 sequence|table|67330|67332|1
 sequence|table|67338|67340|1
+sequence|table|67391|67393|1
+sequence|table|67402|67404|1
+sequence|table|67378|67380|1
+sequence|table|67414|67416|1
+sequence|table|67426|67428|1
+sequence|table|67224|67226|1
+sequence|table|67236|67238|1
+sequence|table|67204|67206|1
+sequence|table|67261|67263|1
+sequence|table|67249|67251|1
 sequence|table|67273|67275|1
 sequence|table|67286|67288|1
 sequence|table|67298|67300|1
-sequence|table|67204|67206|1
 sequence|table|62821|62823|1
 </Relations>
     </database>
@@ -52470,6 +52470,7 @@ sequence|table|62821|62823|1
     </table>
     <table id="4734" parent="30" name="page_contents">
       <ObjectId>67454</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>62387</StateNumber>
     </table>
@@ -52501,16 +52502,19 @@ sequence|table|62821|62823|1
     </table>
     <table id="4740" parent="30" name="transparency_files">
       <ObjectId>67416</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>61832</StateNumber>
     </table>
     <table id="4741" parent="30" name="transparency_posts">
       <ObjectId>67380</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>61826</StateNumber>
     </table>
     <table id="4742" parent="30" name="transparent_post_files">
       <ObjectId>67428</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>61834</StateNumber>
     </table>

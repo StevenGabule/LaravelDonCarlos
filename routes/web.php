@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PageController@index')->name('index');
 
-
 Route::get('/services', 'PageController@services')->name('services');
 Route::get('/services/{id}', 'PageController@services_show')->name('services.show');
 Route::get('/service/{id}/{slug}', 'PageController@service_show_detail')->name('services.show.detail');
@@ -13,7 +12,6 @@ Route::get('/service/{id}/{slug}', 'PageController@service_show_detail')->name('
 Route::get('/about-don-carlos', 'PageController@about')->name('about');
 Route::get('/about-don-carlos/baranggay', 'PageController@about_baranggay')->name('about.baranggay');
 Route::get('/about-don-carlos/baranggay/{slug}', 'PageController@about_baranggay_detail')->name('about.baranggay.detail');
-
 
 Route::get('/transparency', 'PageController@transparency')->name('transparency');
 Route::get('/transparent/{slug}', 'PageController@transparencyShow')->name('transparency.page.show');
@@ -34,7 +32,6 @@ Route::get('/contact', 'PageController@sending')->name('sending');
 Route::get('/departments','PageController@departments')->name('departments');
 Route::get('/department/{id}/{slug}','PageController@department_lists')->name('departments.list');
 Route::get('/department/{id}/{slug1}/{slug2}','PageController@department_list_show')->name('departments.list.show');
-
 
 Auth::routes();
 

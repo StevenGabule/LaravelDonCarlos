@@ -57,8 +57,13 @@
                      style="max-height: 420px;">
 
                 {!! $baranggay->description !!}
-
-
+                <br>
+                <br>
+                <div>
+                    <div><p>Share with anyone:</p></div>
+                    <div class="addthis_inline_share_toolbox"></div>
+                </div>
+                <br>
                 <h5 class="font-oswald-bold mt-5">Baranggay Official From Year <?= date('Y') ?>-<?= date('Y') + 2 ?></h5>
                 <hr class="hr-thin">
                 <div class="row">
