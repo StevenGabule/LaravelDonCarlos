@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
+use JD\Cloudder\Facades\Cloudder;
 use Yajra\DataTables\DataTables;
 
 class PageContentController extends Controller
@@ -38,7 +39,7 @@ EOT;
         })->editColumn('created_at', static function ($data) {
             return $data->created_at->format('d, M Y');
         })->editColumn('avatar', static function ($data) {
-            return $data->avatar === null ? "<i class='fad fa-images'></i>" : "<img src=\"/storage/uploads/page-content/small/{$data->avatar}\" class='rounded-circle' />";
+            return $data->avatar === null ? "<i class='fad fa-images'></i>" : "<img src=\"{$data->avatar}\" class='rounded-circle' style='height:30px;width: 30px' />";
         })->rawColumns(['action', 'created_at', 'avatar'])->make(true);
     }
 
@@ -58,6 +59,8 @@ EOT;
         ]);
 
         $originalImage = $request->file('avatar');
+        $image = $request->file('avatar')->getRealPath();
+
         // get the image
         $image_path = $originalImage->getPathName();
 
@@ -65,84 +68,19 @@ EOT;
         // business Card.png = timestamp()_business_card.png
         $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($originalImage->getClientOriginalName()));
 
-        // move the image to the temporary location (tmp)
-        $tmp = $originalImage->storeAs('uploads/original', $filename, 'tmp');
+        Cloudder::upload($image, null);
 
-        /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
-        $this->uploadImages(null, $originalImage, $name, 'page-content');*/
+        list($width, $height) = getimagesize($image);
+
+        $image_url= Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
 
         $pageContent = PageContent::create([
             'title' => $request->get('title'),
             'slug' => Str::slug($request->get('title')),
-            'avatar' => $filename,
+            'avatar' => $image_url,
             'disk' => 'public',
             'short_description' => $request->get('short_description'),
             'description' => $request->get('description'),
-        ]);
-
-        // dispatch a job to handle the image manipulation
-        // $this->dispatch(new PageContentUploadImage($pageContent));
-        $uploads = storage_path() . '/uploads';
-        $original = storage_path() . '/uploads/original';
-        $large = storage_path() . '/uploads/large';
-        $thumbnail = storage_path() . '/uploads/thumbnail';
-        $small = storage_path() . '/uploads/small';
-
-        Storage::makeDirectory($uploads);
-        Storage::makeDirectory($original);
-        Storage::makeDirectory($large);
-        Storage::makeDirectory($thumbnail);
-        Storage::makeDirectory($small);
-
-        $disk = $pageContent->disk;
-        $filename = $pageContent->avatar;
-        $original_file =  $original . '/' . $filename;
-
-        /*File::exists($uploads) or File::makeDirectory($uploads, 0777, true,true);
-        File::exists($original) or File::makeDirectory($original, 0777, true,true);
-        File::exists($large) or File::makeDirectory($large, 0777, true,true);
-        File::exists($thumbnail) or File::makeDirectory($thumbnail, 0777, true,true);
-        File::exists($small) or File::makeDirectory($small, 0777, true,true);*/
-
-        // create the large image and save to tmp disk
-        Image::make($original_file)->fit(800, 600, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save($large = storage_path('uploads/large/' . $filename));
-
-        // create the thumbnail image
-        Image::make($original_file)->fit(250, 200, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save($thumbnail = storage_path("uploads/thumbnail/$filename"));
-
-        // create the small image
-        Image::make($original_file)->fit(40, 40, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save($small = storage_path("uploads/small/$filename"));
-
-        // store images to permanent disk
-        // original image
-        /*if (Storage::disk($disk)->put("uploads/page-content/original/$filename", fopen($original_file, 'r+'))) {
-            File::delete($original_file);
-        }
-
-        // large image
-        if (Storage::disk($disk)->put("uploads/page-content/large/$filename", fopen($large, 'r+'))) {
-            File::delete($large);
-        }
-
-        // thumbnail image
-        if (Storage::disk($disk)->put("uploads/page-content/thumbnail/$filename", fopen($thumbnail, 'r+'))) {
-            File::delete($thumbnail);
-        }
-
-        // small image
-        if (Storage::disk($disk)->put("uploads/page-content/small/$filename", fopen($small, 'r+'))) {
-            File::delete($small);
-        }*/
-
-        // update the database record with success flag
-        $pageContent->update([
-            'upload_successful' => true
         ]);
 
         $output = ['id' => $pageContent->id];
