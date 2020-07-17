@@ -82,6 +82,7 @@ EOT;
 
         // dispatch a job to handle the image manipulation
         // $this->dispatch(new PageContentUploadImage($pageContent));
+
         $disk = $pageContent->disk;
         $filename = $pageContent->avatar;
         $original_file = storage_path() . '/uploads/original/' . $filename;
@@ -103,7 +104,7 @@ EOT;
 
         // store images to permanent disk
         // original image
-        if (Storage::disk($disk)->put("uploads/page-content/original/$filename", fopen($original_file, 'r+'))) {
+        /*if (Storage::disk($disk)->put("uploads/page-content/original/$filename", fopen($original_file, 'r+'))) {
             File::delete($original_file);
         }
 
@@ -120,7 +121,7 @@ EOT;
         // small image
         if (Storage::disk($disk)->put("uploads/page-content/small/$filename", fopen($small, 'r+'))) {
             File::delete($small);
-        }
+        }*/
 
         // update the database record with success flag
         $pageContent->update([
