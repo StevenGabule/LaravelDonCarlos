@@ -9,6 +9,8 @@ use App\PageContent;
 use App\Traits\ImageHandle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
@@ -79,7 +81,51 @@ EOT;
         ]);
 
         // dispatch a job to handle the image manipulation
-        $this->dispatch(new PageContentUploadImage($pageContent));
+        // $this->dispatch(new PageContentUploadImage($pageContent));
+        $disk = $pageContent->disk;
+        $filename = $pageContent->avatar;
+        $original_file = storage_path() . '/uploads/original/' . $filename;
+
+        // create the large image and save to tmp disk
+        Image::make($original_file)->fit(800, 600, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($large = storage_path('uploads/large/' . $filename));
+
+        // create the thumbnail image
+        Image::make($original_file)->fit(250, 200, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($thumbnail = storage_path("uploads/thumbnail/$filename"));
+
+        // create the small image
+        Image::make($original_file)->fit(40, 40, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($small = storage_path("uploads/small/$filename"));
+
+        // store images to permanent disk
+        // original image
+        if (Storage::disk($disk)->put("uploads/page-content/original/$filename", fopen($original_file, 'r+'))) {
+            File::delete($original_file);
+        }
+
+        // large image
+        if (Storage::disk($disk)->put("uploads/page-content/large/$filename", fopen($large, 'r+'))) {
+            File::delete($large);
+        }
+
+        // thumbnail image
+        if (Storage::disk($disk)->put("uploads/page-content/thumbnail/$filename", fopen($thumbnail, 'r+'))) {
+            File::delete($thumbnail);
+        }
+
+        // small image
+        if (Storage::disk($disk)->put("uploads/page-content/small/$filename", fopen($small, 'r+'))) {
+            File::delete($small);
+        }
+
+        // update the database record with success flag
+        $pageContent->update([
+            'upload_successful' => true
+        ]);
 
         $output = ['id' => $pageContent->id];
         return response()->json($output);
@@ -125,13 +171,13 @@ EOT;
         $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($originalImage->getClientOriginalName()));
 
         // move the image to the temporary location (tmp)
-         $originalImage->storeAs('uploads/original', $filename, 'tmp');
+        $originalImage->storeAs('uploads/original', $filename, 'tmp');
 
         $pageContent->update([
             'title' => $request->get('title'),
             'slug' => Str::slug($request->get('title')),
             'description' => $request->get('description'),
-            'avatar' =>  $filename,
+            'avatar' => $filename,
             'short_description' => $request->get('short_description'),
         ]);
 
