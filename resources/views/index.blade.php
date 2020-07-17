@@ -95,14 +95,14 @@
                             </a>
                         </div>
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="{{ route('page.show', ['slug' => $contents[4]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="{{ route('page.show', ['slug' => $contents[3]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-heartbeat fa-2x"></i><br><span
                                     class="font-weight-bold">Healthcare</span>
                             </a>
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="{{ route('page.show', ['slug' => $contents[3]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="{{ route('page.show', ['slug' => $contents[4]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-tractor fa-2x"></i><br><span
                                     class="font-weight-bold">Agriculture</span></a>
                         </div>
