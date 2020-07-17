@@ -88,15 +88,21 @@ EOT;
         $thumbnail = storage_path() . '/uploads/thumbnail';
         $small = storage_path() . '/uploads/small';
 
+        Storage::makeDirectory($uploads);
+        Storage::makeDirectory($original);
+        Storage::makeDirectory($large);
+        Storage::makeDirectory($thumbnail);
+        Storage::makeDirectory($small);
+        
         $disk = $pageContent->disk;
         $filename = $pageContent->avatar;
         $original_file =  $original . '/' . $filename;
 
-        File::exists($uploads) or File::makeDirectory($uploads, 0777, true,true);
+        /*File::exists($uploads) or File::makeDirectory($uploads, 0777, true,true);
         File::exists($original) or File::makeDirectory($original, 0777, true,true);
         File::exists($large) or File::makeDirectory($large, 0777, true,true);
         File::exists($thumbnail) or File::makeDirectory($thumbnail, 0777, true,true);
-        File::exists($small) or File::makeDirectory($small, 0777, true,true);
+        File::exists($small) or File::makeDirectory($small, 0777, true,true);*/
 
         // create the large image and save to tmp disk
         Image::make($original_file)->fit(800, 600, function ($constraint) {
