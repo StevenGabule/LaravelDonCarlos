@@ -25,10 +25,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8ea968b-c1f4-4306-90da-bf46493a5853" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/67e9b011-0a48-4fc3-9595-fffe5315450f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/67e9b011-0a48-4fc3-9595-fffe5315450f.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/67e9b011-0a48-4fc3-9595-fffe5315450f/storage_v2/_src_/database/df66h2trancsjd.YTYTyg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/67e9b011-0a48-4fc3-9595-fffe5315450f/storage_v2/_src_/database/df66h2trancsjd.YTYTyg/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,7 +299,7 @@
       <workItem from="1594770798241" duration="8438000" />
       <workItem from="1594860799447" duration="11354000" />
       <workItem from="1594877596990" duration="1200000" />
-      <workItem from="1594920682479" duration="20966000" />
+      <workItem from="1594920682479" duration="21293000" />
     </task>
     <servers />
   </component>
