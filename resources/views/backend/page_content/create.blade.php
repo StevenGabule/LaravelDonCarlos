@@ -52,15 +52,17 @@
                         <!-- Card Body -->
                         <div class="card-body">
                             <h6>Featured Image</h6>
-                            <div class="input-group input-group-sm mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                                </div>
+                            <div class="input-group is-invalid mb-3">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile01" name="avatar"
+                                    <input type="file" class="custom-file-input"
+                                           id="inputGroupFile01" name="avatar"
                                            aria-describedby="inputGroupFileAddon01"
                                            accept="image/x-png,image/gif,image/jpeg">
-                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+{{--                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>--}}
+                                    <label class="custom-file-label" for="inputGroupFile01">Choose file...</label>
+                                </div>
+                                <div id="avatarMessage" class="invalid-feedback">
+                                    adaadaasdsad
                                 </div>
                             </div>
 
@@ -118,6 +120,8 @@
                 const _description = $("#inputDescription");
                 const _msgDescription = $("#descriptionMessage");
 
+                const _msgAvatar = $("#avatarMessage");
+
                 $.ajax({
                     url: '{{ route('page-content.store') }}',
                     method: 'POST',
@@ -129,18 +133,20 @@
                     beforeSend: () => {
                         $("#inputTitle, #inputShortDescription, #inputDescription")
                             .removeClass(['is-valid', 'is-invalid']);
-                        $("#titleMessage, #shortDescriptionMessage, #descriptionMessage")
+                        $("#titleMessage, #shortDescriptionMessage, #descriptionMessage, #avatarMessage")
                             .removeClass(['text-success', 'text-danger']);
                         x.attr('disabled', true);
-                        x.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> SAVING...`)
+                        x.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Please wait...`)
                     },
+
                     success: ({id}) => {
                         window.location.href = `${id}/edit?created`
                     },
+
                     error: err => {
                         x.attr('disabled', false);
                         x.html(`<i class="fad fa-save mr-2"></i> Save`);
-                        const { description, short_description, title} = err.responseJSON.errors;
+                        const { description, short_description, title, avatar} = err.responseJSON.errors;
 
                         // title
                         if (title && title[0].length > 0) {
@@ -175,7 +181,16 @@
                             _msgDescription.text("Looks good.");
                         }
 
-                        console.error(err.responseJSON.errors)
+                        // avatar
+                        if (avatar && avatar[0].length > 0) {
+                            _description.addClass('is-invalid');
+                            _msgAvatar.addClass('text-danger')
+                            _msgAvatar.text(`${avatar[0]}`);
+                        } else {
+                            _description.addClass('is-valid');
+                            _msgAvatar.addClass('text-success');
+                            _msgAvatar.text("Looks good.");
+                        }
                     }
                 })
             })

@@ -1,9 +1,9 @@
 <?php
 
-use App\ContentNeed;
+use App\Activities;
 use Illuminate\Database\Seeder;
 
-class ContentNeedSeeder extends Seeder
+class ActivitiesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class ContentNeedSeeder extends Seeder
      */
     public function run()
     {
-        factory(ContentNeed::class, 100)->create();
+        factory(Activities::class, 50)->create();
     }
 }

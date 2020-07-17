@@ -1,9 +1,9 @@
 <?php
 
-use App\ContentNeed;
+use App\BaranggayOfficial;
 use Illuminate\Database\Seeder;
 
-class ContentNeedSeeder extends Seeder
+class BaranggayOfficialsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class ContentNeedSeeder extends Seeder
      */
     public function run()
     {
-        factory(ContentNeed::class, 100)->create();
+        factory(BaranggayOfficial::class, 100)->create();
     }
 }

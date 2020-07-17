@@ -21,6 +21,9 @@ class CreatePageContentsTable extends Migration
             $table->text('description');
             $table->bigInteger('views')->default(0);
             $table->text('avatar')->nullable();
+            $table->boolean('is_live')->default(false);
+            $table->boolean('upload_successful')->default(false);
+            $table->string('disk')->default('public');
             $table->timestamps();
         });
     }

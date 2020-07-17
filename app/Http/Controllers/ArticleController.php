@@ -95,6 +95,16 @@ EOT;
         $name = null;
 
         if ($originalImage = $request->file('avatar')) {
+            /*// get the image
+            $image_path = $originalImage->getPathName();
+
+            // get the original file name and replace any with _
+            // business Card.png = timestamp()_business_card.png
+            $filename = time().'_'.preg_replace('/\s+/','_', strtolower($originalImage->getClientOriginalName()));
+
+            // move the image to the temporary location (tmp)
+            $tmp = $originalImage->storeAs('uploads/original', $filename, 'tmp');*/
+
             $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
             $this->uploadImages(null, $originalImage, $name, 'articles');
         }

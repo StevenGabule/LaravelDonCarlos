@@ -14,6 +14,7 @@ trait ImageHandle
         $largePath = public_path() . "/backend/uploads/$model/large/$image";
         $originalPath = public_path() . "/backend/uploads/$model/original/$image";
         $avatarPath = public_path() . "/backend/uploads/$model/small/$image";
+
         if (File::exists($thumbnailPath)) File::delete($thumbnailPath);
         if (File::exists($largePath)) File::delete($largePath);
         if (File::exists($avatarPath)) File::delete($avatarPath);

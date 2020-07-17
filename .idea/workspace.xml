@@ -26,8 +26,22 @@
   <component name="ChangeListManager">
     <list default="true" id="c8ea968b-c1f4-4306-90da-bf46493a5853" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0902e40b-bfb6-4902-a673-c1ba055ed7b4/storage_v2/_src_/database/doncarlos._2nHXg/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/THEMES/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/THEMES/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PageContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PageContentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Traits/ImageHandle.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/ImageHandle.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_02_093640_create_page_contents_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_02_093640_create_page_contents_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/ContentNeedSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/ContentNeedSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/PageContentSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/PageContentSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/page_content/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/page_content/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/page_content/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/page_content/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +186,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/storage/uploads" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -180,19 +194,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\laragon\www\LaravelDonCarlos\resources\views" />
-      <recent name="D:\laragon\www\LaravelDonCarlos\resources\views\backend\Award-Mandate" />
-      <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\uploads\content-needs" />
-      <recent name="D:\laragon\www\LaravelDonCarlos\resources\views\backend\page_content" />
-      <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\uploads\page-content" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\js\dashboard" />
       <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\js\inde" />
       <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\uploads\articles" />
       <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\uploads\service-article" />
       <recent name="D:\laragon\www\LaravelDonCarlos\resources\views\backend" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\laragon\www\LaravelDonCarlos\storage\uploads" />
+      <recent name="D:\laragon\www\LaravelDonCarlos\storage\app\public\uploads" />
+      <recent name="D:\laragon\www\LaravelDonCarlos\resources\views" />
+      <recent name="D:\laragon\www\LaravelDonCarlos\resources\views\backend\Award-Mandate" />
+      <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\uploads\content-needs" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -300,7 +314,7 @@
       <workItem from="1594770798241" duration="8438000" />
       <workItem from="1594860799447" duration="11354000" />
       <workItem from="1594877596990" duration="1200000" />
-      <workItem from="1594920682479" duration="8484000" />
+      <workItem from="1594920682479" duration="18135000" />
     </task>
     <servers />
   </component>
@@ -347,10 +361,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="537" y="186" width="460" height="618" key="#com.intellij.tools.ToolEditorDialog/0.0.1536.834@0.0.1536.834" timestamp="1593471168636" />
-    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1593698602675">
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1594936855438">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1593698602675" />
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1594936855438" />
     <state x="484" y="66" key="#console.sql" timestamp="1593110448088">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -423,10 +437,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="189" height="457" key="HiddenNamespacesPopup/0.0.1536.834@0.0.1536.834" timestamp="1592986502009" />
-    <state x="576" y="140" key="NewPhpClassDialog" timestamp="1593035735184">
+    <state x="576" y="140" key="NewPhpClassDialog" timestamp="1594935078094">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="576" y="140" key="NewPhpClassDialog/0.0.1536.834@0.0.1536.834" timestamp="1593035735184" />
+    <state x="576" y="140" key="NewPhpClassDialog/0.0.1536.834@0.0.1536.834" timestamp="1594935078094" />
     <state x="604" y="340" key="NewPhpFileDialog" timestamp="1594691663503">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -475,9 +489,9 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1594863284318" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1594930204183">
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1594944063837">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1594930204183" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1594944063837" />
   </component>
 </project>
