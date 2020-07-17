@@ -93,7 +93,7 @@ EOT;
         Storage::makeDirectory($large);
         Storage::makeDirectory($thumbnail);
         Storage::makeDirectory($small);
-        
+
         $disk = $pageContent->disk;
         $filename = $pageContent->avatar;
         $original_file =  $original . '/' . $filename;
