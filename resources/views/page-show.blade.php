@@ -3,7 +3,7 @@
     <!-- inlineng the background image so it can be dynamicaly change!!!! -->
     <!-- recommended background dimension 1920 x 1280 -->
     <div class="trending-bg-banner position-relative"
-         style="background: url( {{ $content->avatar !== null ? asset('/backend/uploads/page-content/large/'.$content->avatar)  : 'https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'}}) no-repeat center center / cover;margin-top: -24px;">
+         style="background: url( {{ $content->avatar !== null ? $content->avatar : 'https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'}}) no-repeat center center / cover;margin-top: -24px;">
         <div class="trending-bg-banner-overlay h-100 ">
             <div class="container col-dirtyWhite h-100">
                 <div class="d-flex h-100">
