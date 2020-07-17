@@ -7,6 +7,7 @@ use App\DepartmentCategories;
 use App\Jobs\PageContentUploadImage;
 use App\PageContent;
 use App\Traits\ImageHandle;
+use Cloudinary\Uploader;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -58,21 +59,13 @@ EOT;
             'avatar' => 'required|mimes:jpeg,gif,bmp,png',
         ]);
 
-        $originalImage = $request->file('avatar');
         $image = $request->file('avatar')->getRealPath();
-
-        // get the image
-        $image_path = $originalImage->getPathName();
-
-        // get the original file name and replace any with _
-        // business Card.png = timestamp()_business_card.png
-        $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($originalImage->getClientOriginalName()));
 
         Cloudder::upload($image, null);
 
         list($width, $height) = getimagesize($image);
 
-        $image_url= Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
+        $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
 
         $pageContent = PageContent::create([
             'title' => $request->get('title'),
@@ -105,40 +98,29 @@ EOT;
 
         $pageContent = PageContent::findOrFail($request->input('page_content_id'));
 
-        foreach (['small', 'thumbnail', 'large', 'original'] as $size) {
-            if (Storage::disk($pageContent->disk)->exists("uploads/page-content/{$size}/" . $pageContent->avatar)) {
-                Storage::disk($pageContent->disk)->delete("uploads/page-content/{$size}/" . $pageContent->avatar);
-            }
-        }
-
         /*if ($originalImage = $request->file('avatar')) {
             $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
             $this->uploadImages($pageContent->avatar, $originalImage, $name, 'page-content');
             $pageContent->avatar = $name;
         }*/
 
-        $originalImage = $request->file('avatar');
+        $avatar = $request->file('avatar')->getRealPath();
 
-        // get the image
-        $originalImage->getPathName();
+        Cloudder::upload($avatar, null);
 
-        // get the original file name and replace any with _
-        // business Card.png = timestamp()_business_card.png
-        $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($originalImage->getClientOriginalName()));
+        list($width, $height) = getimagesize($avatar);
 
-        // move the image to the temporary location (tmp)
-        $originalImage->storeAs('uploads/original', $filename, 'tmp');
+        $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
 
         $pageContent->update([
             'title' => $request->get('title'),
             'slug' => Str::slug($request->get('title')),
             'description' => $request->get('description'),
-            'avatar' => $filename,
+            'avatar' => $image_url,
             'short_description' => $request->get('short_description'),
         ]);
 
         // dispatch a job to handle the image manipulation
-        $this->dispatch(new PageContentUploadImage($pageContent));
         return response()->json(['updated' => true]);
     }
 

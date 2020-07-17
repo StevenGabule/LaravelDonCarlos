@@ -32,7 +32,7 @@
     <database id="8" parent="1" name="doncarlos">
       <ObjectId>50208</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>77448</IntrospectionStateNumber>
+      <IntrospectionStateNumber>77450</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|74435|74437|1
 sequence|table|74455|74457|1
@@ -164,7 +164,7 @@ sequence|table|74693|74695|1
       <Comment>standard public schema</Comment>
       <StateNumber>360</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>77449</IntrospectionStateNumber>
+      <IntrospectionStateNumber>77451</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="34" parent="8" name="btree">
