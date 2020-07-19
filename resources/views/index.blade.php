@@ -90,31 +90,31 @@
 
                     <div class="row no-gutters w-100 text-center">
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="{{ route('page.show', ['slug' => $contents[2]->slug]) }}" class="btn btn-home-programs py-3 px-0 shadow-sm w-100"><i
+                            <a href="{{ route('page.show', ['slug' => $infrastructure->slug]) }}" class="btn btn-home-programs py-3 px-0 shadow-sm w-100"><i
                                     class="fas fa-university fa-2x"></i><br><span class="font-weight-bold">Infrastructure</span>
                             </a>
                         </div>
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="{{ route('page.show', ['slug' => $contents[3]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="{{ route('page.show', ['slug' => $agriculture->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-tractor fa-2x"></i><br><span
                                     class="font-weight-bold">Agriculture</span>
                             </a>
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="{{ route('page.show', ['slug' => $contents[4]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="{{ route('page.show', ['slug' => $healthcare->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-heartbeat fa-2x"></i><br><span
                                     class="font-weight-bold">Healthcare</span></a>
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="{{ route('page.show', ['slug' => $contents[5]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="{{ route('page.show', ['slug' => $education->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-graduation-cap fa-2x"></i><br><span
                                     class="font-weight-bold">Education</span></a>
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="{{ route('page.show', ['slug' => $contents[6]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="{{ route('page.show', ['slug' => $tourism->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-plane fa-2x"></i><br><span
                                     class="font-weight-bold">Tourism</span>
                             </a>

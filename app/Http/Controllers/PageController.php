@@ -44,7 +44,13 @@ class PageController extends Controller
         $newsImportant = Article::where('important', true)->limit(2)->get();
         $latestNews = Article::latest()->first();
 
-        $contents = PageContent::whereIn('id', [1,2,5,6,7,8,9])->get();
+        $contents = PageContent::whereIn('id', [1,2])->get();
+
+        $infrastructure = PageContent::where('id', 5)->first();
+        $agriculture = PageContent::where('id', 6)->first();
+        $healthcare = PageContent::where('id', 7)->first();
+        $education = PageContent::where('id', 8)->first();
+        $tourism = PageContent::where('id', 9)->first();
 
         $newHeadLine = Article::where('status', 1)->latest()->first();
         $eventHeadLine = Activities::where('status', 1)->latest()->firstOrFail();
@@ -56,6 +62,11 @@ class PageController extends Controller
         return view('index', compact('services',
             'news',
             'contents',
+            'infrastructure',
+            'agriculture',
+            'healthcare',
+            'education',
+            'tourism',
             'newHeadLine',
             'eventHeadLine',
             'placeHeadLine',
