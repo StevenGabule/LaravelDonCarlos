@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use JD\Cloudder\Facades\Cloudder;
 use Yajra\DataTables\DataTables;
 
 class ContentNeedController extends Controller
@@ -67,7 +68,7 @@ EOT;
             ->editColumn('avatar', static function ($data) {
                 return $data->avatar === null
                     ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' :
-                    "<img src='/backend/uploads/content-needs/small/$data->avatar'  alt='No image' class='rounded-circle' style='height: 32px;width: 32px' />";
+                    "<img src='$data->avatar'  alt='No image' class='rounded-circle' style='height: 32px;width: 32px' />";
             })->editColumn('need_type', function ($data) {
                 return $data->need_type == 1 ? 'Award' : 'Mandate';
             })->editColumn('created_at', function ($data) {
@@ -90,10 +91,15 @@ EOT;
             'need_type' => 'required',
         ]);
 
-        $name = null;
-        if ($originalImage = $request->file('avatar')) {
-            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
-            $this->uploadImages(null, $originalImage, $name, 'content-needs');
+        $image_url = null;
+        if ($request->file('avatar')) {
+            /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage, $name, 'content-needs');*/
+
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
         }
 
         $content = ContentNeed::create([
@@ -102,7 +108,7 @@ EOT;
             'short_description' => $request->short_description,
             'description' => $request->description,
             'status' => $request->status == 1 ? true : false,
-            'avatar' => $name,
+            'avatar' => $image_url,
             'user_id' => Auth::id(),
             'need_type' => $request->need_type
         ]);
@@ -127,12 +133,17 @@ EOT;
         ]);
 
         $content = ContentNeed::findOrFail($request->input('content_need_id'));
-        $name = [];
 
-        if ($originalImage = $request->file('avatar')) {
-            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+        if ($request->file('avatar')) {
+            /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
             $this->uploadImages($content->avatar, $originalImage, $name, 'content-needs');
-            $content->avatar = $name;
+            $content->avatar = $name;*/
+
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+            $content->avatar = $image_url;
         }
 
         $content->update([
@@ -140,10 +151,9 @@ EOT;
             'slug' => Str::slug($request->title),
             'short_description' => $request->short_description,
             'description' => $request->description,
-            'status' => $request->status == 1 ? true : false,
+            'status' => $request->status === 1,
             'need_type' => $request->need_type,
-            'user_id' => Auth::id(),
-            'avatar' => $name,
+            'user_id' => Auth::id()
         ]);
 
         return response()->json(['updated' => true]);
@@ -164,7 +174,7 @@ EOT;
                     'description' => $content->description,
                     'status' => false,
                     'need_type' => $content->need_type,
-                    'avatar' => null,
+                    'avatar' => $content->avatar,
                     'user_d' => Auth::id(),
                     'created_at' => Carbon::now()
                 ];

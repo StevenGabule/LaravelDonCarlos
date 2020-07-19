@@ -114,7 +114,7 @@
                         <a href="{{ route('content.show', ['slug' => $award->slug, 'type' => (int)$award->need_type == 1 ? 'awards' : 'mandate']) }}" class="mt-3 shadow-sm p-2 about-page-link">
                             <div class="d-flex">
                                 <img class="card-img w-150px"
-                                     src="{{ $award->avatar ? asset('/backend/uploads/content-needs/thumbnail/'.$award->avatar) : asset('assets/icons/images.svg') }}"
+                                     src="{{ $award->avatar ? $award->avatar : asset('assets/icons/images.svg') }}"
                                      alt="Image not found">
                                 <div class="pl-3 pt-2">
                                     <h4 class="font-weight-bold">{{ $award->title }}</h4>

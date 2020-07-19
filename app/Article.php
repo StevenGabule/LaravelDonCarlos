@@ -57,6 +57,6 @@ class Article extends Model
 
     public function display_image(): string
     {
-        return $this->avatar !== null ? "/backend/uploads/articles/large/$this->avatar" : 'https://images.unsplash.com/photo-1558449033-7ae045d2c81a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80';
+        return $this->avatar !== null ? $this->avatar : asset('assets/images/photo-1558449033-7ae045d2c81a.jfif');
     }
 }

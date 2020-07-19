@@ -63,22 +63,28 @@
         <div class="row my-4">
             <div class="col-12 col-md-3">
                 <div class="d-flex flex-column">
-                    <a href="{{ route('about.baranggay') }}" class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3">
+                    <a href="{{ route('about.baranggay') }}"
+                       class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3">
                         <p class="mb-0">List of Baranggay <i class="fas fa-arrow-right float-right pt-1"></i></p>
                     </a>
-                    <a href="{{ route('departments') }}" class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3">
+                    <a href="{{ route('departments') }}"
+                       class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3">
                         <p class="mb-0">Department and Offices <i class="fas fa-arrow-right float-right pt-1"></i></p>
                     </a>
-                    <a href="{{ route('page.show', ['slug' => $content->slug]) }}" class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3">
+                    <a href="{{ route('page.show', ['slug' => $content->slug]) }}"
+                       class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3">
                         <p class="mb-0">History <i class="fas fa-arrow-right float-right pt-1"></i></p>
                     </a>
-                    <a href="{{ route('page.show', ['slug' => $content1->slug]) }}" class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3">
+                    <a href="{{ route('page.show', ['slug' => $content1->slug]) }}"
+                       class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3">
                         <p class="mb-0">Mission and Vission <i class="fas fa-arrow-right float-right pt-1"></i></p>
                     </a>
-                    <a href="{{ route('mandate') }}" class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3 {{ $type == 'mandate' ? 'active' : '' }}">
+                    <a href="{{ route('mandate') }}"
+                       class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3 {{ $type == 'mandate' ? 'active' : '' }}">
                         <p class="mb-0">Mandate <i class="fas fa-arrow-right float-right pt-1"></i></p>
                     </a>
-                    <a href="{{ route('awards') }}" class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3 {{ $type == 'awards' ? 'active' : '' }}">
+                    <a href="{{ route('awards') }}"
+                       class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3 {{ $type == 'awards' ? 'active' : '' }}">
                         <p class="mb-0">Awards <i class="fas fa-arrow-right float-right pt-1"></i></p>
                     </a>
                 </div>
@@ -95,13 +101,10 @@
             </div>
             <div class="col-12 col-md-9">
                 {!! $content->description !!}
-            </div><!-- end of col-md-9 -->
-            <br>
-            <div>
                 <div><p>Share with anyone:</p></div>
                 <div class="addthis_inline_share_toolbox"></div>
-            </div>
-            <br>
+            </div><!-- end of col-md-9 -->
+
         </div>
     </div>
 @endsection

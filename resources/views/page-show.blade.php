@@ -3,7 +3,7 @@
     <!-- inlineng the background image so it can be dynamicaly change!!!! -->
     <!-- recommended background dimension 1920 x 1280 -->
     <div class="trending-bg-banner position-relative"
-         style="background: url( {{ $content->avatar !== null ? $content->avatar : 'https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'}}) no-repeat center center / cover;margin-top: -24px;">
+         style="background: url( {{ $content->avatar !== null ? $content->avatar : asset('assets/images/photo-1549880338-65ddcdfd017b.jfif')}}) no-repeat center center / cover;margin-top: -24px;">
         <div class="trending-bg-banner-overlay h-100 ">
             <div class="container col-dirtyWhite h-100">
                 <div class="d-flex h-100">
@@ -40,7 +40,7 @@
                         <div>
                             <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
                             <img class="card-img max-height-250"
-                                 src="{{ $post->avatar !== null ? asset('/backend/uploads/places/original/'.$post->avatar) : asset('assets/icons/mountains.svg') }}"
+                                 src="{{ $post->avatar !== null ? $post->avatar : asset('assets/icons/mountains.svg') }}"
                                  alt="Announcement Images">
                         </div>
                         <div class="card-body">

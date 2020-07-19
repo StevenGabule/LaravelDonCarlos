@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use JD\Cloudder\Facades\Cloudder;
 use Yajra\DataTables\DataTables;
 
 class PlaceController extends Controller
@@ -65,7 +66,7 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="place_checkbox[]" class="place_checkbox" value="{{$id}}" />')
             ->editColumn('avatar', static function ($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/places/small/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -86,11 +87,15 @@ EOT;
             'description' => 'required',
         ]);
 
-        $name = null;
+        $image_url = null;
 
-        if ($originalImage = $request->file('avatar')) {
-            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
-            $this->uploadImages(null, $originalImage, $name, 'places');
+        if ($request->file('avatar')) {
+            /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage, $name, 'places');*/
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
         }
 
         $place = Place::create([
@@ -99,7 +104,7 @@ EOT;
             'slug' => Str::slug($request->get('name')),
             'status' => $request->get('status'),
             'address' => $request->get('address'),
-            'avatar' => $name,
+            'avatar' => $image_url,
             'categories' => 'uncategories',
             'short_description' => $request->get('short_description'),
             'description' => $request->get('description'),
@@ -125,10 +130,16 @@ EOT;
 
         $place = Place::findOrFail($request->input('place_id'));
 
-        if ($originalImage = $request->file('avatar')) {
-            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+        if ($request->file('avatar')) {
+            /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
             $this->uploadImages($place->avatar, $originalImage, $name, 'places');
-            $place->avatar = $name;
+            $place->avatar = $name;*/
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+            $place->avatar = $image_url;
+
         }
 
         $place->name = $request->get('name');

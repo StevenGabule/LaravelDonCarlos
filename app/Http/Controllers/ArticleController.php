@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Str;
+use JD\Cloudder\Facades\Cloudder;
 use Yajra\DataTables\DataTables;
 
 class ArticleController extends Controller
@@ -69,7 +70,7 @@ EOT;
             ->editColumn('avatar', static function ($data) {
                 return $data->avatar === null
                     ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' :
-                    "<img src='/backend/uploads/articles/small/$data->avatar'  alt='No image' class='rounded-circle' style='height: 32px;width: 32px' />";
+                    "<img src='$data->avatar'  alt='No image' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -92,21 +93,15 @@ EOT;
             'category_id' => 'required',
         ]);
 
-        $name = null;
+        $image_url = null;
 
-        if ($originalImage = $request->file('avatar')) {
-            /*// get the image
-            $image_path = $originalImage->getPathName();
-
-            // get the original file name and replace any with _
-            // business Card.png = timestamp()_business_card.png
-            $filename = time().'_'.preg_replace('/\s+/','_', strtolower($originalImage->getClientOriginalName()));
-
-            // move the image to the temporary location (tmp)
-            $tmp = $originalImage->storeAs('uploads/original', $filename, 'tmp');*/
-
-            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
-            $this->uploadImages(null, $originalImage, $name, 'articles');
+        if ($request->file('avatar')) {
+            /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage, $name, 'articles');*/
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
         }
 
         $article = Article::create([
@@ -115,7 +110,7 @@ EOT;
             'important' => $request->get('important', false),
             'slug' => Str::slug($request->get('title')),
             'status' => $request->get('status'),
-            'avatar' => $name,
+            'avatar' => $image_url,
             'short_description' => $request->get('short_description'),
             'description' => $request->get('description'),
             'category_id' => $request->get('category_id'),
@@ -144,10 +139,15 @@ EOT;
 
         $article = Article::findOrFail($request->input('article_id'));
 
-        if ($originalImage = $request->file('avatar')) {
-            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+        if ($request->file('avatar')) {
+            /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
             $this->uploadImages($article->avatar, $originalImage, $name, 'articles');
-            $article->avatar = $name;
+            $article->avatar = $name;*/
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+            $article->avatar = $image_url;
         }
 
         $article->update([
@@ -160,7 +160,7 @@ EOT;
             'status' => $request->get('status'),
         ]);
 
-        return response()->json(['updated' => true]);
+        return response()->json(['updated' => true, 'slug' => $article->slug]);
     }
 
     public function destroy($id)
@@ -214,7 +214,7 @@ EOT;
                     'description' => $article->description,
                     'slug' => $article->slug,
                     'status' => $article->status,
-                    'avatar' => null,
+                    'avatar' => $article->avatar,
                     'category_id' => $article->category_id,
                     'deleted_at' => $article->deleted_at,
                     'created_at' => Carbon::now()

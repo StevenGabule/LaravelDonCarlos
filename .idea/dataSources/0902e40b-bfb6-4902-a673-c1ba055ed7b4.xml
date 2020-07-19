@@ -34,29 +34,29 @@
       <Owner>postgres</Owner>
       <IntrospectionStateNumber>77450</IntrospectionStateNumber>
       <Current>1</Current>
-      <Relations>sequence|table|74435|74437|1
-sequence|table|74455|74457|1
+      <Relations>sequence|table|74455|74457|1
 sequence|table|74467|74469|1
 sequence|table|74480|74482|1
 sequence|table|74493|74495|1
 sequence|table|74505|74507|1
-sequence|table|74518|74520|1
-sequence|table|62821|62823|1
-sequence|table|74530|74532|1
-sequence|table|74550|74552|1
-sequence|table|74562|74564|1
-sequence|table|74570|74572|1
-sequence|table|74578|74580|1
+sequence|table|74435|74437|1
 sequence|table|74586|74588|1
 sequence|table|74599|74601|1
 sequence|table|74610|74612|1
 sequence|table|74623|74625|1
 sequence|table|74634|74636|1
 sequence|table|74646|74648|1
+sequence|table|74518|74520|1
+sequence|table|74530|74532|1
+sequence|table|74550|74552|1
+sequence|table|74562|74564|1
+sequence|table|74570|74572|1
+sequence|table|74578|74580|1
 sequence|table|74658|74660|1
 sequence|table|74666|74668|1
 sequence|table|74681|74683|1
 sequence|table|74693|74695|1
+sequence|table|62821|62823|1
 </Relations>
     </database>
     <database id="9" parent="1" name="dragonstackdb">
@@ -52493,6 +52493,7 @@ sequence|table|74693|74695|1
     </table>
     <table id="4739" parent="33" name="page_contents">
       <ObjectId>74668</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>76807</StateNumber>
     </table>

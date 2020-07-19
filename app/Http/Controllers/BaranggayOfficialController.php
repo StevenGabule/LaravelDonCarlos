@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
+use JD\Cloudder\Facades\Cloudder;
 use Yajra\DataTables\DataTables;
 
 class BaranggayOfficialController extends Controller
@@ -70,7 +71,7 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="bo_checkbox[]" class="bo_checkbox" id="{{$id}}" value="{{$id}}" />')
             ->editColumn('avatar', static function ($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/officials/small/$data->avatar' alt='No Image found' class='rounded-circle' style='height: 32px;width: 32px' />";
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='$data->avatar' alt='No Image found' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->editColumn('created_at', static function($data) {
                 return $data->created_at->format('d M Y');
@@ -96,11 +97,15 @@ EOT;
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
-        $name = null;
+        $image_url = null;
 
         if ($originalImage = $request->file('avatar')) {
-            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
-            $this->uploadImages(null, $originalImage, $name, 'officials');
+            /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage, $name, 'officials');*/
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
         }
 
 
@@ -111,7 +116,7 @@ EOT;
             'from' => $request->from,
             'to' => $request->to,
             'status' => $request->status,
-            'avatar' => $name
+            'avatar' => $image_url
         ]);
 
         return response()->json(['success' => true]);
@@ -144,9 +149,14 @@ EOT;
 
         $captainImage = null;
 
-        if ($originalImage1 = $request->file('avatarCapitan')) {
-            $captainImage = mt_rand() . '.' . $originalImage1->getClientOriginalExtension();
-            $this->uploadImages(null, $originalImage1, $captainImage, 'officials');
+        if ($request->file('avatarCapitan')) {
+           /* $captainImage = mt_rand() . '.' . $originalImage1->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage1, $captainImage, 'officials');*/
+
+            $image = $request->file('avatarCapitan')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $captainImage = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
         }
 
         // captain
@@ -163,9 +173,14 @@ EOT;
 
         $avatarChairman = null;
 
-        if ($originalImage2 = $request->file('avatarChairman')) {
-            $avatarChairman = mt_rand() . '.' . $originalImage2->getClientOriginalExtension();
-            $this->uploadImages(null, $originalImage2, $avatarChairman, 'officials');
+        if ($request->file('avatarChairman')) {
+            /*$avatarChairman = mt_rand() . '.' . $originalImage2->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage2, $avatarChairman, 'officials');*/
+
+            $image = $request->file('avatarChairman')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $avatarChairman = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
         }
 
         // Chairman
@@ -183,8 +198,12 @@ EOT;
         $avatarSecretary = null;
 
         if ($originalImage3 = $request->file('avatarSecretary')) {
-            $avatarSecretary = mt_rand() . '.' . $originalImage3->getClientOriginalExtension();
-            $this->uploadImages(null, $originalImage3, $avatarSecretary, 'officials');
+            /*$avatarSecretary = mt_rand() . '.' . $originalImage3->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage3, $avatarSecretary, 'officials');*/
+            $image = $request->file('avatarSecretary')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $avatarSecretary = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
         }
 
         // Secretary
@@ -202,9 +221,13 @@ EOT;
         // treasure
         $avatarTreasure = null;
 
-        if ($originalImage4 = $request->file('avatarTreasurer')) {
-            $avatarTreasure = mt_rand() . '.' . $originalImage4->getClientOriginalExtension();
-            $this->uploadImages(null, $originalImage4, $avatarTreasure, 'officials');
+        if ($request->file('avatarTreasurer')) {
+            /*$avatarTreasure = mt_rand() . '.' . $originalImage4->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage4, $avatarTreasure, 'officials');*/
+            $image = $request->file('avatarTreasurer')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $avatarTreasure = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
         }
 
         $dataInsert[] = array(
@@ -262,10 +285,16 @@ EOT;
 
         $officials = BaranggayOfficial::findOFail($id);
 
-        if ($image = $request->file('avatar')) {
-            $new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
+        if ($request->file('avatar')) {
+            /*$new_name = mt_rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('backend/uploads/officials'), $new_name);
-            $officials->avatar = $new_name;
+            $officials->avatar = $new_name;*/
+
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+            $officials->avatar = $image_url;
         }
 
         $officials->update([
@@ -300,10 +329,16 @@ EOT;
         $id = $request->input('official_id');
         $officials = BaranggayOfficial::findOrFail($id);
 
-        if ($originalImage = $request->file('avatar')) {
-            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+        if ($request->file('avatar')) {
+            /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
             $this->uploadImages($officials->avatar, $originalImage, $name, 'officials');
-            $officials->avatar = $name;
+            $officials->avatar = $name;*/
+
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+            $officials->avatar = $image_url;
         }
 
         $officials->update([

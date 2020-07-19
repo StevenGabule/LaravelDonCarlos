@@ -20,7 +20,7 @@ class CreateTransparencyPostsTable extends Migration
             $table->unsignedBigInteger('transparency_id');
             $table->string('title');
             $table->string('slug');
-            $table->string('short_description')->nullable();
+            $table->text('short_description')->nullable();
             $table->longText('description')->nullable();
             $table->unsignedBigInteger('views')->default(0);
             $table->tinyInteger('status')->default(0);

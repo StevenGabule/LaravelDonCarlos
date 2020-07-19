@@ -14,7 +14,7 @@ class CreateActivitiesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->string('slug');
-            $table->string('short_description');
+            $table->text('short_description');
             $table->longText('description');
             $table->date('event_start');
             $table->time('opening_time')->nullable();

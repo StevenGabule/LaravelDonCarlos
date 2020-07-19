@@ -74,7 +74,7 @@
                         <div class="position-relative">
                             <img class="card-img"
                                  src="{{ ($event->avatar !== null) ?
-                                            asset('/backend/uploads/activities/thumbnail/' . $event->avatar)
+                                            $event->avatar
                                             : asset('assets/icons/images.svg') }}"
                                  style="max-height: 350px;"
                                  alt="{{ $event->title }}">

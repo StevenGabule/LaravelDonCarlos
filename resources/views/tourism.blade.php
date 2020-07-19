@@ -68,7 +68,7 @@
 
                             <!-- recommended dimension 640x480 kay mau man ang image nga gi gamit -->
                             <img
-                                src="{{ $slide->avatar !== null ? asset('/backend/uploads/places/original/' . $slide->avatar) : 'https://images.unsplash.com/photo-1564937689754-0ef73a2d3b31?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1172&q=80' }}" class="w-100 h-100"
+                                src="{{ $slide->avatar !== null ? $slide->avatar : asset('assets/images/photo-1564937689754-0ef73a2d3b31.jfif') }}" class="w-100 h-100"
                                  style="max-width:680px;max-height:390px;" alt="image not found">
 
                             <div class=" px-3 py-5">
@@ -104,7 +104,7 @@
                                 <div>
                                     <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
                                     <img class="card-img max-height-250"
-                                         src="{{ $place->avatar !== null ? asset('/backend/uploads/places/original/'.$place->avatar) : asset('assets/icons/mountains.svg')  }}"
+                                         src="{{ $place->avatar !== null ? $place->avatar : asset('assets/icons/mountains.svg')  }}"
                                          alt="Announcement Images">
                                 </div>
                                 <div class="card-body">

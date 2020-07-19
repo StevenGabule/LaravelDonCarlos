@@ -9,6 +9,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use JD\Cloudder\Facades\Cloudder;
 use Yajra\DataTables\DataTables;
 
 class ActivityController extends Controller
@@ -68,7 +69,7 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="activity_checkbox[]" class="activity_checkbox" value="{{$id}}" />')
             ->editColumn('avatar', static function ($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/activities/small/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
             })->editColumn('event_start', static function ($data) {
                 return DateTime::createFromFormat('Y-m-d', $data->event_start)->format('M d Y');
             })->editColumn('opening_time', static function ($data) {
@@ -102,12 +103,16 @@ EOT;
             'address' => 'required',
         ]);
 
-        $name = null;
+        $image_url = null;
         $act = null;
 
         if ($originalImage = $request->file('avatar')) {
-            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
-            $this->uploadImages(null, $originalImage, $name, 'activities');
+            /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage, $name, 'activities');*/
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
         }
 
         $act = Activities::create([
@@ -118,7 +123,7 @@ EOT;
             'opening_time' => $request->get('opening_time'),
             'closing_time' => $request->get('closing_time'),
             'status' => $request->get('status'),
-            'avatar' => $name,
+            'avatar' => $image_url,
             'short_description' => $request->get('short_description'),
             'description' => $request->get('description'),
             'address' => $request->get('address'),
@@ -144,10 +149,16 @@ EOT;
         $id = $request->input('activity_id');
         $activities = Activities::findOrFail($id);
 
-        if ($originalImage = $request->file('avatar')) {
-            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+        if ($request->file('avatar')) {
+           /* $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
             $this->uploadImages($activities->avatar, $originalImage, $name, 'activities');
-            $activities->avatar = $name;
+            $activities->avatar = $name;*/
+
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+            $activities->avatar = $image_url;
         }
 
         $activities->update([

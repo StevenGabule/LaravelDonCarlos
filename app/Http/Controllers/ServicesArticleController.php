@@ -8,6 +8,7 @@ use App\Traits\ImageHandle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use JD\Cloudder\Facades\Cloudder;
 use Yajra\DataTables\DataTables;
 
 class ServicesArticleController extends Controller
@@ -65,7 +66,7 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="serviceArticle_checkbox[]" class="serviceArticle_checkbox" value="{{$id}}" />')
             ->editColumn('avatar', static function ($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/service-article/small/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -87,11 +88,15 @@ EOT;
             'service_id' => 'required',
         ]);
 
-        $name = null;
+        $image_url = null;
 
-        if ($originalImage = $request->file('avatar')) {
-            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
-            $this->uploadImages(null, $originalImage, $name, 'service-article');
+        if ($request->file('avatar')) {
+            /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage, $name, 'service-article');*/
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
         }
 
         $sa = ServicesArticle::create([
@@ -100,7 +105,7 @@ EOT;
             'name' => $request->get('name'),
             'slug' => Str::slug($request->get('name')),
             'status' => $request->get('status'),
-            'avatar' => $name,
+            'avatar' => $image_url,
             'short_description' => $request->get('short_description'),
             'description' => $request->get('description'),
         ]);
@@ -127,10 +132,15 @@ EOT;
 
         $serviceArticle = ServicesArticle::findOrFail($request->input('service_article_id'));
 
-        if ($originalImage = $request->file('avatar')) {
-            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+        if ($request->file('avatar')) {
+           /* $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
             $this->uploadImages($serviceArticle->avatar, $originalImage, $name, 'service-article');
-            $serviceArticle->avatar = $name;
+            $serviceArticle->avatar = $name;*/
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+            $serviceArticle->avatar = $image_url;
         }
 
         $serviceArticle->name = $request->get('name');

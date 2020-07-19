@@ -30,7 +30,7 @@
 @section('content')
 
     <div class="trending-bg-banner position-relative"
-         style="background: url('https://images.unsplash.com/photo-1528988719300-046ff7faf8cb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjF9&auto=format&fit=crop&w=1789&q=80') no-repeat bottom center / cover;margin-top: -24px;">
+         style="background: url('{{ asset('assets/images/photo-1528988719300-046ff7faf8cb.jfif') }}') no-repeat bottom center / cover;margin-top: -24px;">
         <div class="trending-bg-banner-overlay h-100">
             <div class="container col-dirtyWhite h-100">
                 <div class="d-flex h-100">
@@ -55,7 +55,7 @@
                             <div class="col-12 col-sm-6 col-lg-4 pt-3">
                                 <div class="card shadow-sm border-0 bg-light p-3">
                                     <img class="card-img"
-                                         src="{{ $new->avatar ? asset('/backend/uploads/articles/thumbnail/'.$new->avatar) : asset('assets/icons/images.svg') }}"
+                                         src="{{ $new->avatar ? $new->avatar : asset('assets/icons/images.svg') }}"
                                          style="max-height: 150px;"
                                          alt="Announcement Images">
                                     <div class="d-flex flex-row">

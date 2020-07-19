@@ -14,10 +14,10 @@ class CreateBaranggaysTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('slug');
-            $table->string('short_description');
+            $table->text('short_description');
             $table->longText('description');
             $table->string('population');
-            $table->string('address');
+            $table->text('address');
             $table->text('avatar')->nullable();
             $table->text('status')->default(0);
             $table->softDeletes();

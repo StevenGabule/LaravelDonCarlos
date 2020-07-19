@@ -22,6 +22,12 @@
                         <i class="fad fa-plus mr-2"></i>New
                     </a>
                     <input type="hidden" name="article_id" value="{{ $article->id }}">
+
+                    <a href="/news/{{$article->slug}}" target="-_blank" id="change-url"
+                       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <i class="fad fa-globe-asia mr-2"></i>Visit
+                    </a>
+
                     <a href="{{ route('article.index') }}"
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fad fa-long-arrow-left mr-2"></i>Back
@@ -96,7 +102,7 @@
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
                                 @if($article->avatar !== null)
-                                    <img src="{{ asset('/backend/uploads/articles/large/'.$article->avatar) }}"
+                                    <img src="{{ $article->avatar }}"
                                          class="img-fluid" id="previewImage" alt="">
                                 @else
                                     <i class="fad fa-images fa-goner"
@@ -212,10 +218,11 @@
                         _save.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> UPDATING...`)
                     },
 
-                    success: data => {
+                    success: ({slug}) => {
                         $(".alert.alert-success").toggleClass('d-none');
                         _save.attr('disabled', false);
                         _save.html(`<i class="fad fa-save mr-2"></i> Update`);
+                        $("#change-url").attr('href', `/news/${slug}`);
                     },
 
                     error: err => {

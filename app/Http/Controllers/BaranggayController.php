@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use JD\Cloudder\Facades\Cloudder;
 use Yajra\DataTables\DataTables;
 
 class BaranggayController extends Controller
@@ -66,7 +67,7 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="baranggay_checkbox[]" class="baranggay_checkbox" value="{{$id}}" />')
             ->editColumn('avatar', static function ($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/baranggays/small/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->rawColumns(['action', 'checkbox', 'avatar'])
             ->make(true);
@@ -88,11 +89,15 @@ EOT;
             'address' => 'required',
         ]);
 
-        $name = null;
+        $image_url = null;
 
         if ($originalImage = $request->file('avatar')) {
-            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
-            $this->uploadImages(null, $originalImage, $name, 'baranggays');
+           /* $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage, $name, 'baranggays');*/
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
         }
 
         $sa = Baranggay::create([
@@ -101,7 +106,7 @@ EOT;
             'user_id' => Auth::id(),
             'population' => $request->get('population'),
             'status' => $request->get('status'),
-            'avatar' => $name,
+            'avatar' => $image_url,
             'short_description' => $request->get('short_description'),
             'description' => $request->get('description'),
             'address' => $request->get('address'),
@@ -130,10 +135,15 @@ EOT;
 
         $baranggay = Baranggay::findOrFail($request->input('baranggay_id'));
 
-        if ($originalImage = $request->file('avatar')) {
-            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+        if ($request->file('avatar')) {
+            /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
             $this->uploadImages($baranggay->avatar, $originalImage, $name, 'baranggays');
-            $baranggay->avatar = $name;
+            $baranggay->avatar = $name;*/
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+            $baranggay->avatar = $image_url;
         }
 
         $baranggay->update([

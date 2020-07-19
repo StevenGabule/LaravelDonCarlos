@@ -38,7 +38,7 @@
         <div class="carousel-inner">
 
             <div class="carousel-item active"
-                 style="background: url('{{ $newHeadLine->avatar !== null ? asset('backend/uploads/articles/large/' . $newHeadLine->avatar) : 'https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'}}') no-repeat center center / cover">
+                 style="background: url('{{ $newHeadLine->avatar !== null ? $newHeadLine->avatar : asset('assets/images/photo-1495020689067-958852a7765e.jfif')}}') no-repeat center center / cover">
                 <div class="container">
                     <div class="carousel-caption text-left mb-5">
                         <h3><a class="text-white" href="{{ route('news.detail', ['slug' => $newHeadLine->slug]) }}">{{ $newHeadLine->title }}</a></h3>
@@ -48,7 +48,7 @@
             </div><!-- news update -->
 
             <div class="carousel-item"
-                 style="background: url('{{ $eventHeadLine->avatar !== null ? asset('backend/uploads/activities/large/' . $eventHeadLine->avatar) : 'https://images.unsplash.com/photo-1549451371-64aa98a6f660?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80' }}') no-repeat center center / cover;">
+                 style="background: url('{{ $eventHeadLine->avatar !== null ? $eventHeadLine->avatar : asset('assets/images/photo-1549451371-64aa98a6f660.jfif') }}') no-repeat center center / cover;">
 
                 <div class="container">
                     <div class="carousel-caption  mb-5">
@@ -59,7 +59,7 @@
             </div><!-- events and activties -->
 
             <div class="carousel-item"
-                 style="background: url('{{ $placeHeadLine->avatar !== null ? asset('backend/uploads/places/large/' . $placeHeadLine->avatar) : 'https://images.unsplash.com/photo-1525489196064-0752fa4e16f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80' }}') no-repeat center center / cover">
+                 style="background: url('{{ $placeHeadLine->avatar !== null ? $placeHeadLine->avatar : asset('assets/images/photo-1525489196064-0752fa4e16f2.jfif') }}') no-repeat center center / cover">
 
                 <div class="container">
                     <div class="carousel-caption text-right mb-5">
@@ -90,25 +90,25 @@
 
                     <div class="row no-gutters w-100 text-center">
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="{{ route('page.show', ['slug' => $contents[4]->slug]) }}" class="btn btn-home-programs py-3 px-0 shadow-sm w-100"><i
+                            <a href="{{ route('page.show', ['slug' => $contents[2]->slug]) }}" class="btn btn-home-programs py-3 px-0 shadow-sm w-100"><i
                                     class="fas fa-university fa-2x"></i><br><span class="font-weight-bold">Infrastructure</span>
                             </a>
                         </div>
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="{{ route('page.show', ['slug' => $contents[5]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
-                                    class="fas fa-heartbeat fa-2x"></i><br><span
-                                    class="font-weight-bold">Healthcare</span>
+                            <a href="{{ route('page.show', ['slug' => $contents[3]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                                    class="fas fa-tractor fa-2x"></i><br><span
+                                    class="font-weight-bold">Agriculture</span>
                             </a>
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="{{ route('page.show', ['slug' => $contents[2]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
-                                    class="fas fa-tractor fa-2x"></i><br><span
-                                    class="font-weight-bold">Agriculture</span></a>
+                            <a href="{{ route('page.show', ['slug' => $contents[4]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                                    class="fas fa-heartbeat fa-2x"></i><br><span
+                                    class="font-weight-bold">Healthcare</span></a>
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="{{ route('page.show', ['slug' => $contents[3]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="{{ route('page.show', ['slug' => $contents[5]->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-graduation-cap fa-2x"></i><br><span
                                     class="font-weight-bold">Education</span></a>
                         </div>
@@ -152,7 +152,7 @@
                         <div class="ml-md-3 mt-3 mt-md-0">
                             <!-- inline image so that it can be change -->
                             <div class="prog-cont-image2"
-                                 style="background-image: url('{{ $contents[1]->avatar !== null ? asset('backend/uploads/page-content/original/' . $contents[1]->avatar) : 'https://images.unsplash.com/photo-1559311648-874c28a0b7c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1031&q=80' }}');"></div>
+                                 style="background-image: url('{{ $contents[1]->avatar !== null ? $contents[1]->avatar : 'https://images.unsplash.com/photo-1559311648-874c28a0b7c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1031&q=80' }}');"></div>
                         </div>
 
                     </div>
@@ -219,7 +219,7 @@
                                         <div>
                                             <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
                                             <img class="card-img max-height-150"
-                                                 src="{{  $important->avatar ? asset('/backend/uploads/articles/thumbnail/'.$important->avatar) : asset('assets/icons/images.svg') }}"
+                                                 src="{{  $important->avatar ? $important->avatar : asset('assets/icons/images.svg') }}"
                                                  alt="Announcement Images">
                                             <div class="bg-deepRed px-4 rounded-left text-white important-overlay">
                                                 IMPORTANT
@@ -267,7 +267,7 @@
                         <div class="col-12 col-sm-6 col-lg-3 pt-3">
                             <div class="card shadow-sm border-0 p-3">
                                 <img class="card-img"
-                                     src="{{ $new->avatar ? asset('/backend/uploads/articles/thumbnail/'.$new->avatar) : asset('assets/icons/images.svg') }}"
+                                     src="{{ $new->avatar ? $new->avatar : asset('assets/icons/images.svg') }}"
                                      style="max-height: 150px;"
                                      alt="Announcement Images">
                                 <div class="d-flex flex-row">
@@ -315,7 +315,7 @@
                            class="col-darkGrey home-link-setting">
                             <div class="position-relative">
                                 <img class="card-img"
-                                     src="{{ $latestActivity->avatar !== null ? asset('/backend/uploads/activities/large/'.$latestActivity->avatar) : 'https://images.unsplash.com/photo-1573490647695-2892d0bf89e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=799&q=80' }}"
+                                     src="{{ $latestActivity->avatar !== null ? $latestActivity->avatar : 'https://images.unsplash.com/photo-1573490647695-2892d0bf89e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=799&q=80' }}"
                                      style="max-height: 350px;"
                                      alt="Announcement Images">
                                 <h5 class="event-overlay p-3 m-0 bg-green-event col-dirtyWhite font-weight-bold text-center">

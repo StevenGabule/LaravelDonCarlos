@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use JD\Cloudder\Facades\Cloudder;
 use Yajra\DataTables\DataTables;
 
 class DepartmentOfficesController extends Controller
@@ -70,7 +71,7 @@ EOT;
             return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="office_checkbox[]" class="office_checkbox" value="{{$id}}" />')
             ->editColumn('avatar', static function ($data) {
-                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='/backend/uploads/office/small/$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
+                return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";
             })
             ->editColumn('created_at', static function ($data) {
                 return $data->created_at->format('d, M Y');
@@ -97,11 +98,15 @@ EOT;
         ]);
 
         $office = null;
-        $name = null;
+        $image_url = null;
 
-        if ($originalImage = $request->file('avatar')) {
-            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
-            $this->uploadImages(null, $originalImage, $name, 'office');
+        if ($request->file('avatar')) {
+            /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            $this->uploadImages(null, $originalImage, $name, 'office');*/
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
         }
 
         $office = DepartmentOffices::create([
@@ -110,7 +115,7 @@ EOT;
             'user_id' => Auth::id(),
             'status' => $request->get('status'),
             'department_category_id' => $request->get('department_category_id'),
-            'avatar' => $name,
+            'avatar' => $image_url,
             'short_description' => $request->get('short_description'),
             'description' => $request->get('description'),
             'address' => $request->get('address'),
@@ -142,9 +147,14 @@ EOT;
         $office = DepartmentOffices::where('id', $id)->first();
 
         if ($originalImage = $request->file('avatar')) {
-            $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
             $this->uploadImages($office->avatar, $originalImage, $name, 'office');
-            $office->avatar = $name;
+            $office->avatar = $name;*/
+            $image = $request->file('avatar')->getRealPath();
+            Cloudder::upload($image, null);
+            list($width, $height) = getimagesize($image);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+            $office->avatar = $image_url;
         }
 
         $office->update([

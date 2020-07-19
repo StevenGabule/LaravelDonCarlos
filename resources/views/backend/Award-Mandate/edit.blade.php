@@ -83,7 +83,7 @@
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
                                 @if($content->avatar !== null)
-                                    <img src="{{ asset('/backend/uploads/content-needs/large/'.$content->avatar) }}"
+                                    <img src="{{ $content->avatar }}"
                                          class="img-fluid" id="previewImage" alt="">
                                 @else
                                     <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>

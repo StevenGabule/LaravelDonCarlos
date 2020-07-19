@@ -44,13 +44,6 @@ class PageController extends Controller
         $newsImportant = Article::where('important', true)->limit(2)->get();
         $latestNews = Article::latest()->first();
 
-        /*
-         * 7 - inf
-         * 6 - hel
-         * 9 - educ
-         * 8 - tour
-         * 5 - agr
-         * */
         $contents = PageContent::whereIn('id', [1,2,5,6,7,8,9])->get();
 
         $newHeadLine = Article::where('status', 1)->latest()->first();

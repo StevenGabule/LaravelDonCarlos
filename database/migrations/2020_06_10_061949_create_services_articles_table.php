@@ -14,7 +14,7 @@ class CreateServicesArticlesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('slug');
-            $table->string('short_description');
+            $table->text('short_description');
             $table->longText('description');
             $table->string('avatar')->nullable();
             $table->tinyInteger('status')->default(0);

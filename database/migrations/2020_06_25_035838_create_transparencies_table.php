@@ -17,7 +17,7 @@ class CreateTransparenciesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('slug');
-            $table->string('short_description')->nullable();
+            $table->text('short_description')->nullable();
             $table->timestamps();
         });
     }

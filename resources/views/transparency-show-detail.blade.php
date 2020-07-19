@@ -10,7 +10,7 @@
     <!-- inlineng the background image so it can be dynamicaly change!!!! -->
     <!-- recommended background dimension 1920 x 1280 -->
     <div class="about-bg-banner position-relative"
-         style="background-image: url('{{ $post->avatar !== null ? asset('/backend/uploads/service-article/'.$post->avatar) : 'https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80' }}');margin-top: -24px;">
+         style="background-image: url('{{ $post->avatar !== null ? $post->avatar : asset('assets/images/fallback.jfif') }}');margin-top: -24px;">
         <div class="trending-bg-banner-overlay h-100 ">
             <div class="container col-dirtyWhite h-100">
                 <div class="d-flex h-100">

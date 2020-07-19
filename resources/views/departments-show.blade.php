@@ -65,7 +65,7 @@
                         <a href="{{ route('departments.list.show', ['id' => $id, 'slug1' => $slug, 'slug2' => $office->slug]) }}" class="mt-3 shadow-sm p-2 about-page-link">
                             <div class="d-flex">
                                 <img class="card-img w-150px"
-                                     src="{{ $office->avatar ? asset('/backend/uploads/office/original/'.$office->avatar) : asset('assets/icons/images.svg') }}"
+                                     src="{{ $office->avatar ? $office->avatar : asset('assets/icons/images.svg') }}"
                                      alt="Image not found">
                                 <div class="pl-3 pt-2">
                                     <h4 class="font-weight-bold">{{ $office->name }}</h4>

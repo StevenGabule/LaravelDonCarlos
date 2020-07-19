@@ -113,7 +113,7 @@
                         <a href="{{ route('about.baranggay.detail', ['slug' => $baranggay->slug]) }}" class="mt-3 shadow-sm p-2 about-page-link">
                             <div class="d-flex">
                                 <img class="card-img w-150px"
-                                     src="{{ $baranggay->avatar ? asset('/backend/uploads/baranggays/thumbnail/'.$baranggay->avatar) : asset('assets/icons/images.svg') }}"
+                                     src="{{ $baranggay->avatar ? $baranggay->avatar : asset('assets/icons/images.svg') }}"
                                      alt="Image not found">
                                 <div class="pl-3 pt-2">
                                     <h4 class="font-weight-bold">{{ $baranggay->name }}</h4>

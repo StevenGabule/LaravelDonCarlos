@@ -123,10 +123,6 @@ EOT;
         Mail::to($recipients)->send(new ReplyToUser($data));
         Message::create([
             'name' => Auth::user()->name,
-
-
-
-
             'email' => Auth::user()->email,
             'to' => 'miross@gmail.com',
             'status' => 1,
