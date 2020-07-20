@@ -7,6 +7,7 @@
     <link rel="short icon" href="{{ asset('assets/icons/87px-Ph_seal_don_carlos.jpg') }}">
     {{--<title>{{ config('app.name', 'Laravel') }}</title>--}}
     {!! SEOMeta::generate() !!}
+    @yield('seo')
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Oswald:wght@400;500;700&display=swap"
         rel="stylesheet">
