@@ -83,8 +83,9 @@ class PageController extends Controller
 
         SEOTools::setTitle($news->title);
         SEOTools::setDescription($news->short_description);
-        $services = Services::latest()->get();
+//        SEOTools::jsonLd()->addImage($news->avatar);
 
+        $services = Services::latest()->get();
         $articles = Article::latest()->take(2)->get();
         return view('show-news', compact('news', 'articles', 'services'));
     }
@@ -112,6 +113,7 @@ class PageController extends Controller
 
         SEOTools::setTitle($serviceType->name);
         SEOTools::setDescription($serviceType->short_description);
+
         return view('services-show', compact('serviceArt', 'services', 'id', 'serviceType', 'articles'));
     }
 

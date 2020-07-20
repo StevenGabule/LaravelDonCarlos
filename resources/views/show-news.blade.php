@@ -1,4 +1,11 @@
 @extends('layouts.app')
+@section('seo')
+    <meta property="og:url" content="{{ route('news.detail', ['slug' => $news->slug]) }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title"  content="{{$news->title}}" />
+    <meta property="og:image" content="{{$news->avatar}}" />
+    <meta property="og:description"   content="{{$news->short_description}}" />
+@endsection
 @section('custom')
     <style>
         .about-bg-banner {
@@ -35,16 +42,30 @@
             <span>{{ ($news->title) }}</span>
         </nav>
         <div class="row my-4">
+            <div class="col-12">
+                <div class="w-100 d-block">
+                    <div><p>Share with anyone:</p></div>
+                    {{--                    <div class="addthis_inline_share_toolbox"></div>--}}
+                    <div id="fb-root"></div>
+                    <script>(function(d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s); js.id = id;
+                            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));</script>
+                    <div class="fb-share-button"
+                         data-href="{{ route('news.detail', ['slug' => $news->slug]) }}"
+                         data-layout="button_count">
+                    </div>
+                </div>
+            </div>
             <div class="col-12 col-md-9">
                 <!-- recommended dimension of  a landscape 1920 x 500 or HD 1920 x 1280-->
                 <!-- recommnded image medium dimension 1280 x 853 but blury-->
                 {!! $news->description  !!}
 
-                <br>
-                <div>
-                    <div><p>Share with anyone:</p></div>
-                    <div class="addthis_inline_share_toolbox"></div>
-                </div>
+
                 <br>
             </div>
             <div class="col-12 col-md-3">
@@ -60,3 +81,10 @@
         </div>
     </div>
 @stop
+
+@push('scripts')
+
+
+    <!-- Your share button code -->
+
+@endpush
