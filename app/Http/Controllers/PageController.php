@@ -112,7 +112,6 @@ class PageController extends Controller
 
         SEOTools::setTitle($serviceType->name);
         SEOTools::setDescription($serviceType->short_description);
-
         return view('services-show', compact('serviceArt', 'services', 'id', 'serviceType', 'articles'));
     }
 
@@ -244,6 +243,7 @@ class PageController extends Controller
 
         SEOTools::setTitle($place->name);
         SEOTools::setDescription($place->short_description);
+        SEOTools::jsonLd()->addImage($place->avatar);
         $services = Services::latest()->get();
         return view('tourism-show', compact('place', 'relatedPosts', 'services'));
     }
