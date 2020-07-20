@@ -57,9 +57,8 @@
                          data-layout="button_count">
                     </div>
 
-                    <a class="twitter-share-button"
-                       href="https://twitter.com/intent/tweet?text={{ $news->title }}"
-                       data-size="large">
+                    <a class="twitter-share-button btn btn-sm btn-primary small p-0 font-weight-bold px-2" style="font-size: 12px;padding-top: 1px;padding-bottom: 1px;"
+                       href="https://twitter.com/intent/tweet?text={{ $news->title }}&url={{ route('news.detail', ['slug' => $news->slug]) }}">
                         Tweet</a>
                 </div>
             </div>
