@@ -45,14 +45,6 @@
             <div class="col-12">
                 <div class="w-100 d-block">
                     <div><p>Share with anyone:</p></div>
-                   {{-- <div class="fb-share-button"
-                         data-href="{{ route('news.detail', ['slug' => $news->slug]) }}"
-                         data-layout="button_count" data-size="large">
-                        <a target="_blank"
-                           href="https://www.facebook.com/sharer/sharer.php?u={{ route('news.detail', ['slug' => $news->slug]) }}&amp;src=sdkpreparse"
-                           class="fb-xfbml-parse-ignore">Share</a></div>--}}
-
-{{--                    <div class="addthis_inline_share_toolbox"></div>--}}
                     <script>(function(d, s, id) {
                             var js, fjs = d.getElementsByTagName(s)[0];
                             if (d.getElementById(id)) return;
@@ -64,6 +56,11 @@
                          data-href="{{ route('news.detail', ['slug' => $news->slug]) }}"
                          data-layout="button_count">
                     </div>
+
+                    <a class="twitter-share-button"
+                       href="https://twitter.com/intent/tweet?text={{ $news->title }}"
+                       data-size="large">
+                        Tweet</a>
                 </div>
             </div>
             <div class="col-12 col-md-9">
