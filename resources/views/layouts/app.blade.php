@@ -20,6 +20,8 @@
     @yield('custom')
 </head>
 <body>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=375850583273493&autoLogAppEvents=1" nonce="bzYDfYWJ"></script>
 <!-- the first header that is transparent -->
 <header>
     <div id="app">
