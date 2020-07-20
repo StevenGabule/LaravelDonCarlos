@@ -104,8 +104,7 @@ EOT;
             $this->uploadImages(null, $originalImage, $name, 'officials');*/
             $image = $request->file('avatar')->getRealPath();
             Cloudder::upload($image, null);
-            list($width, $height) = getimagesize($image);
-            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => 300, "height" => 300, "mode" => 'fit']);
         }
 
 
@@ -156,7 +155,7 @@ EOT;
             $image = $request->file('avatarCapitan')->getRealPath();
             Cloudder::upload($image, null);
             list($width, $height) = getimagesize($image);
-            $captainImage = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+            $captainImage = Cloudder::show(Cloudder::getPublicId(), ["width" => 300, "height" => 300, "mode" => 'fit']);
         }
 
         // captain

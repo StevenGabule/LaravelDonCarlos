@@ -30,12 +30,12 @@
                 <div class="d-flex">
                     <p class="mr-4 mb-0">
                         <a href="tel:+496170961709" class="text-white">
-                            <i class="fas fa-phone-alt col-green"></i>&nbsp;&nbsp;(088) 828 4817
+                            <i class="fas fa-phone-alt"></i>&nbsp;&nbsp;(088) 828 4817
                         </a>
                     </p>
                     <p class="mr-4 mb-0">
                         <a href="https://www.google.com/maps/place/Don+Carlos,+Bukidnon/@7.6951118,124.8858799,12.5z/data=!4m5!3m4!1s0x32ff30601b685ad7:0x8eb5f368f8380c44!8m2!3d7.6880909!4d124.8844867"
-                           target="_blank" class="text-white"><i class="fas fa-map-marker-alt col-green"></i>&nbsp;&nbsp;
+                           target="_blank" class="text-white"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;
                             Don Carlos City
                         </a>
                     </p>

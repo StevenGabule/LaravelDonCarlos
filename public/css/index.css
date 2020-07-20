@@ -58,10 +58,10 @@ html {
     color: #28a745;
 }
 
-a.text-white:hover {
+/*a.text-white:hover {
     text-decoration: none;
     color: #28a745 !important;
-}
+}*/
 
 .col-darkGrey {
     color: #212121;
@@ -184,7 +184,7 @@ a.text-white:hover {
 }
 
 header {
-    background-color: #706969;
+    background-color: #28a745;
     color: #F5F5F5;
 }
 

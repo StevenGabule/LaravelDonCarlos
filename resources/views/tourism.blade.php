@@ -68,7 +68,7 @@
 
                             <!-- recommended dimension 640x480 kay mau man ang image nga gi gamit -->
                             <img
-                                src="{{ $slide->avatar !== null ? $slide->avatar : asset('assets/images/photo-1564937689754-0ef73a2d3b31.jfif') }}" class="w-100 h-100"
+                                src="{{ $slide->avatar !== null ? $slide->avatar : asset('assets/images/nature-large.jpg') }}" class="w-100 h-100"
                                  style="max-width:680px;max-height:390px;" alt="image not found">
 
                             <div class=" px-3 py-5">

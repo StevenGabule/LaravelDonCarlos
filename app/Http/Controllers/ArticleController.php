@@ -146,7 +146,7 @@ EOT;
             $image = $request->file('avatar')->getRealPath();
             Cloudder::upload($image, null);
             list($width, $height) = getimagesize($image);
-            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => 1920, "height" => 600]);
             $article->avatar = $image_url;
         }
 

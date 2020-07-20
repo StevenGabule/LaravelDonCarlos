@@ -96,8 +96,7 @@ EOT;
             $this->uploadImages(null, $originalImage, $name, 'baranggays');*/
             $image = $request->file('avatar')->getRealPath();
             Cloudder::upload($image, null);
-            list($width, $height) = getimagesize($image);
-            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => 300, "height" => 300, "mode" => 'fit']);
         }
 
         $sa = Baranggay::create([
@@ -142,7 +141,7 @@ EOT;
             $image = $request->file('avatar')->getRealPath();
             Cloudder::upload($image, null);
             list($width, $height) = getimagesize($image);
-            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => 300, "height" => 300, "mode" => 'fit']);
             $baranggay->avatar = $image_url;
         }
 
