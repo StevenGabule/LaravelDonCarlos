@@ -9,7 +9,7 @@
     <meta property="og:description" content="{{$content->short_description}}"/>
 
     <meta name="twitter:title" content="{{$content->title}}"/>
-    <meta name="twitter:description" content="{{$content->short_description}}"/>
+    <meta name="twitter:description" content="{{ substr($content->short_description, 0, 100) }}"/>
     <meta name="twitter:image" content="{{$content->avatar}}">
     <meta name="twitter:card" content="summary_large_image"/>
 @endsection

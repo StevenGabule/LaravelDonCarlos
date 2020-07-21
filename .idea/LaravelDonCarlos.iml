@@ -126,5 +126,6 @@
     <orderEntry type="library" name="bootstrap-tokenfield" level="application" />
     <orderEntry type="library" name="jqueryui" level="application" />
     <orderEntry type="library" name="bootstrap-select" level="application" />
+    <orderEntry type="library" name="widgets" level="application" />
   </component>
 </module>
