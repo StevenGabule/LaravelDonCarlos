@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('seo')
     <link rel="canonical" href="{{ route('page.show', ['slug' => $content->slug]) }}"/>
     <meta property="og:url" content="{{ route('page.show', ['slug' => $content->slug]) }}"/>
@@ -6,6 +7,10 @@
     <meta property="og:title" content="{{$content->title}}"/>
     <meta property="og:image" content="{{$content->avatar}}"/>
     <meta property="og:description" content="{{$content->short_description}}"/>
+
+    <meta name="twitter:title" content="{{$content->title}}"/>
+    <meta name="twitter:description" content="{{$content->short_description}}"/>
+    <meta name="twitter:image" content="{{$content->avatar}}">
     <meta name="twitter:card" content="summary "/>
 @endsection
 
