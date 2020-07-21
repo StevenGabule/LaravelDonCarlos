@@ -11,7 +11,7 @@
     <meta name="twitter:title" content="{{$content->title}}"/>
     <meta name="twitter:description" content="{{$content->short_description}}"/>
     <meta name="twitter:image" content="{{$content->avatar}}">
-    <meta name="twitter:card" content="summary "/>
+    <meta name="twitter:card" content="summary_large_image"/>
 @endsection
 
 @section('content')
