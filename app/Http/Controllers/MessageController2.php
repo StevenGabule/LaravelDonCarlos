@@ -15,12 +15,11 @@ class MessageController extends Controller
 
     public function index()
     {
-
-        return view('backend.mails.index');
+        #return view('backend.mails.index');
     }
 
     public function all(Request $request, $type)
-    {
+    {/*
         $articles = null;
 
         if ($type === 'all') {
@@ -76,13 +75,13 @@ EOT;
                 return $data->created_at->diffForHumans();
             })
             ->rawColumns(['action', 'checkbox', 'status', 'created_at', 'subject'])
-            ->make(true);
+            ->make(true);*/
     }
 
     public function state_status($status)
     {
-        $arr = ["Unread", "Read"];
-        return $arr[$status];
+        /*$arr = ["Unread", "Read"];
+        return $arr[$status];*/
     }
 
     /**
@@ -97,7 +96,7 @@ EOT;
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+       /* $this->validate($request, [
             'to' => 'required',
             'subject' => 'required',
             'message' => 'required',
@@ -130,14 +129,14 @@ EOT;
             'subject' => $request->subject,
             'message' => $request->message,
         ]);
-        return response()->json(['success' => true, 'arr' => $arr]);
+        return response()->json(['success' => true, 'arr' => $arr]);*/
     }
 
     public function fetch(Request $request)
     {
-        $term = $request->get('term');
+        /*$term = $request->get('term');
         $mails = Message::select('email')->whereRaw('LOWER(email) LIKE ?', ["%{$term}%"])->get();
-        return response()->json(['emails' => $mails]);
+        return response()->json(['emails' => $mails]);*/
     }
 
     /**
