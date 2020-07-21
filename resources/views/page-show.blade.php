@@ -1,4 +1,14 @@
 @extends('layouts.app')
+@section('seo')
+    <link rel="canonical" href="{{ route('page.show', ['slug' => $content->slug]) }}"/>
+    <meta property="og:url" content="{{ route('page.show', ['slug' => $content->slug]) }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{$content->title}}"/>
+    <meta property="og:image" content="{{$content->avatar}}"/>
+    <meta property="og:description" content="{{$content->short_description}}"/>
+    <meta name="twitter:card" content="summary "/>
+@endsection
+
 @section('content')
     <!-- inlineng the background image so it can be dynamicaly change!!!! -->
     <!-- recommended background dimension 1920 x 1280 -->
@@ -26,7 +36,36 @@
         <br>
         <div>
             <div><p>Share with anyone:</p></div>
-            <div class="addthis_inline_share_toolbox"></div>
+            <div class="w-100 d-block">
+                <div><p>Share with anyone:</p></div>
+                <script>(function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
+                <div class="fb-share-button"
+                     data-href="{{ route('page.show', ['slug' => $content->slug]) }}"
+                     data-layout="button_count">
+                </div>
+
+                {{--<a class="twitter-share-button"
+                   style="font-size: 12px;padding-top: 1px;padding-bottom: 1px;"
+                   href="https://twitter.com/intent/tweet?original_referer={{ route('page.show', ['slug' => $content->slug]) }}">
+                    Tweet</a>
+
+                <a href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw"
+                   class="twitter-follow-button"
+                   data-show-count="false">Follow @TwitterDev</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+--}}
+
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-dnt="true"
+                   data-show-count="false">Tweet</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
         </div>
         <br>
         <br>

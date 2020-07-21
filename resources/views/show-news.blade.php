@@ -66,9 +66,6 @@
                 <!-- recommended dimension of  a landscape 1920 x 500 or HD 1920 x 1280-->
                 <!-- recommnded image medium dimension 1280 x 853 but blury-->
                 {!! $news->description  !!}
-
-
-                <br>
             </div>
             <div class="col-12 col-md-3">
                 <div class="d-none d-md-block">
@@ -84,9 +81,3 @@
     </div>
 @stop
 
-@push('scripts')
-
-
-    <!-- Your share button code -->
-
-@endpush
