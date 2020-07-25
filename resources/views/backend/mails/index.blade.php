@@ -263,9 +263,6 @@
 
                 $.ajax({
                     url: '{{ route('messages.store') }}',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
                     method: 'POST',
                     data: new FormData(this),
                     contentType: false,
@@ -412,6 +409,7 @@
                 snackbar('Select the item you want to clone.');
             }
         });
+
         $(document).on('click', '.restoreIndMail', function () {
             let id = $(this).attr('id');
             if (id.length > 0) {
@@ -479,7 +477,6 @@
                 snackbar('Please select atleast one checkbox');
             }
         });
-
 
         $(document).on('click', '.destroyMail', function (e) {
             let id = [];
