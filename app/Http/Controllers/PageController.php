@@ -59,7 +59,8 @@ class PageController extends Controller
         $activities = Activities::where('status', 1)->latest()->take(3)->skip(1)->get();
         $latestActivity = Activities::where('status', 1)->latest()->first();
 
-        return view('index', compact('services',
+        return view('index', compact(
+            'services',
             'news',
             'contents',
             'infrastructure',
@@ -73,12 +74,12 @@ class PageController extends Controller
             'activities',
             'latestActivity',
             'latestNews',
-            'newsImportant'));
+            'newsImportant'
+        ));
     }
 
     public function news_details($slug)
     {
-
         $news = Article::whereSlug($slug)->firstOrFail();
 
         SEOTools::setTitle($news->title);
@@ -206,8 +207,10 @@ class PageController extends Controller
         SEOTools::setDescription($post->short_description);
 
         $services = Services::latest()->get();
-        return view('transparency-show-detail',
-            compact('articles', 'services', 'transparent', 'transparencies', 'post', 'slug1', 'slug2'));
+        return view(
+            'transparency-show-detail',
+            compact('articles', 'services', 'transparent', 'transparencies', 'post', 'slug1', 'slug2')
+        );
     }
 
     public function news()
@@ -301,7 +304,6 @@ class PageController extends Controller
         } else {
             $data = Message::create([
                 'subject' => $request->input('subject', 'No subject'),
-
                 'name' => $request->input('name', 'No name'),
                 'email' => $request->input('email', 'No email'),
                 'message' => $request->input('message', 'No message'),

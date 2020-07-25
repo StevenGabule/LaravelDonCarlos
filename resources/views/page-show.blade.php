@@ -8,10 +8,6 @@
     <meta property="og:image" content="{{$content->avatar}}"/>
     <meta property="og:description" content="{{$content->short_description}}"/>
 
-    <meta name="twitter:title" content="{{$content->title}}"/>
-    <meta name="twitter:description" content="{{ substr($content->short_description, 0, 100) }}"/>
-    <meta name="twitter:image" content="{{$content->avatar}}">
-    <meta name="twitter:card" content="summary_large_image"/>
 @endsection
 
 @section('content')
@@ -40,7 +36,6 @@
         <br>
         <br>
         <div>
-            <div><p>Share with anyone:</p></div>
             <div class="w-100 d-block">
                 <div><p>Share with anyone:</p></div>
                 <script>(function (d, s, id) {

@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
     <!-- inlineng the background image so it can be dynamicaly change!!!! -->
     <!-- recommended background dimension 1920 x 1280 or landscape HD -->
     <div class="about-bg-banner position-relative"
@@ -38,6 +37,7 @@
                                    class="form-control border-bottom-gold"
                                    autofocus
                                    required
+                                   value="subject value"
                                    name="subject"
                                    id="inputSubmit"
                                    aria-describedby="subjectHelp"
@@ -49,6 +49,7 @@
                             <input type="text"
                                    class="form-control border-bottom-gold"
                                    name="name"
+                                   value="John Paul L. Gabule"
                                    required
                                    id="inputName" aria-describedby="nameHelp" placeholder="Enter your name">
                         </div>
@@ -57,7 +58,7 @@
                             <label for="inputEmailAddress" class="font-weight-bold h5">Email Address</label>
                             <input type="email" name="email" required
                                    class="form-control border-bottom-gold"
-
+                                   value="lucasgabule@gmail.com"
                                    id="inputEmailAddress"
                                    placeholder="Enter your current email">
                         </div>
@@ -69,10 +70,10 @@
                                       rows="10"
                                       required
                                       class="form-control border-bottom-gold"
-                                      placeholder="Leave your message here..."></textarea>
+                                      placeholder="Leave your message here...">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, eos.</textarea>
                         </div>
-{{--                        <button type="submit" class="btn btn-outline-gold px-4 py-1 rounded-0 mt-4" id="btnSubmit">Submit</button>--}}
-                        <button type="submit" class="btn btn-warning" id="btnSubmit"><i class="far fa-paper-plane mr-2"></i> Send</button>
+                        <button type="submit" class="btn btn-warning" id="btnSubmit">
+                          <i class="far fa-paper-plane mr-2"></i> Send</button>
                         <span id="form_result"></span>
                     </form>
                 </div>

@@ -33,6 +33,10 @@ $(document).ready(function () {
                 $("#form_result").html(`<br /><br />${html}`);
                 x.attr('disabled', false);
                 x.html(`<i class="far fa-paper-plane mr-2"></i> Send`)
+            },
+            error: err => {
+                x.attr('disabled', false);
+                console.error(err);
             }
 
         }).fail((err) => console.log(err))
