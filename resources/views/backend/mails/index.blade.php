@@ -263,11 +263,12 @@
 
                 $.ajax({
                     url: '{{ route('messages.store') }}',
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
                     method: 'POST',
                     data: new FormData(this),
-                    /*contentType: false,
+                    contentType: false,
                     cache: false,
-                    processData: false,*/
+                    processData: false,
                     dataType: 'json',
                     beforeSend: function () {
                         $(".form-text").addClass('d-none');
