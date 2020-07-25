@@ -12,10 +12,8 @@ use Yajra\DataTables\DataTables;
 
 class MessageController extends Controller
 {
-
     public function index()
     {
-
         return view('backend.mails.index');
     }
 
@@ -40,7 +38,7 @@ class MessageController extends Controller
         }
 
         if ($type === 'sent') {
-            $messages = Message::where('status','=' ,2)->get();
+            $messages = Message::where('status', '=', 2)->get();
         }
 
         return DataTables::of($messages)->addColumn('action', static function ($data) {
@@ -141,7 +139,7 @@ EOT;
     public function show($id)
     {
         $message = Message::findOrFail($id);
-        if ($message->status !== 1 and $message->status ) {
+        if ($message->status !== 1 and $message->status) {
             $message->update([
                 'status' => 1
             ]);

@@ -29,9 +29,9 @@ Route::get('/events/{slug}', 'PageController@activitiesShowData')->name('event.s
 Route::get('/contacts', 'PageController@contacts')->name('contacts');
 Route::get('/contact', 'PageController@sending')->name('sending');
 
-Route::get('/departments','PageController@departments')->name('departments');
-Route::get('/department/{id}/{slug}','PageController@department_lists')->name('departments.list');
-Route::get('/department/{id}/{slug1}/{slug2}','PageController@department_list_show')->name('departments.list.show');
+Route::get('/departments', 'PageController@departments')->name('departments');
+Route::get('/department/{id}/{slug}', 'PageController@department_lists')->name('departments.list');
+Route::get('/department/{id}/{slug1}/{slug2}', 'PageController@department_list_show')->name('departments.list.show');
 
 Auth::routes();
 
@@ -42,7 +42,9 @@ Route::get('/don-carlos/awards', 'PageController@award')->name('awards');
 Route::get('/don-carlos/mandate', 'PageController@mandate')->name('mandate');
 Route::get('/don-carlos/{type}/{slug}', 'PageController@content_show')->name('content.show');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
+Route::group(
+    ['prefix' => 'admin', 'middleware' => 'auth'],
+    static function () {
     Route::get('/', 'UserController@index')->name('admin');
 
     // NEWS AND UPDATES ROUTES
@@ -79,7 +81,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::post('sa-update', 'ServicesArticleController@updateAjax')->name('sa.update.ajax');
 
     // BARANGGAY ROUTES
-    Route::resource('baranggays','BaranggayController');
+    Route::resource('baranggays', 'BaranggayController');
     Route::get('ba/{type}', 'BaranggayController@all')->name('ba.all');
     Route::get('ba-massremove', 'BaranggayController@massRemove')->name('ba.massremove');
     Route::get('ba-restore', 'BaranggayController@restore')->name('ba.restore');
@@ -88,17 +90,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::post('ba-update', 'BaranggayController@updateAjax')->name('ba.update.ajax');
 
     // BARANGGAY OFFICIALS ROUTES
-    Route::resource('officials','BaranggayOfficialController');
+    Route::resource('officials', 'BaranggayOfficialController');
     Route::get('bo/{type}', 'BaranggayOfficialController@all')->name('bo.all');
     Route::get('bo-massremove', 'BaranggayOfficialController@massRemove')->name('bo.massremove');
     Route::get('bo-restore', 'BaranggayOfficialController@restore')->name('bo.restore');
     Route::get('bo-kill', 'BaranggayOfficialController@kill')->name('bo.kill');
     Route::post('bo-update', 'BaranggayOfficialController@ajaxUpdate')->name('bo.ajaxUpdate');
-    Route::post('bo-group','BaranggayOfficialController@storeGroup')->name('bo.group');
+    Route::post('bo-group', 'BaranggayOfficialController@storeGroup')->name('bo.group');
     Route::get('bo-clone', 'BaranggayOfficialController@clone')->name('bo.clone');
 
     // ACTIVITIES AND EVENTS ROUTES
-    Route::resource('activities','ActivityController');
+    Route::resource('activities', 'ActivityController');
     Route::get('act-all/{type}', 'ActivityController@all')->name('act.all');
     Route::get('act-massremove', 'ActivityController@massRemove')->name('act.massremove');
     Route::get('act-restore', 'ActivityController@restore')->name('act.restore');
@@ -168,5 +170,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], static function () {
     Route::get('need-content-mass_remove', 'ContentNeedController@remove')->name('need_content.mass_remove');
     Route::get('need-content-mass_restore', 'ContentNeedController@restore')->name('need_content.mass_restore');
     Route::get('need-content-mass_kill', 'ContentNeedController@kill')->name('need_content.mass_kill');
-
-});
+}
+);

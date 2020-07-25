@@ -265,9 +265,9 @@
                     url: '{{ route('messages.store') }}',
                     method: 'POST',
                     data: new FormData(this),
-                    contentType: false,
+                    /*contentType: false,
                     cache: false,
-                    processData: false,
+                    processData: false,*/
                     dataType: 'json',
                     beforeSend: function () {
                         $(".form-text").addClass('d-none');
