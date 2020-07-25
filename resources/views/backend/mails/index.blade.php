@@ -263,7 +263,9 @@
 
                 $.ajax({
                     url: '{{ route('messages.store') }}',
-                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
                     method: 'POST',
                     data: new FormData(this),
                     contentType: false,
