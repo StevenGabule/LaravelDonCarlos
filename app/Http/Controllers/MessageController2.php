@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\DataTables;
 
-class MessageController extends Controller
+class MessageController2 extends Controller
 {
 
     public function index()
