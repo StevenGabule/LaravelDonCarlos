@@ -58,13 +58,7 @@
 
                 {!! $baranggay->description !!}
                 <br>
-                <br>
-                <div>
-                    <div><p>Share with anyone:</p></div>
-                    <div class="addthis_inline_share_toolbox"></div>
-                </div>
-                <br>
-                <h5 class="font-oswald-bold mt-5">Baranggay Official From Year <?= date('Y') ?>-<?= date('Y') + 2 ?></h5>
+                <h5 class="font-oswald-bold mt-5">Baranggay Official</h5>
                 <hr class="hr-thin">
                 <div class="row">
                     {{--'1-kagawad|2-Captain|3-SK|4-Secretary|5-treasurer'--}}

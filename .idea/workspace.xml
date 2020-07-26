@@ -25,7 +25,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8ea968b-c1f4-4306-90da-bf46493a5853" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/MessageController2.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Http/Controllers/MessageController2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/MessageController2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Http/Controllers/PageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/about/baranggay_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/about/baranggay_detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/activities-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/activities-show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/award-details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/award-details.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/departments-show-detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/departments-show-detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/page-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/page-show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/services-show-detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/services-show-detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/services-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/services-show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/show-news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/show-news.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/tourism-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/tourism-show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/transparency-show-detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/transparency-show-detail.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +184,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/storage/uploads" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -304,7 +316,13 @@
       <workItem from="1595178753976" duration="20427000" />
       <workItem from="1595289632615" duration="1145000" />
       <workItem from="1595294566141" duration="4934000" />
-      <workItem from="1595661926459" duration="562000" />
+      <workItem from="1595661926459" duration="3310000" />
+      <workItem from="1595730126240" duration="149000" />
+      <workItem from="1595735272941" duration="8000" />
+      <workItem from="1595735361543" duration="11000" />
+      <workItem from="1595735395646" duration="8000" />
+      <workItem from="1595735434632" duration="2311000" />
+      <workItem from="1595768479291" duration="843000" />
     </task>
     <servers />
   </component>
@@ -479,9 +497,9 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1595299913642" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1595662400306">
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1595748362281">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1595662400306" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1595748362281" />
   </component>
 </project>

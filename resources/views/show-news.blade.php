@@ -1,11 +1,13 @@
 @extends('layouts.app')
 @section('seo')
+    <link rel="canonical" href="{{ route('news.detail', ['slug' => $news->slug]) }}"/>
     <meta property="og:url" content="{{ route('news.detail', ['slug' => $news->slug]) }}" />
     <meta property="og:type" content="website" />
     <meta property="og:title"  content="{{$news->title}}" />
     <meta property="og:image" content="{{$news->avatar}}" />
     <meta property="og:description"   content="{{$news->short_description}}" />
 @endsection
+
 @section('custom')
     <style>
         .about-bg-banner {
@@ -42,9 +44,13 @@
             <span>{{ ($news->title) }}</span>
         </nav>
         <div class="row my-4">
-            <div class="col-12">
-                <div class="w-100 d-block">
-                    <div><p>Share with anyone:</p></div>
+            <div class="col-12 col-md-9">
+                <!-- recommended dimension of  a landscape 1920 x 500 or HD 1920 x 1280-->
+                <!-- recommnded image medium dimension 1280 x 853 but blury-->
+                {!! $news->description  !!}
+
+                <div class="w-100 mt-3 d-block">
+                    <div><p class="mb-0">Share with anyone:</p></div>
                     <script>(function(d, s, id) {
                             var js, fjs = d.getElementsByTagName(s)[0];
                             if (d.getElementById(id)) return;
@@ -56,16 +62,7 @@
                          data-href="{{ route('news.detail', ['slug' => $news->slug]) }}"
                          data-layout="button_count">
                     </div>
-
-                    <a class="twitter-share-button btn btn-sm btn-primary small p-0 font-weight-bold px-2" style="font-size: 12px;padding-top: 1px;padding-bottom: 1px;"
-                       href="https://twitter.com/intent/tweet?text={{ $news->title }}&url={{ route('news.detail', ['slug' => $news->slug]) }}">
-                        Tweet</a>
                 </div>
-            </div>
-            <div class="col-12 col-md-9">
-                <!-- recommended dimension of  a landscape 1920 x 500 or HD 1920 x 1280-->
-                <!-- recommnded image medium dimension 1280 x 853 but blury-->
-                {!! $news->description  !!}
             </div>
             <div class="col-12 col-md-3">
                 <div class="d-none d-md-block">

@@ -363,7 +363,7 @@ class PageController extends Controller
     public function page_show($slug)
     {
         $content = PageContent::whereSlug($slug)->firstOrFail();
-        SEOTools::setTitle($content->title);
+        SEOTools::setTitle('Don Carlos - '. $content->title);
         SEOTools::setDescription($content->short_description);
         $relatedPosts = Place::latest()->take(3)->get();
         $services = Services::latest()->get();

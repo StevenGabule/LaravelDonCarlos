@@ -23,11 +23,7 @@
             {!! $place->description !!}
         </div>
         <br>
-        <div>
-            <div><p>Share with anyone:</p></div>
-            <div class="addthis_inline_share_toolbox"></div>
-        </div>
-        <br>
+
         <h5 class="font-oswald-bold mt-4">Related Posts</h5>
         <hr class="hr-thin">
         <div class="row mb-4 mt-2">

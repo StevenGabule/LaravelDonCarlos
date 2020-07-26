@@ -44,7 +44,8 @@
                     @foreach($departments as $department)
                         <a href="{{ route('departments.list', ['id' => $department->id, 'slug' => $department->slug]) }}"
                            class="about-side-nav px-4 py-2 rounded shadow-sm w-100 text-decoration-none mt-3 {{ (int)$department->id === (int)$id ? 'active' : '' }}">
-                            <p class="mb-0">{{ $department->name }} <i class="fas fa-arrow-right float-right pt-1"></i></p>
+                            <p class="mb-0">{{ $department->name }} <i class="fas fa-arrow-right float-right pt-1"></i>
+                            </p>
                         </a>
                     @endforeach
                 </div>
@@ -61,15 +62,9 @@
             </div>
             <div class="col-12 col-md-9">
                 <div class="d-flex flex-column pl-lg-4">
-                <h3>{{ $office->name }}</h3>
+                    <h3>{{ $office->name }}</h3>
                     {!! $office->description !!}
                 </div>
-                <br>
-                <div>
-                    <div><p>Share with anyone:</p></div>
-                    <div class="addthis_inline_share_toolbox"></div>
-                </div>
-                <br>
             </div>
         </div>
     </div>

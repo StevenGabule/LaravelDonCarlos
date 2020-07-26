@@ -101,8 +101,6 @@
             </div>
             <div class="col-12 col-md-9">
                 {!! $content->description !!}
-                <div><p>Share with anyone:</p></div>
-                <div class="addthis_inline_share_toolbox"></div>
             </div><!-- end of col-md-9 -->
 
         </div>

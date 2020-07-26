@@ -5,9 +5,8 @@
     <meta property="og:url" content="{{ route('page.show', ['slug' => $content->slug]) }}"/>
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="{{$content->title}}"/>
-    <meta property="og:image" content="{{$content->avatar}}"/>
+    <meta property="og:image" content="{{'Don Carlos '. $content->avatar}}"/>
     <meta property="og:description" content="{{$content->short_description}}"/>
-
 @endsection
 
 @section('content')
@@ -50,25 +49,8 @@
                      data-href="{{ route('page.show', ['slug' => $content->slug]) }}"
                      data-layout="button_count">
                 </div>
-
-                {{--<a class="twitter-share-button"
-                   style="font-size: 12px;padding-top: 1px;padding-bottom: 1px;"
-                   href="https://twitter.com/intent/tweet?original_referer={{ route('page.show', ['slug' => $content->slug]) }}">
-                    Tweet</a>
-
-                <a href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw"
-                   class="twitter-follow-button"
-                   data-show-count="false">Follow @TwitterDev</a>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
---}}
-
-                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-dnt="true"
-                   data-show-count="false">Tweet</a>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
         </div>
-        <br>
-        <br>
 
         <h5 class="font-oswald-bold mt-4">See More Post</h5>
         <hr class="hr-thin">
