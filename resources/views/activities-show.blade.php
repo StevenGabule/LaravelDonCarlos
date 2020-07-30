@@ -36,7 +36,7 @@
                </span>
             </p>
             {!! $events->description !!}
-            <div class="w-100 d-block">
+            <div class="w-100 d-block mb-3 mt-3">
                 <div><p>Share with anyone:</p></div>
                 <script>(function (d, s, id) {
                         var js, fjs = d.getElementsByTagName(s)[0];
@@ -51,6 +51,18 @@
                      data-layout="button_count">
                 </div>
             </div>
+
+            <div id="disqus_thread"></div>
+            <script>
+                (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://doncarlos.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
         </div>
         <br>
         <h5 class="font-oswald-bold mt-4">Related Posts</h5>

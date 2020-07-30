@@ -25,7 +25,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8ea968b-c1f4-4306-90da-bf46493a5853" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/LaravelDonCarlos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/LaravelDonCarlos.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/activities-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/activities-show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/award-details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/award-details.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/departments-show-detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/departments-show-detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/page-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/page-show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/services-show-detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/services-show-detail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../resources/views/show-news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/show-news.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/tourism-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/tourism-show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/transparency-show-detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/transparency-show-detail.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,6 +165,8 @@
       <path value="$PROJECT_DIR$/vendor/chencha/share" />
       <path value="$PROJECT_DIR$/vendor/cloudinary/cloudinary_php" />
       <path value="$PROJECT_DIR$/vendor/jrm2k6/cloudder" />
+      <path value="$PROJECT_DIR$/../vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/../vendor/symfony/polyfill-php70" />
     </include_path>
   </component>
   <component name="ProjectId" id="1dl0esG5CBRI8kF7Cyrw33nJIT0" />
@@ -316,7 +329,7 @@
       <workItem from="1596026809613" duration="6312000" />
       <workItem from="1596082564576" duration="11803000" />
       <workItem from="1596098379065" duration="194000" />
-      <workItem from="1596098583944" duration="25602000" />
+      <workItem from="1596098583944" duration="27313000" />
     </task>
     <servers />
   </component>
@@ -491,9 +504,9 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1596008293023" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1596119358279">
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1596132574858">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1596119358279" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1596132574858" />
   </component>
 </project>

@@ -80,7 +80,7 @@
 
                     {!! $post->description !!}
 
-                    <div>
+                    <div class="mb-3 mt-3">
                         <div class="w-100 d-block">
                             <div><p class="mb-0 mt-3">Share with anyone:</p></div>
                             <script>(function (d, s, id) {
@@ -97,7 +97,16 @@
                             </div>
                         </div>
                     </div><!-- sharing content -->
-
+                    <div id="disqus_thread"></div>
+                    <script>
+                        (function() { // DON'T EDIT BELOW THIS LINE
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://doncarlos.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                 </div>
             </div>
         </div>

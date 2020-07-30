@@ -64,6 +64,7 @@
                 <div class="d-flex flex-column pl-lg-4">
                     <h3>{{ $office->name }}</h3>
                     {!! $office->description !!}
+
                 </div>
             </div>
         </div>

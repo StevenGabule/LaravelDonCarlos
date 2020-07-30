@@ -34,7 +34,7 @@
         </div>
         <br>
         <br>
-        <div>
+        <div class="mb-3">
             <div class="w-100 d-block">
                 <div><p>Share with anyone:</p></div>
                 <script>(function (d, s, id) {
@@ -51,10 +51,17 @@
                 </div>
             </div>
         </div>
-        <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&autoLogAppEvents=1&version=v7.0&appId=375850583273493" nonce="GO9ViTWf"></script>
 
-        <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5" data-width=""></div>
+        <div id="disqus_thread"></div>
+        <script>
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://doncarlos.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
         <h5 class="font-oswald-bold mt-4">See More Post</h5>
         <hr class="hr-thin">
