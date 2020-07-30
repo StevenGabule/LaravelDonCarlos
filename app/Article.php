@@ -59,4 +59,14 @@ class Article extends Model
     {
         return $this->avatar !== null ? $this->avatar : asset('assets/images/photo-1558449033-7ae045d2c81a.jfif');
     }
+
+    public function scopeLatestFirst($query)
+    {
+        return $query->orderBy('created_at', 'desc');
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('status', 1);
+    }
 }

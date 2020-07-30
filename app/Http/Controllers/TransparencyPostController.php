@@ -176,7 +176,7 @@ EOT;
 
     public function edit($id)
     {
-        $post = TransparencyPost::with('transparency_post_files')->findOrFail($id);
+        $post = TransparencyPost::with(['transparency_post_files', 'transparencies'])->findOrFail($id);
         $transparencies = Transparency::latest()->get();
         $transparentFiles = TransparencyFile::latest()->get();
         return view('backend.transparency_posts.edit', compact('post', 'transparencies', 'transparentFiles'));

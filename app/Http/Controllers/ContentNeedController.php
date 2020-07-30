@@ -139,6 +139,12 @@ EOT;
             $this->uploadImages($content->avatar, $originalImage, $name, 'content-needs');
             $content->avatar = $name;*/
 
+            if ($content->avatar !== null) {
+                $splits = explode('/', $content->avatar)[7];
+                $publicId = explode('.', $splits)[0];
+                Cloudder::delete($publicId, null);
+            }
+
             $image = $request->file('avatar')->getRealPath();
             Cloudder::upload($image, null);
             list($width, $height) = getimagesize($image);

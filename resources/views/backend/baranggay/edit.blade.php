@@ -14,6 +14,12 @@
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fad fa-plus mr-2"></i>Create
                     </a>
+
+                    <a href="/about-don-carlos/baranggay/{{$baranggay->slug}}" target="-_blank" id="change-url"
+                       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <i class="fad fa-globe-asia mr-2"></i>Visit
+                    </a>
+
                     <input type="hidden" value="{{ $baranggay->id }}" name="baranggay_id">
                     <a href="{{ route('baranggays.index') }}"
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">

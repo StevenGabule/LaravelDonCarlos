@@ -21,6 +21,12 @@
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fad fa-plus mr-2"></i>New
                     </a>
+
+                    <a href="/place/{{$place->slug}}" target="-_blank" id="change-url"
+                       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <i class="fad fa-globe-asia mr-2"></i>Visit
+                    </a>
+
                     <input type="hidden" name="place_id" value="{{ $place->id }}">
 
                     <a href="{{ route('place.index') }}"

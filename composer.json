@@ -12,6 +12,7 @@
         "ext-gd": "*",
         "artesaos/seotools": "^0.18.0",
         "chencha/share": "^5.4",
+        "cloudinary/cloudinary_php": "^1.17",
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^2.0",
         "fzaninotto/faker": "^1.9.1",

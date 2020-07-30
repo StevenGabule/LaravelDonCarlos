@@ -16,7 +16,15 @@
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fad fa-plus mr-2"></i>New
                     </a>
+
+                    <a href="/transparency/{{$post->transparencies->slug}}/article/{{$post->slug}}"
+                       target="-_blank" id="change-url"
+                       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <i class="fad fa-globe-asia mr-2"></i>Visit
+                    </a>
+
                     <input type="hidden" name="post_id" value="{{ $post->id }}">
+
                     <a href="{{ route('transparency-posts.index') }}"
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fad fa-long-arrow-left mr-2"></i>Back
@@ -111,7 +119,9 @@
                             <div class="form-group">
                                 <label class="font-weight-bold">Transparent files</label>
                                 @forelse($post->transparency_post_files as $item)
-                                    <p class="small border p-3"><i class="fad fa-fw fa-file-alt"></i> {{ $item->transparent_file->name }}</p>
+                                    <p class="small border p-3"><i class="fad fa-fw fa-file-alt"></i>
+                                        {{ $item->transparent_file->name }}
+                                    </p>
                                     @php
                                         $val[] = $item->transparent_file->id;
                                     @endphp

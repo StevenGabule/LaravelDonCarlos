@@ -93,7 +93,7 @@ EOT;
             'title' => 'required',
             'short_description' => 'required',
             'description' => 'required',
-            'avatar' => 'required|mimes:jpeg,gif,bmp,png',
+            'avatar' => 'sometimes|mimes:jpeg,gif,bmp,png',
         ]);
 
         $pageContent = PageContent::findOrFail($request->input('page_content_id'));
@@ -103,14 +103,20 @@ EOT;
             $this->uploadImages($pageContent->avatar, $originalImage, $name, 'page-content');
             $pageContent->avatar = $name;
         }*/
+        $image_url = null;
+        if ($request->file('avatar')) {
+            if ($pageContent->avatar !== null) {
+                $splits = explode('/', $pageContent->avatar)[7];
+                $publicId = explode('.', $splits)[0];
+                Cloudder::delete($publicId, null);
+            }
 
-        $avatar = $request->file('avatar')->getRealPath();
+            $avatar = $request->file('avatar')->getRealPath();
+            Cloudder::upload($avatar, null);
+            list($width, $height) = getimagesize($avatar);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+        }
 
-        Cloudder::upload($avatar, null);
-
-        list($width, $height) = getimagesize($avatar);
-
-        $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
 
         $pageContent->update([
             'title' => $request->get('title'),

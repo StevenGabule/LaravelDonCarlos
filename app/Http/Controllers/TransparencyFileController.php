@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use JD\Cloudder\Facades\Cloudder;
 use Yajra\DataTables\DataTables;
 
 class TransparencyFileController extends Controller
@@ -18,7 +19,7 @@ class TransparencyFileController extends Controller
 
     public function render()
     {
-        $files = TransparencyFile::latest()->get();
+        $files = TransparencyFile::orderByDesc('created_at')->get();
         return DataTables::of($files)->addColumn('action', static function ($data) {
             $file = asset('/backend/uploads/files/' . $data->filename);
             $button = <<<EOT
@@ -69,9 +70,18 @@ EOT;
     {
         $uploadedFile = $request->file('file');
         $filename = time() . $uploadedFile->getClientOriginalName();
+        $file_url = null;
+
+        if ($request->file('file')) {
+            $file = $request->file('file')->getRealPath();
+            Cloudder::upload($file, null);
+            $file_url = Cloudder::show(Cloudder::getPublicId());
+        }
+
         TransparencyFile::create([
             'name' => $uploadedFile->getClientOriginalName(),
             'filename' => $filename,
+            'file_url' => $file_url,
             'size' => $uploadedFile->getSize(),
             'type' => $uploadedFile->getClientOriginalExtension(),
             'user_id' => Auth::id(),
@@ -81,27 +91,30 @@ EOT;
         return response()->json(['success' => true], 200);
     }
 
-    public function mass_remove(Request $request)
+    public function mass_remove($ids)
     {
-        $ids = $request->input('id');
-        $filePath = public_path() . "/backend/uploads/files/";
-        if (is_array($ids)) {
+        /*$filePath = public_path() . "/backend/uploads/files/";
+        $file = null;
+        $publicId = Cloudder::getPublicId();
+        if (is_array($id)) {
             foreach ($ids as $id) {
                 $file = TransparencyFile::where('id', $id)->firstOrFail();
+                Cloudder::delete($publicId, $file->file_url);
                 if (File::exists($filePath . $file->filename)) {
                     File::delete($filePath . $file->filename);
                 }
                 $file->delete();
             }
-            return response()->json(['success' => true], 200);
+            return response()->json(['success' => true, 'file' => $file->file_url], 200);
+        }*/
+        $ids = explode(",", $ids);
+        foreach ($ids as $id) {
+            $file = TransparencyFile::where('id', $id)->firstOrFail();
+            $splits = explode('/', $file->file_url)[7];
+            $publicId = explode('.', $splits)[0];
+            Cloudder::delete($publicId, null);
+            $file->forceDelete();
         }
-
-        $one = TransparencyFile::where('id', $ids)->firstOrFail();
-        if (File::exists($filePath . $one->filename)) {
-            File::delete($filePath . $one->filename);
-        }
-
-        $one->delete();
         return response()->json(['success' => true], 200);
     }
 }

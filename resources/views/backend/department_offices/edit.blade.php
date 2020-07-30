@@ -14,6 +14,12 @@
                         <i class="fad fa-plus mr-2"></i>New
                     </a>
                     <input type="hidden" name="office_id" id="office_id" value="{{ $office->id }}">
+
+                    <a href="/department/{{$office->department_category_id}}/{{$office->department_categories->slug}}/{{$office->slug}}" target="-_blank" id="change-url"
+                       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <i class="fad fa-globe-asia mr-2"></i>Visit
+                    </a>
+
                     <a href="{{ route('department-offices.index') }}"
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fad fa-long-arrow-left mr-2"></i>Back

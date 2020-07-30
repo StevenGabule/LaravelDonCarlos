@@ -178,6 +178,7 @@ return [
 
         Intervention\Image\ImageServiceProvider::class,
         Chencha\Share\ShareServiceProvider::class,
+        JD\Cloudder\CloudderServiceProvider::class,
     ],
 
     /*
@@ -229,7 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'Share' => Chencha\Share\ShareFacade::class
+        'Share' => Chencha\Share\ShareFacade::class,
+        'Cloudder' => JD\Cloudder\Facades\Cloudder::class,
     ],
-
 ];

@@ -10,6 +10,9 @@
     </style>
 @stop
 @section('content')
+    @php
+        $cat = explode('/', $_SERVER['PHP_SELF'])[4];
+    @endphp
     <div class="container-fluid">
         <form id="serviceArticleForm" method="post" enctype="multipart/form-data">
             @csrf
@@ -22,6 +25,11 @@
                     <a href="{{ route('service-article.create') }}"
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fad fa-plus mr-2"></i>New
+                    </a>
+
+                    <a href="/service/{{$sa->services_id}}/{{$sa->slug}}" target="-_blank" id="change-url"
+                       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <i class="fad fa-globe-asia mr-2"></i>Visit
                     </a>
 
                     <input type="hidden" name="service_article_id" value="{{ $sa->id }}">

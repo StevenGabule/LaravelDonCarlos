@@ -29,6 +29,11 @@ class TransparencyPost extends Model
         }
     }
 
+    public function transparencies(): BelongsTo
+    {
+        return $this->belongsTo(Transparency::class, 'transparency_id');
+    }
+
     public function transparency_post_files(): HasMany
     {
         return $this->hasMany(TransparentPostFile::class);

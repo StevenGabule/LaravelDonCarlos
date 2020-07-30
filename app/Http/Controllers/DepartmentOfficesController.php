@@ -146,10 +146,17 @@ EOT;
         $id = $request->input('office_id');
         $office = DepartmentOffices::where('id', $id)->first();
 
-        if ($originalImage = $request->file('avatar')) {
+        if ($request->file('avatar')) {
             /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
             $this->uploadImages($office->avatar, $originalImage, $name, 'office');
             $office->avatar = $name;*/
+
+            if ($office->avatar !== null) {
+                $splits = explode('/', $office->avatar)[7];
+                $publicId = explode('.', $splits)[0];
+                Cloudder::delete($publicId, null);
+            }
+
             $image = $request->file('avatar')->getRealPath();
             Cloudder::upload($image, null);
             list($width, $height) = getimagesize($image);
@@ -182,6 +189,19 @@ EOT;
         }
 
         DepartmentOffices::findOrFail($officesId)->delete();
+        return response()->json(['success' => true]);
+    }
+
+    public function destroyOffices($ids)
+    {
+        $ids = explode(",", $ids);
+        foreach ($ids as $id) {
+            $departmentOffice = DepartmentOffices::withTrashed()->where('id', $id)->firstOrFail();
+            $splits = explode('/', $departmentOffice->avatar)[7];
+            $publicId = explode('.', $splits)[0];
+            Cloudder::delete($publicId, null);
+            $departmentOffice->forceDelete();
+        }
         return response()->json(['success' => true]);
     }
 }

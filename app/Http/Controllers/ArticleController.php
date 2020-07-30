@@ -30,15 +30,15 @@ class ArticleController extends Controller
         }
 
         if ($type === 'trash') {
-            $articles = Article::with('category')->onlyTrashed()->get();
+            $articles = Article::with('category')->onlyTrashed()->orderByDesc('created_at')->get();
         }
 
         if ($type === 'drafted') {
-            $articles = Article::with('category')->where('status', '=', 0)->get();
+            $articles = Article::with('category')->where('status', '=', 0)->orderByDesc('created_at')->get();
         }
 
         if ($type === 'published') {
-            $articles = Article::with('category')->where('status', '=', 1)->get();
+            $articles = Article::with('category')->where('status', '=', 1)->orderByDesc('created_at')->get();
         }
 
         return DataTables::of($articles)->addColumn('action', static function ($data) {
@@ -140,13 +140,16 @@ EOT;
         $article = Article::findOrFail($request->input('article_id'));
 
         if ($request->file('avatar')) {
-            /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
-            $this->uploadImages($article->avatar, $originalImage, $name, 'articles');
-            $article->avatar = $name;*/
+            if ($article->avatar !== null) {
+                $splits = explode('/', $article->avatar)[7];
+                $publicId = explode('.', $splits)[0];
+                Cloudder::delete($publicId, null);
+            }
+
             $image = $request->file('avatar')->getRealPath();
             Cloudder::upload($image, null);
             list($width, $height) = getimagesize($image);
-            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => 1920, "height" => 600]);
+            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
             $article->avatar = $image_url;
         }
 
@@ -173,21 +176,28 @@ EOT;
         return response()->json(['failed' => true]);
     }
 
-    public function kill(Request $request)
+    public function kill($ids)
     {
-        $ids = $request->input('id');
-        if (is_array($ids)) {
-            foreach ($ids as $id) {
-                $article = Article::withTrashed()->where('id', $id)->first();
-                $this->removeImages($article->avatar, 'articles');
-                $article->forceDelete();
-            }
-            return response()->json(['success' => true]);
+        /*if (is_array($ids)) {*/
+        $ids = explode(",", $ids);
+        foreach ($ids as $id) {
+            $article = Article::withTrashed()->where('id', $id)->first();
+            $splits = explode('/', $article->avatar)[7];
+            $publicId = explode('.', $splits)[0];
+            Cloudder::delete($publicId, null);
+//                $this->removeImages($article->avatar, 'articles');
+            $article->forceDelete();
         }
-
-        $one = Article::withTrashed()->where('id', $ids)->first()->forceDelete();
-        $this->removeImages($one->avatar, 'articles');
         return response()->json(['success' => true]);
+//        }
+
+        /*$one = Article::withTrashed()->where('id', $ids)->first();
+        $splits = explode('/', $one->avatar)[7];
+        $publicId = explode('.', $splits)[0];
+        Cloudder::delete($publicId, null);
+        $one->forceDelete();*/
+        #$this->removeImages($one->avatar, 'articles');
+        #return response()->json(['success' => true]);
     }
 
     public function restore(Request $request)

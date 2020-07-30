@@ -27,19 +27,19 @@ class ActivityController extends Controller
     {
         $activities = null;
         if ($type === 'all') {
-            $activities = Activities::latest();
+            $activities = Activities::orderBy('created_at')->get();
         }
 
         if ($type === 'trash') {
-            $activities = Activities::onlyTrashed()->get();
+            $activities = Activities::onlyTrashed()->orderByDesc('created_at')->get();
         }
 
         if ($type === 'drafted') {
-            $activities = Activities::where('status', 0)->get();
+            $activities = Activities::where('status', 0)->orderByDesc('created_at')->get();
         }
 
         if ($type === 'published') {
-            $activities = Activities::where('status', 1)->get();
+            $activities = Activities::where('status', 1)->orderBy('created_at', 'desc')->get();
         }
 
         return DataTables::of($activities)->addColumn('action', static function ($data) {
@@ -154,6 +154,12 @@ EOT;
             $this->uploadImages($activities->avatar, $originalImage, $name, 'activities');
             $activities->avatar = $name;*/
 
+            if ($activities->avatar !== null) {
+                $splits = explode('/', $activities->avatar)[7];
+                $publicId = explode('.', $splits)[0];
+                Cloudder::delete($publicId, null);
+            }
+
             $image = $request->file('avatar')->getRealPath();
             Cloudder::upload($image, null);
             list($width, $height) = getimagesize($image);
@@ -192,9 +198,9 @@ EOT;
         return view('backend.activities.edit', compact('activity'));
     }
 
-    public function kill(Request $request)
+    public function kill($ids)
     {
-        $ids = $request->input('id');
+        /*$ids = $request->input('id');
         if (is_array($ids)) {
             foreach ($ids as $id) {
                 $activity = Activities::withTrashed()->where('id', $id)->first();
@@ -203,7 +209,15 @@ EOT;
             }
             return response()->json(['success' => true]);
         }
-        Activities::withTrashed()->where('id', $ids)->first()->forceDelete();
+        Activities::withTrashed()->where('id', $ids)->first()->forceDelete();*/
+        $ids = explode(",", $ids);
+        foreach ($ids as $id) {
+            $activities = Activities::withTrashed()->where('id', $id)->first();
+            $splits = explode('/', $activities->avatar)[7];
+            $publicId = explode('.', $splits)[0];
+            Cloudder::delete($publicId, null);
+            $activities->forceDelete();
+        }
         return response()->json(['success' => true]);
     }
 

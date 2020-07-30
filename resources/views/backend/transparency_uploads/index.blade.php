@@ -60,7 +60,6 @@
                                     <th>Filename</th>
                                     <th>Type</th>
                                     <th>Size</th>
-                                    <th>Clicked</th>
                                     <th>Date</th>
                                     <th>Actions</th>
                                 </tr>
@@ -125,7 +124,7 @@
                     scrollY: '60vh',
                     scrollCollapse: true,
                     ajax: "{{ route('file.render') }}",
-                    order: [[5, "desc"]],
+                    order: [[4, "desc"]],
                     columns: [
                         {
                             data: 'checkbox',
@@ -134,7 +133,9 @@
                         {
                             data: 'name',
                             name: 'name',
-                            render: data => data.split('.').slice(0,-1).join('')
+                            render: data => {
+                                return data.substr(0,40) + '...';
+                            }
                         },
                         {
                             data: 'type',
@@ -147,11 +148,7 @@
                             name: 'size',
                             searchable: false,
                         },
-                        {
-                            data: 'clicked',
-                            name: 'clicked',
-                            searchable: false,
-                        },
+
                         {
                             data: 'created_at',
                             name: 'created_at',
@@ -180,11 +177,12 @@
                     }).then((willDelete) => {
                         if (willDelete) {
                             $.ajax({
-                                url: "{{ route('file.mass.remove')}}",
+                                /*url: "{{--{{ route('file.mass.remove')}}--}}",*/
+                                url: `file-mass-remove/${id}`,
                                 headers: {
                                     'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
                                 },
-                                method: "POST",
+                                method: "DELETE",
                                 data: {id: id},
                                 success: data => {
                                     if (data) {
@@ -219,11 +217,11 @@
                     }).then((willDelete) => {
                         if (willDelete) {
                             $.ajax({
-                                url: "{{ route('file.mass.remove')}}",
+                                url: `file-mass-remove/${id}`,
                                 headers: {
                                     'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
                                 },
-                                method: "POST",
+                                method: "DELETE",
                                 data: {id: id},
                                 success: data => {
                                     if (data) {

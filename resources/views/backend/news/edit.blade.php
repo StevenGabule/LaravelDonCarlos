@@ -113,7 +113,7 @@
 
                             <div class="form-group">
                                 <label for="inputCategory">Select Category:</label>
-                                <select name="category_id" id="inputCategory" class="form-control">
+                                <select name="category_id" id="inputCategory" class="custom-select">
                                     <option value="">-- Select Category--</option>
                                     @foreach($categories as $category)
                                         <option
@@ -126,7 +126,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputStatus">Status</label>
-                                <select name="status" id="inputStatus" class="form-control">
+                                <select name="status" id="inputStatus" class="custom-select">
                                     <option value="">-- Select the status --</option>
                                     <option value="1" {{ $article->status === 1 ? 'selected' : '' }}>Published</option>
                                     <option value="0" {{ $article->status === 0 ? 'selected' : '' }}>Draft</option>
@@ -203,6 +203,9 @@
 
                 $.ajax({
                     url: '{{ route('article.update.ajax') }}',
+                    headers: {
+                        'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+                    },
                     method: 'POST',
                     data: new FormData(this),
                     contentType: false,

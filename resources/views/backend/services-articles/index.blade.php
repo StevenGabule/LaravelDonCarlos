@@ -401,8 +401,11 @@
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
-                        url: 'sa-kill',
-                        method: "GET",
+                        url: `sa-kill/${id}`,
+                        headers: {
+                            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+                        },
+                        method: "DELETE",
                         data: {id: id},
                         success: data => {
                             if (data) {
@@ -431,8 +434,11 @@
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
-                        url: '{{ route("sa.kill") }}',
-                        method: "GET",
+                        url: `sa-kill/${id}`,
+                        headers: {
+                            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+                        },
+                        method: "DELETE",
                         data: {id: id},
                         success: _ => {
                             snackbar('You successfully deleted the data');

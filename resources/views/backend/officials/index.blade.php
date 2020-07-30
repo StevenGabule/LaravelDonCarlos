@@ -537,9 +537,11 @@
                 let id = $(this).attr('id');
                 if (id.length > 0) {
                     $.ajax({
-                        url: '{{ route('bo.kill') }}',
-                        method: "GET",
-                        data: {id: id},
+                        url: `bo-kill/${id}`,
+                        headers: {
+                            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+                        },
+                        method: "DELETE",
                         success: _ => {
                             snackbar('You successfully remove the data.');
                             $('#officialsTable').DataTable().ajax.reload();
@@ -622,8 +624,11 @@
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
-                        url: '{{ route("bo.kill") }}',
-                        method: "GET",
+                        url: `bo-kill/${id}`,
+                        headers: {
+                            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+                        },
+                        method: "DELETE",
                         data: {id: id},
                         success: data => {
                             if (data) {
@@ -641,6 +646,7 @@
             $('.bo_checkbox:checked').each(function () {
                 id.push($(this).val());
             });
+
             swal({
                 title: "Confirmation",
                 text: "Are you sure to continue?",
@@ -651,8 +657,11 @@
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
-                        url: '{{ route('bo.kill') }}',
-                        method: "GET",
+                        url: `bo-kill/${id}`,
+                        headers: {
+                            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+                        },
+                        method: "DELETE",
                         data: {id: id},
                         success: data => {
                             if (data) {

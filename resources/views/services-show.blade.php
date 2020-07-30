@@ -55,7 +55,7 @@
             <a href="{{ route('index') }}">Home</a>
             <span class="px-2">></span>
             <a href="{{ route('services') }}">Services</a>
-            <span class="px-2">></span>
+            <span class="px-2">&gt;</span>
             <span class="">{{ $serviceType->name }}</span>
         </nav>
 

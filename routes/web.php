@@ -42,6 +42,8 @@ Route::get('/don-carlos/awards', 'PageController@award')->name('awards');
 Route::get('/don-carlos/mandate', 'PageController@mandate')->name('mandate');
 Route::get('/don-carlos/{type}/{slug}', 'PageController@content_show')->name('content.show');
 
+Route::get('/transparent/download/{id}', 'DownloadFileController@download')->name('transparent.download');
+
 Route::group(
     ['prefix' => 'admin', 'middleware' => 'auth'],
     static function () {
@@ -52,7 +54,7 @@ Route::group(
     Route::get('all/{type}', 'ArticleController@all')->name('articles.all');
     Route::post('update', 'ArticleController@update_ajax')->name('article.update.ajax');
     Route::get('restore', 'ArticleController@restore')->name('article.restore');
-    Route::get('kill', 'ArticleController@kill')->name('article.kill');
+    Route::delete('kill/{id}', 'ArticleController@kill')->name('article.kill');
     Route::get('massremove', 'ArticleController@massRemove')->name('article.massremove');
     Route::get('clone', 'ArticleController@clone')->name('article.clone');
 
@@ -60,7 +62,7 @@ Route::group(
     Route::resource('place', 'PlaceController');
     Route::get('p-all/{type}', 'PlaceController@all')->name('place.all');
     Route::get('p-massremove', 'PlaceController@massRemove')->name('place.massremove');
-    Route::get('p-kill', 'PlaceController@kill')->name('place.kill');
+    Route::delete('p-kill/{ids}', 'PlaceController@kill')->name('place.kill');
     Route::get('p-restore', 'PlaceController@restore')->name('place.restore');
     Route::post('p-update', 'PlaceController@updateAjax')->name('place.update.ajax');
     Route::get('p-clone', 'PlaceController@clone')->name('place.clone');
@@ -75,7 +77,7 @@ Route::group(
     // SERVICES ARTICLE ROUTES
     Route::resource('service-article', 'ServicesArticleController');
     Route::get('sa-all/{type}', 'ServicesArticleController@all')->name('sa.all');
-    Route::get('sa-kill', 'ServicesArticleController@kill')->name('sa.kill');
+    Route::delete('sa-kill/{ids}', 'ServicesArticleController@kill')->name('sa.kill');
     Route::get('sa-massremove', 'ServicesArticleController@massRemove')->name('sa.massremove');
     Route::get('sa-restore', 'ServicesArticleController@restore')->name('sa.restore');
     Route::post('sa-update', 'ServicesArticleController@updateAjax')->name('sa.update.ajax');
@@ -85,7 +87,7 @@ Route::group(
     Route::get('ba/{type}', 'BaranggayController@all')->name('ba.all');
     Route::get('ba-massremove', 'BaranggayController@massRemove')->name('ba.massremove');
     Route::get('ba-restore', 'BaranggayController@restore')->name('ba.restore');
-    Route::get('ba-kill', 'BaranggayController@kill')->name('ba.kill');
+    Route::delete('ba-kill/{ids}', 'BaranggayController@kill')->name('ba.kill');
     Route::get('ba-clone', 'BaranggayController@clone')->name('ba.clone');
     Route::post('ba-update', 'BaranggayController@updateAjax')->name('ba.update.ajax');
 
@@ -94,7 +96,7 @@ Route::group(
     Route::get('bo/{type}', 'BaranggayOfficialController@all')->name('bo.all');
     Route::get('bo-massremove', 'BaranggayOfficialController@massRemove')->name('bo.massremove');
     Route::get('bo-restore', 'BaranggayOfficialController@restore')->name('bo.restore');
-    Route::get('bo-kill', 'BaranggayOfficialController@kill')->name('bo.kill');
+    Route::delete('bo-kill/{ids}', 'BaranggayOfficialController@kill')->name('bo.kill');
     Route::post('bo-update', 'BaranggayOfficialController@ajaxUpdate')->name('bo.ajaxUpdate');
     Route::post('bo-group', 'BaranggayOfficialController@storeGroup')->name('bo.group');
     Route::get('bo-clone', 'BaranggayOfficialController@clone')->name('bo.clone');
@@ -104,7 +106,7 @@ Route::group(
     Route::get('act-all/{type}', 'ActivityController@all')->name('act.all');
     Route::get('act-massremove', 'ActivityController@massRemove')->name('act.massremove');
     Route::get('act-restore', 'ActivityController@restore')->name('act.restore');
-    Route::get('act-kill', 'ActivityController@kill')->name('act.kill');
+    Route::delete('act-kill/{ids}', 'ActivityController@kill')->name('act.kill');
     Route::get('act-clone', 'ActivityController@clone')->name('act.clone');
     Route::post('act-update', 'ActivityController@ajaxUpdate')->name('activities.update.ajax');
 
@@ -133,12 +135,13 @@ Route::group(
     Route::resource('department-offices', 'DepartmentOfficesController');
     Route::get('department-offices-all/{type}', 'DepartmentOfficesController@all')->name('department-offices.all');
     Route::get('department-offices-kill', 'DepartmentOfficesController@massRemove')->name('department-offices.massremove');
+    Route::delete('department-offices-kill-real/{ids}', 'DepartmentOfficesController@destroyOffices')->name('department-offices.destroy');
     Route::post('department-offices-updated', 'DepartmentOfficesController@updateOffice')->name('department-offices.updated');
 
     // FILE MANAGEMENT ROUTES
     Route::resource('file-upload', 'TransparencyFileController');
     Route::get('file-render', 'TransparencyFileController@render')->name('file.render');
-    Route::post('file-mass-remove', 'TransparencyFileController@mass_remove')->name('file.mass.remove');
+    Route::delete('file-mass-remove/{ids}', 'TransparencyFileController@mass_remove')->name('file.mass.remove');
 
     // MESSAGES ROUTES
     Route::resource('messages', 'MessageController');

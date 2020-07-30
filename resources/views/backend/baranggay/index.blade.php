@@ -303,8 +303,11 @@
                 }).then((willDelete) => {
                     if (willDelete) {
                         $.ajax({
-                            url: `kill`,
-                            method: "GET",
+                            url: `ba-kill/${id}`,
+                            headers: {
+                                'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+                            },
+                            method: "DELETE",
                             data: {id: id},
                             success: data => {
                                 if (data) {
@@ -336,8 +339,11 @@
                 }).then((willDelete) => {
                     if (willDelete) {
                         $.ajax({
-                            url: '{{ route('ba.kill') }}',
-                            method: "GET",
+                            url: `ba-kill/${id}`,
+                            headers: {
+                                'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+                            },
+                            method: "DELETE",
                             data: {id: id},
                             success: data => {
                                 if (data) {

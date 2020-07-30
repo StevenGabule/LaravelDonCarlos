@@ -149,6 +149,7 @@ EOT;
         $captainImage = null;
 
         if ($request->file('avatarCapitan')) {
+
            /* $captainImage = mt_rand() . '.' . $originalImage1->getClientOriginalExtension();
             $this->uploadImages(null, $originalImage1, $captainImage, 'officials');*/
 
@@ -329,6 +330,13 @@ EOT;
         $officials = BaranggayOfficial::findOrFail($id);
 
         if ($request->file('avatar')) {
+
+            if ($officials->avatar !== null) {
+                $splits = explode('/', $officials->avatar)[7];
+                $publicId = explode('.', $splits)[0];
+                Cloudder::delete($publicId, null);
+            }
+
             /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
             $this->uploadImages($officials->avatar, $originalImage, $name, 'officials');
             $officials->avatar = $name;*/
@@ -352,9 +360,9 @@ EOT;
         return response()->json(['success' => true]);
     }
 
-    public function kill(Request $request)
+    public function kill($ids)
     {
-        $ids = $request->input('id');
+        /*$ids = $request->input('id');
         if (is_array($ids)) {
             foreach ($ids as $id) {
                 $official = BaranggayOfficial::withTrashed()->where('id', $id)->first();
@@ -365,7 +373,15 @@ EOT;
         }
         $official = BaranggayOfficial::withTrashed()->where('id', $ids)->first();
         $this->removeImages($official->avatar, 'officials');
-        $official->forceDelete();
+        $official->forceDelete();*/
+        $ids = explode(",", $ids);
+        foreach ($ids as $id) {
+            $officials = BaranggayOfficial::withTrashed()->where('id', $id)->firstOrFail();
+            $splits = explode('/', $officials->avatar)[7];
+            $publicId = explode('.', $splits)[0];
+            Cloudder::delete($publicId, null);
+            $officials->forceDelete();
+        }
         return response()->json(['success' => true]);
     }
 

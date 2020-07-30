@@ -14,6 +14,12 @@
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fad fa-plus mr-2"></i>Create
                     </a>
+
+                    <a href="/events/{{$activity->slug}}" target="-_blank" id="change-url"
+                       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <i class="fad fa-globe-asia mr-2"></i>Visit
+                    </a>
+
                     <a href="{{ route('activities.index') }}"
                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fad fa-long-arrow-left mr-2"></i>Back
@@ -21,11 +27,9 @@
                     <input type="hidden" value="{{ $activity->id}}" name="activity_id">
                 </div>
             </div>
-
             <div class="d-none alert alert-success alert-dismissible shadow-lg fade show" role="alert">
-                <strong><i class="fad fa-meteor blueish mr-2"></i> Successfully Updated!</strong> The activities has
-                been
-                modified.
+                <strong><i class="fad fa-meteor blueish mr-2"></i> Successfully Updated!</strong>
+                The activity has been modified.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

@@ -25,19 +25,29 @@ class ServicesArticleController extends Controller
         $serviceArticles = null;
 
         if ($type === 'all') {
-            $serviceArticles = ServicesArticle::with('category')->latest();
+            $serviceArticles = ServicesArticle::with('category')->orderByDesc('created_at')
+                ->get();
         }
 
         if ($type === 'trash') {
-            $serviceArticles = ServicesArticle::with('category')->onlyTrashed()->get();
+            $serviceArticles = ServicesArticle::with('category')
+                ->onlyTrashed()
+                ->orderByDesc('created_at')
+                ->get();
         }
 
         if ($type === 'drafted') {
-            $serviceArticles = ServicesArticle::with('category')->where('status', '=', 0)->get();
+            $serviceArticles = ServicesArticle::with('category')
+                ->where('status', '=', 0)
+                ->orderByDesc('created_at')
+                ->get();
         }
 
         if ($type === 'published') {
-            $serviceArticles = ServicesArticle::with('category')->where('status', '=', 1)->get();
+            $serviceArticles = ServicesArticle::with('category')
+                ->where('status', '=', 1)
+                ->orderByDesc('created_at')
+                ->get();
         }
 
         return DataTables::of($serviceArticles)->addColumn('action', static function ($data) {
@@ -133,9 +143,15 @@ EOT;
         $serviceArticle = ServicesArticle::findOrFail($request->input('service_article_id'));
 
         if ($request->file('avatar')) {
-           /* $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
+            /* $name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
             $this->uploadImages($serviceArticle->avatar, $originalImage, $name, 'service-article');
-            $serviceArticle->avatar = $name;*/
+            $serviceArticle->avatar = $name; */
+            if ($serviceArticle->avatar !== null) {
+                $splits = explode('/', $serviceArticle->avatar)[7];
+                $publicId = explode('.', $splits)[0];
+                Cloudder::delete($publicId, null);
+            }
+
             $image = $request->file('avatar')->getRealPath();
             Cloudder::upload($image, null);
             list($width, $height) = getimagesize($image);
@@ -150,9 +166,8 @@ EOT;
         $serviceArticle->slug = Str::slug($request->get('name'));
         $serviceArticle->status = $request->get('status');
         $serviceArticle->save();
-        $output = ['success' => true];
 
-        return response()->json($output);
+        return response()->json(['success' => true]);
     }
 
     public function update(Request $request)
@@ -171,9 +186,9 @@ EOT;
         return response()->json(['success' => true]);
     }
 
-    public function kill(Request $request)
+    public function kill($ids)
     {
-        $ids = $request->input('id');
+        /*$ids = $request->input('id');
         if (is_array($ids)) {
             foreach ($ids as $id) {
                 $art = ServicesArticle::withTrashed()->where('id', $id)->first();
@@ -184,7 +199,15 @@ EOT;
         }
         $one = ServicesArticle::withTrashed()->where('id', $ids)->first();
         $this->removeImages($one->avatar, 'service-article');
-        $one->forceDelete();
+        $one->forceDelete();*/
+        $ids = explode(",", $ids);
+        foreach ($ids as $id) {
+            $service_article = ServicesArticle::withTrashed()->where('id', $id)->first();
+            $splits = explode('/', $service_article->avatar)[7];
+            $publicId = explode('.', $splits)[0];
+            Cloudder::delete($publicId, null);
+            $service_article->forceDelete();
+        }
         return response()->json(['success' => true]);
     }
 

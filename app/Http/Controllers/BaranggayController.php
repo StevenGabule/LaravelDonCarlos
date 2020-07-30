@@ -135,9 +135,17 @@ EOT;
         $baranggay = Baranggay::findOrFail($request->input('baranggay_id'));
 
         if ($request->file('avatar')) {
+
+            if ($baranggay->avatar !== null) {
+                $splits = explode('/', $baranggay->avatar)[7];
+                $publicId = explode('.', $splits)[0];
+                Cloudder::delete($publicId, null);
+            }
+
             /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
             $this->uploadImages($baranggay->avatar, $originalImage, $name, 'baranggays');
             $baranggay->avatar = $name;*/
+
             $image = $request->file('avatar')->getRealPath();
             Cloudder::upload($image, null);
             list($width, $height) = getimagesize($image);
@@ -159,9 +167,9 @@ EOT;
         return response()->json(['success' => true]);
     }
 
-    public function kill(Request $request)
+    public function kill($ids)
     {
-        $ids = $request->input('id');
+        /*$ids = $request->input('id');
         if (is_array($ids)) {
             foreach ($ids as $id) {
                 $baranggay= Baranggay::withTrashed()->where('id', $id)->first();
@@ -173,6 +181,16 @@ EOT;
         $one = Baranggay::withTrashed()->where('id', $ids)->first();
         $this->removeImages($one->avatar, 'baranggays');
         $one->forceDelete();
+        return response()->json(['success' => true]);
+        */
+        $ids = explode(",", $ids);
+        foreach ($ids as $id) {
+            $baranggay = Baranggay::withTrashed()->where('id', $id)->firstOrFail();
+            $splits = explode('/', $baranggay->avatar)[7];
+            $publicId = explode('.', $splits)[0];
+            Cloudder::delete($publicId, null);
+            $baranggay->forceDelete();
+        }
         return response()->json(['success' => true]);
     }
 

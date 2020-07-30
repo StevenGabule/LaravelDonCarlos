@@ -84,7 +84,6 @@ class PageController extends Controller
 
         SEOTools::setTitle($news->title);
         SEOTools::setDescription($news->short_description);
-//        SEOTools::jsonLd()->addImage($news->avatar);
 
         $services = Services::latest()->get();
         $articles = Article::latest()->take(2)->get();
@@ -200,15 +199,14 @@ class PageController extends Controller
     {
         $articles = Article::latest()->take(2)->get();
         $transparent = Transparency::whereSlug($slug1)->firstOrFail();
-        $post = TransparencyPost::whereSlug($slug2)->firstOrFail();
+        $post = TransparencyPost::with(['transparency_post_files', 'transparencies'])->whereSlug($slug2)->firstOrFail();
         $transparencies = Transparency::latest()->get();
 
         SEOTools::setTitle($post->title);
         SEOTools::setDescription($post->short_description);
 
         $services = Services::latest()->get();
-        return view(
-            'transparency-show-detail',
+        return view('transparency-show-detail',
             compact('articles', 'services', 'transparent', 'transparencies', 'post', 'slug1', 'slug2')
         );
     }
@@ -216,11 +214,13 @@ class PageController extends Controller
     public function news()
     {
         $news = Article::with('user')
-            ->where('status', 1)
-            ->orderBy('created_at', 'DESC')
+            ->latestFirst()
+            ->published()
             ->filter(request()->only(['q']))
             ->paginate(9);
+
         $articles = Article::latest()->take(2)->get();
+
         $services = Services::latest()->get();
 
         SEOTools::setTitle('News and updates - Government of Don Carlos');
@@ -249,6 +249,7 @@ class PageController extends Controller
         SEOTools::setTitle($place->name);
         SEOTools::setDescription($place->short_description);
         SEOTools::jsonLd()->addImage($place->avatar);
+
         $services = Services::latest()->get();
         return view('tourism-show', compact('place', 'relatedPosts', 'services'));
     }
@@ -271,7 +272,6 @@ class PageController extends Controller
         SEOTools::setTitle($events->title);
         SEOTools::setDescription($events->short_description);
         $services = Services::latest()->get();
-
         return view('activities-show', compact('events', 'relatedPosts', 'services'));
     }
 
@@ -376,7 +376,12 @@ class PageController extends Controller
         $content = PageContent::findOrFail(3);
         $content1 = PageContent::findOrFail(4);
         $articles = Article::latest()->take(2)->get();
-        $awards = ContentNeed::where('status', true)->where('deleted_at', '=', null)->where('need_type', 1)->orderBy('created_at', 'DESC')->filter(request()->only(['q']))->paginate(5);
+        $awards = ContentNeed::where('status', true)
+                        ->where('deleted_at', '=', null)
+                        ->where('need_type', 1)
+                        ->orderBy('created_at', 'DESC')
+                        ->filter(request()->only(['q']))
+                        ->paginate(5);
         $services = Services::latest()->get();
         return view('award', compact('articles', 'awards', 'services', 'type', 'content', 'content1'));
     }
@@ -387,8 +392,17 @@ class PageController extends Controller
         $content = PageContent::findOrFail(3);
         $content1 = PageContent::findOrFail(4);
         $articles = Article::latest()->take(2)->get();
-        $awards = ContentNeed::where('status', true)->where('deleted_at', '=', null)->where('need_type', 2)->orderBy('created_at', 'DESC')->filter(request()->only(['q']))->paginate(5);
+        $awards = ContentNeed::where('status', true)
+                ->where('deleted_at', '=', null)
+                ->where('need_type', 2)
+                ->orderBy('created_at', 'DESC')
+                ->filter(request()
+                ->only(['q']))
+                ->paginate(5);
         $services = Services::latest()->get();
+
+
+
         return view('award', compact('articles', 'awards', 'services', 'type', 'content', 'content1'));
     }
 
@@ -398,6 +412,8 @@ class PageController extends Controller
         $content1 = PageContent::findOrFail(4);
         $articles = Article::latest()->take(2)->get();
         $services = Services::latest()->get();
+        SEOTools::setTitle($content->title);
+        SEOTools::setDescription($content->short_description);
         return view('award-details', compact('content', 'articles', 'content1', 'type', 'services'));
     }
 }

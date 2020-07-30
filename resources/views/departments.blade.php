@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
     <div class="about-bg-banner position-relative"
-         style="background-image: url('{{ asset('../assets/images/calling.jpg') }}');margin-top: -24px;">
+         style="background-image: url('{{ asset('../assets/images/munhall2.jpg') }}');margin-top: -24px;">
         <div class="trending-bg-banner-overlay h-100 ">
             <div class="container col-dirtyWhite h-100">
                 <div class="d-flex h-100">
                     <div class="mt-auto py-3">
-                        <h2 class="d-inline-block py-4 font-weight-bold text-white">About us</h2>
+                        <h2 class="d-inline-block py-4 font-weight-bold text-white">ABOUT US</h2>
                         <!-- recommended nga 48char and below and count sa title gekan sa server para dli maguba ang css -->
                     </div>
                 </div>

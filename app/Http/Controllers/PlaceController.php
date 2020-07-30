@@ -24,19 +24,19 @@ class PlaceController extends Controller
     public function all(Request $request, $type)
     {
         if ($type === 'all') {
-            $places = Place::latest()->get();
+            $places = Place::latest()->orderBy('created_at', 'desc')->get();
         }
 
         if ($type === 'drafted') {
-            $places = Place::where('status', 0)->get();
+            $places = Place::where('status', 0)->orderBy('created_at', 'desc')->get();
         }
 
         if ($type === 'published') {
-            $places = Place::where('status', 1)->get();
+            $places = Place::where('status', 1)->orderBy('created_at', 'desc')->get();
         }
 
         if ($type === 'trash') {
-            $places = Place::onlyTrashed()->get();
+            $places = Place::onlyTrashed()->orderBy('created_at', 'desc')->get();
         }
 
         return DataTables::of($places)->addColumn('action', static function ($data) {
@@ -131,15 +131,19 @@ EOT;
         $place = Place::findOrFail($request->input('place_id'));
 
         if ($request->file('avatar')) {
-            /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
-            $this->uploadImages($place->avatar, $originalImage, $name, 'places');
-            $place->avatar = $name;*/
+
+            if ($place->avatar !== null) {
+                $splits = explode('/', $place->avatar)[7];
+                $publicId = explode('.', $splits)[0];
+                Cloudder::delete($publicId, null);
+            }
+
             $image = $request->file('avatar')->getRealPath();
             Cloudder::upload($image, null);
+
             list($width, $height) = getimagesize($image);
             $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
             $place->avatar = $image_url;
-
         }
 
         $place->name = $request->get('name');
@@ -175,9 +179,9 @@ EOT;
         return response()->json(['failed' => false, 'msg' => 'Error has been composed']);
     }
 
-    public function kill(Request $request)
+    public function kill($ids)
     {
-        $ids = $request->input('id');
+        /*$ids = $request->input('id');
         if (is_array($ids)) {
             foreach ($ids as $id) {
                 $place = Place::withTrashed()->where('id', $id)->first();
@@ -188,7 +192,15 @@ EOT;
         }
         $one = Place::withTrashed()->where('id', $ids)->first();
         $this->removeImages($one->avatar, 'places');
-        $one->forceDelete();
+        $one->forceDelete();*/
+        $ids = explode(",", $ids);
+        foreach ($ids as $id) {
+            $place = Place::withTrashed()->where('id', $id)->first();
+            $splits = explode('/', $place->avatar)[7];
+            $publicId = explode('.', $splits)[0];
+            Cloudder::delete($publicId, null);
+            $place->forceDelete();
+        }
         return response()->json(['success' => true]);
     }
 

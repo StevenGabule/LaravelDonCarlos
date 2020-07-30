@@ -134,7 +134,7 @@
                     serverSide: true,
                     scrollY: '60vh',
                     scrollCollapse: true,
-                    order: [[6, 'desc']],
+                    order: [[7, 'desc']],
                     ajax: `act-all/${type}`,
                     columns: [
                         {
@@ -243,8 +243,11 @@
                     }).then((willDelete) => {
                         if (willDelete) {
                             $.ajax({
-                                url: '{{ route('act.kill') }}',
-                                method: "GET",
+                                url: `act-kill/${id}`,
+                                headers: {
+                                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+                                },
+                                method: "DELETE",
                                 data: {id: id},
                                 success: _ => {
                                     snackbar('You successfully remove the data.');
@@ -335,8 +338,11 @@
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
-                        url: '{{ route('act.kill') }}',
-                        method: "GET",
+                        url: `act-kill/${id}`,
+                        headers: {
+                            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+                        },
+                        method: "DELETE",
                         data: {id: id},
                         success: data => {
                             if (data) {

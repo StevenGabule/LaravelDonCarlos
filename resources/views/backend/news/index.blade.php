@@ -414,8 +414,11 @@
                 }).then((willDelete) => {
                     if (willDelete) {
                         $.ajax({
-                            url: `kill`,
-                            method: "GET",
+                            url: `kill/${id}`,
+                            headers: {
+                                'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+                            },
+                            method: "DELETE",
                             data: {id: id},
                             success: data => {
                                 if (data) {
@@ -429,7 +432,6 @@
             } else {
                 snackbar('Check the data you want to delete.');
             }
-
         });
 
         function snackbar(text = '') {

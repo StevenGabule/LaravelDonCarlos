@@ -67,6 +67,5 @@
                 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
             }
         });
-        console.clear()
     </script>
 @stop

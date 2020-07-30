@@ -20,6 +20,7 @@ class CreateTransparencyFilesTable extends Migration
             $table->text('filename')->nullable();
             $table->text('size')->nullable();
             $table->text('type')->nullable();
+            $table->text('file_url')->nullable();
             $table->bigInteger('clicked')->default(0);
             $table->timestamps();
         });
