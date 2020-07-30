@@ -43,7 +43,7 @@ class ContentNeedController extends Controller
         return DataTables::of($contentNeeds)->addColumn('action', static function ($data) {
             $btn = ($data->deleted_at === null) ? "
                         <a class='dropdown-item' href='$data->id'><i class='fad fa-eye mr-2'></i> View</a>
-                        <a class='dropdown-item' id='$data->id' href='/admin/article/$data->id/edit'><i class='fad fa-file-edit mr-2'></i> Edit</a>
+                        <a class='dropdown-item' id='$data->id' href='/admin/need-content/$data->id/edit'><i class='fad fa-file-edit mr-2'></i> Edit</a>
                         <a class='dropdown-item removeArticle' id='$data->id' href='javascript:void(0)'>
                             <i class='fad fa-trash mr-2'></i> Move Trash
                         </a>" : "<a class='dropdown-item' id='$data->id' href='javascript:void(0)'>
@@ -107,7 +107,7 @@ EOT;
             'slug' => Str::slug($request->title),
             'short_description' => $request->short_description,
             'description' => $request->description,
-            'status' => $request->status == 1 ? true : false,
+            'status' => $request->status,
             'avatar' => $image_url,
             'user_id' => Auth::id(),
             'need_type' => $request->need_type
@@ -157,7 +157,7 @@ EOT;
             'slug' => Str::slug($request->title),
             'short_description' => $request->short_description,
             'description' => $request->description,
-            'status' => $request->status === 1,
+            'status' => $request->status,
             'need_type' => $request->need_type,
             'user_id' => Auth::id()
         ]);
@@ -215,9 +215,9 @@ EOT;
         return response()->json(['success' => true]);
     }
 
-    public function kill(Request $request)
+    public function kill($ids)
     {
-        $ids = $request->input('id');
+        /*$ids = $request->input('id');
         if (is_array($ids)) {
             foreach ($ids as $id) {
                 $content = ContentNeed::withTrashed()->where('id', $id)->first();
@@ -229,6 +229,15 @@ EOT;
 
         $one = ContentNeed::withTrashed()->where('id', $ids)->first()->forceDelete();
         $this->removeImages($one->avatar, 'content-needs');
+        return response()->json(['success' => true]);*/
+        $ids = explode(",", $ids);
+        foreach ($ids as $id) {
+            $needs = ContentNeed::withTrashed()->where('id', $id)->first();
+            $splits = explode('/', $needs->avatar)[7];
+            $publicId = explode('.', $splits)[0];
+            Cloudder::delete($publicId, null);
+            $needs->forceDelete();
+        }
         return response()->json(['success' => true]);
     }
 }

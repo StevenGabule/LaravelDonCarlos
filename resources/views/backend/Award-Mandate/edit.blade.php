@@ -15,6 +15,11 @@
                         <i class="fad fa-plus mr-2"></i>New
                     </a>
 
+                    <a href="/don-carlos/{{ $content->need_type === 1 ? 'award' : 'mandate' }}/{{$content->slug}}" target="-_blank" id="change-url"
+                       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <i class="fad fa-globe-asia mr-2"></i>Visit
+                    </a>
+
                     <input type="hidden" name="content_need_id" value="{{ $content->id  }}">
 
                     <a href="{{ route('need-content.index') }}"
@@ -103,8 +108,8 @@
                             <div class="form-group">
                                 <label for="inputStatus">Select the Status</label>
                                 <select name="status" id="inputStatus" class="custom-select">
-                                    <option value="1" {{ $content->status ? 'selected' : '' }}>Published</option>
-                                    <option value="0" {{ !$content->status ? 'selected' : '' }}>Draft</option>
+                                    <option value="1" {{ $content->status === 1 ? 'selected' : '' }}>Published</option>
+                                    <option value="0" {{ $content->status === 0 ? 'selected' : '' }}>Draft</option>
                                 </select>
                                 <small id="statusMessage" class="form-text"></small>
                             </div>
@@ -189,6 +194,7 @@
                         x.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> SAVING...`)
                     },
                     success: _ => {
+                        window.location.reload();
                         $(".alert.alert-primary").removeClass('d-none');
                         x.attr('disabled', false);
                         x.html(`<i class="fad fa-save mr-2"></i> Update`);

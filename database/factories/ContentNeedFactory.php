@@ -13,7 +13,7 @@ $factory->define(ContentNeed::class, function (Faker $faker) {
         'slug' => $faker->slug,
         'short_description' => Str::substr($faker->text, 0, 150),
         'description' => 'Content here...',
-        'status' => $faker->boolean,
+        'status' => random_int(0,1),
         'user_id' => 1,
         'need_type' => mt_rand(1,2),
         'created_at' => Carbon::now(),

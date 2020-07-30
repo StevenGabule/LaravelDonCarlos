@@ -40,7 +40,9 @@ EOT;
         })->editColumn('created_at', static function ($data) {
             return $data->created_at->format('d, M Y');
         })->editColumn('avatar', static function ($data) {
-            return $data->avatar === null ? "<i class='fad fa-images'></i>" : "<img src=\"{$data->avatar}\" class='rounded-circle' style='height:30px;width: 30px' />";
+            return $data->avatar === null ? "<div class='my-auto pl-2'>
+                                                <i class='fad fa-images'></i>
+                                             </div>" : "<img src=\"{$data->avatar}\" class='rounded-circle' style='height:30px;width: 30px' />";
         })->rawColumns(['action', 'created_at', 'avatar'])->make(true);
     }
 

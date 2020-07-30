@@ -138,7 +138,7 @@
                         {
                             data: 'status',
                             name: 'status',
-                            render: data => `<span class=${data ? 'text-success' : 'text-danger'}>${data ? 'Published' : 'Draft'}</span>`
+                            render: data => `<span class='${data === 1 ? 'text-success' : 'text-danger'}'>${data === 1 ? 'Published' : 'Draft'}</span>`
                         },
                         {
                             data: 'created_at',
@@ -285,8 +285,11 @@
                 }).then((willDelete) => {
                     if (willDelete) {
                         $.ajax({
-                            url: '{{ route('need_content.mass_kill') }}',
-                            method: "GET",
+                            url: `need-content-mass_kill/${id}`,
+                            headers: {
+                                'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+                            },
+                            method: "DELETE",
                             data: {id: id},
                             success: data => {
                                 if (data) {

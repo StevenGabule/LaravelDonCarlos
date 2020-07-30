@@ -172,6 +172,6 @@ Route::group(
     Route::get('need-content-clone', 'ContentNeedController@clone')->name('need_content.clone');
     Route::get('need-content-mass_remove', 'ContentNeedController@remove')->name('need_content.mass_remove');
     Route::get('need-content-mass_restore', 'ContentNeedController@restore')->name('need_content.mass_restore');
-    Route::get('need-content-mass_kill', 'ContentNeedController@kill')->name('need_content.mass_kill');
+    Route::delete('need-content-mass_kill/{ids}', 'ContentNeedController@kill')->name('need_content.mass_kill');
 }
 );

@@ -22,7 +22,7 @@ class CreateContentNeedsTable extends Migration
             $table->longText('description');
             $table->string('avatar')->nullable();
             $table->tinyInteger('need_type')->comment('1-award|2-mandate');
-            $table->boolean('status')->default(false);
+            $table->tinyInteger('status')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

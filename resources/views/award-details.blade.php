@@ -44,7 +44,7 @@
     <!-- inlineng the background image so it can be dynamicaly change!!!! -->
     <!-- recommended background dimension 1920 x 1280 -->
     <div class="about-bg-banner position-relative"
-         style="background-image: url('{{ asset('assets/images/cabadiangan-large.jpg') }}');margin-top: -24px;">
+         style="background: url('{{ $content->avatar ? $content->avatar : asset('assets/images/cabadiangan-large.jpg') }}') no-repeat center center / cover;margin-top: -24px;object-fit: cover">
         <div class="trending-bg-banner-overlay h-100 ">
             <div class="container col-dirtyWhite h-100">
                 <div class="d-flex h-100">
