@@ -51,6 +51,10 @@
                 </div>
             </div>
         </div>
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&autoLogAppEvents=1&version=v7.0&appId=375850583273493" nonce="GO9ViTWf"></script>
+
+        <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5" data-width=""></div>
 
         <h5 class="font-oswald-bold mt-4">See More Post</h5>
         <hr class="hr-thin">
