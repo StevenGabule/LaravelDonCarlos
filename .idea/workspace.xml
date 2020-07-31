@@ -25,18 +25,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8ea968b-c1f4-4306-90da-bf46493a5853" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/LaravelDonCarlos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/LaravelDonCarlos.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/dictionaries/John_paul.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/dictionaries/John_paul.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/activities-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/activities-show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/award-details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/award-details.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/departments-show-detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/departments-show-detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/page-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/page-show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/services-show-detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/services-show-detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/show-news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/show-news.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/tourism-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/tourism-show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/transparency-show-detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/transparency-show-detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/about/baranggay_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/about/baranggay_detail.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -329,7 +320,8 @@
       <workItem from="1596026809613" duration="6312000" />
       <workItem from="1596082564576" duration="11803000" />
       <workItem from="1596098379065" duration="194000" />
-      <workItem from="1596098583944" duration="27313000" />
+      <workItem from="1596098583944" duration="28171000" />
+      <workItem from="1596176709129" duration="68000" />
     </task>
     <servers />
   </component>

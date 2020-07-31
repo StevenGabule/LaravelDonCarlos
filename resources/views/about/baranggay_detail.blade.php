@@ -63,7 +63,7 @@
                 <div class="row">
                     {{--'1-kagawad|2-Captain|3-SK|4-Secretary|5-treasurer'--}}
                     @php
-                    $position = ["", 'Kagawad', 'Kapitan', 'SK Chairman', 'Secretary', 'Treasurer'];
+                    $position = ["", 'Kagawad', 'Punong Baranggay', 'SK Chairman', 'Secretary', 'Treasurer'];
                     @endphp
                     @forelse($officials as $official)
                         <div class="col-6 col-md-4 col-lg-3 p-2">
