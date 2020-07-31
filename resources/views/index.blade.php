@@ -6,11 +6,7 @@
             margin-top: -24px;
         }
 
-        /* Since positioning the image, we need to help out the caption */
-        .carousel-caption {
-            bottom: 3rem;
-            z-index: 10;
-        }
+
 
         /* Declare heights because of positioning of img element */
         .carousel-item {
@@ -24,6 +20,16 @@
             min-width: 100%;
             height: 32rem;
         }
+        .carousel-inner {
+            position: relative;
+        }
+
+        /* Since positioning the image, we need to help out the caption */
+        .carousel-caption {
+            bottom: 0rem;
+            z-index: 10;
+        }
+
 
     </style>
 @stop
@@ -36,17 +42,15 @@
             <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-
             <div class="carousel-item active"
                  style="background: url('{{ $newHeadLine->avatar !== null ? $newHeadLine->avatar : asset('assets/images/photo-1495020689067-958852a7765e.jfif')}}') no-repeat center center / cover">
                 <div class="container">
-                    <div class="carousel-caption text-left mb-5">
+                    <div class="carousel-caption mb-5">
                         <h3><a class="text-white" href="{{ route('news.detail', ['slug' => $newHeadLine->slug]) }}">{{ $newHeadLine->title }}</a></h3>
                         <p class="lead">{{ $newHeadLine->short_description }}</p>
                     </div>
                 </div>
             </div><!-- news update -->
-
             <div class="carousel-item"
                  style="background: url('{{ $eventHeadLine->avatar !== null ? $eventHeadLine->avatar : asset('assets/images/photo-1549451371-64aa98a6f660.jfif') }}') no-repeat center center / cover;">
 
@@ -56,13 +60,12 @@
                         <p class="lead">{{$eventHeadLine->short_description}}</p>
                     </div>
                 </div>
-            </div><!-- events and activties -->
-
+            </div><!-- events -->
             <div class="carousel-item"
                  style="background: url('{{ $placeHeadLine->avatar !== null ? $placeHeadLine->avatar : asset('assets/images/photo-1525489196064-0752fa4e16f2.jfif') }}') no-repeat center center / cover">
 
                 <div class="container">
-                    <div class="carousel-caption text-right mb-5">
+                    <div class="carousel-caption mb-5">
                         <h3><a class="text-white" href="/place/{{$placeHeadLine->slug}}">{{ $placeHeadLine->name }}</a></h3>
                         <p class="lead">{{ $placeHeadLine->short_description }}</p>
                     </div>
@@ -77,6 +80,7 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+
     </div><!-- end of carousel -->
 
     <!-- main content for home  -->
