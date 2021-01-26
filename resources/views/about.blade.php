@@ -33,7 +33,7 @@
 
                 <div class="card mb-3 border-0 shadow-sm font-weight-bold">
                     <div class="card-body">
-                        <a href="{{ route('about.baranggay') }}" class="text-dark text-hover">Baranggay</a>
+                        <a href="{{ route('about.baranggay') }}" class="text-dark text-hover">Punong Baranggay</a>
                     </div>
                 </div>
 

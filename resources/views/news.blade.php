@@ -108,10 +108,14 @@
                 <div class="mt-3">
                     <h5 class="font-oswald-bold">Archive</h5>
                     <hr class="hr-thin">
-                    <div class="d-flex w-100 pl-3">
-                        <a href="" class="flex-fill trend-arch-list">
-                            <p>2020</p>
-                        </a>
+                    <div class="d-flex w-100 pl-3 flex-column">
+                        @for($end = date('Y'); $end >= 2020; $end--)
+                            <form action="{{ route('news') }}" method="get">
+                                <input type="hidden" name="filter_by_year" value="{{ $end }}">
+                                <a href="?filter_by_year={{$end}}"   class="trend-arch-list">{{ $end }}</a>
+                            </form>
+                        @endfor
+
                     </div>
                 </div>
                 <div class="mt-3">

@@ -47,17 +47,19 @@
 
             <div class="col-12 col-md-9 pl-lg-4 pt-3">
                 <!-- recommended dimension of  a landscape 1920 x 500 or HD 1920 x 1280-->
-                <h2 class="font-oswald-bold">{{ $baranggay->name }}</h2>
+                <div class="d-flex align-items-center">
+                    <img src="{{ $baranggay->avatar !== null ? asset($baranggay->avatar) : '' }}"  alt=""
+                         style="height: 74px">
+                    <h2 class="font-oswald-bold">{{ $baranggay->name }}</h2>
+                </div>
 
                 <hr class="hr-thin">
 
                 <br>
 
-                <img src="{{ $baranggay->avatar !== null ? asset($baranggay->avatar) : '' }}" class="w-100" alt=""
-                     style="max-height: 420px;">
-
                 {!! $baranggay->description !!}
                 <br>
+
                 <h5 class="font-oswald-bold mt-5">Baranggay Official</h5>
                 <hr class="hr-thin">
                 <div class="row">

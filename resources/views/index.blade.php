@@ -18,6 +18,7 @@
             min-width: 100%;
             height: 32rem;
         }
+
         .carousel-inner {
             position: relative;
         }
@@ -41,8 +42,10 @@
             <div class="carousel-item active"
                  style="background: url('{{ $newHeadLine->avatar !== null ? $newHeadLine->avatar : asset('assets/images/photo-1495020689067-958852a7765e.jfif')}}') no-repeat center center / cover">
                 <div class="container">
-                    <div class="carousel-caption mb-5">
-                        <h3><a class="text-white" href="{{ route('news.detail', ['slug' => $newHeadLine->slug]) }}">{{ $newHeadLine->title }}</a></h3>
+                    <div class="carousel-caption mb-5" style="background-color: rgba(0,0,0,0.4)">
+                        <h3><a class="text-white"
+                               href="{{ route('news.detail', ['slug' => $newHeadLine->slug]) }}">{{ $newHeadLine->title }}</a>
+                        </h3>
                         <p class="lead">{{ $newHeadLine->short_description }}</p>
                     </div>
                 </div>
@@ -51,8 +54,10 @@
             <div class="carousel-item"
                  style="background: url('{{ $eventHeadLine->avatar !== null ? $eventHeadLine->avatar : asset('assets/images/photo-1549451371-64aa98a6f660.jfif') }}') no-repeat center center / cover;">
                 <div class="container">
-                    <div class="carousel-caption  mb-5">
-                        <h3><a class="text-white" href="{{ route('event.show', ['slug' => $eventHeadLine->slug]) }}">{{ $eventHeadLine->title }}</a></h3>
+                    <div class="carousel-caption  mb-5" style="background-color: rgba(0,0,0,0.4)">
+                        <h3><a class="text-white"
+                               href="{{ route('event.show', ['slug' => $eventHeadLine->slug]) }}">{{ $eventHeadLine->title }}</a>
+                        </h3>
                         <p class="lead">{{$eventHeadLine->short_description}}</p>
                     </div>
                 </div>
@@ -62,8 +67,10 @@
                  style="background: url('{{ $placeHeadLine->avatar !== null ? $placeHeadLine->avatar : asset('assets/images/photo-1525489196064-0752fa4e16f2.jfif') }}') no-repeat center center / cover">
 
                 <div class="container">
-                    <div class="carousel-caption mb-5">
-                        <h3><a class="text-white" href="/place/{{$placeHeadLine->slug}}">{{ $placeHeadLine->name }}</a></h3>
+                    <div class="carousel-caption mb-5" style="background-color: rgba(0,0,0,0.4)">
+                        <h3>
+                            <a class="text-white" href="/place/{{$placeHeadLine->slug}}">{{ $placeHeadLine->name }}</a>
+                        </h3>
                         <p class="lead">{{ $placeHeadLine->short_description }}</p>
                     </div>
                 </div>
@@ -91,32 +98,36 @@
                     <div class="row no-gutters w-100 text-center">
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
                             <a href="{{ route('page.show', ['slug' => $infrastructure->slug]) }}"
-                                class="btn btn-home-programs py-3 px-0 shadow-sm w-100">
+                               class="btn btn-home-programs py-3 px-0 shadow-sm w-100">
                                 <i class="fas fa-university fa-2x"></i><br>
                                 <span class="font-weight-bold">Infrastructure</span>
                             </a>
                         </div>
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="{{ route('page.show', ['slug' => $agriculture->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="{{ route('page.show', ['slug' => $agriculture->slug]) }}"
+                               class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-tractor fa-2x"></i><br><span
                                     class="font-weight-bold">Agriculture</span>
                             </a>
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="{{ route('page.show', ['slug' => $healthcare->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="{{ route('page.show', ['slug' => $healthcare->slug]) }}"
+                               class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-heartbeat fa-2x"></i><br><span
                                     class="font-weight-bold">Healthcare</span></a>
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="{{ route('page.show', ['slug' => $education->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="{{ route('page.show', ['slug' => $education->slug]) }}"
+                               class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-graduation-cap fa-2x"></i><br><span
                                     class="font-weight-bold">Education</span></a>
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="{{ route('page.show', ['slug' => $tourism->slug]) }}" class="btn btn-home-programs py-3 shadow-sm w-100"><i
+                            <a href="{{ route('page.show', ['slug' => $tourism->slug]) }}"
+                               class="btn btn-home-programs py-3 shadow-sm w-100"><i
                                     class="fas fa-plane fa-2x"></i><br><span
                                     class="font-weight-bold">Tourism</span>
                             </a>
@@ -191,23 +202,7 @@
                     <h3 class="font-weight-bold">Don Carlos Hotline</h3>
                     <hr class="hr-thin">
                     <div class="px-2 font-weight-bold">
-                        <div class="row">
-                            <div class="col-12 col-md-4 col-lg-12 pt-3">
-                                <h5 class="font-weight-bold">PNP:</h5>
-                                <span class="pl-4"><a href="tel:20292929" class="text-dark">09236785946</a></span><br>
-                                <span class="pl-4"><a href="tel:20292929" class="text-dark">09236785946</a></span>
-                            </div>
-                            <div class="col-12 col-md-4 col-lg-12 pt-3">
-                                <h5 class="font-weight-bold">FIRE:</h5>
-                                <span class="pl-4"><a href="tel:20292929" class="text-dark">09236785946</a></span><br>
-                                <span class="pl-4"><a href="tel:20292929" class="text-dark">09236785946</a></span>
-                            </div>
-                            <div class="col-12 col-md-4 col-lg-12 pt-3">
-                                <h5 class="font-weight-bold">RESCUE:</h5>
-                                <span class="pl-4"><a href="tel:20292929" class="text-dark">09236785946</a></span><br>
-                                <span class="pl-4"><a href="tel:20292929" class="text-dark">09236785946</a></span>
-                            </div>
-                        </div>
+                        @include('layouts.hotline')
                     </div>
                     <div class="mt-5">
                         <h2 class="font-oswald-bold">Announcement</h2>

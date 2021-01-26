@@ -25,35 +25,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8ea968b-c1f4-4306-90da-bf46493a5853" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/LaravelDonCarlos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/LaravelDonCarlos.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/dictionaries/John_paul.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/dictionaries/John_paul.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/symfony2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/symfony2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Activities.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Activities.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Article.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/ArticleCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/ArticleCategory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/ArticlePostTag.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/ArticlePostTag.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/ArticleTag.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/ArticleTag.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Baranggay.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Baranggay.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/BaranggayOfficial.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/BaranggayOfficial.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/ContentNeed.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/ContentNeed.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/DepartmentCategories.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/DepartmentCategories.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/DepartmentOffices.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/DepartmentOffices.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Message.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Message.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/PageContent.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/PageContent.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Place.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Place.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Services.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Services.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/ServicesArticle.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/ServicesArticle.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Transparency.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Transparency.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/TransparencyFile.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/TransparencyFile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/TransparencyPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/TransparencyPost.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/TransparentPostFile.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/TransparentPostFile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/../composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backend/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/backend/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/../routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/HotlineCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/HotlineCategory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Http/Controllers/PageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/_shared/_about.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/_shared/_about.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/_shared/_articles.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/_shared/_articles.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/about.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/about.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/about/baranggay_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/about/baranggay_detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/activities-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/activities-show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/award-details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/award-details.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/home.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/news.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/page-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/page-show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/show-news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/show-news.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,7 +200,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="postgresql&#10;mariadb&#10;mysql" />
+    <property name="DatabaseDriversLRU" value="postgresql&#10;mysql&#10;mariadb" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -370,7 +359,7 @@
       <workItem from="1610334426773" duration="1093000" />
       <workItem from="1610343265738" duration="35000" />
       <workItem from="1611061197012" duration="4072000" />
-      <workItem from="1611656593688" duration="9843000" />
+      <workItem from="1611656593688" duration="16973000" />
     </task>
     <servers />
   </component>
@@ -393,10 +382,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="105" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611664712818">
+    <state x="361" y="105" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611674730696">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state x="361" y="105" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1611664712818" />
+    <state x="361" y="105" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1611674730696" />
     <state x="545" y="359" key="ComposerInitDialogKey" timestamp="1611663891571">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
@@ -405,15 +394,23 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1610155488999" />
+    <state x="604" y="370" key="NewPhpFileDialog" timestamp="1611667999425">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="604" y="370" key="NewPhpFileDialog/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1611667999425" />
+    <state x="578" y="361" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1611671630195">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="578" y="361" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1611671630195" />
     <state x="425" y="204" key="run.anything.popup" timestamp="1611667481233">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state x="425" y="204" key="run.anything.popup/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1611667481233" />
-    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup" timestamp="1611667695697">
+    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup" timestamp="1611674660014">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1610326580802" />
     <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1610343297864" />
-    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1611667695697" />
+    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup/0.30.1536.834/1920.30.1920.1050@0.30.1536.834" timestamp="1611674660014" />
   </component>
 </project>

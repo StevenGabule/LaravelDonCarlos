@@ -8,6 +8,7 @@ use App\Baranggay;
 use App\ContentNeed;
 use App\DepartmentCategories;
 use App\DepartmentOffices;
+use App\HotlineCategory;
 use App\Message;
 use App\PageContent;
 use App\Place;
@@ -25,11 +26,6 @@ class PageController extends Controller
     {
         SEOTools::setTitle('Don Carlos Official Website');
         SEOTools::setDescription('Don carlos official for news, programs');
-        /*SEOTools::opengraph()->setUrl(env('APP_URL'));
-        SEOTools::setCanonical(env('APP_URL'));
-        SEOTools::opengraph()->addProperty('type', 'articles');
-        SEOTools::twitter()->setSite(env('APP_URL'));
-        SEOTools::jsonLd()->addImage('');*/
 
         $services = Services::select('id', 'name', 'short_description')->latest()->get();
         $news = Article::with('user:id,name,created_at')
@@ -59,6 +55,8 @@ class PageController extends Controller
         $activities = Activities::where('status', 1)->latest()->take(3)->skip(1)->get();
         $latestActivity = Activities::where('status', 1)->latest()->first();
 
+        $hotline_category = HotlineCategory::with('hotlines')->get();
+
         return view('index', compact(
             'services',
             'news',
@@ -74,7 +72,8 @@ class PageController extends Controller
             'activities',
             'latestActivity',
             'latestNews',
-            'newsImportant'
+            'newsImportant',
+            'hotline_category'
         ));
     }
 
@@ -216,7 +215,7 @@ class PageController extends Controller
         $news = Article::with('user')
             ->latestFirst()
             ->published()
-            ->filter(request()->only(['q']))
+            ->filter(request()->only(['q', 'filter_by_year']))
             ->paginate(9);
 
         $articles = Article::latest()->take(2)->get();

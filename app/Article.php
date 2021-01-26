@@ -100,6 +100,9 @@ class Article extends Model
                 $q->orwhereRaw('LOWER(description) LIKE ?', ["%{$term}%"]);
             });
         }
+        if (isset($filter['filter_by_year']) && $term = $filter['filter_by_year']) {
+            $query->whereRaw('YEAR(created_at) = ?', $term);
+        }
     }
 
     public function display_image(): string

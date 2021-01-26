@@ -20,4 +20,9 @@ class HotlineCategory extends Model
 {
     protected $guarded = ['id'];
     public $timestamps = false;
+
+    public function hotlines()
+    {
+        return $this->hasMany(Hotline::class);
+    }
 }
