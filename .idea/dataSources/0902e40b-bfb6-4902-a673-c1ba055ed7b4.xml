@@ -34,29 +34,29 @@
       <Owner>postgres</Owner>
       <IntrospectionStateNumber>80707</IntrospectionStateNumber>
       <Current>1</Current>
-      <Relations>sequence|table|75712|75714|1
-sequence|table|75732|75734|1
-sequence|table|75744|75746|1
-sequence|table|75752|75754|1
-sequence|table|75760|75762|1
-sequence|table|75768|75770|1
-sequence|table|75781|75783|1
-sequence|table|75792|75794|1
-sequence|table|75805|75807|1
-sequence|table|62821|62823|1
-sequence|table|75816|75818|1
-sequence|table|75828|75830|1
-sequence|table|75840|75842|1
+      <Relations>sequence|table|62821|62823|1
 sequence|table|75848|75850|1
 sequence|table|75863|75865|1
 sequence|table|75875|75877|1
-sequence|table|75617|75619|1
-sequence|table|75637|75639|1
 sequence|table|75649|75651|1
 sequence|table|75662|75664|1
 sequence|table|75675|75677|1
 sequence|table|75687|75689|1
 sequence|table|75700|75702|1
+sequence|table|75637|75639|1
+sequence|table|75617|75619|1
+sequence|table|75781|75783|1
+sequence|table|75792|75794|1
+sequence|table|75805|75807|1
+sequence|table|75816|75818|1
+sequence|table|75828|75830|1
+sequence|table|75840|75842|1
+sequence|table|75752|75754|1
+sequence|table|75760|75762|1
+sequence|table|75768|75770|1
+sequence|table|75712|75714|1
+sequence|table|75732|75734|1
+sequence|table|75744|75746|1
 </Relations>
     </database>
     <database id="9" parent="1" name="dragonstackdb">
@@ -52451,6 +52451,7 @@ sequence|table|75700|75702|1
     </table>
     <table id="4731" parent="35" name="articles">
       <ObjectId>75664</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>79470</StateNumber>
     </table>
@@ -52516,6 +52517,7 @@ sequence|table|75700|75702|1
     </table>
     <table id="4744" parent="35" name="services">
       <ObjectId>75677</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>79472</StateNumber>
     </table>

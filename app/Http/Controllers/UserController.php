@@ -20,15 +20,19 @@ class UserController extends Controller
     public function index()
     {
         $news = Article::latest()->limit(6)->get();
+        $newsCount = Article::latest()->count();
         $places = Place::latest()->limit(6)->get();
+        $placesCount = Place::latest()->count();
         $tranPosts = TransparencyPost::latest()->limit(6)->get();
-        $servicePosts = ServicesArticle::latest()->limit(6)->get();
+        $servicePosts = ServicesArticle::with('category')->latest()->limit(6)->get();
         $transparentFiles = TransparencyFile::latest()->limit(6)->get();
         $mostDownloadFiles = TransparencyFile::orderBy('clicked', 'desc')->get();
         $activities = Activities::latest()->limit(6)->get();
         return view('backend.index', compact(
             'news',
+            'newsCount',
             'places',
+            'placesCount',
             'tranPosts',
             'servicePosts',
             'transparentFiles',

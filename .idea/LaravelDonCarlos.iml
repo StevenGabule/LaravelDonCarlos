@@ -119,7 +119,6 @@
     <orderEntry type="library" name="summernote-bs4" level="application" />
     <orderEntry type="library" name="nprogress" level="application" />
     <orderEntry type="library" name="pace" level="application" />
-    <orderEntry type="library" name="sweetalert" level="application" />
     <orderEntry type="library" name="parsley" level="application" />
     <orderEntry type="library" name="summernote" level="application" />
     <orderEntry type="library" name="parsley.js" level="application" />

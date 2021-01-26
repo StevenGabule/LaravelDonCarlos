@@ -115,8 +115,6 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
     <script>
-
-
         $(document).ready(function () {
 
             $('#inputDescription').summernote({
@@ -138,7 +136,7 @@
             });
 
             /* CREATING AN ARTICLE */
-            $('#articleForm').on('submit', function (e) {
+            jQuery('#articleForm').on('submit', function (e) {
                 e.preventDefault();
                 const x = $("#btnSave");
                 const cat = $("#inputCategory");
@@ -239,6 +237,6 @@
                 }).fail((err) => console.log(err))
             })
         })
-        console.clear();
+        // console.clear();
     </script>
 @stop

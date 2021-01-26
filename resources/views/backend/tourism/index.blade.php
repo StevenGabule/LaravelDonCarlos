@@ -1,21 +1,13 @@
 @extends('backend.layouts.app')
 
 @section('content')
-
-    <!-- Begin Page Content -->
     <div class="container-fluid">
-
-        <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Tourism Management</h1>
         </div>
-
-        <div class="row">
-
-            <!-- Area Chart -->
+        {{-- <div class="row">
             <div class="col-xl-8 col-lg-7">
                 <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold header-text">Earnings Overview</h6>
                         <div class="dropdown no-arrow">
@@ -82,7 +74,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Content Row -->
         <div class="row">
@@ -153,7 +145,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- /.container-fluid -->
@@ -166,11 +157,9 @@
     <script src="{{ asset('backend/js/moment.min.js') }}"></script>
     <script>
         $(document).ready(function () {
-
             $(document).on('change', '.place_checkbox', function () {
                 selectRow(this)
             });
-
             function selectRow(elem) {
                 if (elem.checked) {
                     elem.parentNode.parentNode.className = 'highlight';
@@ -178,9 +167,7 @@
                     elem.parentNode.parentNode.className = 'odd';
                 }
             }
-
             getPlaces();
-
             function getPlaces(type = 'all') {
                 $('#placesTables').DataTable({
                     "destroy": true,
@@ -253,15 +240,11 @@
             });
 
             $(document).on('click', '.trash', function (e) {
-
                 e.preventDefault();
-
                 let id = [];
-
                 $('.place_checkbox:checked').each(function () {
                     id.push($(this).val());
                 });
-
                 if (id.length > 0) {
                     $.ajax({
                         url: "{{ route('place.massremove')}}",

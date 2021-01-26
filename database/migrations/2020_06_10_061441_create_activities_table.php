@@ -20,7 +20,7 @@ class CreateActivitiesTable extends Migration
             $table->time('opening_time')->nullable();
             $table->time('closing_time')->nullable();
             $table->string('address');
-            $table->enum('status', [0,1])->default(0)->comment('0-d|1|p');
+            $table->tinyInteger('status')->nullable(0)->comment('0-d|1|p');
             $table->text('avatar')->nullable();
             $table->softDeletes();
             $table->timestamps();

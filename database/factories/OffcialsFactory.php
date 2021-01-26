@@ -15,7 +15,6 @@ $factory->define(BaranggayOfficial::class, function (Faker $faker) {
         'from' => date('Y'),
         'to' => date('Y'),
         'avatar' => null,
-        'status' => random_int(0,1),
         'created_at' => Carbon::now()
     ];
 });

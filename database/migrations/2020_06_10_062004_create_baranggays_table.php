@@ -19,7 +19,7 @@ class CreateBaranggaysTable extends Migration
             $table->string('population');
             $table->text('address');
             $table->text('avatar')->nullable();
-            $table->text('status')->default(0);
+            $table->text('status')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -37,7 +37,7 @@
                                    class="form-control border-bottom-gold"
                                    autofocus
                                    required
-                                   value="subject value"
+                                   value=""
                                    name="subject"
                                    id="inputSubmit"
                                    aria-describedby="subjectHelp"
@@ -49,7 +49,7 @@
                             <input type="text"
                                    class="form-control border-bottom-gold"
                                    name="name"
-                                   value="John Paul L. Gabule"
+                                   value=""
                                    required
                                    id="inputName" aria-describedby="nameHelp" placeholder="Enter your name">
                         </div>
@@ -58,7 +58,7 @@
                             <label for="inputEmailAddress" class="font-weight-bold h5">Email Address</label>
                             <input type="email" name="email" required
                                    class="form-control border-bottom-gold"
-                                   value="lucasgabule@gmail.com"
+                                   value=""
                                    id="inputEmailAddress"
                                    placeholder="Enter your current email">
                         </div>
@@ -70,7 +70,7 @@
                                       rows="10"
                                       required
                                       class="form-control border-bottom-gold"
-                                      placeholder="Leave your message here...">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, eos.</textarea>
+                                      placeholder="Leave your message here..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-warning" id="btnSubmit">
                           <i class="far fa-paper-plane mr-2"></i> Send</button>

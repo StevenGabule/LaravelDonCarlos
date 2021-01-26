@@ -28,7 +28,7 @@
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Total Published News
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">215,000</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $newsCount }}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fad fa-newspaper fa-2x text-success"></i>
@@ -47,7 +47,7 @@
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                             Total Tourist Spot
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">20</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $placesCount }}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fad fa-mountain fa-2x text-info"></i>

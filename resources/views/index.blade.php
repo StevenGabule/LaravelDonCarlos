@@ -6,8 +6,6 @@
             margin-top: -24px;
         }
 
-
-
         /* Declare heights because of positioning of img element */
         .carousel-item {
             height: 32rem;
@@ -29,8 +27,6 @@
             bottom: 0rem;
             z-index: 10;
         }
-
-
     </style>
 @stop
 @section('content')
@@ -51,9 +47,9 @@
                     </div>
                 </div>
             </div><!-- news update -->
+
             <div class="carousel-item"
                  style="background: url('{{ $eventHeadLine->avatar !== null ? $eventHeadLine->avatar : asset('assets/images/photo-1549451371-64aa98a6f660.jfif') }}') no-repeat center center / cover;">
-
                 <div class="container">
                     <div class="carousel-caption  mb-5">
                         <h3><a class="text-white" href="{{ route('event.show', ['slug' => $eventHeadLine->slug]) }}">{{ $eventHeadLine->title }}</a></h3>
@@ -61,6 +57,7 @@
                     </div>
                 </div>
             </div><!-- events -->
+
             <div class="carousel-item"
                  style="background: url('{{ $placeHeadLine->avatar !== null ? $placeHeadLine->avatar : asset('assets/images/photo-1525489196064-0752fa4e16f2.jfif') }}') no-repeat center center / cover">
 
@@ -72,15 +69,16 @@
                 </div>
             </div><!-- tourism -->
         </div>
+
         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
+
         <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-
     </div><!-- end of carousel -->
 
     <!-- main content for home  -->
@@ -89,13 +87,13 @@
             <div class="row">
                 <div class="col-12 col-lg-9">
                     <h2 class="font-oswald-bold">Plans and Programs</h2>
-
                     <hr class="hr-thin">
-
                     <div class="row no-gutters w-100 text-center">
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
-                            <a href="{{ route('page.show', ['slug' => $infrastructure->slug]) }}" class="btn btn-home-programs py-3 px-0 shadow-sm w-100"><i
-                                    class="fas fa-university fa-2x"></i><br><span class="font-weight-bold">Infrastructure</span>
+                            <a href="{{ route('page.show', ['slug' => $infrastructure->slug]) }}"
+                                class="btn btn-home-programs py-3 px-0 shadow-sm w-100">
+                                <i class="fas fa-university fa-2x"></i><br>
+                                <span class="font-weight-bold">Infrastructure</span>
                             </a>
                         </div>
                         <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl p-2">
@@ -139,7 +137,6 @@
                                class="btn btn-outline-gold px-5">
                                 Learn More
                             </a>
-
                         </div>
                     </div>
                     <!-- Meet the woman to care section -->
@@ -178,7 +175,6 @@
                                     </div>
                                 </div>
                             @endforeach
-
 
                             <div class="text-center w-100 my-3">
                                 <a href="{{ route('services') }}">
@@ -320,7 +316,7 @@
                             <div class="position-relative">
                                 <img class="card-img"
                                      src="{{ $latestActivity->avatar !== null ? $latestActivity->avatar : 'https://images.unsplash.com/photo-1573490647695-2892d0bf89e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=799&q=80' }}"
-                                     style="max-height: 350px;"
+                                     style="max-height: 350px;object-fit: cover;"
                                      alt="Announcement Images">
                                 <h5 class="event-overlay p-3 m-0 bg-green-event col-dirtyWhite font-weight-bold text-center">
                                     {{ $latestActivity->display_date('day') }}
@@ -329,13 +325,20 @@
                                 </h5>
                             </div>
                             <div class="m-3">
-                                <h5 class="card-title font-weight-bold m-0">{{ $latestActivity->title }}</h5>
+                                <h5 class="card-title font-weight-bold m-0 text-capitalize">{{ $latestActivity->title }}</h5>
                                 <div class="d-flex flex-column flex-md-row ">
-                                    <small><i class="far fa-clock"></i><span
-                                            class="event-date pl-1">5:00 PM - 12:00 AM</span>
+                                    <small>
+                                        <i class="far fa-clock"></i>
+                                        <span class="event-date pl-1">
+                                            {{ date_format(date_create($latestActivity->opening_time), 'g:iA') }} -
+                                            {{ date_format(date_create($latestActivity->closing_time), 'g:iA') }}
+                                        </span>
                                     </small>
-                                    <small class="ml-md-3"><i class="fas fa-map-marker-alt"></i><span
-                                            class="news-date pl-1">{{ $latestActivity->display_address }}</span>
+                                    <small class="ml-md-3">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span class="news-date pl-1 text-capitalize">
+                                            {{ $latestActivity->display_address }}
+                                        </span>
                                     </small>
                                 </div>
                                 <p class="card-text mt-2">{{ $latestActivity->short_description }}</p>
@@ -380,7 +383,6 @@
             </div>
         </div>
     </main>
-
 @endsection
 
 @section('script')
