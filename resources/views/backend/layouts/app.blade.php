@@ -171,6 +171,13 @@
             </a>
         </li>
 
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ route('hotlines.index') }}">
+                <i class="fad fa-fw fa-calendar-alt blueish"></i>
+                <span>Hotlines</span></a>
+        </li>
+
+
     </ul>
     <!-- End of Sidebar -->
 
