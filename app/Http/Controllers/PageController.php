@@ -37,7 +37,7 @@ class PageController extends Controller
             ->skip(1)
             ->get();
 
-        $newsImportant = Article::where('important', true)->limit(2)->get();
+        $newsImportant = Article::where('important', true)->orderBy('created_at', 'DESC')->limit(2)->get();
         $latestNews = Article::latest()->first();
 
         $contents = PageContent::whereIn('id', [1,2])->get();

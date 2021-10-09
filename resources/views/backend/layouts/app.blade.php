@@ -173,7 +173,7 @@
 
         <li class="nav-item active">
             <a class="nav-link" href="{{ route('hotlines.index') }}">
-                <i class="fad fa-fw fa-calendar-alt blueish"></i>
+                <i class="fad fa-fw fa-phone-rotary blueish"></i>
                 <span>Hotlines</span></a>
         </li>
 

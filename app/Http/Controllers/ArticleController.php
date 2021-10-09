@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\ArticleCategory;
+use App\Http\Requests\ArticleCreateRequest;
+use App\Jobs\UploadImageArticle;
 use App\Traits\ImageHandle;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use JD\Cloudder\Facades\Cloudder;
 use Yajra\DataTables\DataTables;
 
@@ -53,7 +58,7 @@ class ArticleController extends Controller
             $btnRestore = ($data->deleted_at !== null) ? "<a class='dropdown-item restoreArticle' id='$data->id' href='javascript:void(0)'>
                             <i class='fad fa-trash-restore mr-2'></i> Restore
                         </a>" : null;
-            $button = <<<EOT
+            return <<<EOT
                 <div class="dropdown no-arrow" style="width:50px">
                   <a href="javascript:void(0)" class="btn btn-primary  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fad fa-ellipsis-h"></i>
@@ -65,7 +70,6 @@ class ArticleController extends Controller
                     </div>
                 </div>
 EOT;
-            return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="article_checkbox[]" class="article_checkbox" value="{{$id}}" />')
             ->editColumn('avatar', static function ($data) {
                 return $data->avatar === null
@@ -79,29 +83,34 @@ EOT;
 
     public function create()
     {
-        $categories = \App\ArticleCategory::all();
+        $categories = ArticleCategory::all();
         return view('backend.news.create', compact('categories'));
     }
 
-    public function store(Request $request)
+    /**
+     * @param ArticleCreateRequest $request
+     * @return JsonResponse
+     */
+    public function store(ArticleCreateRequest $request)
     {
-        $this->validate($request, [
-            'title' => 'required|unique:articles',
-            'status' => 'required',
-            'short_description' => 'required',
-            'description' => 'required',
-            'category_id' => 'required',
-        ]);
-
-        $image_url = null;
-
-        if ($request->file('avatar')) {
-            /*$name = mt_rand() . '.' . $originalImage->getClientOriginalExtension();
-            $this->uploadImages(null, $originalImage, $name, 'articles');*/
+        /*if ($request->file('avatar')) {
             $image = $request->file('avatar')->getRealPath();
             Cloudder::upload($image, null);
             list($width, $height) = getimagesize($image);
             $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+        }*/
+        $filename = '';
+        if ($request->file('avatar')) {
+            // get the image
+            $image = $request->file('avatar');
+            $image->getPathName();
+
+            // get the original file name and replace any with
+            // business Card.png = timestamp()_business_card.png
+            $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
+
+            // move the image to the temporary location (tmp)
+            $image->storeAs('uploads/news/original', $filename, 'tmp');
         }
 
         $article = Article::create([
@@ -110,19 +119,22 @@ EOT;
             'important' => $request->get('important', false),
             'slug' => Str::slug($request->get('title')),
             'status' => $request->get('status'),
-            'avatar' => $image_url,
+            'avatar' => $filename,
             'short_description' => $request->get('short_description'),
             'description' => $request->get('description'),
             'category_id' => $request->get('category_id'),
+            'disk' => config('site.upload_disk')
         ]);
 
-        $output = ['id' => $article->id];
+        $id = $article->id;
+        $output = ['id' => $id];
+        $this->dispatch(new UploadImageArticle($id));
         return response()->json($output);
     }
 
     public function edit($id)
     {
-        $categories = \App\ArticleCategory::all();
+        $categories = ArticleCategory::all();
         $article = Article::findOrFail($id);
         return view('backend.news.edit', compact('article', 'categories'));
     }
@@ -140,22 +152,34 @@ EOT;
         $article = Article::findOrFail($request->input('article_id'));
 
         if ($request->file('avatar')) {
-            if ($article->avatar !== null) {
-                $splits = explode('/', $article->avatar)[7];
-                $publicId = explode('.', $splits)[0];
-                Cloudder::delete($publicId, null);
-            }
+            /* if ($article->avatar !== null) {
+                 $splits = explode('/', $article->avatar)[7];
+                 $publicId = explode('.', $splits)[0];
+                 Cloudder::delete($publicId, null);
+             }
 
-            $image = $request->file('avatar')->getRealPath();
-            Cloudder::upload($image, null);
-            list($width, $height) = getimagesize($image);
-            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
-            $article->avatar = $image_url;
+             $image = $request->file('avatar')->getRealPath();
+             Cloudder::upload($image, null);
+             list($width, $height) = getimagesize($image);
+             $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
+             $article->avatar = $image_url;*/
+
+            // get the image
+            $image = $request->file('avatar');
+            $image->getPathName();
+
+            // get the original file name and replace any with
+            // business Card.png = timestamp()_business_card.png
+            $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
+
+            // move the image to the temporary location (tmp)
+            $image->storeAs('uploads/news/original', $filename, 'tmp');
+            $article->avatar = $filename;
         }
 
         $article->update([
             'title' => $request->get('title'),
-            'important' => $request->important === null ? false : true,
+            'important' => !($request->important === null),
             'slug' => Str::slug($request->get('title')),
             'description' => $request->get('description'),
             'short_description' => $request->get('short_description'),

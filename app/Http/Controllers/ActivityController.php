@@ -54,7 +54,7 @@ class ActivityController extends Controller
             $btnRestore = ($data->deleted_at !== null) ? "<a class='dropdown-item restoreActivities' id='$data->id' href='javascript:void(0)'>
                             <i class='fad fa-trash mr-2'></i> Restore
                         </a>" : null;
-            $button = <<<EOT
+            return <<<EOT
                 <div class="dropdown no-arrow" style="width:50px">
                   <a href="javascript:void(0)" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fad fa-ellipsis-h"></i>
@@ -66,7 +66,6 @@ class ActivityController extends Controller
                     </div>
                 </div>
 EOT;
-            return $button;
         })->addColumn('checkbox', '<input type="checkbox" name="activity_checkbox[]" class="activity_checkbox" value="{{$id}}" />')
             ->editColumn('avatar', static function ($data) {
                 return $data->avatar === null ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' : "<img src='$data->avatar' class='rounded-circle' style='height: 32px;width: 32px' />";

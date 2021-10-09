@@ -10,9 +10,9 @@
     </style>
 @stop
 @section('content')
-    @php
+    {{--@php
         $cat = explode('/', $_SERVER['PHP_SELF'])[4];
-    @endphp
+    @endphp--}}
     <div class="container-fluid">
         <form id="serviceArticleForm" method="post" enctype="multipart/form-data">
             @csrf
