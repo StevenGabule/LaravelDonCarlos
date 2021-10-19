@@ -17,7 +17,7 @@
 @stop
 
 @section('content')
-    <!-- inlineng the background image so it can be dynamicaly change!!!! -->
+    <!-- inlining the background image so it can be dynamically change!!!! -->
     <!-- recommended background dimension 1920 x 1280 -->
     <div class="trending-bg-banner position-relative"
          style="background-image: url('{{ $events->display_image() }}');margin-top: -24px;">
@@ -29,7 +29,7 @@
             <p>
                 <i class="fas fa-calendar"></i>
                 <span class="font-weight-bold">
-                    {{ $events->convert_date() }}
+                    {{ $events->event_start }}
                 </span>
 
                 <span class="ml-3">
@@ -55,9 +55,9 @@
                 <div class="col-12 col-sm-6 col-lg-4 pt-3">
                     <div class="card bg-light shadow-sm border-0">
                         <div>
-                            <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
+                            <!-- recommended landscape image to prevent blurring in when changing screen size -->
                             <img class="card-img max-height-250" style="object-fit: cover;"
-                                 src="{{ $post->avatar !== null ? $post->avatar : asset('assets/icons/mountains.svg') }}"
+                                 src="{{ $post->avatar !== null ? asset('storage/uploads/activities/thumbnail/' . $post->avatar) : asset('assets/icons/mountains.svg') }}"
                                  alt="Announcement Images">
                         </div>
                         <div class="card-body">

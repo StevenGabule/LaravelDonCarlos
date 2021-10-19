@@ -1,330 +1,332 @@
 @extends('backend.layouts.app')
 @section('style_extended')
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css"/>
 
 @stop
 @section('content')
-    <div class="container-fluid">
-        <form id="activitiesForm" method="post" enctype="multipart/form-data" class="needs-validation">
-            @csrf
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Write New Event</h1>
-                <div>
-                    <a href="{{ route('activities.index') }}"
-                       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                        <i class="fad fa-long-arrow-left mr-2"></i>Back
-                    </a>
-                </div>
-            </div>
+  <div class="container-fluid">
+    <form id="activitiesForm" method="post" enctype="multipart/form-data" class="needs-validation">
+      @csrf
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Write New Event</h1>
+        <div>
+          <a href="{{ route('activities.index') }}"
+             class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fad fa-long-arrow-left mr-2"></i>Back
+          </a>
+        </div>
+      </div>
 
-            <div class="row">
-                <div class="col-xl-9 col-lg-8">
-                    <div class="card shadow mb-4">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="inputTitle">Title</label>
-                                <input type="text"
-                                       class="form-control form-control-sm"
-                                       name="title"
-                                       id="inputTitle">
-                                <small id="nameMessage" class="form-text"></small>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-4">
-                                    <label for="inputStartDate">Event Date</label>
-                                    <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                                        <input type="text"
-                                               id="inputEventStart"
-                                               name="event_start"
-                                               class="form-control form-control-sm datetimepicker-input"
-                                               data-toggle="datetimepicker"
-                                               data-target="#datetimepicker4"/>
-                                        <div class="input-group-append" data-target="#datetimepicker4"
-                                             data-toggle="datetimepicker">
-                                            <div class="input-group-text" >
-                                                <i class="fal fa-calendar-day"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <small id="eventStartMessage" class="form-text"></small>
-                                </div>
-
-                                <div class="form-group col-4">
-                                    <label for="inputOpeningTime">Opening Time</label>
-                                    <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-                                        <input type="text"
-                                               id="inputOpeningTime"
-                                               name="opening_time"
-                                               class="form-control form-control-sm datetimepicker-input"
-                                               data-toggle="datetimepicker"
-                                               data-target="#datetimepicker3"/>
-                                        <div class="input-group-append" data-target="#datetimepicker3"
-                                             data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fal fa-clock"></i></div>
-                                        </div>
-                                    </div>
-                                    <small id="openingTimeMessage" class="form-text"></small>
-                                </div>
-
-                                <div class="form-group col-4">
-                                    <label for="inputClosingTime">Closing Time</label>
-                                    <div class="input-group date" id="datetimepicker5" data-target-input="nearest">
-                                        <input type="text"
-                                               class="form-control form-control-sm datetimepicker-input"
-                                               id="inputClosingTime"
-                                               name="closing_time"
-                                               data-toggle="datetimepicker"
-                                               data-target="#datetimepicker5"/>
-                                        <div class="input-group-append" data-target="#datetimepicker5"
-                                             data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fal fa-clock"></i></div>
-                                        </div>
-                                    </div>
-                                    <small id="closingTimeMessage" class="form-text"></small>
-                                </div>
-                            </div><!-- end of form row -->
-
-                            <div class="form-group">
-                                <label for="inputShortDescription">Short Description</label>
-                                <textarea
-                                    name="short_description" rows="2" id="inputShortDescription"
-                                    class="form-control form-control-sm"></textarea>
-                                <small id="shortDescriptionMessage" class="form-text"></small>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputAddress">Address</label>
-                                <textarea
-                                    name="address"
-                                    rows="2" id="inputAddress" class="form-control form-control-sm"></textarea>
-                                <small id="addressMessage" class="form-text"></small>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputDescription">Description</label>
-                                <textarea name="description" id="inputDescription"
-                                          class="form-control form-control-sm"></textarea>
-                                <small id="descriptionMessage" class="form-text"></small>
-                            </div>
-
-                        </div>
+      <div class="row">
+        <div class="col-xl-9 col-lg-8">
+          <div class="card shadow mb-4">
+            <div class="card-body">
+              <div class="form-group">
+                <label for="inputTitle">Title</label>
+                <input type="text"
+                       class="form-control form-control-sm"
+                       name="title"
+                       id="inputTitle">
+                <small id="nameMessage" class="form-text"></small>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-4">
+                  <label for="inputStartDate">Event Date</label>
+                  <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                    <input type="text"
+                           id="inputEventStart"
+                           name="event_start"
+                           class="form-control form-control-sm datetimepicker-input"
+                           data-toggle="datetimepicker"
+                           data-target="#datetimepicker4"/>
+                    <div class="input-group-append" data-target="#datetimepicker4"
+                         data-toggle="datetimepicker">
+                      <div class="input-group-text">
+                        <i class="fal fa-calendar-day"></i>
+                      </div>
                     </div>
+                  </div>
+                  <small id="eventStartMessage" class="form-text"></small>
                 </div>
 
-                <div class="col-xl-3 col-lg-4">
-                    <div class="card shadow mb-4">
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            <h6>Featured Image</h6>
-                            <div class="input-group input-group-sm mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                                </div>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile01" name="avatar"
-                                           aria-describedby="inputGroupFileAddon01"
-                                           accept="image/x-png,image/gif,image/jpeg">
-                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                </div>
-                            </div>
-
-                            <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
-                                <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>
-                                <img src="" class="img-fluid" id="previewImage" alt="">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputStatus">Status</label>
-                                <select name="status" id="inputStatus" class="custom-select custom-select-sm">
-                                    <option value="">-- Select the status --</option>
-                                    <option value="1">Published</option>
-                                    <option value="0">Draft</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-sm" id="btnSave">
-                                    <i class="fad fa-save fa-fw mr-2"></i> Save
-                                </button>
-                            </div>
-                        </div>
+                <div class="form-group col-4">
+                  <label for="inputOpeningTime">Opening Time</label>
+                  <div class="input-group date" id="dtpOpeningTime" data-target-input="nearest">
+                    <input type="text"
+                           id="inputOpeningTime"
+                           name="opening_time"
+                           class="form-control form-control-sm datetimepicker-input"
+                           data-toggle="datetimepicker"
+                           data-target="#dtpOpeningTime"/>
+                    <div class="input-group-append" data-target="#dtpOpeningTime"
+                         data-toggle="datetimepicker">
+                      <div class="input-group-text"><i class="fal fa-clock"></i></div>
                     </div>
+                  </div>
+                  <small id="openingTimeMessage" class="form-text"></small>
                 </div>
+
+                <div class="form-group col-4">
+                  <label for="inputClosingTime">Closing Time</label>
+                  <div class="input-group date" id="datetimepicker5" data-target-input="nearest">
+                    <input type="text"
+                           class="form-control form-control-sm datetimepicker-input"
+                           id="inputClosingTime"
+                           name="closing_time"
+                           data-toggle="datetimepicker"
+                           data-target="#datetimepicker5"/>
+                    <div class="input-group-append" data-target="#datetimepicker5"
+                         data-toggle="datetimepicker">
+                      <div class="input-group-text"><i class="fal fa-clock"></i></div>
+                    </div>
+                  </div>
+                  <small id="closingTimeMessage" class="form-text"></small>
+                </div>
+              </div><!-- end of form row -->
+
+              <div class="form-group">
+                <label for="inputShortDescription">Short Description</label>
+                <textarea
+                  name="short_description" rows="2" id="inputShortDescription"
+                  class="form-control form-control-sm"></textarea>
+                <small id="shortDescriptionMessage" class="form-text"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="inputAddress">Address</label>
+                <textarea
+                  name="address"
+                  rows="2" id="inputAddress" class="form-control form-control-sm"></textarea>
+                <small id="addressMessage" class="form-text"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="inputDescription">Description</label>
+                <textarea name="description" id="inputDescription"
+                          class="form-control form-control-sm"></textarea>
+                <small id="descriptionMessage" class="form-text"></small>
+              </div>
+
             </div>
-        </form>
-    </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-4">
+          <div class="card shadow mb-4">
+            <!-- Card Body -->
+            <div class="card-body">
+              <h6>Featured Image</h6>
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                </div>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="inputGroupFile01" name="avatar"
+                         aria-describedby="inputGroupFileAddon01"
+                         accept="image/x-png,image/gif,image/jpeg">
+                  <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+              </div>
+
+              <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
+                <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>
+                <img src="" class="img-fluid" id="previewImage" alt="">
+              </div>
+
+              <div class="form-group">
+                <label for="inputStatus">Status</label>
+                <select name="status" id="inputStatus" class="custom-select custom-select-sm">
+                  <option value="">-- Select the status --</option>
+                  <option value="1">Published</option>
+                  <option value="0">Draft</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-sm" id="btnSave">
+                  <i class="fad fa-save fa-fw mr-2"></i> Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 @stop
 
 @section('_script')
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    <script src="{{ asset('backend/js/moment.min.js') }}"></script>
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script>
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+  <script src="{{ asset('backend/js/moment.min.js') }}"></script>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+  <script>
 
-        $(document).ready(function () {
+    $(document).ready(function () {
 
-            $('#datetimepicker4').datetimepicker({
-                defaultDate: moment().format('L'),
-                format: 'L'
-            });
+      $('#datetimepicker4').datetimepicker({
+        defaultDate: moment().format('L'),
+        format: 'L'
+      });
 
-            $('#datetimepicker3').datetimepicker({
-                format: 'LT'
-            });
+      $('#dtpOpeningTime').datetimepicker({
+        format: 'LT'
+      });
 
-            $('#datetimepicker5').datetimepicker({
-                format: 'LT'
-            });
+      $('#datetimepicker5').datetimepicker({
+        format: 'LT'
+      });
 
-            $('#inputDescription').summernote({
-                tabSize: 2,
-                height: 300
-            });
+      $('#inputDescription').summernote({
+        tabSize: 2,
+        height: 300
+      });
 
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    let reader = new FileReader();
-                    reader.onload = e => $('#previewImage').attr('src', e.target.result);
-                    $(".fa-goner").remove();
-                    reader.readAsDataURL(input.files[0])
-                }
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          let reader = new FileReader();
+          reader.onload = e => $('#previewImage').attr('src', e.target.result);
+          $(".fa-goner").remove();
+          reader.readAsDataURL(input.files[0])
+        }
+      }
+
+      $("#inputGroupFile01").change(function () {
+        readURL(this);
+      });
+
+      $('#activitiesForm').on('submit', function (e) {
+        e.preventDefault();
+        const x = $("#btnSave");
+
+        const _title = $("#inputTitle");
+        const _event_start = $("#inputEventStart");
+        const _opening_time = $("#inputOpeningTime");
+        const _closing_time = $("#inputClosingTime");
+        const _short_description = $("#inputShortDescription");
+        const _description = $("#inputDescription");
+        const _address = $("#inputAddress");
+        const _status = $("#inputStatus");
+
+        const _titleMsg = $("#titleMessage");
+        const _eventStartMsg = $("#eventStartMessage");
+        const _openingTimeMsg = $("#openingTimeMessage");
+        const _closingTimeMsg = $("#closingTimeMessage");
+        const _short_descriptionMsg = $("#shortDescriptionMessage");
+        const _descriptionMsg = $("#descriptionMessage")
+        const _addressMsg = $("#addressMessage");
+        const _statusMsg = $("#statusMessage");
+
+        $.ajax({
+          url: '{{ route('activities.store') }}',
+          method: 'POST',
+          data: new FormData(this),
+          contentType: false,
+          cache: false,
+          processData: false,
+          dataType: 'json',
+          beforeSend: () => {
+            $("#inputTitle, #inputEventDate, #inputOpeningTime, #inputClosingTime, #inputShortDescription, #inputDescription, #inputAddress, #inputStatus")
+              .removeClass(['is-valid', 'is-invalid']);
+            $("#titleMessage, #eventStartMessage, #openingTimeMessage, #closingTimeMessage, " +
+              "#descriptionMessage, #shortDescriptionMessage, #addressMessage, #statusMessage")
+              .removeClass(['text-success', 'text-danger']);
+            x.attr('disabled', true);
+            x.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> SAVING...`)
+          },
+          success: ({id}) => {
+            x.attr('disabled', false);
+            x.html(`<i class="fad fa-save mr-2"></i> Saving`);
+            window.location.href = `${id}/edit?created`
+          },
+          error: err => {
+            x.attr('disabled', false);
+            x.html(`<i class="fad fa-save mr-2"></i> Saving`);
+            const {
+              title,
+              short_description,
+              description,
+              event_start,
+              opening_time,
+              closing_time, status, address
+            } = err.responseJSON.errors;
+            console.log(err.responseJSON.errors);
+            // name
+            if (title && title[0].length > 0) {
+              _title.addClass('is-invalid');
+              _titleMsg.addClass('text-danger').text(title[0]);
+            } else {
+              _title.addClass('is-valid');
+              _titleMsg.addClass('text-success').text("Looks good.");
             }
 
-            $("#inputGroupFile01").change(function () {
-                readURL(this);
-            });
+            // status
+            if (status && status[0].length > 0) {
+              _status.addClass('is-invalid');
+              _statusMsg.addClass('text-danger').text(status[0]);
+            } else {
+              _status.addClass('is-valid');
+              _statusMsg.addClass('text-success').text("Looks good.");
+            }
 
-            $('#activitiesForm').on('submit', function (e) {
-                e.preventDefault();
-                const x = $("#btnSave");
+            // address
+            if (address && address[0].length > 0) {
+              _address.addClass('is-invalid');
+              _addressMsg.addClass('text-danger').text(address[0]);
+            } else {
+              _address.addClass('is-valid');
+              _addressMsg.addClass('text-success').text("Looks good.");
+            }
 
-                const _title = $("#inputTitle");
-                const _event_start = $("#inputEventStart");
-                const _opening_time = $("#inputOpeningTime");
-                const _closing_time = $("#inputClosingTime");
-                const _short_description = $("#inputShortDescription");
-                const _description = $("#inputDescription");
-                const _address = $("#inputAddress");
-                const _status = $("#inputStatus");
+            // short description
+            if (short_description && short_description[0].length > 0) {
+              _short_description.addClass('is-invalid');
+              _short_descriptionMsg.addClass('text-danger').text(short_description[0]);
+            } else {
+              _short_description.addClass('is-valid');
+              _short_descriptionMsg.addClass('text-success').text("Looks good.");
+            }
 
-                const _titleMsg = $("#titleMessage");
-                const _eventStartMsg = $("#eventStartMessage");
-                const _openingTimeMsg = $("#openingTimeMessage");
-                const _closingTimeMsg = $("#closingTimeMessage");
-                const _short_descriptionMsg = $("#shortDescriptionMessage");
-                const _descriptionMsg = $("#descriptionMessage")
-                const _addressMsg = $("#addressMessage");
-                const _statusMsg = $("#statusMessage");
+            // description
+            if (description && description[0].length > 0) {
+              _description.addClass('is-invalid');
+              _descriptionMsg.addClass('text-danger').text(description[0]);
+            } else {
+              _description.addClass('is-valid');
+              _descriptionMsg.addClass('text-success').text("Looks good.");
+            }
 
-                $.ajax({
-                    url: '{{ route('activities.store') }}',
-                    method: 'POST',
-                    data: new FormData(this),
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    dataType: 'json',
-                    beforeSend: () => {
-                        $("#inputTitle, #inputEventDate, #inputOpeningTime, #inputClosingTime, #inputShortDescription, #inputDescription, #inputAddress, #inputStatus")
-                            .removeClass(['is-valid', 'is-invalid']);
-                        $("#titleMessage, #eventStartMessage, #openingTimeMessage, #closingTimeMessage, " +
-                            "#descriptionMessage, #shortDescriptionMessage, #addressMessage, #statusMessage")
-                            .removeClass(['text-success', 'text-danger']);
-                        x.attr('disabled', true);
-                        x.html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> SAVING...`)
-                    },
-                    success: ({id}) => {
-                        x.attr('disabled', false);
-                        x.html(`<i class="fad fa-save mr-2"></i> Saving`);
-                        window.location.href = `${id}/edit?created`
-                    },
-                    error: err => {
-                        x.attr('disabled', false);
-                        x.html(`<i class="fad fa-save mr-2"></i> Saving`);
-                        const {title,
-                            short_description,
-                            description,
-                            event_start,
-                            opening_time,
-                            closing_time, status, address} = err.responseJSON.errors;
-                        console.log(err.responseJSON.errors);
-                        // name
-                        if (title && title[0].length > 0) {
-                            _title.addClass('is-invalid');
-                            _titleMsg.addClass('text-danger').text(title[0]);
-                        } else {
-                            _title.addClass('is-valid');
-                            _titleMsg.addClass('text-success').text("Looks good.");
-                        }
+            // event start
+            if (event_start && event_start[0].length > 0) {
+              _event_start.addClass('is-invalid');
+              _eventStartMsg.addClass('text-danger').text(event_start[0]);
+            } else {
+              _event_start.addClass('is-valid');
+              _eventStartMsg.addClass('text-success').text("Looks good.");
+            }
 
-                        // status
-                        if (status && status[0].length > 0) {
-                            _status.addClass('is-invalid');
-                            _statusMsg.addClass('text-danger').text(status[0]);
-                        } else {
-                            _status.addClass('is-valid');
-                            _statusMsg.addClass('text-success').text("Looks good.");
-                        }
+            // opening time
+            if (opening_time && opening_time[0].length > 0) {
+              _opening_time.addClass('is-invalid');
+              _openingTimeMsg.addClass('text-danger').text(opening_time[0]);
+            } else {
+              _opening_time.addClass('is-valid');
+              _openingTimeMsg.addClass('text-success').text("Looks good.");
+            }
 
-                        // address
-                        if (address && address[0].length > 0) {
-                            _address.addClass('is-invalid');
-                            _addressMsg.addClass('text-danger').text(address[0]);
-                        } else {
-                            _address.addClass('is-valid');
-                            _addressMsg.addClass('text-success').text("Looks good.");
-                        }
-
-                        // short description
-                        if (short_description && short_description[0].length > 0) {
-                            _short_description.addClass('is-invalid');
-                            _short_descriptionMsg.addClass('text-danger').text(short_description[0]);
-                        } else {
-                            _short_description.addClass('is-valid');
-                            _short_descriptionMsg.addClass('text-success').text("Looks good.");
-                        }
-
-                        // description
-                        if (description && description[0].length > 0) {
-                            _description.addClass('is-invalid');
-                            _descriptionMsg.addClass('text-danger').text(description[0]);
-                        } else {
-                            _description.addClass('is-valid');
-                            _descriptionMsg.addClass('text-success').text("Looks good.");
-                        }
-
-                        // event start
-                        if (event_start && event_start[0].length > 0) {
-                            _event_start.addClass('is-invalid');
-                            _eventStartMsg.addClass('text-danger').text(event_start[0]);
-                        } else {
-                            _event_start.addClass('is-valid');
-                            _eventStartMsg.addClass('text-success').text("Looks good.");
-                        }
-
-                        // opening time
-                        if (opening_time &&opening_time[0].length > 0) {
-                            _opening_time.addClass('is-invalid');
-                            _openingTimeMsg.addClass('text-danger').text(opening_time[0]);
-                        } else {
-                            _opening_time.addClass('is-valid');
-                            _openingTimeMsg.addClass('text-success').text("Looks good.");
-                        }
-
-                        // closing time
-                        if (closing_time && closing_time[0].length > 0) {
-                            _closing_time.addClass('is-invalid');
-                            _closingTimeMsg.addClass('text-danger').text(closing_time[0]);
-                        } else {
-                            _closing_time.addClass('is-valid');
-                            _closingTimeMsg.addClass('text-success').text("Looks good.");
-                        }
-                    }
-                }).fail((err) => console.log(err))
-            })
-        });
-    </script>
+            // closing time
+            if (closing_time && closing_time[0].length > 0) {
+              _closing_time.addClass('is-invalid');
+              _closingTimeMsg.addClass('text-danger').text(closing_time[0]);
+            } else {
+              _closing_time.addClass('is-valid');
+              _closingTimeMsg.addClass('text-success').text("Looks good.");
+            }
+          }
+        }).fail((err) => console.log(err))
+      })
+    });
+  </script>
 @stop

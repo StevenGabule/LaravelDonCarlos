@@ -107,7 +107,7 @@ class Article extends Model
 
     public function display_image(): string
     {
-        return $this->avatar !== null ? $this->avatar : asset('assets/images/photo-1558449033-7ae045d2c81a.jfif');
+        return $this->avatar !== null ? asset('storage/uploads/news/original/' . $this->avatar) : asset('assets/images/photo-1558449033-7ae045d2c81a.jfif');
     }
 
     public function scopeLatestFirst($query)

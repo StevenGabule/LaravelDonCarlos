@@ -32,7 +32,7 @@
         $month = ["", 'Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept','Oct', 'Nov', 'Dec']
     @endphp
     <div class="trending-bg-banner-tourism position-relative"
-         style="background: url('{{ $upcoming->avatar !== null ? asset('/backend/uploads/activities/large/'.$upcoming->avatar) : 'https://cdn.pixabay.com/photo/2017/07/21/23/57/concert-2527495_1280.jpg' }}') no-repeat center center / cover; margin-top: -24px;">
+         style="background: url('{{ $upcoming->avatar !== null ? asset('/storage/uploads/activities/large/'.$upcoming->avatar) : 'https://cdn.pixabay.com/photo/2017/07/21/23/57/concert-2527495_1280.jpg' }}') no-repeat center center / cover; margin-top: -24px;">
         <div class="trending-bg-banner-overlay h-100">
             <div class="container col-dirtyWhite h-100">
                 <div class="col-12 col-md-6 h-100">
@@ -45,7 +45,7 @@
                             </h2>
                             <div class="d-flex flex-column flex-md-row">
                                 <p><i class="far fa-clock"></i>
-                                    <span class="pl-1">{{ $upcoming->convert_date() }}</span>
+                                    <span class="pl-1">{{ $upcoming->event_start }}</span>
                                 </p>
                                 <p class="ml-md-3">
                                     <i class="fas fa-map-marker-alt"></i>
@@ -74,7 +74,7 @@
                         <div class="position-relative">
                             <img class="card-img"
                                  src="{{ ($event->avatar !== null) ?
-                                            $event->avatar
+                                            asset('storage/uploads/activities/thumbnail/' . $event->avatar)
                                             : asset('assets/icons/images.svg') }}"
                                  style="max-height: 350px;"
                                  alt="{{ $event->title }}">

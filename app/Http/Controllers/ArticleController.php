@@ -19,35 +19,35 @@ use Yajra\DataTables\DataTables;
 
 class ArticleController extends Controller
 {
-    use ImageHandle;
+  use ImageHandle;
 
-    public function index()
-    {
-        return view('backend.news.index');
+  public function index()
+  {
+    return view('backend.news.index');
+  }
+
+  public function all(Request $request, $type)
+  {
+    $articles = null;
+
+    if ($type === 'all') {
+      $articles = Article::with('category')->orderByDesc('created_at');
     }
 
-    public function all(Request $request, $type)
-    {
-        $articles = null;
+    if ($type === 'trash') {
+      $articles = Article::with('category')->onlyTrashed()->orderByDesc('created_at')->get();
+    }
 
-        if ($type === 'all') {
-            $articles = Article::with('category')->orderByDesc('created_at');
-        }
+    if ($type === 'drafted') {
+      $articles = Article::with('category')->where('status', '=', 0)->orderByDesc('created_at')->get();
+    }
 
-        if ($type === 'trash') {
-            $articles = Article::with('category')->onlyTrashed()->orderByDesc('created_at')->get();
-        }
+    if ($type === 'published') {
+      $articles = Article::with('category')->where('status', '=', 1)->orderByDesc('created_at')->get();
+    }
 
-        if ($type === 'drafted') {
-            $articles = Article::with('category')->where('status', '=', 0)->orderByDesc('created_at')->get();
-        }
-
-        if ($type === 'published') {
-            $articles = Article::with('category')->where('status', '=', 1)->orderByDesc('created_at')->get();
-        }
-
-        return DataTables::of($articles)->addColumn('action', static function ($data) {
-            $btn = ($data->deleted_at === null) ? "
+    return DataTables::of($articles)->addColumn('action', static function ($data) {
+      $btn = ($data->deleted_at === null) ? "
                         <a class='dropdown-item' href='$data->id'><i class='fad fa-eye mr-2'></i> View</a>
                         <a class='dropdown-item' id='$data->id' href='/admin/article/$data->id/edit'><i class='fad fa-file-edit mr-2'></i> Edit</a>
                         <a class='dropdown-item removeArticle' id='$data->id' href='javascript:void(0)'>
@@ -55,10 +55,10 @@ class ArticleController extends Controller
                         </a>" : "<a class='dropdown-item killArticle' id='$data->id' href='javascript:void(0)'>
                             <i class='fad fa-trash mr-2'></i> Delete
                         </a>";
-            $btnRestore = ($data->deleted_at !== null) ? "<a class='dropdown-item restoreArticle' id='$data->id' href='javascript:void(0)'>
+      $btnRestore = ($data->deleted_at !== null) ? "<a class='dropdown-item restoreArticle' id='$data->id' href='javascript:void(0)'>
                             <i class='fad fa-trash-restore mr-2'></i> Restore
                         </a>" : null;
-            return <<<EOT
+      return <<<EOT
                 <div class="dropdown no-arrow" style="width:50px">
                   <a href="javascript:void(0)" class="btn btn-primary  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fad fa-ellipsis-h"></i>
@@ -70,204 +70,161 @@ class ArticleController extends Controller
                     </div>
                 </div>
 EOT;
-        })->addColumn('checkbox', '<input type="checkbox" name="article_checkbox[]" class="article_checkbox" value="{{$id}}" />')
-            ->editColumn('avatar', static function ($data) {
-                return $data->avatar === null
-                    ? '<i class="fad fa-images fa-2x" aria-hidden="true"></i>' :
-                    "<img src='$data->avatar'  alt='No image' class='rounded-circle' style='height: 32px;width: 32px' />";
-            })
-            ->rawColumns(['action', 'checkbox', 'avatar'])
-            ->make(true);
+    })->addColumn('checkbox', '<input type="checkbox" name="article_checkbox[]" class="article_checkbox" value="{{$id}}" />')
+      ->rawColumns(['action', 'checkbox'])
+      ->make(true);
+  }
+
+
+  public function create()
+  {
+    $categories = ArticleCategory::all();
+    return view('backend.news.create', compact('categories'));
+  }
+
+  /**
+   * @param ArticleCreateRequest $request
+   * @return JsonResponse
+   */
+  public function store(ArticleCreateRequest $request): JsonResponse
+  {
+    $filename = '';
+    if ($request->file('avatar')) {
+      $image = $request->file('avatar');
+      $image->getPathName();
+      $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
+      $image->storeAs('uploads/news/original', $filename, 'tmp');
     }
 
+    $article = Article::create([
+      'user_id' => Auth::id(),
+      'title' => $request->get('title'),
+      'important' => $request->get('important', false),
+      'slug' => Str::slug($request->get('title')),
+      'status' => $request->get('status'),
+      'avatar' => $filename,
+      'short_description' => $request->get('short_description'),
+      'description' => $request->get('description'),
+      'category_id' => $request->get('category_id'),
+      'disk' => config('site.upload_disk')
+    ]);
 
-    public function create()
-    {
-        $categories = ArticleCategory::all();
-        return view('backend.news.create', compact('categories'));
+    $id = $article->id;
+    $output = ['id' => $id];
+    if ($filename != '') {
+      $this->dispatch(new UploadImageArticle($id));
+    }
+    return response()->json($output);
+  }
+
+  public function edit($id)
+  {
+    $categories = ArticleCategory::all();
+    $article = Article::findOrFail($id);
+    return view('backend.news.edit', compact('article', 'categories'));
+  }
+
+  /**
+   * @throws ValidationException
+   */
+  public function update_ajax(Request $request): JsonResponse
+  {
+    $this->validate($request, [
+      'title' => 'required',
+      'status' => 'required',
+      'short_description' => 'required',
+      'description' => 'required',
+      'category_id' => 'required',
+    ]);
+
+    $article = Article::findOrFail($request->input('article_id'));
+
+    if ($request->file('avatar')) {
+      $image = $request->file('avatar');
+      $image->getPathName();
+      $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
+      $image->storeAs('uploads/news/original', $filename, 'tmp');
+      $article->avatar = $filename;
+      $this->dispatch(new UploadImageArticle($request->input('article_id')));
     }
 
-    /**
-     * @param ArticleCreateRequest $request
-     * @return JsonResponse
-     */
-    public function store(ArticleCreateRequest $request)
-    {
-        /*if ($request->file('avatar')) {
-            $image = $request->file('avatar')->getRealPath();
-            Cloudder::upload($image, null);
-            list($width, $height) = getimagesize($image);
-            $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
-        }*/
-        $filename = '';
-        if ($request->file('avatar')) {
-            // get the image
-            $image = $request->file('avatar');
-            $image->getPathName();
+    $article->update([
+      'title' => $request->get('title'),
+      'important' => !($request->important === null),
+      'slug' => Str::slug($request->get('title')),
+      'description' => $request->get('description'),
+      'short_description' => $request->get('short_description'),
+      'category_id' => $request->get('category_id'),
+      'status' => $request->get('status'),
+    ]);
 
-            // get the original file name and replace any with
-            // business Card.png = timestamp()_business_card.png
-            $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
+    return response()->json(['updated' => true, 'slug' => $article->slug]);
+  }
 
-            // move the image to the temporary location (tmp)
-            $image->storeAs('uploads/news/original', $filename, 'tmp');
-        }
-
-        $article = Article::create([
-            'user_id' => Auth::id(),
-            'title' => $request->get('title'),
-            'important' => $request->get('important', false),
-            'slug' => Str::slug($request->get('title')),
-            'status' => $request->get('status'),
-            'avatar' => $filename,
-            'short_description' => $request->get('short_description'),
-            'description' => $request->get('description'),
-            'category_id' => $request->get('category_id'),
-            'disk' => config('site.upload_disk')
-        ]);
-
-        $id = $article->id;
-        $output = ['id' => $id];
-        $this->dispatch(new UploadImageArticle($id));
-        return response()->json($output);
+  public function destroy($id): JsonResponse
+  {
+    $article = Article::findOrFail($id);
+    if ($article) {
+      $article->delete();
+      return response()->json(['success' => true]);
     }
+    return response()->json(['failed' => true]);
+  }
 
-    public function edit($id)
-    {
-        $categories = ArticleCategory::all();
-        $article = Article::findOrFail($id);
-        return view('backend.news.edit', compact('article', 'categories'));
+  public function kill($ids): JsonResponse
+  {
+    $ids = explode(",", $ids);
+    foreach ($ids as $id) {
+      $article = Article::withTrashed()->where('id', $id)->first();
+      $article->forceDelete();
     }
+    return response()->json(['success' => true]);
+  }
 
-    public function update_ajax(Request $request)
-    {
-        $this->validate($request, [
-            'title' => 'required',
-            'status' => 'required',
-            'short_description' => 'required',
-            'description' => 'required',
-            'category_id' => 'required',
-        ]);
-
-        $article = Article::findOrFail($request->input('article_id'));
-
-        if ($request->file('avatar')) {
-            /* if ($article->avatar !== null) {
-                 $splits = explode('/', $article->avatar)[7];
-                 $publicId = explode('.', $splits)[0];
-                 Cloudder::delete($publicId, null);
-             }
-
-             $image = $request->file('avatar')->getRealPath();
-             Cloudder::upload($image, null);
-             list($width, $height) = getimagesize($image);
-             $image_url = Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height" => $height]);
-             $article->avatar = $image_url;*/
-
-            // get the image
-            $image = $request->file('avatar');
-            $image->getPathName();
-
-            // get the original file name and replace any with
-            // business Card.png = timestamp()_business_card.png
-            $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-
-            // move the image to the temporary location (tmp)
-            $image->storeAs('uploads/news/original', $filename, 'tmp');
-            $article->avatar = $filename;
-        }
-
-        $article->update([
-            'title' => $request->get('title'),
-            'important' => !($request->important === null),
-            'slug' => Str::slug($request->get('title')),
-            'description' => $request->get('description'),
-            'short_description' => $request->get('short_description'),
-            'category_id' => $request->get('category_id'),
-            'status' => $request->get('status'),
-        ]);
-
-        return response()->json(['updated' => true, 'slug' => $article->slug]);
+  public function restore(Request $request): JsonResponse
+  {
+    $ids = $request->input('id');
+    if (is_array($ids)) {
+      Article::withTrashed()->whereIn('id', $ids)->restore();
+      return response()->json(['success' => true]);
     }
+    Article::withTrashed()->where('id', $ids)->first()->restore();
+    return response()->json(['success' => true]);
+  }
 
-    public function destroy($id)
-    {
-        $article = Article::findOrFail($id);
-        if ($article) {
-            $article->delete();
-            return response()->json(['success' => true]);
-        }
-        return response()->json(['failed' => true]);
+  public function clone(Request $request): JsonResponse
+  {
+    $ids = $request->input('id');
+    $data = [];
+    if (is_array($ids)) {
+      $articles = Article::whereIn('id', $ids)->get();
+      foreach ($articles as $article) {
+        $temp = ['user_id' => Auth::id(),
+          'title' => $article->title,
+          'short_description' => $article->short_description,
+          'description' => $article->description,
+          'slug' => $article->slug,
+          'status' => $article->status,
+          'avatar' => $article->avatar,
+          'category_id' => $article->category_id,
+          'deleted_at' => $article->deleted_at,
+          'created_at' => Carbon::now()
+        ];
+        $data[] = $temp;
+      }
+      Article::insert($data);
+      return response()->json(['articles' => $articles, 'ids' => $ids, 'data' => $data]);
     }
+  }
 
-    public function kill($ids)
-    {
-        /*if (is_array($ids)) {*/
-        $ids = explode(",", $ids);
-        foreach ($ids as $id) {
-            $article = Article::withTrashed()->where('id', $id)->first();
-            $splits = explode('/', $article->avatar)[7];
-            $publicId = explode('.', $splits)[0];
-            Cloudder::delete($publicId, null);
-//                $this->removeImages($article->avatar, 'articles');
-            $article->forceDelete();
-        }
-        return response()->json(['success' => true]);
-//        }
-
-        /*$one = Article::withTrashed()->where('id', $ids)->first();
-        $splits = explode('/', $one->avatar)[7];
-        $publicId = explode('.', $splits)[0];
-        Cloudder::delete($publicId, null);
-        $one->forceDelete();*/
-        #$this->removeImages($one->avatar, 'articles');
-        #return response()->json(['success' => true]);
+  public function massRemove(Request $request): JsonResponse
+  {
+    $articleIdArray = $request->input('id');
+    $articles = Article::whereIn('id', $articleIdArray);
+    if ($articles->delete()) {
+      return response()->json(['success' => true, 'msg' => 'Article has been moved to trash']);
     }
-
-    public function restore(Request $request)
-    {
-        $ids = $request->input('id');
-        if (is_array($ids)) {
-            Article::withTrashed()->whereIn('id', $ids)->restore();
-            return response()->json(['success' => true]);
-        }
-        Article::withTrashed()->where('id', $ids)->first()->restore();
-        return response()->json(['success' => true]);
-    }
-
-    public function clone(Request $request)
-    {
-        $ids = $request->input('id');
-        $data = [];
-        if (is_array($ids)) {
-            $articles = Article::whereIn('id', $ids)->get();
-            foreach ($articles as $article) {
-                $temp = ['user_id' => Auth::id(),
-                    'title' => $article->title,
-                    'short_description' => $article->short_description,
-                    'description' => $article->description,
-                    'slug' => $article->slug,
-                    'status' => $article->status,
-                    'avatar' => $article->avatar,
-                    'category_id' => $article->category_id,
-                    'deleted_at' => $article->deleted_at,
-                    'created_at' => Carbon::now()
-                ];
-                $data[] = $temp;
-            }
-            Article::insert($data);
-            return response()->json(['articles' => $articles, 'ids' => $ids, 'data' => $data]);
-        }
-    }
-
-    public function massRemove(Request $request)
-    {
-        $articleIdArray = $request->input('id');
-        $articles = Article::whereIn('id', $articleIdArray);
-        if ($articles->delete()) {
-            return response()->json(['success' => true, 'msg' => 'Article has been moved to trash']);
-        }
-        return response()->json(['failed' => false, 'msg' => 'Error has been composed']);
-    }
+    return response()->json(['failed' => false, 'msg' => 'Error has been composed']);
+  }
 
 }

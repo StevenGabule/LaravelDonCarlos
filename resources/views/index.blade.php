@@ -40,7 +40,7 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active"
-                 style="background: url('{{ $newHeadLine->avatar !== null ? $newHeadLine->avatar : asset('assets/images/photo-1495020689067-958852a7765e.jfif')}}') no-repeat center center / cover">
+                 style="background: url('{{ $newHeadLine->avatar !== null ? asset('storage/uploads/news/original/' . $newHeadLine->avatar) : asset('assets/images/photo-1495020689067-958852a7765e.jfif')}}') no-repeat center center / cover">
                 <div class="container">
                     <div class="carousel-caption mb-5" style="background-color: rgba(0,0,0,0.4)">
                         <h3><a class="text-white"
@@ -52,7 +52,7 @@
             </div><!-- news update -->
 
             <div class="carousel-item"
-                 style="background: url('{{ $eventHeadLine->avatar !== null ? $eventHeadLine->avatar : asset('assets/images/photo-1549451371-64aa98a6f660.jfif') }}') no-repeat center center / cover;">
+                 style="background: url('{{ $eventHeadLine->avatar !== null ? asset('storage/uploads/activities/original/' . $eventHeadLine->avatar) : asset('assets/images/photo-1549451371-64aa98a6f660.jfif') }}') no-repeat center center / cover;">
                 <div class="container">
                     <div class="carousel-caption  mb-5" style="background-color: rgba(0,0,0,0.4)">
                         <h3><a class="text-white"
@@ -64,7 +64,7 @@
             </div><!-- events -->
 
             <div class="carousel-item"
-                 style="background: url('{{ $placeHeadLine->avatar !== null ? $placeHeadLine->avatar : asset('assets/images/photo-1525489196064-0752fa4e16f2.jfif') }}') no-repeat center center / cover">
+                 style="background: url('{{ $placeHeadLine->avatar !== null ? asset('storage/uploads/places/original/' .$placeHeadLine->avatar) : asset('assets/images/photo-1525489196064-0752fa4e16f2.jfif') }}') no-repeat center center / cover">
 
                 <div class="container">
                     <div class="carousel-caption mb-5" style="background-color: rgba(0,0,0,0.4)">
@@ -138,7 +138,7 @@
                     <div class="d-flex flex-column flex-md-row my-5 prog-content-container">
                         <!-- ge background nako ang image para dili mo stretch -->
                         <div class="prog-cont-image1"
-                             style="background-image: url('{{ $contents[0]->avatar !== null ? asset('backend/uploads/page-content/thumbnail/' . $contents[0]->avatar) : 'https://images.unsplash.com/photo-1559311648-874c28a0b7c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1031&q=80' }}');"></div>
+                             style="background-image: url('{{ $contents[0]->avatar !== null ? asset('storage/uploads/page-content/thumbnail/' . $contents[0]->avatar) : 'https://images.unsplash.com/photo-1559311648-874c28a0b7c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1031&q=80' }}');"></div>
                         <!-- <img src="assets/images/airport.jpg" alt=""> -->
                         <div class="text-center mt-5 mt-md-0 mx-md-4">
                             <h3 class="font-weight-bold">{{ $contents[0]->title }}</h3>
@@ -164,7 +164,7 @@
                         <div class="ml-md-3 mt-3 mt-md-0">
                             <!-- inline image so that it can be change -->
                             <div class="prog-cont-image2"
-                                 style="background-image: url('{{ $contents[1]->avatar !== null ? $contents[1]->avatar : 'https://images.unsplash.com/photo-1559311648-874c28a0b7c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1031&q=80' }}');"></div>
+                                 style="background-image: url('{{ $contents[1]->avatar !== null ? asset('storage/uploads/page-content/thumbnail/' . $contents[1]->avatar) : 'https://images.unsplash.com/photo-1559311648-874c28a0b7c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1031&q=80' }}');"></div>
                         </div>
 
                     </div>
@@ -212,9 +212,9 @@
                                 <div class="col-12 col-sm-6 col-lg-12 pt-3">
                                     <div class="card bg-light shadow-sm border-0">
                                         <div>
-                                            <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
+                                            <!-- recommended landscape image to prevent blurring in when changing screen size -->
                                             <img class="card-img max-height-150"
-                                                 src="{{  $important->avatar ? $important->avatar : asset('assets/icons/images.svg') }}"
+                                                 src="{{  $important->avatar ? asset('storage/uploads/news/thumbnail/' . $important->avatar) : asset('assets/icons/images.svg') }}"
                                                  alt="Announcement Images">
                                             <div class="bg-deepRed px-4 rounded-left text-white important-overlay">
                                                 IMPORTANT
@@ -262,8 +262,8 @@
                         <div class="col-12 col-sm-6 col-lg-3 pt-3">
                             <div class="card shadow-sm border-0 p-3">
                                 <img class="card-img"
-                                     src="{{ $new->avatar ? $new->avatar : asset('assets/icons/images.svg') }}"
-                                     style="max-height: 150px;"
+                                     src="{{ $new->avatar ? asset('storage/uploads/news/thumbnail/' . $new->avatar) : asset('assets/icons/images.svg') }}"
+                                     style="max-height: 150px;object-fit: cover"
                                      alt="Announcement Images">
                                 <div class="d-flex flex-row">
                                     <small class="flex-fill">
@@ -310,7 +310,7 @@
                            class="col-darkGrey home-link-setting">
                             <div class="position-relative">
                                 <img class="card-img"
-                                     src="{{ $latestActivity->avatar !== null ? $latestActivity->avatar : 'https://images.unsplash.com/photo-1573490647695-2892d0bf89e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=799&q=80' }}"
+                                     src="{{ $latestActivity->avatar !== null ? asset('storage/uploads/activities/large/' . $latestActivity->avatar) : 'https://images.unsplash.com/photo-1573490647695-2892d0bf89e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=799&q=80' }}"
                                      style="max-height: 350px;object-fit: cover;"
                                      alt="Announcement Images">
                                 <h5 class="event-overlay p-3 m-0 bg-green-event col-dirtyWhite font-weight-bold text-center">

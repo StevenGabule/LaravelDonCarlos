@@ -104,7 +104,7 @@
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
                                 @if($sa->avatar !== null)
-                                    <img src="{{ $sa->avatar }}"
+                                    <img src="{{ asset('storage/uploads/services_article/thumbnail/' .$sa->avatar) }}"
                                          class="img-fluid" id="previewImage" alt="">
                                 @else
                                     <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>

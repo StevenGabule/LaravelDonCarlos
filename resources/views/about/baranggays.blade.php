@@ -31,7 +31,7 @@
     </style>
 @stop
 @section('content')
-    <!-- inlineng the background image so it can be dynamicaly change!!!! -->
+    <!-- inlining the background image so it can be dynamically change!!!! -->
     <!-- recommended background dimension 1920 x 1280 -->
     <div class="about-bg-banner position-relative"
          style="background-image: url('{{ asset('assets/images/cabadiangan-large.jpg') }}');margin-top: -24px;">
@@ -112,8 +112,8 @@
                     @forelse($baranggays as $baranggay)
                         <a href="{{ route('about.baranggay.detail', ['slug' => $baranggay->slug]) }}" class="mt-3 shadow-sm p-2 about-page-link">
                             <div class="d-flex">
-                                <img class="card-img w-150px"
-                                     src="{{ $baranggay->avatar ? $baranggay->avatar : asset('assets/icons/images.svg') }}"
+                                <img class="card-img w-150px" style="object-fit: cover"
+                                     src="{{ $baranggay->avatar ? asset('storage/uploads/barangays/thumbnail/' . $baranggay->avatar) : asset('assets/icons/images.svg') }}"
                                      alt="Image not found">
                                 <div class="pl-3 pt-2">
                                     <h4 class="font-weight-bold">{{ $baranggay->name }}</h4>

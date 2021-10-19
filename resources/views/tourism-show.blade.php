@@ -10,10 +10,10 @@
 @endsection
 
 @section('content')
-    <!-- inlining the background image so it can be dynamicaly change!!!! -->
+    <!-- inlining the background image so it can be dynamically change!!!! -->
     <!-- recommended background dimension 1920 x 1280 -->
     <div class="trending-bg-banner position-relative"
-         style="background-image: url('{{ $place->avatar !== null ? $place->avatar : asset('assets/images/photo-1549880338-65ddcdfd017b.jfif') }}');margin-top: -24px;">
+         style="background-image: url('{{ $place->avatar ? asset('storage/uploads/places/original/' . $place->avatar) : asset('assets/images/photo-1549880338-65ddcdfd017b.jfif') }}');margin-top: -24px;">
         <div class="trending-bg-banner-overlay h-100 ">
             <div class="container col-dirtyWhite h-100">
                 <div class="d-flex h-100">
@@ -41,7 +41,7 @@
                     <div class="card bg-light shadow-sm border-0">
                         <div>
                             <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                            <img class="card-img max-height-250" src="{{ $post->avatar !== null ? $post->avatar : asset('assets/icons/mountains.svg') }}"
+                            <img class="card-img max-height-250" src="{{ $post->avatar !== null ? asset('storage/uploads/places/thumbnail/' . $post->avatar) : asset('assets/icons/mountains.svg') }}"
                                  alt="Announcement Images">
                         </div>
                         <div class="card-body">

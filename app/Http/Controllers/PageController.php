@@ -399,9 +399,6 @@ class PageController extends Controller
                 ->only(['q']))
                 ->paginate(5);
         $services = Services::latest()->get();
-
-
-
         return view('award', compact('articles', 'awards', 'services', 'type', 'content', 'content1'));
     }
 

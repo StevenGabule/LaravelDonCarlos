@@ -68,7 +68,7 @@
 
                             <!-- recommended dimension 640x480 kay mau man ang image nga gi gamit -->
                             <img
-                                src="{{ $slide->avatar !== null ? $slide->avatar : asset('assets/images/nature-large.jpg') }}" class="w-100 h-100"
+                                src="{{ $slide->avatar !== null ? asset('storage/uploads/places/large/' . $slide->avatar) : asset('assets/images/nature-large.jpg') }}" class="w-100 h-100"
                                  style="max-width:680px;max-height:390px;" alt="image not found">
 
                             <div class=" px-3 py-5">
@@ -102,9 +102,8 @@
                         <div class="col-12 col-sm-6 col-lg-4 pt-3">
                             <div class="card bg-light shadow-sm border-0">
                                 <div>
-                                    <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
                                     <img class="card-img max-height-250"
-                                         src="{{ $place->avatar !== null ? $place->avatar : asset('assets/icons/mountains.svg')  }}"
+                                         src="{{ $place->avatar !== null ? asset('storage/uploads/places/large/' . $place->avatar) : asset('assets/icons/mountains.svg')  }}"
                                          alt="Announcement Images">
                                 </div>
                                 <div class="card-body">

@@ -16,7 +16,7 @@
     </style>
 @stop
 @section('content')
-    <!-- inlineng the background image so it can be dynamicaly change!!!! -->
+    <!-- inlining the background image so it can be dynamically change!!!! -->
     <!-- recommended background dimension 1920 x 1280 -->
     <div class="about-bg-banner position-relative"
          style="background: url('{{ $news->display_image() }}') no-repeat center center / cover;margin-top: -24px;">
@@ -45,6 +45,7 @@
         </nav>
         <div class="row my-4">
             <div class="col-12 col-md-9">
+              {{ $news->avatar }}
                 {!! $news->description  !!}
             </div>
             <div class="col-12 col-md-3">

@@ -2,9 +2,9 @@
     <div class="col-12 pt-3 ">
         <div class="card bg-light shadow-sm border-0 ">
             <div>
-                <!-- recomendedd landscape image to prevent bluring in when changing screen size -->
-                <img class="card-img max-height-150"
-                     src="{{ $article->avatar ? $article->avatar : asset('assets/icons/images.svg') }}"
+                <!-- recommended landscape image to prevent blurring in when changing screen size -->
+                <img class="card-img max-height-150" style="object-fit: cover"
+                     src="{{ $article->avatar ? asset('storage/uploads/news/thumbnail/' . $article->avatar) : asset('assets/icons/images.svg') }}"
                      alt="Announcement Images ">
             </div>
             <div class="card-body ">
