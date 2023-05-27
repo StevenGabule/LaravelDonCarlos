@@ -57,7 +57,7 @@
                         <div>
                             <!-- recommended landscape image to prevent blurring in when changing screen size -->
                             <img class="card-img max-height-250" style="object-fit: cover;"
-                                 src="{{ $post->avatar !== null ? asset('storage/uploads/activities/thumbnail/' . $post->avatar) : asset('assets/icons/mountains.svg') }}"
+                                 src="{{ $post->display_image() }}"
                                  alt="Announcement Images">
                         </div>
                         <div class="card-body">

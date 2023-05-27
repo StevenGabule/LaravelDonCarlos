@@ -99,7 +99,7 @@
       }
 
       getPlaces();
-      const placesUrl = '{{ asset('storage/uploads/places/thumbnail') }}'
+      const placesUrl = '{{ asset('') }}'
 
       function getPlaces(type = 'all') {
         $('#placesTables').DataTable({

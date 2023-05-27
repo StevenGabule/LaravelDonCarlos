@@ -126,7 +126,7 @@
       }
 
       getActivities();
-      const activitiesUrl = '{{ asset('storage/uploads/activities/thumbnail') }}'
+      const activitiesUrl = '{{ asset('') }}'
 
       function getActivities(type = 'all') {
         $('#activitiesTable').DataTable({

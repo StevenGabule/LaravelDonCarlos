@@ -35,7 +35,7 @@
                     @if($new->avatar == null)
                       <i class='fa fa-2x fa-image'></i>
                     @else
-                      <img src="{{ asset('storage/uploads/news/thumbnail/' .  $new->avatar)  }}" style="width: 25px;height: 25px;" alt="">
+                      <img src="{{ $new->display_image()  }}" style="width: 25px;height: 25px;" alt="">
                     @endif
                     <a href="{{route('news.detail', ['slug' => $new->slug])}}"
                        target="_blank"
@@ -77,7 +77,7 @@
                     @if($place->avatar == null)
                       <i class='fa fa-2x fa-image'></i>
                     @else
-                      <img src="{{ asset('storage/uploads/places/thumbnail/' . $place->avatar) }}" style="width: 25px;height: 25px;" alt="">
+                      <img src="{{ $place->display_image() }}" style="width: 25px;height: 25px;" alt="">
                     @endif
                     <dv>
                       <a href="{{route('news.detail', ['slug' => $place->slug])}}"
@@ -170,7 +170,7 @@
                     @if($service_article->avatar == null)
                       <i class='fa fa-2x fa-image'></i>
                     @else
-                      <img src="{{ asset('storage/uploads/services_article/thumbnail/' . $service_article->avatar)  }}" style="width: 25px;height: 25px;" alt="">
+                      <img src="{{ $service_article->display_image()  }}" style="width: 25px;height: 25px;" alt="">
                     @endif
                     <a href="{{route('news.detail', ['slug' => $service_article->slug])}}"
                        target="_blank"

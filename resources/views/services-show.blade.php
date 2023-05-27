@@ -102,7 +102,7 @@
                            class="mt-3 shadow-sm p-2 about-page-link">
                             <div class="d-flex">
                                 <img class="card-img w-150px"
-                                     src="{{ $article_service->avatar ? asset('storage/uploads/services_article/thumbnail/' . $article_service->avatar) : asset('assets/icons/images.svg') }}"
+                                     src="{{ $article_service->display_image() }}"
                                      alt="Image not found">
                                 <div class="pl-3 pt-2">
                                     <h4 class="font-weight-bold">{{ $article_service->name }}</h4>

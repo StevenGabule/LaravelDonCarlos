@@ -73,9 +73,12 @@ EOT;
     $file_url = null;
 
     $file = $request->file('file');
+    $filePath = $request->file('file')->store('files', 'public');
+
     $file->getPathName();
     $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($file->getClientOriginalName()));
-    $file->storeAs('uploads/transparent_files', $filename, 'tmp');
+    $filename = $filePath;
+//    $file->storeAs('uploads/transparent_files', $filename, 'tmp');
 
     TransparencyFile::create([
       'name' => $uploadedFile->getClientOriginalName(),

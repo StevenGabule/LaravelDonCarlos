@@ -104,9 +104,12 @@ EOT;
     $filename = '';
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
+      $path = $request->file('avatar')->store('', '');
+
       $image->getPathName();
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/official_groups/original', $filename, 'tmp');
+      $filename = $path;
+//      $image->storeAs('uploads/official_groups/original', $filename, 'tmp');
     }
 
     $official = BaranggayOfficial::create([
@@ -122,7 +125,7 @@ EOT;
 
     if ($filename != '') {
 //      $this->upload($official, 'official_groups');
-      $this->dispatch(new UploadImageBarangayOfficial($official->id));
+//      $this->dispatch(new UploadImageBarangayOfficial($official->id));
     }
 
     return response()->json(['success' => true]);
@@ -157,9 +160,11 @@ EOT;
     $filenameCaptainImage = '';
     if ($request->file('avatarCapitan')) {
       $image = $request->file('avatarCapitan');
+      $pathCaptain = $request->file('avatarCapitan')->store('', '');
       $image->getPathName();
       $filenameCaptainImage = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/official_groups/original', $filenameCaptainImage, 'tmp');
+      $filenameCaptainImage = $pathCaptain;
+//      $image->storeAs('uploads/official_groups/original', $filenameCaptainImage, 'tmp');
     }
 
     $addCaptain = BaranggayOfficial::create([
@@ -176,16 +181,18 @@ EOT;
 
     if ($filenameCaptainImage != '') {
 //      $this->upload($addCaptain, 'official_groups');
-      $this->dispatch(new UploadImageBarangayOfficial($addCaptain->id));
+//      $this->dispatch(new UploadImageBarangayOfficial($addCaptain->id));
     }
 
     ////////  CHAIRMAN //////////
     $filenameChairmanImage = '';
     if ($request->file('avatarChairman')) {
       $imageChairman = $request->file('avatarChairman');
+      $pathAvatarChairman = $request->file('avatarChairman')->store('', '');
       $imageChairman->getPathName();
       $filenameChairmanImage = time() . '_' . preg_replace('/\s+/', '_', strtolower($imageChairman->getClientOriginalName()));
-      $imageChairman->storeAs('uploads/official_groups/original', $filenameChairmanImage, 'tmp');
+      $filenameChairmanImage = $pathAvatarChairman;
+//      $imageChairman->storeAs('uploads/official_groups/original', $filenameChairmanImage, 'tmp');
     }
 
     $addChairman = BaranggayOfficial::create([
@@ -202,7 +209,7 @@ EOT;
 
     if ($filenameChairmanImage != '') {
 //      $this->upload($addChairman, 'official_groups');
-      $this->dispatch(new UploadImageBarangayOfficial($addChairman->id));
+//      $this->dispatch(new UploadImageBarangayOfficial($addChairman->id));
     }
 
     ////////  SECRETARY //////////
@@ -210,9 +217,13 @@ EOT;
 
     if ($request->file('avatarSecretary')) {
       $imageSecretary = $request->file('avatarSecretary');
+      $pathAvatarSecretary = $request->file('avatarSecretary')->store('', '');
+
       $imageSecretary->getPathName();
       $filenameSecretaryImage = time() . '_' . preg_replace('/\s+/', '_', strtolower($imageSecretary->getClientOriginalName()));
-      $imageSecretary->storeAs('uploads/official_groups/original', $filenameSecretaryImage, 'tmp');
+      $filenameSecretaryImage = $pathAvatarSecretary;
+//      $imageSecretary->storeAs('uploads/official_groups/original', $filenameSecretaryImage, 'tmp');
+
     }
 
     $addSecretary = BaranggayOfficial::create([
@@ -229,16 +240,18 @@ EOT;
 
     if ($filenameSecretaryImage != '') {
 //      $this->upload($addSecretary, 'official_groups');
-      $this->dispatch(new UploadImageBarangayOfficial($addSecretary->id));
+//      $this->dispatch(new UploadImageBarangayOfficial($addSecretary->id));
     }
 
     // treasure
     $filenameTreasurerImage = null;
     if ($request->file('avatarTreasurer')) {
       $imageTreasurer = $request->file('avatarTreasurer');
+      $pathAvatarTreasurer = $request->file('avatarTreasurer')->store('', '');
       $imageTreasurer->getPathName();
       $filenameTreasurerImage = time() . '_' . preg_replace('/\s+/', '_', strtolower($imageTreasurer->getClientOriginalName()));
-      $imageTreasurer->storeAs('uploads/official_groups/original', $filenameTreasurerImage, 'tmp');
+      $filenameTreasurerImage = $pathAvatarTreasurer;
+//      $imageTreasurer->storeAs('uploads/official_groups/original', $filenameTreasurerImage, 'tmp');
     }
 
     $addTreasurer = BaranggayOfficial::create([
@@ -255,7 +268,7 @@ EOT;
 
     if ($filenameTreasurerImage != '') {
 //      $this->upload($addTreasurer, 'official_groups');
-      $this->dispatch(new UploadImageBarangayOfficial($addTreasurer->id));
+//      $this->dispatch(new UploadImageBarangayOfficial($addTreasurer->id));
     }
 
     foreach ($request->position_kagawad as $key => $v) {
@@ -303,13 +316,16 @@ EOT;
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
       $image->getPathName();
+
+      $pathAvatar = $request->file('avatar')->store('', '');
+
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/official_groups/original', $filename, 'tmp');
-      $officials->avatar = $filename;
+//      $image->storeAs('uploads/official_groups/original', $filename, 'tmp');
+      $officials->avatar = $pathAvatar;
 
       if ($filename != '') {
-        $this->upload($officials, 'official_groups');
-        $this->dispatch(new UploadImageBarangayOfficial($officials->id));
+//        $this->upload($officials, 'official_groups');
+//        $this->dispatch(new UploadImageBarangayOfficial($officials->id));
       }
     }
 
@@ -347,13 +363,15 @@ EOT;
 
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
+      $pathOfficial = $request->file('avatar')->store('', '');
+
       $image->getPathName();
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/official_groups/original', $filename, 'tmp');
-      $officials->avatar = $filename;
+//      $image->storeAs('uploads/official_groups/original', $filename, 'tmp');
+      $officials->avatar = $pathOfficial;
       if ($filename != '') {
 //        $this->upload($officials, 'official_groups');
-        $this->dispatch(new UploadImageBarangayOfficial($officials->id));
+//        $this->dispatch(new UploadImageBarangayOfficial($officials->id));
       }
     }
 

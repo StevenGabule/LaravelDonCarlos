@@ -5,44 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0aa63d2b-7c2a-4350-93fd-255ba4215043" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Jobs/UploadImagePageContent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Traits/UploadImage.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/backend/img/loading.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/John_paul.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/John_paul.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/symlink.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/LaravelDonCarlos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LaravelDonCarlos.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Activities.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Activities.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Article.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Baranggay.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Baranggay.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/BaranggayOfficial.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/BaranggayOfficial.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/ContentNeed.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ContentNeed.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/DepartmentOffices.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DepartmentOffices.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ActivityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ActivityController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ArticlePostTagController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ArticleTagController.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BaranggayController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BaranggayController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BaranggayOfficialController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BaranggayOfficialController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContentNeedController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContentNeedController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DepartmentOfficesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DepartmentOfficesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PageContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PageContentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PlaceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PlaceController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ServicesArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ServicesArticleController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TransparencyFileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TransparencyFileController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TransparentPostFileController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/PageContentUploadImage.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/UploadImageArticle.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/UploadImageArticle.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/TransparencyFile.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/TransparencyFile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/PageContent.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/PageContent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Place.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Place.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ServicesArticle.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ServicesArticle.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/_shared/_articles.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/_shared/_articles.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/about/baranggays.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/about/baranggays.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/activities-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/activities-show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/activities.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/activities.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/award.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/award.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/Award-Mandate/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/Award-Mandate/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/Award-Mandate/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/Award-Mandate/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/activities/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/activities/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/activities/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/activities/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/activities/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/activities/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/baranggay/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/baranggay/edit.blade.php" afterDir="false" />
@@ -50,6 +47,7 @@
       <change beforePath="$PROJECT_DIR$/resources/views/backend/department_offices/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/department_offices/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/department_offices/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/department_offices/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/news/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/news/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/news/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/news/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/officials/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/officials/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/page_content/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/page_content/edit.blade.php" afterDir="false" />
@@ -58,18 +56,17 @@
       <change beforePath="$PROJECT_DIR$/resources/views/backend/services-articles/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/services-articles/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/tourism/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/tourism/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/tourism/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/tourism/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/transparency/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/transparency/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/departments-show-detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/departments-show-detail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/departments-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/departments-show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/news.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/page-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/page-show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/services-show-detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/services-show-detail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/services-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/services-show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/show-news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/show-news.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/tourism-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tourism-show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/tourism.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tourism.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/transparency-show-detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transparency-show-detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/uploads/large/1594954787_105770275_3509970319016434_4342681690964354120_n.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/uploads/original/1594954787_105770275_3509970319016434_4342681690964354120_n.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/uploads/small/1594954787_105770275_3509970319016434_4342681690964354120_n.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/uploads/thumbnail/1594954787_105770275_3509970319016434_4342681690964354120_n.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,6 +216,9 @@
       <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
       <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
+      <path value="$PROJECT_DIR$/vendor/php-parallel-lint/php-console-highlighter" />
+      <path value="$PROJECT_DIR$/vendor/php-parallel-lint/php-console-color" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/deprecations" />
     </include_path>
   </component>
   <component name="ProjectId" id="1rROb4fZQrjryWB8ZhlP93yXzZT" />
@@ -235,18 +235,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/backend/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\LaravelDonCarlos" />
       <recent name="D:\laragon\www\LaravelDonCarlos\public\backend\img" />
       <recent name="D:\laragon\www\LaravelDonCarlos\storage\uploads" />
       <recent name="D:\laragon\www\LaravelDonCarlos\storage\uploads\content_needs" />
       <recent name="D:\laragon\www\LaravelDonCarlos\storage\app\public\uploads" />
-      <recent name="D:\laragon\www\LaravelDonCarlos\storage\uploads\department_offices" />
     </key>
   </component>
   <component name="RunManager">
@@ -284,6 +284,10 @@
       <workItem from="1634146780092" duration="112000" />
       <workItem from="1634548066966" duration="42000" />
       <workItem from="1634548127177" duration="28304000" />
+      <workItem from="1684992092869" duration="590000" />
+      <workItem from="1684994809536" duration="789000" />
+      <workItem from="1684997904889" duration="3175000" />
+      <workItem from="1685061954227" duration="22249000" />
     </task>
     <servers />
   </component>

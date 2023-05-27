@@ -113,7 +113,7 @@
       }
 
       getDepartmentOffices();
-      const BASE_URL = '{{ asset('storage/uploads/department_offices/thumbnail') }}'
+      const BASE_URL = '{{ asset('') }}'
       function getDepartmentOffices(type = 'all') {
         $('#departmentOfficeTable').DataTable({
           destroy: true,

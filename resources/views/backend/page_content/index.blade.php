@@ -70,7 +70,7 @@
   <script src="{{ asset('backend/js/dataTables.bootstrap4.min.js') }}"></script>
   <script>
     $(document).ready(function () {
-      const BASE_URL = '{{ asset('storage/uploads/page_content/thumbnail') }}'
+      const BASE_URL = '{{ asset('') }}'
       $('#articlesTables').DataTable({
         destroy: true,
         processing: true,

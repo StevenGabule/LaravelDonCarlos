@@ -103,9 +103,11 @@ EOT;
 
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
+      $path = $request->file('avatar')->store('', '');
       $image->getPathName();
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/department_offices/original', $filename, 'tmp');
+      $filename = $path;
+//      $image->storeAs('uploads/department_offices/original', $filename, 'tmp');
     }
 
     $office = DepartmentOffices::create([
@@ -123,7 +125,7 @@ EOT;
     ]);
 
     if ($filename != '') {
-      $this->dispatch(new UploadImageDepartmentOffice($office->id));
+//      $this->dispatch(new UploadImageDepartmentOffice($office->id));
     }
 
     return response()->json(['id' => $office->id]);
@@ -156,10 +158,12 @@ EOT;
 
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
+      $path = $request->file('avatar')->store('', '');
       $image->getPathName();
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/department_offices/original', $filename, 'tmp');
-      $office->avatar = $filename;
+
+//      $image->storeAs('uploads/department_offices/original', $filename, 'tmp');
+      $office->avatar = $path;
       $this->dispatch(new UploadImageDepartmentOffice($id));
     }
 

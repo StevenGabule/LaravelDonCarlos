@@ -116,7 +116,7 @@
           $('tr.odd, tr.even,tr').removeClass('highlight');
         }
       });
-      const newsUrl = '{{ asset('storage/uploads/news/thumbnail') }}'
+      const newsUrl = '{{ asset('') }}'
 
       function getArticle(type = 'all') {
         $('#articlesTables').DataTable({

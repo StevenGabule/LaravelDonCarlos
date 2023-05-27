@@ -49,7 +49,7 @@ class ActivityController extends Controller
 
     return DataTables::of($activities)->addColumn('action', static function ($data) {
       $btn = ($data->deleted_at === null) ? "
-                        <a class='dropdown-item' href='$data->id'><i class='fad fa-eye mr-2'></i> View</a>
+                        <a class='dropdown-item' href='$data->slug'><i class='fad fa-eye mr-2'></i> View</a>
                         <a class='dropdown-item' id='$data->id' href='/admin/activities/$data->id/edit'><i class='fad fa-file-edit mr-2'></i> Edit</a>
                         <a class='dropdown-item removeBaranggay' id='$data->id' href='javascript:void(0)'>
                             <i class='fad fa-trash mr-2'></i> Move Trash
@@ -112,10 +112,12 @@ EOT;
 
     $filename = '';
     if ($request->file('avatar')) {
+      $path = $request->file('avatar')->store('', '');
       $image = $request->file('avatar');
       $image->getPathName();
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/activities/original', $filename, 'tmp');
+      $filename = $path;
+//      $image->storeAs('uploads/activities/original', $filename, 'tmp');
     }
 
     $act = Activities::create([
@@ -135,10 +137,10 @@ EOT;
 
     $id = $act->id;
     $output = ['id' => $id];
-    if ($filename != '') {
+//    if ($filename != '') {
 //      $this->upload($act, 'activities');
-      $this->dispatch(new UploadImageActivityEvent($id));
-    }
+//      $this->dispatch(new UploadImageActivityEvent($id));
+//    }
     return response()->json($output);
   }
 
@@ -162,12 +164,13 @@ EOT;
     $activities = Activities::findOrFail($id);
 
     if ($request->file('avatar')) {
+      $path = $request->file('avatar')->store('', '');
       $image = $request->file('avatar');
       $image->getPathName();
-      $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/activities/original', $filename, 'tmp');
-      $activities->avatar = $filename;
-      $this->dispatch(new UploadImageActivityEvent($id));
+//      $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
+//      $image->storeAs('uploads/activities/original', $filename, 'tmp');
+      $activities->avatar = $path;
+//      $this->dispatch(new UploadImageActivityEvent($id));
     }
 
     $activities->update([

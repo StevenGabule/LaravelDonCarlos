@@ -91,15 +91,23 @@ EOT;
     $filename = '';
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
+      $path = $request->file('avatar')->store('', '');
       $image->getPathName();
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/news/original', $filename, 'tmp');
+      $filename = $path;
+//      $image->storeAs('uploads/news/original', $filename, 'tmp');
+    }
+
+
+    $important = 0;
+    if($request->get('important')) {
+      $important = 1;
     }
 
     $article = Article::create([
       'user_id' => Auth::id(),
       'title' => $request->get('title'),
-      'important' => $request->get('important', false),
+      'important' => $important,
       'slug' => Str::slug($request->get('title')),
       'status' => $request->get('status'),
       'avatar' => $filename,
@@ -112,7 +120,7 @@ EOT;
     $id = $article->id;
     $output = ['id' => $id];
     if ($filename != '') {
-      $this->dispatch(new UploadImageArticle($id));
+//      $this->dispatch(new UploadImageArticle($id));
     }
     return response()->json($output);
   }
@@ -141,11 +149,12 @@ EOT;
 
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
+      $path = $request->file('avatar')->store('', '');
       $image->getPathName();
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/news/original', $filename, 'tmp');
-      $article->avatar = $filename;
-      $this->dispatch(new UploadImageArticle($request->input('article_id')));
+//      $image->storeAs('uploads/news/original', $filename, 'tmp');
+      $article->avatar = $path;
+//      $this->dispatch(new UploadImageArticle($request->input('article_id')));
     }
 
     $article->update([

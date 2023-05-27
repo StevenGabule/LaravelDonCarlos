@@ -69,4 +69,8 @@ class ServicesArticle extends Model
         }
     }
 
+  public function display_image(): string
+  {
+    return $this->avatar !== null ? asset($this->avatar) : 'https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80';
+  }
 }

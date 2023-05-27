@@ -234,7 +234,7 @@
       });
 
       getServiceArticles();
-      const placesUrl = '{{ asset('storage/uploads/services_article/thumbnail') }}'
+      const placesUrl = '{{ asset('') }}'
       function getServiceArticles(type = 'all') {
         $('#servicesArticleTable').DataTable({
           destroy: true,

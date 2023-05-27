@@ -50,4 +50,9 @@ class Place extends Model
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
+  public function display_image(): string
+  {
+    return $this->avatar !== null ? asset($this->avatar) : asset('assets/images/photo-1558449033-7ae045d2c81a.jfif');
+  }
+
 }

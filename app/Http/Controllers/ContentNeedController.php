@@ -96,9 +96,11 @@ EOT;
 
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
+      $path = $request->file('avatar')->store('', '');
       $image->getPathName();
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/content_needs/original', $filename, 'tmp');
+      $filename = $path;
+//      $image->storeAs('uploads/content_needs/original', $filename, 'tmp');
     }
 
     $content = ContentNeed::create([
@@ -114,7 +116,7 @@ EOT;
     ]);
 
     if ($filename != '') {
-      $this->dispatch(new UploadImageContentType($content->id));
+//      $this->dispatch(new UploadImageContentType($content->id));
     }
 
     return response()->json(['id' => $content->id], 200);
@@ -143,11 +145,12 @@ EOT;
 
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
+      $path = $request->file('avatar')->store('', '');
       $image->getPathName();
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/content_needs/original', $filename, 'tmp');
-      $content->avatar = $filename;
-      $this->dispatch(new UploadImageContentType($content->id));
+//      $image->storeAs('uploads/content_needs/original', $filename, 'tmp');
+      $content->avatar = $path;
+//      $this->dispatch(new UploadImageContentType($content->id));
     }
 
     $content->update([

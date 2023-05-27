@@ -10,7 +10,7 @@
     <!-- inlineng the background image so it can be dynamicaly change!!!! -->
     <!-- recommended background dimension 1920 x 1280 -->
     <div class="about-bg-banner position-relative"
-         style="background: url('{{ $office->avatar !== null ? $office->avatar : asset('assets/images/cabadiangan-large.jpg') }}');margin-top: -24px;">
+         style="background: url('{{ $office->display_image() }}');margin-top: -24px;">
         <div class="trending-bg-banner-overlay h-100 ">
             <div class="container col-dirtyWhite h-100">
                 <div class="d-flex h-100">

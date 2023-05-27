@@ -79,16 +79,8 @@
 
               <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
                 @if($page_content->avatar !== null)
-                  @php
-                    $file = public_path('storage/uploads/page_content/thumbnail/' . $page_content->avatar);
-                  @endphp
-                  @if(File::exists($file))
-                    <img src="{{ asset('storage/uploads/page_content/thumbnail/' . $page_content->avatar) }}"
+                    <img src="{{ $page_content->display_image() }}"
                          class="img-fluid" id="previewImage" alt="">
-                  @else
-                    <img src="{{ asset('backend/img/loading.gif') }}"
-                         class="img-fluid" id="previewImage" alt="">
-                  @endif
                 @else
                   <i class="fad fa-images fa-goner"
                      style="font-size: 100px;"></i>

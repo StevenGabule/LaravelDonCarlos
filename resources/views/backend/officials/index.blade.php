@@ -425,7 +425,7 @@
         }
       }
 
-      const officialsUrl = '{{ asset('storage/uploads/official_groups/thumbnail') }}'
+      const officialsUrl = '{{ asset('') }}'
 
       function getBaranggayOfficials(type = 'all') {
         /*1-kagawad|2-Captain|3-SK|4-Secretary|5-treasurer*/

@@ -4,7 +4,7 @@
             <div>
                 <!-- recommended landscape image to prevent blurring in when changing screen size -->
                 <img class="card-img max-height-150" style="object-fit: cover"
-                     src="{{ $article->avatar ? asset('storage/uploads/news/thumbnail/' . $article->avatar) : asset('assets/icons/images.svg') }}"
+                     src="{{ $article->display_image() }}"
                      alt="Announcement Images ">
             </div>
             <div class="card-body ">

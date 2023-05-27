@@ -104,10 +104,10 @@ EOT;
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
       $image->getPathName();
-
+      $path = $request->file('avatar')->store('', '');
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-
-      $image->storeAs('uploads/barangays/original', $filename, 'tmp');
+      $filename = $path;
+//      $image->storeAs('uploads/barangays/original', $filename, 'tmp');
     }
 
     $barangay = Baranggay::create([
@@ -127,7 +127,7 @@ EOT;
 
     if ($filename != '') {
 //      $this->upload($barangay, 'barangays');
-      $this->dispatch(new UploadImageBarangay($id));
+//      $this->dispatch(new UploadImageBarangay($id));
     }
     return response()->json(['success' => true, 'id' => $id]);
   }
@@ -154,15 +154,16 @@ EOT;
 
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
+      $path = $request->file('avatar')->store('', '');
       $image->getPathName();
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/barangays/original', $filename, 'tmp');
-      $baranggay->avatar = $filename;
+//      $image->storeAs('uploads/barangays/original', $filename, 'tmp');
+      $baranggay->avatar = $path;
     }
 
     if ($filename != '') {
 //      $this->upload($baranggay, 'barangays');
-      $this->dispatch(new UploadImageBarangay($baranggay_id));
+//      $this->dispatch(new UploadImageBarangay($baranggay_id));
     }
 
     $baranggay->update([

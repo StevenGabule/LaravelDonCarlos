@@ -93,9 +93,12 @@ EOT;
     $filename = '';
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
+      $path = $request->file('avatar')->store('', '');
+
       $image->getPathName();
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/places/original', $filename, 'tmp');
+      $filename = $path;
+//      $image->storeAs('uploads/places/original', $filename, 'tmp');
     }
 
     $place = Place::create([
@@ -141,12 +144,14 @@ EOT;
 
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
+      $path = $request->file('avatar')->store('', '');
+
       $image->getPathName();
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/places/original', $filename, 'tmp');
-      $place->avatar = $filename;
+//      $image->storeAs('uploads/places/original', $filename, 'tmp');
+      $place->avatar = $path;
 //      $this->upload($place, 'places');
-      $this->dispatch(new UploadImageTourism($place->id));
+//      $this->dispatch(new UploadImageTourism($place->id));
     }
 
     $place->name = $request->get('name');

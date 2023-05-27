@@ -106,7 +106,7 @@
       }
 
       getData();
-      const contentUrl = '{{ asset('storage/uploads/content_needs/thumbnail') }}'
+      const contentUrl = '{{ asset('') }}'
 
       function getData(type = 'all') {
         $('#dataTable').DataTable({

@@ -100,7 +100,7 @@
 
                             <div class="border h-75 text-center pb-5 pt-5 pl-5 pr-5 mb-3">
                                 @if($office->avatar !== null)
-                                    <img src="{{ asset('storage/uploads/department_offices/thumbnail/' . $office->avatar) }}" class="img-fluid" id="previewImage" alt="">
+                                    <img src="{{ $office->display_image() }}" class="img-fluid" id="previewImage" alt="">
                                 @else
                                     <i class="fad fa-images fa-goner" style="font-size: 100px;"></i>
                                     <img src="" class="img-fluid" id="previewImage" alt="">

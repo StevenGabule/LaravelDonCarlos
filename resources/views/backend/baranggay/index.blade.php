@@ -107,7 +107,7 @@
       }
 
       getBaranggays();
-      const barangayUrl = '{{ asset('storage/uploads/barangays/thumbnail') }}'
+      const barangayUrl = '{{ asset('') }}'
 
       function getBaranggays(type = 'all') {
         $('#baranggayTable').DataTable({

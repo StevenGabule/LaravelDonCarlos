@@ -9,7 +9,7 @@
 @section('content')
 
   <div class="about-bg-banner position-relative"
-       style="background-image: url('{{ $post->avatar !== null ? $post->avatar : asset('assets/images/fallback.jfif') }}');margin-top: -24px;">
+       style="background-image: url('{{ $post->display_image() }}');margin-top: -24px;">
     <div class="trending-bg-banner-overlay h-100">
       <div class="container col-dirtyWhite h-100">
         <div class="d-flex h-100">

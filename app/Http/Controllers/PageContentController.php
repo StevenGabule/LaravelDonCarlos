@@ -52,9 +52,12 @@ EOT;
 
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
+      $path = $request->file('avatar')->store('', '');
+
       $image->getPathName();
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/page_content/original', $filename, 'tmp');
+      $filename = $path;
+//      $image->storeAs('uploads/page_content/original', $filename, 'tmp');
     }
 
     $pageContent = PageContent::create([
@@ -91,11 +94,13 @@ EOT;
 
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
+      $path = $request->file('avatar')->store('', '');
+
       $image->getPathName();
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/page_content/original', $filename, 'tmp');
-      $this->dispatch(new UploadImagePageContent($pageContent->id));
-      $pageContent->avatar = $filename;
+//      $image->storeAs('uploads/page_content/original', $filename, 'tmp');
+//      $this->dispatch(new UploadImagePageContent($pageContent->id));
+      $pageContent->avatar = $path;
     }
 
     $pageContent->update([

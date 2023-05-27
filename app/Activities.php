@@ -14,8 +14,11 @@ class Activities extends Model
 
     protected $guarded = [];
     protected $dates = ['deleted_at'];
+  /**
+   * @var mixed
+   */
 
-    public function getDisplayAddressAttribute()
+  public function getDisplayAddressAttribute()
     {
         if (strlen($this->address) <= 55) {
             return $this->address;
@@ -47,6 +50,6 @@ class Activities extends Model
 
     public function display_image(): string
     {
-        return $this->avatar !== null ? asset('storage/uploads/activities/original/' . $this->avatar) : 'https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80';
+        return $this->avatar !== null ? asset($this->avatar) : 'https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80';
     }
 }

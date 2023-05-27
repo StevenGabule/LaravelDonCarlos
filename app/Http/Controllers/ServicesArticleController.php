@@ -106,9 +106,11 @@ EOT;
 
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
+      $path = $request->file('avatar')->store('', '');
       $image->getPathName();
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/services_article/original', $filename, 'tmp');
+      $filename = $path;
+//      $image->storeAs('uploads/services_article/original', $filename, 'tmp');
     }
 
     $services_article = ServicesArticle::create([
@@ -152,12 +154,14 @@ EOT;
 
     if ($request->file('avatar')) {
       $image = $request->file('avatar');
+      $path = $request->file('avatar')->store('', '');
+
       $image->getPathName();
       $filename = time() . '_' . preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
-      $image->storeAs('uploads/services_article/original', $filename, 'tmp');
-      $serviceArticle->avatar = $filename;
+//      $image->storeAs('uploads/services_article/original', $filename, 'tmp');
+      $serviceArticle->avatar = $path;
 //      $this->upload($serviceArticle, 'services_article');
-      $this->dispatch(new UploadImageServiceArticle($serviceArticle->id));
+//      $this->dispatch(new UploadImageServiceArticle($serviceArticle->id));
     }
 
     $serviceArticle->name = $request->get('name');
